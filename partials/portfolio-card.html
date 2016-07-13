@@ -1,0 +1,21 @@
+
+<div class="card__container card__container--closed">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 1920 1200" preserveaspectratio="xMidYMid slice" class="card__image">
+    <defs>
+      <clippath id="clipPath{{$index}}">
+        <polygon points="0,1200 0,0 1920,0 1920,1200" class="clip"></polygon>
+      </clippath>
+    </defs>
+    <image clip-path="url(#clipPath{{$index}})" width="1920" height="1200" xlink:href="{{ card.imageUrl }}"></image>
+  </svg>
+  <div class="card__content"><i class="card__btn-close fa fa-times"></i>
+    <div class="card__caption">
+      <h2 class="card__title">{{ card.title }}</h2>
+      <p class="card__subtitle">{{ card.subtitle }}</p>
+    </div>
+    <div class="card__copy">
+      <div class="meta"><img src="{{ card.authorImageUrl }}" alt="{{ card.author }}" class="meta__avatar"/><span class="meta__author">{{ card.author }}</span><span class="meta__date">{{ card.date }}</span></div>
+      <div>{{ card.content }}</div>
+    </div>
+  </div>
+</div>

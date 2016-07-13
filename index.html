@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" id="ng-app" ng-app="app" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Shotcowboystyle's Portfolio</title>
+    <meta name="description" content="A simple showcase of my web, app and design work.">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0" user-scalable="no">
+    <base href="/">
+    <style>
+      html { -webkit-text-size-adjust: 100%; }
+      
+      @-webkit-keyframes up {
+        0%,
+        100% {
+          -webkit-transform: rotate(0);
+          transform: rotate(0);
+        } 
+        50% {
+          -webkit-transform: rotate(-30deg);
+          transform: rotate(-30deg);
+        }
+      }
+      @-moz-keyframes up {
+        0%,
+        100% {
+          transform: rotate(0);
+        } 
+        50% {
+          transform: rotate(-30deg);
+        }
+      }
+      @-o-keyframes up {
+        0%,
+        100% {
+          transform: rotate(0);
+        } 
+        50% {
+          transform: rotate(-30deg);
+        }
+      }
+      @keyframes up {
+        0%,
+        100% {
+          -webkit-transform: rotate(0);
+          transform: rotate(0);
+        } 
+        50% {
+          -webkit-transform: rotate(-30deg);
+          transform: rotate(-30deg);
+        }
+      }
+      
+      @-webkit-keyframes down {
+        0%,
+        100% {
+          -webkit-transform: rotate(0);
+          transform: rotate(0);
+        } 
+        50% {
+          -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
+        }
+      }
+      @-moz-keyframes down {
+        0%,
+        100% {
+          transform: rotate(0);
+        } 
+        50% {
+          transform: rotate(30deg);
+        }
+      }
+      @-o-keyframes down {
+        0%,
+        100% {
+          transform: rotate(0);
+        } 
+        50% {
+          transform: rotate(30deg);
+        }
+      }
+      @keyframes down {
+        0%,
+        100% {
+          -webkit-transform: rotate(0);
+          transform: rotate(0);
+        } 
+        50% {
+          -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
+        }
+      }
+      
+      @-webkit-keyframes rToL {
+        100% {
+          transform: translateX(-25px);
+        }
+      }
+      @-moz-keyframes rToL {
+        100% {
+          transform: translateX(-25px);
+        }
+      }
+      @-o-keyframes rToL {
+        100% {
+          transform: translateX(-25px);
+        }
+      }
+      @keyframes rToL {
+        100% {
+          transform: translateX(-25px);
+        }
+      }
+      
+      #loader-container {
+        overflow: hidden;
+        margin: 0;
+        
+        height: 100vh;
+        
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+      #loader {
+        -webkit-box-flex: 0;
+        -webkit-flex: none;
+        -ms-flex: none;
+        flex: none;
+      }
+      
+      .pacman:before,
+      .pacman:after{
+        content: '';
+        position: absolute;
+        background: #FFC107;
+        width: 100px;
+        height: 50px;
+        left: 50%;
+        top: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+        border-radius: 50px 50px 0 0;
+        -webkit-animation: up 0.4s infinite;
+        -moz-animation: up 0.4s infinite;
+        -o-animation: up 0.4s infinite;
+        animation: up 0.4s infinite;
+      }
+      
+      .pacman:after {
+        margin-top: -1px;
+        border-radius: 0 0 50px 50px;
+        -webkit-animation: down 0.4s infinite;
+        -moz-animation: down 0.4s infinite;
+        -o-animation: down 0.4s infinite;
+        animation: down 0.4s infinite;
+      } 
+      
+      .dot{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        margin-top: -5px;
+        margin-left: 30px;
+        border-radius: 50%;
+        background: #ccc;
+        z-index: -1;
+        box-shadow: 30px 0 0 #ccc,
+                    60px 0 0 #ccc,
+                    90px 0 0 #ccc,
+                    120px 0 0 #ccc,
+                    150px 0 0 #ccc;
+        -webkit-animation: rToL 0.4s infinite;
+        -moz-animation: rToL 0.4s infinite;
+        -o-animation: rToL 0.4s infinite;
+        animation: rToL 0.4s infinite;
+      }
+      
+    </style>
+    <script type="text/javascript">
+      if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+          var root = document.getElementsByTagName('html')[0];
+          root.setAttribute('class', 'ff');
+      };
+      
+    </script>
+    <script type="text/javascript">
+      (function(document,navigator,standalone) {
+        // prevents links from apps from oppening in mobile safari
+        // this javascript must be the first script in your <head>
+        if ((standalone in navigator) && navigator[standalone]) {
+          // Add class to body for css targeting
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.className += ' standalone-app';
+          });
+        }
+      })(document,window.navigator,'standalone');
+      
+    </script>
+    <link rel="stylesheet" href="/css/app.css">
+  </head>
+  <body ng-controller="AppCtrl" class="demo">
+    <div class="standalone-app-status-bar">
+      <div class="clearfix"></div>
+    </div>
+    <div ui-view autoscroll="true" class="fadeIn">
+      <div id="loader-container" class="animated fadeOut">
+        <div id="loader">
+          <div class="pacman"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/vendor.js"></script>
+    <script type="text/javascript" src="/js/app.templates.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+  </body>
+</html>
