@@ -72,33 +72,21 @@ angular.module('app.templates', [])
 '</div>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
+  return $templateCache.put('app/sections/global/partials/loading.jade', [
+'',
+'<div id="loader-container" class="animated fadeOut">',
+'  <div id="loader">',
+'    <div class="pacman"></div>',
+'    <div class="dot"></div>',
+'  </div>',
+'</div>',''].join("\n"));
+}])
+.run(['$templateCache', function($templateCache) {
   return $templateCache.put('app/sections/errors/partials/404.jade', [
 '',
 '<div class="missing-error">',
 '  <h1>Page Not Found</h1>',
 '  <h3>Whoh, back up the bus bro.  Where do you think you\'re going?  We looked, and can\'t find this page on our server.</h3><a data-ui-sref="user.the-beginning" class="pure-button primary-gray">Return To MyQuestis</a>',
-'</div>',
-'<footer class="pure-g-r header">',
-'  <div class="pure-u-1-2">',
-'    <ul class="menu">',
-'      <li class="help"><a href="#">Help & Support</a></li>',
-'      <li><a href="http://www.questisportfolio.com/academy/" target="_blank">Blog</a></li>',
-'      <li><a href="#">Terms</a></li>',
-'      <li><a href="#">Privacy</a></li>',
-'    </ul>',
-'  </div>',
-'  <div class="pure-u-1-2">',
-'    <div class="copyright">&copy; 2014 Questis - All rights reserved.</div>',
-'  </div>',
-'</footer>',''].join("\n"));
-}])
-.run(['$templateCache', function($templateCache) {
-  return $templateCache.put('app/sections/errors/partials/422.jade', [
-'',
-'<div class="missing-error">',
-'  <h1>Derp?</h1>',
-'  <h3>When Nginx can\'t figure out what to do with your request, you could get this.</h3>',
-'  <p>Your browser did something unexpected. Please contact us if the problem persists.</p><a data-ui-sref="user.the-beginning" class="pure-button primary-gray">Return To MyQuestis</a>',
 '</div>',
 '<footer class="pure-g-r header">',
 '  <div class="pure-u-1-2">',
@@ -139,56 +127,34 @@ angular.module('app.templates', [])
 '</footer>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
+  return $templateCache.put('app/sections/errors/partials/422.jade', [
+'',
+'<div class="missing-error">',
+'  <h1>Derp?</h1>',
+'  <h3>When Nginx can\'t figure out what to do with your request, you could get this.</h3>',
+'  <p>Your browser did something unexpected. Please contact us if the problem persists.</p><a data-ui-sref="user.the-beginning" class="pure-button primary-gray">Return To MyQuestis</a>',
+'</div>',
+'<footer class="pure-g-r header">',
+'  <div class="pure-u-1-2">',
+'    <ul class="menu">',
+'      <li class="help"><a href="#">Help & Support</a></li>',
+'      <li><a href="http://www.questisportfolio.com/academy/" target="_blank">Blog</a></li>',
+'      <li><a href="#">Terms</a></li>',
+'      <li><a href="#">Privacy</a></li>',
+'    </ul>',
+'  </div>',
+'  <div class="pure-u-1-2">',
+'    <div class="copyright">&copy; 2014 Questis - All rights reserved.</div>',
+'  </div>',
+'</footer>',''].join("\n"));
+}])
+.run(['$templateCache', function($templateCache) {
   return $templateCache.put('app/sections/errors/partials/500.jade', [
 '',
 '<div class="missing-error">',
 '  <h1>500</h1>',
 '  <h3>An exception occured and we couldn\'t recove.</h3>',
 '  <p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.</p><a data-ui-sref="user.the-beginning" class="pure-button primary-gray">Return To MyQuestis</a>',
-'</div>',
-'<footer class="pure-g-r header">',
-'  <div class="pure-u-1-2">',
-'    <ul class="menu">',
-'      <li class="help"><a href="#">Help & Support</a></li>',
-'      <li><a href="http://www.questisportfolio.com/academy/" target="_blank">Blog</a></li>',
-'      <li><a href="#">Terms</a></li>',
-'      <li><a href="#">Privacy</a></li>',
-'    </ul>',
-'  </div>',
-'  <div class="pure-u-1-2">',
-'    <div class="copyright">&copy; 2014 Questis - All rights reserved.</div>',
-'  </div>',
-'</footer>',''].join("\n"));
-}])
-.run(['$templateCache', function($templateCache) {
-  return $templateCache.put('app/sections/errors/partials/502.jade', [
-'',
-'<div class="missing-error">',
-'  <h1>The page likely timed out.</h1>',
-'  <h3>This page is taking way too long to load.</h3>',
-'  <p>Sorry about that. Please try refreshing and contact us if the problem persists.</p><a data-ui-sref="user.the-beginning" class="pure-button primary-gray">Return To MyQuestis</a>',
-'</div>',
-'<footer class="pure-g-r header">',
-'  <div class="pure-u-1-2">',
-'    <ul class="menu">',
-'      <li class="help"><a href="#">Help & Support</a></li>',
-'      <li><a href="http://www.questisportfolio.com/academy/" target="_blank">Blog</a></li>',
-'      <li><a href="#">Terms</a></li>',
-'      <li><a href="#">Privacy</a></li>',
-'    </ul>',
-'  </div>',
-'  <div class="pure-u-1-2">',
-'    <div class="copyright">&copy; 2014 Questis - All rights reserved.</div>',
-'  </div>',
-'</footer>',''].join("\n"));
-}])
-.run(['$templateCache', function($templateCache) {
-  return $templateCache.put('app/sections/errors/partials/503.jade', [
-'',
-'<div class="missing-error">',
-'  <h1>Server fail! We are having a bad problem and the app server will not talk to us.</h1>',
-'  <h3>We\'re having a really bad day.</h3>',
-'  <p>The Unicorns have taken over. We\'re doing our best to get them under control and get Questis back up and running.</p><a data-ui-sref="user.the-beginning" class="pure-button primary-gray">Return To MyQuestis</a>',
 '</div>',
 '<footer class="pure-g-r header">',
 '  <div class="pure-u-1-2">',
@@ -227,12 +193,46 @@ angular.module('app.templates', [])
 '</footer>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
-  return $templateCache.put('app/sections/global/partials/loading.jade', [
+  return $templateCache.put('app/sections/errors/partials/503.jade', [
 '',
-'<div id="loader-container" class="animated fadeOut">',
-'  <div id="loader">',
-'    <div class="pacman"></div>',
-'    <div class="dot"></div>',
+'<div class="missing-error">',
+'  <h1>Server fail! We are having a bad problem and the app server will not talk to us.</h1>',
+'  <h3>We\'re having a really bad day.</h3>',
+'  <p>The Unicorns have taken over. We\'re doing our best to get them under control and get Questis back up and running.</p><a data-ui-sref="user.the-beginning" class="pure-button primary-gray">Return To MyQuestis</a>',
+'</div>',
+'<footer class="pure-g-r header">',
+'  <div class="pure-u-1-2">',
+'    <ul class="menu">',
+'      <li class="help"><a href="#">Help & Support</a></li>',
+'      <li><a href="http://www.questisportfolio.com/academy/" target="_blank">Blog</a></li>',
+'      <li><a href="#">Terms</a></li>',
+'      <li><a href="#">Privacy</a></li>',
+'    </ul>',
 '  </div>',
-'</div>',''].join("\n"));
+'  <div class="pure-u-1-2">',
+'    <div class="copyright">&copy; 2014 Questis - All rights reserved.</div>',
+'  </div>',
+'</footer>',''].join("\n"));
+}])
+.run(['$templateCache', function($templateCache) {
+  return $templateCache.put('app/sections/errors/partials/502.jade', [
+'',
+'<div class="missing-error">',
+'  <h1>The page likely timed out.</h1>',
+'  <h3>This page is taking way too long to load.</h3>',
+'  <p>Sorry about that. Please try refreshing and contact us if the problem persists.</p><a data-ui-sref="user.the-beginning" class="pure-button primary-gray">Return To MyQuestis</a>',
+'</div>',
+'<footer class="pure-g-r header">',
+'  <div class="pure-u-1-2">',
+'    <ul class="menu">',
+'      <li class="help"><a href="#">Help & Support</a></li>',
+'      <li><a href="http://www.questisportfolio.com/academy/" target="_blank">Blog</a></li>',
+'      <li><a href="#">Terms</a></li>',
+'      <li><a href="#">Privacy</a></li>',
+'    </ul>',
+'  </div>',
+'  <div class="pure-u-1-2">',
+'    <div class="copyright">&copy; 2014 Questis - All rights reserved.</div>',
+'  </div>',
+'</footer>',''].join("\n"));
 }]);
