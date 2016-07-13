@@ -1,8 +1,8 @@
 
 <div class="container">
   <header class="portfolio-header">
-    <div class="portfolio-links"><a href="http://tympanus.net/Development/ColorExtraction/" title="Previous Demo" class="portfolio-icon"><i class="fa fa-caret-left"></i></a><a href="mailto:curt.blanton@gmail.com" title="Email me" class="portfolio-icon"><i class="fa fa-envelope"></i></a></div>
     <h1>Portfolio<span>A simple showcase of my web, app and design work</span></h1>
+    <div class="portfolio-links"><a href="https://www.facebook.com/curt.blanton" title="Previous Demo" class="portfolio-icon"><i class="fa fa-facebook-square fa-2x"></i></a><a href="https://www.linkedin.com/in/curtis-blanton-7794255?trk=nav_responsive_tab_profile_pic" title="Previous Demo" class="portfolio-icon"><i class="fa fa-linkedin-square fa-2x"></i></a><a href="mailto:curt.blanton@gmail.com" title="Email me" class="portfolio-icon"><i class="fa fa-envelope fa-2x"></i></a></div>
   </header>
   <div class="content">
     <div class="pattern pattern--hidden"></div>
@@ -24,7 +24,7 @@
             </div>
             <div class="card__copy">
               <div class="meta"><img src="{{ card.authorImageUrl }}" alt="{{ card.author }}" class="meta__avatar"/><span class="meta__author">{{ card.author }}</span><span class="meta__date">{{ card.date }}</span></div>
-              <div>{{ card.content }}</div>
+              <div ng-if="card.links.length" ng-repeat="link in card.links"><a ng-href="{{link}}" target="_blank">{{ link }}</a></div>
             </div>
           </div>
         </div>

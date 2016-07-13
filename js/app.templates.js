@@ -1,15 +1,5 @@
 angular.module('app.templates', [])
 .run(['$templateCache', function($templateCache) {
-  return $templateCache.put('app/sections/global/partials/loading.jade', [
-'',
-'<div id="loader-container" class="animated fadeOut">',
-'  <div id="loader">',
-'    <div class="pacman"></div>',
-'    <div class="dot"></div>',
-'  </div>',
-'</div>',''].join("\n"));
-}])
-.run(['$templateCache', function($templateCache) {
   return $templateCache.put('app/sections/errors/partials/404.jade', [
 '',
 '<div class="missing-error">',
@@ -165,26 +155,12 @@ angular.module('app.templates', [])
 '</footer>',''].join("\n"));
 }])
 .run(['$templateCache', function($templateCache) {
-  return $templateCache.put('app/sections/portfolio/partials/portfolio-card.jade', [
+  return $templateCache.put('app/sections/global/partials/loading.jade', [
 '',
-'<div class="card__container card__container--closed">',
-'  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 1920 1200" preserveaspectratio="xMidYMid slice" class="card__image">',
-'    <defs>',
-'      <clippath id="clipPath{{$index}}">',
-'        <polygon points="0,1200 0,0 1920,0 1920,1200" class="clip"></polygon>',
-'      </clippath>',
-'    </defs>',
-'    <image clip-path="url(#clipPath{{$index}})" width="1920" height="1200" xlink:href="{{ card.imageUrl }}"></image>',
-'  </svg>',
-'  <div class="card__content"><i class="card__btn-close fa fa-times"></i>',
-'    <div class="card__caption">',
-'      <h2 class="card__title">{{ card.title }}</h2>',
-'      <p class="card__subtitle">{{ card.subtitle }}</p>',
-'    </div>',
-'    <div class="card__copy">',
-'      <div class="meta"><img src="{{ card.authorImageUrl }}" alt="{{ card.author }}" class="meta__avatar"><span class="meta__author">{{ card.author }}</span><span class="meta__date">{{ card.date }}</span></div>',
-'      <div>{{ card.content }}</div>',
-'    </div>',
+'<div id="loader-container" class="animated fadeOut">',
+'  <div id="loader">',
+'    <div class="pacman"></div>',
+'    <div class="dot"></div>',
 '  </div>',
 '</div>',''].join("\n"));
 }])
@@ -193,8 +169,8 @@ angular.module('app.templates', [])
 '',
 '<div class="container">',
 '  <header class="portfolio-header">',
-'    <div class="portfolio-links"><a href="http://tympanus.net/Development/ColorExtraction/" title="Previous Demo" class="portfolio-icon"><i class="fa fa-caret-left"></i></a><a href="mailto:curt.blanton@gmail.com" title="Email me" class="portfolio-icon"><i class="fa fa-envelope"></i></a></div>',
 '    <h1>Portfolio<span>A simple showcase of my web, app and design work</span></h1>',
+'    <div class="portfolio-links"><a href="https://www.facebook.com/curt.blanton" title="Previous Demo" class="portfolio-icon"><i class="fa fa-facebook-square fa-2x"></i></a><a href="https://www.linkedin.com/in/curtis-blanton-7794255?trk=nav_responsive_tab_profile_pic" title="Previous Demo" class="portfolio-icon"><i class="fa fa-linkedin-square fa-2x"></i></a><a href="mailto:curt.blanton@gmail.com" title="Email me" class="portfolio-icon"><i class="fa fa-envelope fa-2x"></i></a></div>',
 '  </header>',
 '  <div class="content">',
 '    <div class="pattern pattern--hidden"></div>',
@@ -216,11 +192,35 @@ angular.module('app.templates', [])
 '            </div>',
 '            <div class="card__copy">',
 '              <div class="meta"><img src="{{ card.authorImageUrl }}" alt="{{ card.author }}" class="meta__avatar"><span class="meta__author">{{ card.author }}</span><span class="meta__date">{{ card.date }}</span></div>',
-'              <div>{{ card.content }}</div>',
+'              <div ng-if="card.links.length" ng-repeat="link in card.links"><a ng-href="{{link}}" target="_blank">{{ link }}</a></div>',
 '            </div>',
 '          </div>',
 '        </div>',
 '      </div>',
+'    </div>',
+'  </div>',
+'</div>',''].join("\n"));
+}])
+.run(['$templateCache', function($templateCache) {
+  return $templateCache.put('app/sections/portfolio/partials/portfolio-card.jade', [
+'',
+'<div class="card__container card__container--closed">',
+'  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 1920 1200" preserveaspectratio="xMidYMid slice" class="card__image">',
+'    <defs>',
+'      <clippath id="clipPath{{$index}}">',
+'        <polygon points="0,1200 0,0 1920,0 1920,1200" class="clip"></polygon>',
+'      </clippath>',
+'    </defs>',
+'    <image clip-path="url(#clipPath{{$index}})" width="1920" height="1200" xlink:href="{{ card.imageUrl }}"></image>',
+'  </svg>',
+'  <div class="card__content"><i class="card__btn-close fa fa-times"></i>',
+'    <div class="card__caption">',
+'      <h2 class="card__title">{{ card.title }}</h2>',
+'      <p class="card__subtitle">{{ card.subtitle }}</p>',
+'    </div>',
+'    <div class="card__copy">',
+'      <div class="meta"><img src="{{ card.authorImageUrl }}" alt="{{ card.author }}" class="meta__avatar"><span class="meta__author">{{ card.author }}</span><span class="meta__date">{{ card.date }}</span></div>',
+'      <div>{{ card.content }}</div>',
 '    </div>',
 '  </div>',
 '</div>',''].join("\n"));
