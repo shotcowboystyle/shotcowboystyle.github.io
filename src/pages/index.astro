@@ -1,0 +1,164 @@
+---
+import SiteVerification from '@/components/common/site-verification.astro';
+import Landing from '@/components/landing.astro';
+import HomeLayout from '@/layouts/home.astro';
+import 'splitting/dist/splitting.css';
+import 'splitting/dist/splitting-cells.css';
+---
+
+<HomeLayout>
+	<Fragment slot="head-scripts">
+		<SiteVerification />
+
+		<style is:global>
+			.reveal {
+				opacity: 0%;
+			}
+
+			.reveal.splitting {
+				opacity: 100%;
+			}
+
+			.splitting .word {
+				opacity: 0%;
+				transform: translate3d(0, 100%, 0);
+				will-change: transform;
+			}
+
+			.splitting.animate .word {
+				animation: slide-in 0.5s cubic-bezier(0.42, 0, 0.58, 1) both;
+				animation-delay: calc(30ms * var(--word-index));
+			}
+
+			@keyframes slide-in {
+				to {
+					opacity: 100%;
+					transform: translate3d(0, 0%, 0);
+				}
+			}
+		</style>
+	</Fragment>
+
+	<Landing />
+
+	<Fragment slot="footer-scripts">
+		<style is:global>
+			html {
+				@apply h-full text-base;
+			}
+
+			@media screen(sm) {
+				html {
+					font-size: 1.1vw;
+				}
+			}
+
+			@media screen(md) {
+				html {
+					font-size: 0.9vw;
+				}
+			}
+
+			img {
+				content-visibility: auto;
+			}
+
+			.h-full-mobile {
+				height: 100vh;
+				height: calc(var(--vh, 1vh) * 100) !important;
+			}
+
+			.animate-in {
+				animation: animate-in 0.5s ease-in-out;
+			}
+
+			@keyframes animate-in {
+				0% {
+					opacity: 0%;
+					transform: translateY(1rem);
+				}
+
+				100% {
+					opacity: 100%;
+					transform: translateY(0);
+				}
+			}
+
+			html.lenis {
+				height: auto;
+			}
+
+			.lenis.lenis-smooth {
+				scroll-behavior: auto;
+			}
+
+			.lenis.lenis-smooth [data-lenis-prevent] {
+				overscroll-behavior: contain;
+			}
+
+			.lenis.lenis-stopped {
+				overflow: hidden;
+			}
+
+			.lenis.lenis-scrolling iframe {
+				pointer-events: none;
+			}
+		</style>
+	</Fragment>
+</HomeLayout>
+
+<script>
+	import Lenis from '@studio-freight/lenis';
+
+	// window.addEventListener(
+	// 	'load',
+	// 	() => {
+	const isMacOS = navigator.userAgent.indexOf('Mac OS X') !== -1;
+	const lerp = isMacOS ? 0.4 : 0.1;
+
+	const lenis = new Lenis({
+		duration: 1.2,
+		// https://www.desmos.com/calculator/brs54l4xou
+		easing: (t: number) => Math.min(1, 1.001 - 2 ** -10 * t),
+		smoothWheel: true,
+		smoothTouch: true,
+		lerp,
+	});
+
+	function raf(time: number) {
+		lenis.raf(time);
+		requestAnimationFrame(raf);
+	}
+
+	const scrollLinks = document.querySelectorAll('.scroll-link');
+
+	scrollLinks.forEach((anchor) => {
+		anchor.addEventListener('click', (e) => {
+			e.preventDefault();
+			const locationHash = anchor.getAttribute('href');
+			if (locationHash) {
+				lenis.scrollTo(locationHash, {
+					offset: 0,
+					immediate: false,
+					duration: 3,
+					lerp,
+					// https://easings.net
+					easing: (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2 ** 3) / 2),
+				});
+
+				if (locationHash === '#header') {
+					history.pushState('', document.title, window.location.pathname + window.location.search);
+				} else {
+					window.location.hash = locationHash;
+				}
+			}
+		});
+	});
+
+	requestAnimationFrame(raf);
+	// 	},
+	// 	{
+	// 		once: true,
+	// 	},
+	// );
+</script>

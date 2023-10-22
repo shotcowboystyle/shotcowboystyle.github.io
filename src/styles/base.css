@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: Thunder;
+		src: url('/fonts/Thunder-VF.ttf');
+
+		/* font-weight: normal;
+    font-style: normal; */
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'General Sans';
+		src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
+
+		/* font-weight: normal;
+    font-style: normal; */
+		font-display: swap;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply my-0 font-sans-serif font-extrabold uppercase;
+}
+
+h1,
+h2 {
+	line-height: 0.9;
+}
+
+h1 {
+	font-size: 10rem;
+
+	@media screen(lg) {
+		font-size: 8rem;
+	}
+}
+
+h2 {
+	@apply mb-4 text-7xl;
+
+	@media screen(sm) {
+		font-size: 6rem;
+	}
+
+	@media screen(xl) {
+		font-size: 4.5rem;
+	}
+}
+
+h3 {
+	@apply mb-4;
+
+	font-size: 4rem;
+	line-height: 30px;
+}
+
+p {
+	@apply font-sans font-medium;
+
+	font-size: 0.9rem;
+	line-height: 1.5;
+
+	@media screen(sm) {
+		font-size: 2.5rem;
+	}
+
+	@media screen(lg) {
+		font-size: 2rem;
+	}
+}

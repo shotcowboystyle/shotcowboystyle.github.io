@@ -1,0 +1,100 @@
+{
+	"css.validate": false,
+	"editor.codeActionsOnSave": {
+		"source.formatDocument": true,
+		"source.fixAll.eslint": true,
+		"source.organizeImports": true,
+		"source.sortMembers": true
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": false,
+	"editor.inlayHints.enabled": "offUnlessPressed",
+	"editor.linkedEditing": true,
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"editor.rulers": [100],
+	"editor.stickyScroll.enabled": true,
+	"eslint.enable": true,
+	"eslint.format.enable": true,
+	"eslint.lintTask.enable": true,
+	"eslint.nodePath": "./node_modules",
+	"eslint.validate": [
+		"astro" /* Using `astro-eslint-parser` + `eslint-plugin-astro` */,
+		"javascript",
+		"javascriptreact",
+		"html",
+		"typescript",
+		"typescriptreact"
+	],
+	"files.associations": {
+		"*.cjs": "javascript",
+		"*.css": "tailwindcss",
+		"*.mdx": "markdown",
+		"*.mjs": "javascript"
+	},
+	"files.eol": "\n",
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/.classpath": true,
+		"**/.factorypath": true,
+		"**/.project": true,
+		"**/.settings": true
+	},
+	"html.autoCreateQuotes": false,
+	"npm.packageManager": "pnpm",
+	"prettier.documentSelectors": ["**/*.astro"],
+	"search.exclude": {
+		"**/.git": true,
+		"**/.github": true,
+		"**/.output": true,
+		"**/.pnpm": true,
+		"**/.vscode": true,
+		"**/dist/**": true,
+		"**/logs": true,
+		"**/node_modules": true,
+		"**/out/**": true,
+		"**/pnpm-lock.yaml": true,
+		"**/tmp": true,
+		"**/dist": true
+	},
+	"stylelint.enable": false,
+	"stylelint.packageManager": "pnpm",
+	"stylelint.snippet": ["astro", "css", "postcss", "sass", "scss", "html", "tailwindcss"],
+	"stylelint.validate": ["css", "postcss", "sass", "scss", "html", "astro", "tailwindcss"],
+	"tailwindCSS.includeLanguages": {
+		/*
+      Astro Language Server can handle Tailwind extension communication,
+      see https://docs.astro.build/en/guides/integrations-guide/tailwind/#configuring-the-integration
+      But if you had troubles like me, you can force the association here.
+		*/
+		/* Adds class inlay hints inside `.astro` templates (acts as HTML) */
+		"astro": "html",
+		/* Useful for adding IntelliSense to Markdown, too */
+		"md": "html"
+	},
+
+	"tailwindCSS.classAttributes": ["class", "class:list"],
+	"tailwindCSS.validate": true,
+	"terminal.integrated.enablePersistentSessions": false,
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"typescript.inlayHints.parameterNames.enabled": "all",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.tsdk": "./node_modules/typescript/lib",
+	"workbench.editor.labelFormat": "medium",
+	"[astro]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[markdown]": {
+		"editor.wordWrap": "on",
+		"editor.codeActionsOnSave": {
+			"source.fixAll.markdownlint": true
+		}
+	},
+	"cSpell.words": ["memoji"]
+}

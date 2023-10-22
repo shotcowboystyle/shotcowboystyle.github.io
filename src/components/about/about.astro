@@ -1,0 +1,147 @@
+---
+import BackToTop from '@/components/about/back-to-top.astro';
+import Bio from '@/components/about/bio.astro';
+import Location from '@/components/about/location';
+import MysteryBox from '@/components/about/mystery-box.astro';
+import SocialCard from '@/components/about/social-card.astro';
+import Contact from '@/components/contact.astro';
+import { SolidWrapper } from '@/components/solid-wrapper';
+import Testimonials from '@/components/testimonials/testimonials.astro';
+---
+
+<div
+	class="pointer-events-none relative grid h-auto w-full auto-cols-[1fr] grid-cols-[1fr] grid-rows-[auto] gap-8 p-5 sm:h-screen sm:grid-cols-[1fr_1fr_1fr] sm:grid-rows-[auto_auto_auto_auto] sm:gap-10 sm:p-8 lg:grid-cols-[1fr_1fr_1fr_1fr] lg:grid-rows-[auto_auto_auto] lg:gap-8 lg:p-6"
+>
+	<div
+		id="about-box-1"
+		class="text-primary-content pointer-events-auto relative grid select-auto auto-cols-[1fr] grid-flow-row grid-cols-[1fr] grid-rows-[auto] gap-10 overflow-hidden rounded-2xl bg-primary px-6 pb-6 pt-20 sm:grid-flow-col sm:grid-cols-[1fr_1fr] sm:rounded-3xl sm:p-12 xl:p-10"
+	>
+		<Bio />
+	</div>
+
+	<div
+		id="about-box-2"
+		class="bg-accent pointer-events-auto relative flex flex-col overflow-hidden rounded-2xl p-0 sm:rounded-3xl sm:p-4 xl:p-0"
+	>
+		<SolidWrapper client:visible>
+			<Testimonials />
+		</SolidWrapper>
+	</div>
+
+	<div
+		id="about-box-3"
+		class="grid-about-box pointer-events-auto min-h-[360px] !p-0 sm:min-h-[20vh] lg:min-h-[30vh]"
+	>
+		<Location client:visible />
+	</div>
+
+	<div
+		id="about-box-4"
+		class="grid-about-box pointer-events-auto min-h-[360px] !p-0 sm:min-h-[20vh] lg:min-h-[30vh]"
+	>
+		<SocialCard />
+	</div>
+
+	<div
+		id="about-box-5"
+		class="grid-about-box pointer-events-auto min-h-[360px] !overflow-visible !p-0 sm:min-h-[20vh] lg:min-h-[30vh]"
+	>
+		<MysteryBox />
+	</div>
+
+	<div
+		id="back-to-top"
+		class="grid-about-box !bg-warning !text-warning-content pointer-events-auto !grid !auto-cols-[1fr] !grid-flow-col !grid-cols-[auto_auto] !grid-rows-[auto] !gap-4 overflow-hidden !p-0 transition-transform hover:scale-105 sm:!p-4 lg:min-h-[25vh] lg:!p-0"
+	>
+		<SolidWrapper client:visible>
+			<BackToTop />
+		</SolidWrapper>
+	</div>
+
+	<div
+		id="about-box-6"
+		class="grid-about-box !bg-info !text-info-content pointer-events-auto !p-0 transition-transform hover:scale-105 sm:!p-4 lg:!p-0"
+	>
+		<SolidWrapper client:visible>
+			<Contact />
+		</SolidWrapper>
+	</div>
+</div>
+
+<style>
+	#about-box-1 {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+
+		@media screen(sm) {
+			grid-area: 1 / 1 / 3 / 3;
+		}
+	}
+
+	#about-box-2 {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+
+		@media screen(sm) {
+			grid-area: 1 / 3 / 3 / 4;
+		}
+	}
+
+	#about-box-3 {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+
+		@media screen(sm) {
+			grid-area: 3 / 1 / 4 / 2;
+		}
+	}
+
+	#about-box-4 {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+
+		@media screen(sm) {
+			grid-area: 3 / 2 / 4 / 3;
+		}
+	}
+
+	#about-box-5 {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+
+		@media screen(sm) {
+			grid-area: 4 / 1 / 5 / 2;
+		}
+
+		@media screen(lg) {
+			grid-area: 3 / 3 / 4 / 4;
+		}
+	}
+
+	#back-to-top {
+		grid-area: 7 / 1 / 9 / 2;
+
+		@media screen(sm) {
+			grid-area: 4 / 2 / 5 / 3;
+		}
+
+		@media screen(lg) {
+			grid-area: auto;
+		}
+	}
+
+	#about-box-6 {
+		grid-area: 6 / 1 / 7 / 2;
+
+		@media screen(sm) {
+			grid-area: 3 / 3 / 5 / 4;
+		}
+
+		@media screen(lg) {
+			grid-area: span 2 / span 1 / span 2 / span 1;
+		}
+	}
+
+	.grid-about-box {
+		@apply text-base-content relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white p-10 text-sm;
+
+		@media screen(sm) {
+			@apply rounded-3xl;
+		}
+	}
+</style>

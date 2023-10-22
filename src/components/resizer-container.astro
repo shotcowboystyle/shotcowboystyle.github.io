@@ -1,0 +1,93 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div class:list={["container", className]}>
+  <div class="resizable" id="resize-me">
+    <slot />
+    <div class="resizer resizer-r"></div>
+    <div class="resizer resizer-b"></div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", function () {
+    const el = document.getElementById("resize-me");
+
+    if (!el) {
+      return;
+    }
+
+    // The current position of mouse
+    let x = 0;
+
+    // The dimension of the element
+    let w = 0;
+
+    // Handle the mousedown event
+    // that's triggered when user drags the resizer
+    const mouseDownHandler = function (e: MouseEvent) {
+      // Get the current mouse position
+      x = e.clientX;
+
+      // Calculate the dimension of element
+      const styles = window.getComputedStyle(el);
+      w = parseInt(styles.width, 10);
+
+      // Attach the listeners to document
+      document.addEventListener("mousemove", mouseMoveHandler);
+      document.addEventListener("mouseup", mouseUpHandler);
+    };
+
+    const mouseMoveHandler = function (e: MouseEvent) {
+      // How far the mouse has been moved
+      const dx = e.clientX - x;
+
+      console.log("RESIZER X POSITION", w, dx, w + dx);
+      if (w + dx <= 654) {
+        el.style.width = `654px`;
+      } else {
+        el.style.width = `${w + dx}px`;
+      }
+    };
+
+    const mouseUpHandler = function () {
+      // Remove the handlers of mousemove and mouseup
+      document.removeEventListener("mousemove", mouseMoveHandler);
+      document.removeEventListener("mouseup", mouseUpHandler);
+    };
+
+    // Query all resizers
+    const resizers = el.querySelectorAll(".resizer");
+
+    // Loop over them
+    [].forEach.call(resizers, function (resizer: HTMLElement) {
+      resizer.addEventListener("mousedown", mouseDownHandler);
+    });
+  });
+</script>
+
+<style>
+  .resizable {
+    @apply relative items-center justify-center border border-gray-300 w-full;
+  }
+
+  .resizer {
+    @apply absolute;
+  }
+
+  /* Placed at the right side */
+  .resizer-r {
+    @apply right-0 top-0 h-full w-1 cursor-col-resize;
+  }
+
+  /* Placed at the bottom side */
+  .resizer-b {
+    @apply bottom-0 left-0 h-1 w-full cursor-row-resize;
+  }
+
+  /* Optional styles */
+  .container {
+    @apply min-h-fit p-4;
+  }
+</style>

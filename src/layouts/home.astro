@@ -1,0 +1,11 @@
+---
+import BaseLayout from "@/layouts/base.astro";
+
+import "@/styles/base.css";
+---
+
+<BaseLayout>
+  <slot name="head-scripts" slot="head-scripts" />
+  <slot />
+  <slot name="footer-scripts" slot="footer-scripts" />
+</BaseLayout>
