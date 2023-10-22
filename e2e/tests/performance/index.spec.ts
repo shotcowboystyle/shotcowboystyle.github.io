@@ -1,6 +1,7 @@
 // import { expect, devices, test, chromium } from "@playwright/test";
 import { chromium, test } from '@playwright/test';
 import { playAudit } from 'playwright-lighthouse';
+
 // import { defaultsDeep } from "lodash-es";
 // import { default as lighthouseMobileConfig } from "lighthouse/core/config/default-config";
 // import { default as lighthouseDesktopConfig } from "lighthouse/core/config/desktop-config";

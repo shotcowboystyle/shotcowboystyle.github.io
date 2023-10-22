@@ -14,14 +14,14 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 >
 	<div
 		id="about-box-1"
-		class="text-primary-content pointer-events-auto relative grid select-auto auto-cols-[1fr] grid-flow-row grid-cols-[1fr] grid-rows-[auto] gap-10 overflow-hidden rounded-2xl bg-primary px-6 pb-6 pt-20 sm:grid-flow-col sm:grid-cols-[1fr_1fr] sm:rounded-3xl sm:p-12 xl:p-10"
+		class="pointer-events-auto relative grid select-auto auto-cols-[1fr] grid-flow-row grid-cols-[1fr] grid-rows-[auto] gap-10 overflow-hidden rounded-2xl bg-primary px-6 pb-6 pt-20 text-primary-content sm:grid-flow-col sm:grid-cols-[1fr_1fr] sm:rounded-3xl sm:p-12 xl:p-10"
 	>
 		<Bio />
 	</div>
 
 	<div
 		id="about-box-2"
-		class="bg-accent pointer-events-auto relative flex flex-col overflow-hidden rounded-2xl p-0 sm:rounded-3xl sm:p-4 xl:p-0"
+		class="pointer-events-auto relative flex flex-col overflow-hidden rounded-2xl bg-accent p-0 sm:rounded-3xl sm:p-4 xl:p-0"
 	>
 		<SolidWrapper client:visible>
 			<Testimonials />
@@ -51,7 +51,7 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 
 	<div
 		id="back-to-top"
-		class="grid-about-box !bg-warning !text-warning-content pointer-events-auto !grid !auto-cols-[1fr] !grid-flow-col !grid-cols-[auto_auto] !grid-rows-[auto] !gap-4 overflow-hidden !p-0 transition-transform hover:scale-105 sm:!p-4 lg:min-h-[25vh] lg:!p-0"
+		class="grid-about-box pointer-events-auto !grid !auto-cols-[1fr] !grid-flow-col !grid-cols-[auto_auto] !grid-rows-[auto] !gap-4 overflow-hidden !bg-warning !p-0 !text-warning-content transition-transform hover:scale-105 sm:!p-4 lg:min-h-[25vh] lg:!p-0"
 	>
 		<SolidWrapper client:visible>
 			<BackToTop />
@@ -60,7 +60,7 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 
 	<div
 		id="about-box-6"
-		class="grid-about-box !bg-info !text-info-content pointer-events-auto !p-0 transition-transform hover:scale-105 sm:!p-4 lg:!p-0"
+		class="grid-about-box pointer-events-auto !bg-info !p-0 !text-info-content transition-transform hover:scale-105 sm:!p-4 lg:!p-0"
 	>
 		<SolidWrapper client:visible>
 			<Contact />
@@ -138,7 +138,7 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	}
 
 	.grid-about-box {
-		@apply text-base-content relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white p-10 text-sm;
+		@apply relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white p-10 text-base-content text-sm;
 
 		@media screen(sm) {
 			@apply rounded-3xl;
