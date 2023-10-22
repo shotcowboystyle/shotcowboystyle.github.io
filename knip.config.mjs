@@ -19,7 +19,6 @@ export default {
 		'@astrojs/check',
 		'conventional-changelog-conventionalcommits',
 		'lighthouse',
-		'cz-conventional-changelog',
 		'eslint-import-resolver-typescript',
 		'eslint-plugin-import',
 		'eslint-plugin-jsx-a11y',
