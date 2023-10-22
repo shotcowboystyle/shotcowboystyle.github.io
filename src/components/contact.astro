@@ -1,0 +1,64 @@
+---
+
+---
+
+<a
+  href="mailto:curt.blanton@gmail.com"
+  class="relative flex flex-col justify-between h-full p-6 overflow-hidden no-underline pointer-events-auto group/contact-button group md:p-10"
+  id="contact-button"
+>
+  <div class="relative z-10 -ml-10 mt-0 w-[110%] max-sm:mb-10">
+    <div id="contact-button-animation"></div>
+  </div>
+
+  <div>
+    <h3 class="mb-4 !leading-none text-white !text-6xl lg:!text-5xl">
+      Wanna talk? Send me a message.
+    </h3>
+    <p class="mb-0 text-base text-white">curt.blanton@gmail.com</p>
+  </div>
+</a>
+
+<script>
+  import type { AnimationItem } from "lottie-web";
+  import lottie from "lottie-web";
+
+  window.addEventListener(
+    "load",
+    () => {
+      const contactButton = document.getElementById(
+        "contact-button"
+      ) as HTMLAnchorElement;
+      const container = document.getElementById(
+        "contact-button-animation"
+      ) as HTMLElement;
+
+      let animation: AnimationItem | null = null;
+      let animationCompleted = true;
+
+      animation = lottie.loadAnimation({
+        container,
+        renderer: "svg",
+        loop: false,
+        autoplay: false,
+        path: "/animation/lottie-contact-button-animation.json",
+        initialSegment: [25, 25],
+        rendererSettings: {
+          progressiveLoad: true,
+        },
+      });
+
+      animation.addEventListener("complete", () => {
+        animationCompleted = true;
+      });
+
+      contactButton.addEventListener("mouseenter", () => {
+        if (animationCompleted) {
+          animation?.playSegments([0, 25], true);
+          animationCompleted = false;
+        }
+      });
+    },
+    { once: true }
+  );
+</script>

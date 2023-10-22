@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ['main']
+
+  workflow_call:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  validate:
+    uses: ./.github/workflows/validate.yml
+  deploy:
+    needs: [validate]
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download build pages artifact
+        # https://github.com/actions/download-artifact
+        uses: actions/download-artifact@v3
+        with:
+          # the same name as used in the build workflow
+          name: pages-build
+          # where to save the artifact
+          # using the same path as in the build workflow "restores" the state from the end of the build workflow
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

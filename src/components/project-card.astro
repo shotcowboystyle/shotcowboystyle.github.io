@@ -1,0 +1,76 @@
+---
+import type { Projects } from '@/types';
+import { Image } from 'astro:assets';
+
+const { bgImage, description, linkText, screenshot, tags, title, url } = Astro.props as Projects;
+---
+
+<Image
+	src={screenshot}
+	alt={`${title} screenshot`}
+	class="pointer-events-none absolute right-0 top-0 z-[2] inline-block w-[130%] max-w-none translate-y-[5%] align-middle max-sm:left-0 sm:-top-[5%] sm:right-auto sm:w-11/12 sm:max-w-full lg:-top-[25%] lg:right-0 lg:w-[60%]"
+/>
+<Image
+	src={bgImage}
+	alt={`${title} section background`}
+	class="desktop pointer-events-none absolute left-0 top-0 h-full w-full max-w-none object-cover"
+/>
+
+<div
+	class="pointer-events-auto relative z-[2] flex items-end justify-between text-white max-sm:flex-col"
+>
+	<div class="max-sm:-mb-16">
+		<h2 class="mb-4 font-bold text-6xl sm:text-9xl lg:text-8xl">
+			{title}
+		</h2>
+
+		<div>
+			<ul
+				role="list"
+				class="tech-badge flow flex-wr col-auto row-auto mb-8 flex auto-cols-auto grid-flow-col justify-start justify-items-start gap-4 max-sm:items-start sm:grid"
+				style={{ 'flex-flow': 'wrap' }}
+			>
+				{
+					tags.map((tag) => (
+						<li class="relative rounded-full border border-base-100 px-3 pb-1 font-medium uppercase sm:px-5 sm:py-2 sm:font-semibold">
+							<small class="whitespace-nowrap">{tag}</small>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<p class="!mb-0 max-w-[39ch] max-sm:mr-24 sm:!leading-snug sm:text-2xl lg:text-lg">
+			{description}
+		</p>
+	</div>
+
+	<a
+		href={url}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
+	>
+		<span class="project-card-button-label">
+			{linkText}
+		</span>
+		<span class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
+		></span>
+	</a>
+</div>
+
+<style>
+	.project-card-button-label {
+		@apply relative z-10 leading-tight text-base-content;
+
+		font-size: 0.8rem;
+
+		@media screen(md) {
+			font-size: 2.2rem;
+		}
+
+		@media screen(lg) {
+			font-size: 2rem;
+		}
+	}
+</style>

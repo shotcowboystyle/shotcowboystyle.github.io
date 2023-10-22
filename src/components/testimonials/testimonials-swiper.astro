@@ -1,0 +1,101 @@
+---
+import TestimonialCard from "@/components/testimonials/testimonial-card.astro";
+import { TESTIMONIALS } from "@/lib/constants";
+---
+
+<div
+  class="testimonials-swiper relative mx-auto h-full w-full overflow-hidden p-0 z-[1]"
+>
+  <div
+    class="swiper-wrapper relative flex h-full w-full transition-transform z-[1]"
+  >
+    {
+      TESTIMONIALS.map((testimonial) => (
+        <div class="swiper-slide flex h-full relative w-full flex-none shrink-0 flex-col justify-between px-6 pb-10 pt-4 md:px-10 md:pb-6">
+          <TestimonialCard
+            companyName={testimonial.companyName}
+            name={testimonial.name}
+            designation={testimonial.designation}
+            testimonial={testimonial.testimonial}
+            image={testimonial.image}
+          />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<div
+  class="relative bottom-0 z-10 grid auto-cols-[1fr] grid-flow-col grid-cols-[1fr] grid-rows-[auto] gap-4 px-6 pb-6 sm:absolute sm:bottom-8 sm:left-6 lg:bottom-2 lg:left-4"
+>
+  <div
+    id="prev"
+    class="prev group/prev pointer-events-auto relative flex h-14 w-14 cursor-pointer items-center justify-center sm:h-16 sm:w-16"
+  >
+    <div class="relative z-10 flex h-6 w-6 p-0 items-center justify-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="pointer-events-none text-white h-6 w-6"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m16 4-8 8 8 8"></path>
+      </svg>
+    </div>
+    <div
+      class="pointer-events-none absolute inset-0 z-0 rounded-full bg-neutral transition-all group-hover/prev:scale-125 group-active/prev:!scale-110"
+    >
+    </div>
+  </div>
+
+  <div
+    id="next"
+    class="next group/next pointer-events-auto relative flex h-14 w-14 cursor-pointer items-center justify-center justify-self-end sm:h-16 sm:w-16"
+  >
+    <div class="relative z-10 flex h-6 w-6 p-0 items-center justify-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="pointer-events-none text-white h-6 w-6"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m8 4 8 8-8 8"></path>
+      </svg>
+    </div>
+    <div
+      class="pointer-events-none absolute inset-0 z-0 rounded-full bg-neutral transition-all group-hover/next:scale-125 group-active/next:!scale-110"
+    >
+    </div>
+  </div>
+</div>
+
+<script>
+  import { Swiper } from "swiper";
+  import { Navigation } from "swiper/modules";
+  import "swiper/css";
+
+  window.addEventListener(
+    "load",
+    () => {
+      new Swiper(".testimonials-swiper", {
+        modules: [Navigation],
+        slidesPerView: 1,
+        navigation: {
+          nextEl: "#next",
+          prevEl: "#prev",
+        },
+      });
+    },
+    { once: true }
+  );
+</script>

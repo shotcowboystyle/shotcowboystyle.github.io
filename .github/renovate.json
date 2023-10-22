@@ -1,0 +1,37 @@
+{
+	"extends": [
+		"config:base",
+		"group:allNonMajor",
+		":automergeAll",
+		":maintainLockFilesWeekly",
+		"schedule:weekly"
+	],
+	"packageRules": [
+		{
+			"groupName": "eslint",
+			"matchPackagePatterns": ["^eslint"]
+		},
+		{
+			"groupName": "postcss",
+			"matchPackagePatterns": ["^postcss"]
+		},
+		{
+			"groupName": "stylelint",
+			"matchPackagePatterns": ["^stylelint"]
+		},
+		{
+			"groupName": "astro",
+			"matchPackagePatterns": ["^astro"]
+		},
+		{
+			"groupName": "prettier",
+			"matchPackagePatterns": ["^prettier"]
+		},
+		{
+			"groupName": "semantic-release",
+			"matchPackagePatterns": ["semantic-release"]
+		}
+	],
+	"prHourlyLimit": 5,
+	"rangeStrategy": "bump"
+}

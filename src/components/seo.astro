@@ -1,0 +1,28 @@
+---
+/**
+ * Common head elements
+ */
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta
+	name="keywords"
+	content="shotcowboystyle,curtis,blanton,curtis blanton,portfolio,software engineer,developer"
+/>
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#1E1E2E" />
+<meta name="application-name" content="shotcowboystyle" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+
+<meta http-equiv="content-type" content="text/html, charset=UTF-8" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+<link rel="canonical" href={canonicalURL} />
+<link rel="manifest" href="/icon/site.webmanifest" />

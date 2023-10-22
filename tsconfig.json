@@ -1,0 +1,42 @@
+{
+	"extends": "astro/tsconfigs/base",
+	"compilerOptions": {
+		"strictNullChecks": true,
+		"composite": false,
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"verbatimModuleSyntax": true,
+
+		// Astro will directly run your TypeScript code, no transpilation needed.
+		"noEmit": true,
+		// Enable JSON imports.
+		"resolveJsonModule": true,
+		// Enable top-level await, and other modern ESM features.
+		"target": "ESNext",
+		"module": "ESNext",
+		// Enable node-style module resolution, for things like npm package imports.
+		"moduleResolution": "node",
+		// "moduleResolution": "Bundler",
+		// Enable stricter transpilation for better output.
+		"isolatedModules": true,
+
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"plugins": [
+			{
+				"name": "@astrojs/ts-plugin"
+			}
+		],
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"useUnknownInCatchVariables": true
+	},
+	"include": ["src", "*.ts"],
+	"exclude": ["node_modules", ".vscode", "dist"]
+}

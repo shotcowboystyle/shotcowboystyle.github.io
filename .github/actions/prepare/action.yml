@@ -1,0 +1,21 @@
+description: Prepares the repo for a typical CI job
+
+name: Prepare
+runs:
+  steps:
+    # necessary because `actions/setup-node` does not yet support `corepack`.
+    # @see https://github.com/actions/setup-node/issues/531
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
+
+  using: composite
