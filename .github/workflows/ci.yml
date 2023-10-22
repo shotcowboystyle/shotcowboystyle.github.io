@@ -40,20 +40,20 @@ jobs:
 
       - uses: ./.github/actions/prepare
 
-      # - name: Format
-      #   run: pnpm run format:check
+      - name: Format
+        run: pnpm run format:check
 
-      # - name: Lint
-      #   run: pnpm run lint:check
+      - name: Lint
+        run: pnpm run lint:check
 
-      # - name: Typecheck
-      #   run: pnpm run types:check
+      - name: Typecheck
+        run: pnpm run types:check
 
       # - name: Test
       #   run: pnpm run test
 
-      # - name: Install playwright browsers
-      #   run: pnpm exec playwright install --with-deps
+      - name: Install playwright browsers
+        run: pnpm exec playwright install --with-deps
 
       - name: Build app
         run: pnpm run build
@@ -64,17 +64,10 @@ jobs:
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          # the name to save the compressed asset as
-          # name: pages-build
-          # the directory or file to upload. adapt to your needs
           path: dist
-          # the artifact is only needed for the duration of the build-deploy workflow
-          # adapt to your needs
-          # https://github.com/actions/upload-artifact#retention-period
-          # retention-days: 1
 
-      # - name: Run e2e tests
-      #   run: pnpm run test:e2e
+      - name: Run e2e tests
+        run: pnpm run test:e2e
 
       - uses: actions/upload-artifact@v3
         if: always()
@@ -84,13 +77,8 @@ jobs:
           retention-days: 30
 
       - name: Download build pages artifact
-        # https://github.com/actions/download-artifact
         uses: actions/download-artifact@v3
         with:
-          # the same name as used in the build workflow
-          # name: pages-build
-          # where to save the artifact
-          # using the same path as in the build workflow "restores" the state from the end of the build workflow
           path: dist
 
       - name: Deploy to GitHub Pages
