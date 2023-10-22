@@ -36,7 +36,7 @@ jobs:
       # --------------------------------------------------------------------------------
       - name: Determine version
         id: semantic_determine
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@v4
         if: github.ref == 'refs/heads/develop'
 
       - name: Open release PR
