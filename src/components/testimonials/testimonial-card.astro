@@ -1,34 +1,32 @@
 ---
-import type { Testimonials } from "@/types";
-import { Image } from "astro:assets";
+import type { Testimonials } from '@/types';
+import { Image } from 'astro:assets';
 
-const { companyName, designation, image, name, testimonial } =
-  Astro.props as Omit<Testimonials, "id">;
+const { companyName, designation, image, name, testimonial } = Astro.props as Omit<
+	Testimonials,
+	'id'
+>;
 ---
 
-<p
-  class="my-4 !leading-normal text-base sm:text-xl lg:!leading-relaxed lg:!text-sm"
->
-  {testimonial}
+<p class="my-4 !leading-normal text-base sm:text-xl lg:!leading-relaxed lg:!text-sm">
+	{testimonial}
 </p>
 
 <div
-  class="flex flex-row items-center self-end justify-end text-right justify-items-end justify-self-end md:mb-2 md:flex-col md:items-end"
+	class="flex flex-row items-center justify-end justify-items-end self-end justify-self-end text-right md:mb-2 md:flex-col md:items-end"
 >
-  <div class="order-2 ml-4 avatar md:order-1 md:mb-2 md:ml-0">
-    <div class="w-16 rounded-full">
-      <Image src={image} class="rounded-circle" alt={name} />
-    </div>
-  </div>
+	<div class="avatar order-2 ml-4 md:order-1 md:mb-2 md:ml-0">
+		<div class="w-16 rounded-full">
+			<Image src={image} class="rounded-circle" alt={name} />
+		</div>
+	</div>
 
-  <div class="flex flex-col justify-end mb-0 md:order-2">
-    <div
-      class="mb-0 text-base font-bold leading-none uppercase font-sans-serif sm:text-lg"
-    >
-      {name}
-    </div>
-    <div class="-mt-1 text-xs leading-none sm:text-base lg:text-sm">
-      {designation}, {companyName}
-    </div>
-  </div>
+	<div class="mb-0 flex flex-col justify-end md:order-2">
+		<div class="mb-0 font-sans-serif font-bold uppercase leading-none text-base sm:text-lg">
+			{name}
+		</div>
+		<div class="-mt-1 leading-none text-xs sm:text-base lg:text-sm">
+			{designation}, {companyName}
+		</div>
+	</div>
 </div>

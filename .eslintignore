@@ -44,3 +44,4 @@ public/geojson
 lefthook.yml
 pnpm-lock.yaml
 cspell.json
+.cspellcache
