@@ -11,13 +11,10 @@ module.exports = {
 	bracketSameLine: false,
 	arrowParens: 'always',
 	plugins: [
-		require.resolve(
-			'prettier-plugin-tailwindcss',
-			'prettier-plugin-astro',
-			'@ianvs/prettier-plugin-sort-imports',
-		),
+		require.resolve('prettier-plugin-astro'),
+		require.resolve('@ianvs/prettier-plugin-sort-imports'),
+		require.resolve('prettier-plugin-tailwindcss'),
 	],
-	tailwindConfig: './tailwind.config.cjs',
 	overrides: [
 		{
 			files: '*.astro',

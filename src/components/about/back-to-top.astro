@@ -5,7 +5,7 @@
 <a
 	href="#header"
 	id="back-to-top-button"
-	class="scroll-link text-base-content relative grid auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 no-underline sm:p-8 lg:gap-4 lg:p-10"
+	class="scroll-link relative grid auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 text-base-content no-underline sm:p-8 lg:gap-4 lg:p-10"
 	role="button"
 >
 	<h3 class="mb-0 self-end !leading-none !text-6xl sm:!text-7xl lg:!text-5xl">Back to the top</h3>
@@ -16,7 +16,7 @@
 
 <script>
 	import type { AnimationItem } from 'lottie-web';
-import lottie from 'lottie-web';
+	import lottie from 'lottie-web';
 
 	window.addEventListener('load', () => {
 		const backToTopButton = document.getElementById('back-to-top-button') as HTMLAnchorElement;

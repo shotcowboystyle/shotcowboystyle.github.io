@@ -47,8 +47,8 @@ pre-commit:
   parallel: true
   commands:
     format:
-      glob: '*.{js,cjs,mjs,ts,jsx,tsx,md,json,css,scss,html,yml,yaml}'
-      run: pnpm exec prettier --ignore-unknown --cache --write --no-error-on-unmatched-pattern --plugin-search-dir=. --log-level error {staged_files}
+      glob: '*.{js,cjs,mjs,ts,jsx,tsx,md,json,css,scss,html,yml,yaml,astro}'
+      run: pnpm exec prettier --ignore-unknown --cache --write --no-error-on-unmatched-pattern --log-level error {staged_files}
       stage_fixed: true
     eslint:
       glob: '*.{js,cjs,mjs,jsx,ts,tsx,astro}'
