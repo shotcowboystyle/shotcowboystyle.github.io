@@ -1,0 +1,112 @@
+---
+
+---
+
+<button id="download-resume-button" class="button" title="Download resume">
+	RESU<span id="me">Me</span>
+	<span id="bubbles"></span>
+</button>
+
+<script>
+	const downloadResumeButton = document.getElementById('download-resume-button');
+	if (downloadResumeButton) {
+		downloadResumeButton.addEventListener('click', () => window.open('/resume.pdf'));
+	}
+</script>
+
+<style>
+	#me {
+		position: relative;
+		top: 1.5px;
+		display: inline;
+		border-bottom: 4px solid transparent;
+		border-image: linear-gradient(0.25turn, rgb(84 95 252), rgb(13 200 237), rgb(13 200 237));
+		border-image-slice: 1;
+		background: linear-gradient(rgb(182 99 255), rgb(84 95 252), rgb(13 200 237));
+		/* stylelint-disable-next-line property-no-vendor-prefix */
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.button {
+		@apply btn btn-neutral btn-sm gap-0 rounded-full bg-black font-medium text-white;
+
+		position: relative;
+		z-index: 2;
+		transition: all 0.2s ease;
+
+		@media screen(sm) {
+			@apply !min-h-[3rem] justify-self-auto !px-4;
+		}
+
+		@media screen(lg) {
+			@apply !min-h-[2.25rem] !px-4;
+		}
+	}
+
+	.button #bubbles {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+	}
+
+	.button #bubbles::before,
+	.button #bubbles::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		z-index: -1000;
+		width: 150%;
+		height: 100%;
+		background-repeat: no-repeat;
+		transform: translateX(-50%);
+	}
+
+	.button:hover #bubbles::before {
+		@apply animate-resume-button-top-bubbles;
+
+		top: -70%;
+		background-image: radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
+			radial-gradient(circle, transparent 20%, rgb(124 41 232) 20%, transparent 30%),
+			radial-gradient(circle, rgb(84 95 252) 20%, transparent 20%),
+			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
+			radial-gradient(circle, transparent 10%, rgb(124 41 232) 15%, transparent 20%),
+			radial-gradient(circle, rgb(13 200 237) 20%, transparent 20%),
+			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
+			radial-gradient(circle, rgb(13 200 237) 20%, transparent 20%),
+			radial-gradient(circle, rgb(13 200 237) 20%, transparent 20%);
+		background-position: 50% 120%;
+		background-size:
+			10% 10%,
+			20% 20%,
+			15% 15%,
+			20% 20%,
+			18% 18%,
+			10% 10%,
+			15% 15%,
+			10% 10%,
+			18% 18%;
+	}
+
+	.button:hover #bubbles::after {
+		@apply animate-resume-button-bottom-bubbles;
+
+		bottom: -70%;
+		background-image: radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
+			radial-gradient(circle, rgb(84 95 252) 20%, transparent 20%),
+			radial-gradient(circle, transparent 10%, rgb(124 41 232) 15%, transparent 20%),
+			radial-gradient(circle, rgb(84 95 252) 20%, transparent 20%),
+			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
+			radial-gradient(circle, rgb(84 95 252) 20%, transparent 20%),
+			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%);
+		background-position: 50% 0%;
+		background-size:
+			15% 15%,
+			20% 20%,
+			18% 18%,
+			20% 20%,
+			15% 15%,
+			20% 20%,
+			18% 18%;
+	}
+</style>

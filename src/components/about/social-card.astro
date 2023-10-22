@@ -1,0 +1,156 @@
+---
+import SvgSprite from '@/components/SvgSprite.astro';
+import { SOCIALS } from '@/lib/constants';
+---
+
+<div class="social-card h-full">
+	<div class="background"></div>
+	<div class="logo">
+		<svg
+			class="logo-svg"
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+		>
+			<circle cx="18" cy="5" r="3"></circle>
+			<circle cx="6" cy="12" r="3"></circle>
+			<circle cx="18" cy="19" r="3"></circle>
+			<line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
+			<line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+		</svg>
+	</div>
+
+	{
+		SOCIALS.map((link) => (
+			<a
+				aria-label={`Go to my ${link.title} profile`}
+				class={`box ${link.title.toLowerCase()}`}
+				href={link.href}
+				rel="me noopener noreferrer"
+				target="_blank"
+			>
+				<span class="icon">
+					<SvgSprite
+						name={link.title.toLowerCase()}
+						class="h-4 w-4 stroke-white sm:h-8 sm:w-8 lg:h-4 lg:w-4"
+					/>
+				</span>
+			</a>
+		))
+	}
+</div>
+
+<div class="box extra"></div>
+
+<style>
+	.social-card {
+		/* @apply relative transform-gpu overflow-hidden transition-all duration-[1s] ease-[ease-in-out] max-sm:min-h-[6rem]; */
+		@apply relative overflow-hidden transition-all duration-[1s] ease-[ease-in-out] max-sm:min-h-[6rem];
+
+		background: rgb(212 212 212);
+
+		.background {
+			@apply absolute inset-0;
+
+			background: radial-gradient(
+				circle at 100% 107%,
+				rgb(255 138 204) 0%,
+				rgb(156 184 237) 30%,
+				rgb(0 255 238) 60%,
+				rgb(97 194 255) 100%
+			);
+		}
+
+		.logo {
+			@apply absolute bottom-2/4 right-2/4 translate-x-2/4 translate-y-2/4 transform-gpu transition-all duration-[0.6s] ease-[ease-in-out];
+		}
+
+		.logo .logo-svg {
+			@apply h-10 w-10 stroke-[white];
+		}
+
+		.icon {
+			@apply inline-block h-4 w-4;
+		}
+
+		.icon svg {
+			@apply w-full transform-gpu fill-[rgba(255,255,255,0.797)] transition-all duration-[0.5s] ease-[ease-in-out];
+		}
+
+		.box {
+			@apply absolute origin-bottom-left rounded-[10%_13%_42%_0%/10%_12%_75%_0%] border-r border-t-2 border-solid border-r-[white] border-t-white p-2.5 text-right shadow-[rgba(100,100,111,0.364)_-7px_7px_29px_0px] transition-all duration-[1s] ease-[ease-in-out] before:absolute before:inset-0 before:rounded-[inherit] before:opacity-0 before:transition-all before:duration-[0.5s] before:ease-[ease-in-out] before:content-[""];
+
+			background: rgb(255 255 255 / 38.9%);
+		}
+
+		.box:hover svg {
+			@apply stroke-[white];
+		}
+
+		.github {
+			@apply bottom-[-70%] left-[-70%] h-[70%] w-[70%] hover:before:opacity-100;
+		}
+
+		.github::before {
+			background: radial-gradient(
+				circle at 30% 107%,
+				rgb(250 250 250) 0%,
+				rgb(245 245 245) 5%,
+				rgb(110 84 148) 60%,
+				rgb(64 119 191) 90%
+			);
+		}
+
+		.github:hover .icon svg {
+			filter: drop-shadow(0 0 5px rgb(255 255 255));
+		}
+
+		.linkedin {
+			@apply -bottom-2/4 -left-2/4 h-3/6 w-6/12 delay-[0.2s] hover:before:opacity-100;
+		}
+
+		.linkedin::before {
+			background: radial-gradient(circle at 30% 107%, rgb(0 161 219) 0%, rgb(189 189 189) 90%);
+		}
+
+		.linkedin:hover .icon svg {
+			filter: drop-shadow(0 0 5px rgb(255 255 255));
+		}
+
+		.twitter {
+			@apply bottom-[-30%] left-[-30%] h-[30%] w-[30%] delay-[0.4s] hover:before:opacity-100;
+		}
+
+		.twitter::before {
+			background: radial-gradient(
+				circle at 30% 107%,
+				rgb(245 248 250) 0%,
+				rgb(102 117 128) 5%,
+				rgb(54 215 255) 60%,
+				rgb(0 170 237) 90%
+			);
+		}
+
+		.twitter:hover .icon svg {
+			filter: drop-shadow(0 0 5px rgb(255 255 255));
+		}
+
+		.extra {
+			@apply bottom-[-10%] left-[-10%] h-[10%] w-[10%] delay-[0.6s];
+		}
+	}
+
+	.social-card:hover .box {
+		@apply -bottom-px -left-px;
+	}
+
+	.social-card:hover .logo {
+		@apply bottom-5 right-5 translate-x-0 translate-y-0 transform-gpu;
+	}
+</style>

@@ -1,0 +1,20 @@
+---
+import { formatDateMonthYear } from "@/utils/date";
+---
+
+<div
+  class="availability-wrapper badge badge-lg grid !h-auto !w-auto auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] content-center items-center justify-center justify-items-center gap-3 !px-3 !py-1 font-sans leading-tight max-sm:text-xs sm:gap-3 sm:!py-0 sm:!pl-4 sm:!pr-3 sm:!text-base bg-light border-none"
+>
+  <span>
+    Available for <strong>{formatDateMonthYear(new Date())}</strong>
+  </span>
+  <span
+    class="badge indicator-item badge-primary indicator-middle !h-3 !w-3 animate-pulse !p-0"
+  ></span>
+</div>
+
+<style>
+  .availability-wrapper {
+    grid-area: span 1 / span 1 / span 1 / span 1;
+  }
+</style>

@@ -1,0 +1,47 @@
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { onMount } from 'solid-js';
+import './location.css';
+
+const ACCESS_TOKEN = import.meta.env.PUBLIC_MAPLIBRE_TILES_API_KEY;
+
+const Location = () => {
+	const longitude_latitude: [number, number] = [-79.942368, 32.796824];
+
+	onMount(() => {
+		const map = new maplibregl.Map({
+			container: 'location-map',
+			style: `/geojson/portfolio_location_map.json?key=${ACCESS_TOKEN}`,
+			center: longitude_latitude ?? [0, 0],
+			zoom: 12,
+			maxZoom: 12,
+			minZoom: 6,
+			attributionControl: false,
+			scrollZoom: false,
+			interactive: false,
+		});
+
+		const nav = new maplibregl.NavigationControl({
+			showCompass: false,
+		});
+
+		map.on('load', () => {
+			map.addControl(nav, 'bottom-left');
+
+			const mapMarker = document.getElementById('map-marker')!;
+			mapMarker.classList.remove('hidden');
+			new maplibregl.Marker({ element: mapMarker }).setLngLat(longitude_latitude).addTo(map);
+		});
+	});
+
+	return (
+		<div id="location-map-wrapper" class="relative h-full w-full">
+			<div id="location-map" class="min-h-16 h-full w-full" />
+			<div id="map-marker" class="hidden">
+				<img src="/img/memoji.png" alt="Its a me" width="128" height="128" />
+			</div>
+		</div>
+	);
+};
+
+export default Location;

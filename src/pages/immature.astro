@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets";
+import SvgSprite from '@/components/SvgSprite.astro'
+import HomeLayout from "@/layouts/home.astro";
+import ResizerContainer from "@/components/resizer-container.astro";
+import leftHandBottom from "@/assets/hand-sex-bottom.png";
+import rightHand from "@/assets/hand-sex-middle.png";
+import leftHandTop from "@/assets/hand-sex-top.png";
+---
+
+<HomeLayout>
+  <div>
+    <a
+      href="/"
+      class="mr-4 p-2 z-10 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-full"
+    >
+      <SvgSprite name="mdi:chevron-left" class="h-6 w-6" />
+    </a>
+    <a class="after:content-['/'] after:pl-2 capitalize" href="/">home</a>
+  </div>
+  <div class="p-24 select-none">
+    <h1 class="text-white text-center max-w-4xl mx-auto">
+      Responsive design can be so immature.
+    </h1>
+    <ResizerContainer class="relative h-screen w-full min-h-screen mx-auto">
+      <div class="relative w-full h-[60vh] min-h-[60vh] overflow-hidden">
+        <div id="bottom" class="absolute w-full left-0 top-1/2">
+          <Image
+            src={leftHandBottom}
+            alt="outer stacked image of a left hand"
+            class="absolute top-1/2 left-0 -mt-[116px] h-[232px] min-w-[511px]"
+          />
+        </div>
+        <div id="middle" class="absolute w-full right-0 top-[57%]">
+          <Image
+            src={rightHand}
+            alt="image of a right hand"
+            class="absolute top-1/2 right-0 -mt-[95px] h-[190px] min-w-[496px]"
+          />
+        </div>
+        <div id="top" class="absolute w-full left-0 top-1/2">
+          <Image
+            src={leftHandTop}
+            alt="inner stacked image of a left hand"
+            class="absolute top-1/2 -left-[1px] -mt-[27px] h-[136px] min-w-[317px]"
+          />
+        </div>
+
+        <div class="absolute right-0 bottom-0 text-white p-2" id="resize">
+          Resize me &gt;
+        </div>
+      </div>
+    </ResizerContainer>
+  </div>
+</HomeLayout>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const bottom: HTMLElement | null = document.getElementById("bottom");
+		const top: HTMLElement | null = document.getElementById("top");
+		const body: HTMLElement | null = document.body;
+
+		const resizer = document.getElementById("resize-me");
+
+		const resizeObserver = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				const resizerBounds = entry.contentRect;
+				if (
+					entry.contentRect &&
+					bottom != null &&
+					top != null &&
+					resizerBounds != null
+				) {
+					if (resizerBounds.right <= 654) {
+						body.classList.add("w-screen", "h-screen", "bg-red-500");
+					} else if (resizerBounds?.right && resizerBounds.right > 654) {
+						body.classList.remove("w-screen", "h-screen", "bg-red-500");
+					}
+				}
+			}
+		});
+
+		resizeObserver.observe(resizer!);
+	})
+</script>

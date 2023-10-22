@@ -1,0 +1,57 @@
+---
+
+---
+
+<a
+	href="#header"
+	id="back-to-top-button"
+	class="scroll-link text-base-content relative grid auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 no-underline sm:p-8 lg:gap-4 lg:p-10"
+	role="button"
+>
+	<h3 class="mb-0 self-end !leading-none !text-6xl sm:!text-7xl lg:!text-5xl">Back to the top</h3>
+	<div class="arrow-wrapper relative z-10 self-end">
+		<div id="back-to-top-button-animation"></div>
+	</div>
+</a>
+
+<script>
+	import type { AnimationItem } from 'lottie-web';
+import lottie from 'lottie-web';
+
+	window.addEventListener('load', () => {
+		const backToTopButton = document.getElementById('back-to-top-button') as HTMLAnchorElement;
+		const container = document.getElementById('back-to-top-button-animation') as HTMLElement;
+
+		let animation: AnimationItem | null = null;
+		let animationCompleted = true;
+
+		animation = lottie.loadAnimation({
+			container,
+			renderer: 'svg',
+			loop: false,
+			autoplay: false,
+			path: '/animation/lottie-back-to-top.json',
+			initialSegment: [23, 23],
+			rendererSettings: {
+				progressiveLoad: true,
+			},
+		});
+
+		animation.addEventListener('complete', () => {
+			animationCompleted = true;
+		});
+
+		backToTopButton.addEventListener('mouseenter', () => {
+			if (animationCompleted) {
+				animation?.playSegments([0, 23], true);
+				animationCompleted = false;
+			}
+		});
+	});
+</script>
+
+<style>
+	.arrow-wrapper {
+		grid-area: span 1 / span 1 / span 1 / span 1;
+	}
+</style>

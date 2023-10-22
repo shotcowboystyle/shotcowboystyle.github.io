@@ -1,0 +1,96 @@
+---
+import Favicons from '@/components/favicons.astro';
+import Seo from '@/components/seo.astro';
+import type { PageMetaData } from '@/types';
+import { ViewTransitions } from 'astro:transitions';
+
+export type Props = {
+	meta?: PageMetaData;
+};
+
+const {
+	meta = {
+		title: 'Curtis Blanton Portfolio',
+		description:
+			"I'm a software engineer that specializes in building fun and useful applications.",
+	},
+} = Astro.props as Props;
+---
+
+<!doctype html>
+<html dir="ltr" lang="en">
+	<head>
+		<Seo />
+		<Favicons />
+
+		<title>{meta.title}</title>
+
+		<!-- Open Graph -->
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={meta.title} />
+		<meta name="description" property="og:description" content={meta.description} />
+		<meta property="og:image" content={`${Astro.url}socialImage.webp`} />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content="shotcowboystyle.github.io" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta name="twitter:title" content={meta.title} />
+		<meta name="twitter:description" content={meta.description} />
+		<meta name="twitter:image" content={`${Astro.url}socialImage.webp`} />
+
+		<script>
+			import { debounce } from '@/utils/debounce';
+
+			function setMobileVhUnit() {
+				/* Alternative to 100 vh on mobile devices */
+				/* https://css-tricks.com/the-trick-to-viewport-units-on-mobile/ */
+				/* https://chanind.github.io/javascript/2019/09/28/avoid-100vh-on-mobile-web.html */
+				const vh = window.innerHeight * 0.01;
+				document.documentElement.style.setProperty('--vh', `${vh}px`);
+			}
+
+			window.addEventListener('resize', () => debounce(setMobileVhUnit, 200));
+			setMobileVhUnit();
+		</script>
+
+		<ViewTransitions />
+
+		<slot name="head-scripts" />
+	</head>
+
+	<body
+		class="selection:text-base-neutral m-0 min-h-full bg-black font-sans font-medium leading-normal text-base-content selection:bg-rose-200"
+	>
+		<main id="main">
+			<slot />
+		</main>
+
+		<slot name="footer-scripts" />
+
+		<div class="report" id="report"></div>
+
+		<script>
+			import { swMessage } from '@/utils/report';
+
+			async function start() {
+				if (navigator.serviceWorker) {
+					navigator.serviceWorker.addEventListener('message', (e) => swMessage(e));
+				}
+			}
+
+			window.addEventListener(
+				'load',
+				() => {
+					if (sessionStorage.getItem('session-started-at')) {
+						return;
+					}
+					sessionStorage.setItem('session-started-at', new Date().toString());
+					start();
+				},
+				{ once: true },
+			);
+		</script>
+	</body>
+</html>

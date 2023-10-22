@@ -1,0 +1,42 @@
+{
+	"background_color": "#20D489",
+	"display": "standalone",
+	"icons": [
+		{
+			"sizes": "16x16",
+			"src": "/icon/favicon-16x16.png",
+			"type": "image/png"
+		},
+		{
+			"sizes": "32x32",
+			"src": "/icon/favicon-32x32.png",
+			"type": "image/png"
+		},
+		{
+			"sizes": "180x180",
+			"src": "/icon/apple-touch-icon.png",
+			"type": "image/png"
+		},
+		{
+			"sizes": "192x192",
+			"src": "/icon/android-chrome-192x192.png",
+			"type": "image/png"
+		},
+		{
+			"sizes": "512x512",
+			"src": "/icon/android-chrome-512x512.png",
+			"type": "image/png"
+		},
+		{
+			"purpose": "any maskable",
+			"sizes": "196x196",
+			"src": "/icon/maskable_icon.png",
+			"type": "image/png"
+		}
+	],
+	"lang": "en",
+	"name": "Curtis Blanton aka shotcowboystyle portfolio",
+	"short_name": "shotcowboystyle",
+	"start_url": "/",
+	"theme_color": "#20D489"
+}

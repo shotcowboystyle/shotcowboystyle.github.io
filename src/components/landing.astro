@@ -1,0 +1,122 @@
+---
+import About from '@/components/about/about.astro';
+import HeaderContent from '@/components/header-content.astro';
+import ProjectCard from '@/components/project-card.astro';
+// import { SolidWrapper } from '@/components/solid-wrapper';
+import { PROJECTS } from '@/lib/constants';
+---
+
+<header id="header" class="full-screen-section pointer-events-none relative -mb-[100vh] h-[200vh]">
+	<div
+		class="full-screen-section-content h-full-mobile pointer-events-none sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
+	>
+		<HeaderContent />
+	</div>
+</header>
+
+<div>
+	<section id="project-cards" class="pointer-events-none relative h-full w-full">
+		{
+			PROJECTS.map((project, idx) => (
+				<div
+					id={`project-card_${idx + 1}`}
+					class="project-card pointer-events-none relative -mb-[100vh] h-[250vh]"
+				>
+					<div class="full-screen-section h-full-mobile pointer-events-none sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
+						<div class="full-screen-section-content pointer-events-none sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
+							<ProjectCard
+								bgImage={project.bgImage}
+								description={project.description}
+								linkText={project.linkText}
+								screenshot={project.screenshot}
+								tags={project.tags}
+								title={project.title}
+								url={project.url}
+							/>
+						</div>
+					</div>
+				</div>
+			))
+		}
+	</section>
+</div>
+
+<footer id="about" class="pointer-events-none relative z-10">
+	<About />
+</footer>
+
+<script is:inline defer src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"
+></script>
+
+<script is:inline defer>
+	document.addEventListener(
+		'astro:page-load',
+		function () {
+			const TIMELINE_ANIMATION = {
+				opacity: [1, 0],
+				transform: ['scale3d(1, 1, 1)', 'scale3d(0.3, 0.3, 1)'],
+				filter: ['blur(0px)', 'blur(20px)'],
+			};
+
+			const headerSection = document.getElementById('header');
+			const headerSectionContent = headerSection.querySelector('.full-screen-section-content');
+			headerSectionContent.animate(TIMELINE_ANIMATION, {
+				// eslint-disable-next-line no-undef
+				timeline: new ViewTimeline({
+					subject: headerSection,
+					axis: 'block',
+				}),
+				fill: 'forwards',
+				rangeStart: `contain ${CSS.percent(0)}`,
+				rangeEnd: `contain ${CSS.percent(100)}`,
+			});
+
+			const projectCardOneSection = document.getElementById('project-card_1');
+			const projectCardOneSectionContent = projectCardOneSection.querySelector(
+				'.full-screen-section-content',
+			);
+			projectCardOneSectionContent.animate(TIMELINE_ANIMATION, {
+				// eslint-disable-next-line no-undef
+				timeline: new ViewTimeline({
+					subject: projectCardOneSection,
+					axis: 'block',
+				}),
+				fill: 'forwards',
+				rangeStart: `contain ${CSS.percent(33)}`,
+				rangeEnd: `contain ${CSS.percent(100)}`,
+			});
+
+			const projectCardTwoSection = document.getElementById('project-card_2');
+			const projectCardTwoSectionContent = projectCardTwoSection.querySelector(
+				'.full-screen-section-content',
+			);
+			projectCardTwoSectionContent.animate(TIMELINE_ANIMATION, {
+				// eslint-disable-next-line no-undef
+				timeline: new ViewTimeline({
+					subject: projectCardTwoSection,
+					axis: 'block',
+				}),
+				fill: 'forwards',
+				rangeStart: `contain ${CSS.percent(33)}`,
+				rangeEnd: `contain ${CSS.percent(100)}`,
+			});
+		},
+		{
+			once: true,
+		},
+	);
+</script>
+
+<style>
+	.full-screen-section {
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.full-screen-section-content {
+		pointer-events: none;
+		user-select: none;
+		will-change: opacity, transform, filter;
+		transform-style: preserve-3d;
+	}
+</style>
