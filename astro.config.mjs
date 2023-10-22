@@ -2,7 +2,6 @@ import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import solid from '@astrojs/solid-js';
 import tailwind from '@astrojs/tailwind';
-import compress from 'astro-compress';
 import compressor from 'astro-compressor';
 import critters from 'astro-critters';
 import svgSprite from 'astro-svg-sprite';
@@ -28,7 +27,6 @@ export default defineConfig({
 		prefetch(),
 		critters({ Logger: 2 }),
 		compressor(),
-		compress({ CSS: false, Logger: 1 }),
 	],
 	vite: {
 		plugins: [

@@ -17,7 +17,7 @@ const { companyName, designation, image, name, testimonial } = Astro.props as Om
 >
 	<div class="avatar order-2 ml-4 md:order-1 md:mb-2 md:ml-0">
 		<div class="w-16 rounded-full">
-			<Image src={image} class="rounded-circle" alt={name} />
+			<Image src={image} widths={[72, 144, image.width]} class="rounded-circle" alt={name} />
 		</div>
 	</div>
 
