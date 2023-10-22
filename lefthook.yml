@@ -2,13 +2,13 @@
 # Refer for explanation to following link:
 # https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
 
-post-checkout:
-  commands:
-    conditional-pnpm-install:
-      # Run pnpm install if pnpm-lock changed between the commits we checked out.
-      # {1} is old-hash, {2} is current-head, {3} is 1 for a branch checkout, 0 for a file checkout
-      # See https://git-scm.com/docs/githooks#_post_checkout
-      run: 'if [ ! -z "$(git diff {1}..{2} --name-only pnpm-lock.yaml)" ]; then pnpm install -r; fi'
+# post-checkout:
+#   commands:
+#     conditional-pnpm-install:
+#       # Run pnpm install if pnpm-lock changed between the commits we checked out.
+#       # {1} is old-hash, {2} is current-head, {3} is 1 for a branch checkout, 0 for a file checkout
+#       # See https://git-scm.com/docs/githooks#_post_checkout
+#       run: 'if [ ! -z "$(git diff {1}..{2} --name-only pnpm-lock.yaml)" ]; then pnpm install -r; fi'
 
 # Use this to build commit messages
 prepare-commit-msg:
@@ -18,10 +18,10 @@ prepare-commit-msg:
       run: LEFTHOOK=0 pnpm cz
 
 # Use this to validate commit messages
-commit-msg:
-  commands:
-    'lint commit message':
-      run: pnpm commitlint --edit {1}
+# commit-msg:
+#   commands:
+#     'lint commit message':
+#       run: pnpm commitlint --edit {1}
 
 # pre-push:
 #   parallel: true

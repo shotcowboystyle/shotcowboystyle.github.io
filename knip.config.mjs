@@ -17,6 +17,7 @@ export default {
 	ignoreDependencies: [
 		'sharp',
 		'@astrojs/check',
+		'@commitlint/cli',
 		'conventional-changelog-conventionalcommits',
 		'lighthouse',
 		'eslint-import-resolver-typescript',
