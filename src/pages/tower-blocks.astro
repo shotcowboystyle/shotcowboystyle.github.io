@@ -47,8 +47,8 @@ import GameLayout from '@/layouts/game.astro';
 
 <script>
 	import { navigate } from 'astro:transitions/client';
-import { gsap, Power1 } from 'gsap';
-import * as THREE from 'three';
+	import { gsap, Power1 } from 'gsap';
+	import * as THREE from 'three';
 
 	interface BlockReturn {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -264,10 +264,20 @@ import * as THREE from 'three';
 				this.state = this.STATES.STOPPED;
 
 				let overlap =
-					this.targetBlock.dimension[this.workingDimension as keyof typeof this.targetBlock.dimension] -
-					Math.abs(this.position[this.workingPlane as keyof typeof this.position] - this.targetBlock.position[this.workingPlane as keyof typeof this.targetBlock.position]);
+					this.targetBlock.dimension[
+						this.workingDimension as keyof typeof this.targetBlock.dimension
+					] -
+					Math.abs(
+						this.position[this.workingPlane as keyof typeof this.position] -
+							this.targetBlock.position[
+								this.workingPlane as keyof typeof this.targetBlock.position
+							],
+					);
 
-				const blocksToReturn: BlockReturn = { plane: this.workingPlane as keyof typeof this.position, direction: this.direction };
+				const blocksToReturn: BlockReturn = {
+					plane: this.workingPlane as keyof typeof this.position,
+					direction: this.direction,
+				};
 
 				if (this.dimension[this.workingDimension as keyof typeof this.dimension] - overlap < 0.3) {
 					overlap = this.dimension[this.workingDimension as keyof typeof this.dimension];
@@ -321,8 +331,14 @@ import * as THREE from 'three';
 						z: this.position.z,
 					};
 
-					if (this.position[this.workingPlane as keyof typeof this.position] < this.targetBlock.position[this.workingPlane as keyof typeof this.targetBlock.position]) {
-						this.position[this.workingPlane as keyof typeof this.position] = this.targetBlock.position[this.workingPlane as keyof typeof this.targetBlock.position];
+					if (
+						this.position[this.workingPlane as keyof typeof this.position] <
+						this.targetBlock.position[this.workingPlane as keyof typeof this.targetBlock.position]
+					) {
+						this.position[this.workingPlane as keyof typeof this.position] =
+							this.targetBlock.position[
+								this.workingPlane as keyof typeof this.targetBlock.position
+							];
 					} else {
 						choppedPosition[this.workingPlane as keyof typeof choppedPosition] += overlap;
 					}
@@ -352,7 +368,8 @@ import * as THREE from 'three';
 					}
 
 					this.position[this.workingPlane as keyof typeof this.position] += this.direction;
-					this.mesh.position[this.workingPlane] = this.position[this.workingPlane as keyof typeof this.position];
+					this.mesh.position[this.workingPlane] =
+						this.position[this.workingPlane as keyof typeof this.position];
 				}
 			}
 		}
