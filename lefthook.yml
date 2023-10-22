@@ -11,11 +11,11 @@ post-checkout:
       run: 'if [ ! -z "$(git diff {1}..{2} --name-only pnpm-lock.yaml)" ]; then pnpm install -r; fi'
 
 # Use this to build commit messages
-# prepare-commit-msg:
-#   commands:
-#     commitzen:
-#       interactive: true
-#       run: LEFTHOOK=0 pnpm cz
+prepare-commit-msg:
+  commands:
+    commitzen:
+      interactive: true
+      run: LEFTHOOK=0 pnpm cz
 
 # Use this to validate commit messages
 commit-msg:
