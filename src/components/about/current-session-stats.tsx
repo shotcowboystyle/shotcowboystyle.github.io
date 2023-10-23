@@ -3,7 +3,6 @@ import { useTimeAgo } from 'solidjs-use';
 export function CurrentSessionStats() {
 	const sessionStartedAt = sessionStorage.getItem('session-started-at');
 	const timeAgo = useTimeAgo(new Date(sessionStartedAt!));
-	console.log('TIME AGO', new Date(sessionStartedAt!), sessionStartedAt);
 
 	return (
 		<>

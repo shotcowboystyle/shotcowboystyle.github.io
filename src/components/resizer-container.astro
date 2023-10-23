@@ -43,7 +43,6 @@ const { class: className } = Astro.props;
 			// How far the mouse has been moved
 			const dx = e.clientX - x;
 
-			console.log('RESIZER X POSITION', w, dx, w + dx);
 			if (w + dx <= 654) {
 				el.style.width = `654px`;
 			} else {

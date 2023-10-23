@@ -239,10 +239,10 @@ import GameLayout from '@/layouts/game.astro';
 					),
 				);
 
-				this.material = new THREE.MeshToonMaterial({
+				this.material = new THREE.MeshPhongMaterial({
 					color: this.color,
-					// shading: THREE.FlatShading,
 				});
+
 				this.mesh = new THREE.Mesh(geometry, this.material);
 				this.mesh.position.set(
 					this.position.x,
@@ -411,7 +411,9 @@ import GameLayout from '@/layouts/game.astro';
 				this.scoreContainer = document.getElementById('score');
 				this.startButton = document.getElementById('start-button');
 				this.instructions = document.getElementById('instructions');
-				this.scoreContainer!.innerHTML = '0';
+				if (this.scoreContainer) {
+					this.scoreContainer.innerHTML = '0';
+				}
 
 				this.newBlocks = new THREE.Group();
 				this.placedBlocks = new THREE.Group();
@@ -427,7 +429,7 @@ import GameLayout from '@/layouts/game.astro';
 				this.updateState(this.STATES.READY);
 
 				document.addEventListener('keydown', (e) => {
-					if (e.key == 'Space') {
+					if (e.code == 'Space') {
 						this.onAction();
 					}
 				});
@@ -469,8 +471,8 @@ import GameLayout from '@/layouts/game.astro';
 			}
 
 			startGame() {
-				if (this.state != this.STATES.PLAYING) {
-					this.scoreContainer!.innerHTML = '0';
+				if (this.state != this.STATES.PLAYING && this.scoreContainer) {
+					this.scoreContainer.innerHTML = '0';
 					this.updateState(this.STATES.PLAYING);
 					this.addBlock();
 				}
@@ -509,7 +511,9 @@ import GameLayout from '@/layouts/game.astro';
 					value: 0,
 					duration: cameraMoveSpeed,
 					onUpdate: () => {
-						this.scoreContainer!.innerHTML = String(Math.round(countdown.value));
+						if (this.scoreContainer) {
+							this.scoreContainer.innerHTML = String(Math.round(countdown.value));
+						}
 					},
 				});
 
@@ -574,7 +578,9 @@ import GameLayout from '@/layouts/game.astro';
 					return this.endGame();
 				}
 
-				this.scoreContainer!.innerHTML = String(this.blocks.length - 1);
+				if (this.scoreContainer) {
+					this.scoreContainer.innerHTML = String(this.blocks.length - 1);
+				}
 
 				const newKidOnTheBlock = new Block(lastBlock!);
 				this.newBlocks.add(newKidOnTheBlock.mesh);

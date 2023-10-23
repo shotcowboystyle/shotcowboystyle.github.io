@@ -98,7 +98,7 @@ import { Image } from 'astro:assets';
 							>
 								<div class="h-5 w-5 text-black sm:h-8 sm:w-8 lg:h-5 lg:w-5">
 									<SvgSprite
-										name={link.title.toLowerCase()}
+										name={link.icon}
 										class="h-5 w-5 stroke-black sm:h-8 sm:w-8 lg:h-5 lg:w-5"
 									/>
 								</div>
@@ -129,24 +129,10 @@ import { Image } from 'astro:assets';
 </div>
 
 <script>
-	import lottie from 'lottie-web';
 	import { animate, inView, spring } from 'motion';
 	import Splitting from 'splitting';
 
-	window.addEventListener('load', () => {
-		const container = document.getElementById('scroll-animation') as HTMLElement;
-
-		lottie.loadAnimation({
-			container,
-			renderer: 'svg',
-			loop: true,
-			autoplay: true,
-			rendererSettings: {
-				progressiveLoad: true,
-			},
-			path: '/animation/lottie-scroll.json',
-		});
-
+	document.addEventListener('astro:page-load', () => {
 		const headerHeadline = document.getElementById('header-headline');
 		if (headerHeadline) {
 			Splitting({
@@ -175,6 +161,25 @@ import { Image } from 'astro:assets';
 				{ opacity: 1, transform: 'none' },
 				{ delay: 0.5, duration: 0.2, easing: spring() },
 			);
+		});
+	});
+</script>
+
+<script>
+	import lottie from 'lottie-web';
+
+	document.addEventListener('astro:page-load', () => {
+		const container = document.getElementById('scroll-animation') as HTMLElement;
+
+		lottie.loadAnimation({
+			container,
+			renderer: 'svg',
+			loop: true,
+			autoplay: true,
+			rendererSettings: {
+				progressiveLoad: true,
+			},
+			path: '/animation/lottie-scroll.json',
 		});
 	});
 </script>

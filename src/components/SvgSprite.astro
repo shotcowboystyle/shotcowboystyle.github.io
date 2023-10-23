@@ -3,9 +3,9 @@ export interface props {
 	name: string;
 }
 
-const { class: className, name } = Astro.props;
+const { class: className, name, ...rest } = Astro.props;
 ---
 
-<svg class={className}>
+<svg class={className} {...rest}>
 	<use xlink:href=`${Astro.site}assets/images/sprite.svg#${name}`></use>
 </svg>

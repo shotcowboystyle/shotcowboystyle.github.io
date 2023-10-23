@@ -1,9 +1,6 @@
 import donaldTrumpImg from '@/assets/donald-trump.jpeg';
 import frigateBoostScreenshot from '@/assets/frigate-boost-screenshot.png';
 import frigateBoostBgDesktop from '@/assets/frigate-section-bg.svg';
-import githubIcon from '@/assets/images/sprite/github.svg';
-import linkedinIcon from '@/assets/images/sprite/linkedin.svg';
-import twitterIcon from '@/assets/images/sprite/twitter.svg';
 import jarJarBinksImg from '@/assets/jar-jar-binks.jpeg';
 import kalmiaWoodsScreenshot from '@/assets/kalmia-woods-screenshot.png';
 import kalmiaWoodsBgDesktop from '@/assets/kalmia-woods-section-bg.webp';
@@ -33,20 +30,20 @@ export const PROJECTS: Projects[] = [
 	},
 ];
 
-export const SOCIALS: Array<{ href: string; icon: ImageMetadata; title: string }> = [
+export const SOCIALS: Array<{ href: string; icon: string; title: string }> = [
 	{
 		href: 'https://github.com/shotcowboystyle',
-		icon: githubIcon,
+		icon: 'github-solid',
 		title: 'GitHub',
 	},
 	{
 		href: 'https://www.linkedin.com/in/curtis-blanton/',
-		icon: linkedinIcon,
+		icon: 'linkedin-solid',
 		title: 'LinkedIn',
 	},
 	{
 		href: 'https://twitter.com/shotcowboystyle',
-		icon: twitterIcon,
+		icon: 'x',
 		title: 'Twitter',
 	},
 ];
