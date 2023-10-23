@@ -23,6 +23,7 @@ export default {
 		'eslint-import-resolver-typescript',
 		'eslint-plugin-import',
 		'eslint-plugin-jsx-a11y',
+		'postcss-nesting',
 		'sass',
 	],
 	ignore: ['src/sw/**/*'],

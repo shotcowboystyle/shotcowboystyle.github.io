@@ -18,7 +18,7 @@
 	import type { AnimationItem } from 'lottie-web';
 	import lottie from 'lottie-web';
 
-	window.addEventListener('load', () => {
+	document.addEventListener('astro:page-load', () => {
 		const backToTopButton = document.getElementById('back-to-top-button') as HTMLAnchorElement;
 		const container = document.getElementById('back-to-top-button-animation') as HTMLElement;
 

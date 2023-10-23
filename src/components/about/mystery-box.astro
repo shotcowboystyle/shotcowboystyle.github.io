@@ -38,10 +38,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 1} size-20`}
 			id="programming-motherfucker-site-link"
 		>
-			<SvgSprite
-				name="hair-dryer"
-				class="svg fill h-3 w-3 fill-black stroke-black sm:h-8 sm:w-8 lg:h-3 lg:w-3"
-			/>
+			<SvgSprite name="crosshair" class="svg stroke h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
 		</a>
 
 		<a
@@ -50,10 +47,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 2} size-20`}
 			id="immature-page-link"
 		>
-			<SvgSprite
-				name="ok-hand"
-				class="svg fill h-3 w-3 fill-black stroke-black sm:h-8 sm:w-8 lg:h-3 lg:w-3"
-			/>
+			<SvgSprite name="ok-hand" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
 		</a>
 
 		<a
@@ -62,10 +56,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 3} size-20`}
 			id="tower-blocks-page-link"
 		>
-			<SvgSprite
-				name="blocks"
-				class="svg stroke h-3 w-3 stroke-black sm:h-8 sm:w-8 lg:h-3 lg:w-3"
-			/>
+			<SvgSprite name="blocks" class="svg stroke h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
 		</a>
 
 		<button
@@ -76,10 +67,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 4} size-20`}
 			id="viewing-time-dialog-link"
 		>
-			<SvgSprite
-				name="clock"
-				class="svg fill h-3 w-3 fill-black stroke-black sm:h-8 sm:w-8 lg:h-3 lg:w-3"
-			/>
+			<SvgSprite name="clock" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
 		</button>
 		<dialog id="viewing_time" class="modal modal-bottom sm:modal-middle">
 			<div class="modal-box !min-w-[18rem] !max-w-md items-center justify-center">
@@ -104,10 +92,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 5} size-20`}
 			id="ecograder-site-link"
 		>
-			<SvgSprite
-				name="leaf"
-				class="svg fill h-3 w-3 fill-black stroke-black sm:h-8 sm:w-8 lg:h-3 lg:w-3"
-			/>
+			<SvgSprite name="leaf" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
 		</a>
 
 		<span class={`dot dot${LINK_DOTS_STARTING_NUMBER + LINK_DOTS_TOTAL + 1} size-15`}></span>
@@ -275,11 +260,48 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 				place-content: center;
 				width: var(--size);
 				border: 1px solid rgb(255 255 255);
+
+				&::before {
+					content: '';
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					border-radius: inherit;
+					background: rgb(0 0 0);
+					opacity: 0%;
+					transition: all 0.2s ease-in-out;
+				}
+
+				.svg.fill {
+					@apply h-2.5 w-2.5 fill-white/[0.00];
+
+					transition: all 0.2s ease-in-out;
+				}
+
+				.svg.stroke {
+					@apply h-2.5 w-2.5 stroke-white/[0.00];
+
+					transition: all 0.2s ease-in-out;
+				}
 			}
 
 			.size-20:hover {
 				border: none;
 				transform: scale(1.5);
+
+				&::before {
+					opacity: 100%;
+				}
+
+				.svg.fill {
+					z-index: 99;
+					fill: rgb(255 255 255);
+				}
+
+				.svg.stroke {
+					z-index: 99;
+					stroke: rgb(255 255 255);
+				}
 			}
 
 			.dot {
@@ -718,44 +740,5 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 				}
 			}
 		}
-	}
-
-	.size-20::before {
-		content: '';
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		border-radius: inherit;
-		background: rgb(0 0 0);
-		opacity: 0%;
-		transition: all 0.2s ease-in-out;
-	}
-
-	.size-20 .svg.fill {
-		@apply h-2.5 w-2.5 fill-white/[0.00];
-
-		/* fill: rgb(255 255 255 / 0%); */
-		transition: all 0.2s ease-in-out;
-	}
-
-	.size-20 .svg.stroke {
-		@apply h-2.5 w-2.5 stroke-white/[0.00];
-
-		/* fill: rgb(255 255 255 / 0%); */
-		transition: all 0.2s ease-in-out;
-	}
-
-	.size-20:hover::before {
-		opacity: 100%;
-	}
-
-	.size-20:hover .svg.fill {
-		z-index: 99;
-		fill: rgb(255 255 255);
-	}
-
-	.size-20:hover .svg.stroke {
-		z-index: 99;
-		stroke: rgb(255 255 255);
 	}
 </style>
