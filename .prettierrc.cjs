@@ -15,6 +15,7 @@ module.exports = {
 		require.resolve('@ianvs/prettier-plugin-sort-imports'),
 		require.resolve('prettier-plugin-tailwindcss'),
 	],
+	pluginSearchDirs: [__dirname],
 	overrides: [
 		{
 			files: '*.astro',

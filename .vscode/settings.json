@@ -1,13 +1,10 @@
 {
 	"css.validate": false,
 	"editor.codeActionsOnSave": {
-		"source.formatDocument": true,
-		"source.fixAll.eslint": true,
-		"source.organizeImports": true,
-		"source.sortMembers": true
+		"source.fixAll": true
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.formatOnSave": false,
+	"editor.formatOnSave": true,
 	"editor.inlayHints.enabled": "offUnlessPressed",
 	"editor.linkedEditing": true,
 	"editor.quickSuggestions": {

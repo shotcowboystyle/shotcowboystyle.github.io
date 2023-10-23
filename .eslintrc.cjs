@@ -2,18 +2,17 @@
 module.exports = {
 	ignorePatterns: ['node_modules', 'dist'],
 	root: true,
-	env: {
-		node: true,
-	},
 	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint', 'prettier'],
+	parserOptions: {
+		tsconfigRootDir: __dirname,
+		sourceType: 'module',
+		ecmaVersion: 'latest',
+	},
+	plugins: ['@typescript-eslint'],
 	extends: [
-		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:prettier/recommended',
 		'plugin:astro/recommended',
 		'plugin:astro/jsx-a11y-recommended',
-		'prettier',
 	],
 	rules: {
 		'@typescript-eslint/no-var-requires': 'off',
@@ -31,7 +30,6 @@ module.exports = {
 				extraFileExtensions: ['.astro'],
 			},
 			rules: {
-				'prettier/prettier': 'off',
 				'astro/jsx-a11y/no-redundant-roles': [
 					'error',
 					{
