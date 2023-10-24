@@ -1,4 +1,5 @@
 ---
+import memoji from '@/assets/images/memoji.png';
 import BackToTop from '@/components/about/back-to-top.astro';
 import Bio from '@/components/about/bio.astro';
 import Location from '@/components/about/location';
@@ -7,6 +8,7 @@ import SocialCard from '@/components/about/social-card.astro';
 import Contact from '@/components/contact.astro';
 import { SolidWrapper } from '@/components/solid-wrapper';
 import Testimonials from '@/components/testimonials/testimonials.astro';
+import { Image } from 'astro:assets';
 ---
 
 <div
@@ -32,7 +34,9 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 		id="about-box-3"
 		class="grid-about-box pointer-events-auto min-h-[360px] !p-0 sm:min-h-[20vh] lg:min-h-[30vh]"
 	>
-		<Location client:visible />
+		<Location client:visible>
+			<Image src={memoji} alt="Its a me" widths={[72, 120, 220, memoji.width]} />
+		</Location>
 	</div>
 
 	<div

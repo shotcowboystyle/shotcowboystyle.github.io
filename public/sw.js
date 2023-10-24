@@ -1,4 +1,4 @@
-const CACHE='cache-1698122482411-dev';
+const CACHE='cache-1698128140748-dev';
 const ASSETS=[];
 
 /*
@@ -59,6 +59,7 @@ this.addEventListener('fetch', (event) => {
 				.then((body) =>
 					caches.open(CACHE).then((cache) => cache.put(CONFIG, new Response(JSON.stringify(body)))),
 				);
+
 			return event.respondWith(new Response('{}'));
 		} else {
 			return event.respondWith(
@@ -175,7 +176,7 @@ this.addEventListener('notificationclick', (event) => {
 				this.clients
 					.openWindow('/profile')
 					.then((c) => {
-						console.log('[SERVICE WORKER client] OpenWindow: ', c)
+						console.log('[SERVICE WORKER client] OpenWindow: ', c);
 						return c;
 					})
 					.then((a) => {
