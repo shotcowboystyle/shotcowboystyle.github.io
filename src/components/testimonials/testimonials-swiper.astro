@@ -80,18 +80,14 @@ import { TESTIMONIALS } from '@/lib/constants';
 	import { Navigation } from 'swiper/modules';
 	import 'swiper/css';
 
-	window.addEventListener(
-		'load',
-		() => {
-			new Swiper('.testimonials-swiper', {
-				modules: [Navigation],
-				slidesPerView: 1,
-				navigation: {
-					nextEl: '#next',
-					prevEl: '#prev',
-				},
-			});
-		},
-		{ once: true },
-	);
+	document.addEventListener('astro:page-load', () => {
+		new Swiper('.testimonials-swiper', {
+			modules: [Navigation],
+			slidesPerView: 1,
+			navigation: {
+				nextEl: '#next',
+				prevEl: '#prev',
+			},
+		});
+	});
 </script>

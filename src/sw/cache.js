@@ -23,6 +23,7 @@ self.addEventListener('activate', (e) =>
 					await caches.delete(k);
 				}
 			}
+
 			sendMessage({ text: 'activate', action: 'reset' });
 			self.clients.claim();
 		}),

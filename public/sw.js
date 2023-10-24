@@ -1,4 +1,4 @@
-const CACHE='cache-1698099569864-dev';
+const CACHE='cache-1698122482411-dev';
 const ASSETS=[];
 
 /*
@@ -30,6 +30,7 @@ self.addEventListener('activate', (e) =>
 					await caches.delete(k);
 				}
 			}
+
 			sendMessage({ text: 'activate', action: 'reset' });
 			self.clients.claim();
 		}),
@@ -43,6 +44,7 @@ self.addEventListener('activate', (e) =>
 */
 /* eslint-disable no-undef */
 const CONFIG = '/config';
+
 this.addEventListener('fetch', (event) => {
 	const {
 		request,
@@ -69,31 +71,39 @@ this.addEventListener('fetch', (event) => {
 			event.respondWith(
 				caches.open(CACHE).then(async (cache) => {
 					let response = await cache.match(event.request);
-					if (response) return response;
+					if (response) {
+						return response;
+					}
 
 					// To fix 'chrome-extension'
-					if (
-						url.startsWith('chrome-extension') ||
-						url.includes('extension') ||
-						!(url.indexOf('http') === 0)
-					)
-						return await fetch(event.request);
+					// if (
+					// 	url.startsWith('chrome-extension') ||
+					// 	url.includes('extension') ||
+					// 	!(url.indexOf('http') === 0)
+					// ) {
+					// 	return await fetch(event.request);
+					// }
 
 					response = await cache.match((event.request.url += 'index.html'));
-					if (response) return response;
+					if (response) {
+						return response;
+					}
 
 					response = await cache.match((event.request.url += '/index.html'));
-					if (response) return response;
+					if (response) {
+						return response;
+					}
 
 					response = await fetch(event.request);
 
 					// To save the request in the cache.
 					// 👇 It can cause problems if not carefully filtered.
-					if (
-						ASSETS.length > 0 &&
-						(url.startsWith('https://cdn.pixabay.com') || url.startsWith('https://fonts.g'))
-					)
-						cache.put(event.request, response.clone());
+					// if (
+					// 	ASSETS.length > 0 &&
+					// 	(url.startsWith('https://cdn.example.com') || url.startsWith('https://fonts.google.com'))
+					// ) {
+					// 	cache.put(event.request, response.clone());
+					// }
 
 					return response;
 				}),
@@ -112,14 +122,17 @@ this.onmessage = function (e) {
 	if (e.data.action === 'skipWaiting') {
 		this.skipWaiting();
 	}
+
 	if (e.data.action === 'update') {
 		this.registration.update();
 	}
+
 	if (e.data.action === 'sync') {
 		this.registration.sync.register('sync-news').then(() => {
 			// ...
 		});
 	}
+
 	sendMessage({ type: 'receive', msg: e.data });
 };
 
@@ -142,13 +155,13 @@ function sendMessage(message) {
 this.addEventListener('notificationclick', (event) => {
 	event.waitUntil(
 		this.clients.matchAll().then((clientList) => {
-			// console.log(
-			// 	'[SERVICE WORKER notification] Notification click Received.',
-			// 	clientList,
-			// 	event.notification.data,
-			// )
+			console.log(
+				'[SERVICE WORKER notification] Notification click Received.',
+				clientList,
+				event.notification.data,
+			);
 
-			var data = 'undefined' !== typeof event.notification['data'] ? event.notification.data : {};
+			const data = 'undefined' !== typeof event.notification['data'] ? event.notification.data : {};
 
 			event.notification.close();
 
@@ -162,7 +175,7 @@ this.addEventListener('notificationclick', (event) => {
 				this.clients
 					.openWindow('/profile')
 					.then((c) => {
-						// console.log('[SERVICE WORKER client] OpenWindow: ', c)
+						console.log('[SERVICE WORKER client] OpenWindow: ', c)
 						return c;
 					})
 					.then((a) => {
