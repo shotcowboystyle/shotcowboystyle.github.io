@@ -15,6 +15,7 @@ this.addEventListener('fetch', (event) => {
 				.then((body) =>
 					caches.open(CACHE).then((cache) => cache.put(CONFIG, new Response(JSON.stringify(body)))),
 				);
+
 			return event.respondWith(new Response('{}'));
 		} else {
 			return event.respondWith(
