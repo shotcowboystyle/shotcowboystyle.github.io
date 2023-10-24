@@ -1,5 +1,4 @@
 const lightTheme = require('daisyui/src/theming/themes')['[data-theme=autumn]'];
-// const darkTheme = require('daisyui/src/theming/themes')['[data-theme=forest]'];
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
@@ -9,9 +8,12 @@ module.exports = {
 	theme: {
 		extend: {
 			animation: {
-				'spin-circle': 'spinCircle 8s linear infinite',
 				'resume-button-bottom-bubbles': 'resumeButtonBottomBubbles 0.6s linear',
 				'resume-button-top-bubbles': 'resumeButtonTopBubbles 0.6s linear',
+				'pulse-scale': 'pulseScale 1.5s linear infinite',
+				'spin-circle': 'spinCircle 8s linear infinite',
+				blink: 'blink 1.5s infinite',
+				floating: 'floating 4s linear infinite',
 			},
 			keyframes: {
 				resumeButtonBottomBubbles: {
@@ -42,6 +44,16 @@ module.exports = {
 						backgroundSize: '0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%',
 					},
 				},
+				pulseScale: {
+					from: {
+						transform: 'scale(0)',
+						opacity: 1,
+					},
+					to: {
+						transform: 'scale(1)',
+						opacity: 0,
+					},
+				},
 				spinCircle: {
 					from: {
 						transform: 'rotateZ(0deg)',
@@ -50,16 +62,41 @@ module.exports = {
 						transform: 'rotateZ(360deg)',
 					},
 				},
+				blink: {
+					from: {
+						opacity: '100%',
+						transform: 'scale(1)',
+					},
+					'50%': {
+						opacity: '50%',
+						transform: 'scale(0.4)',
+					},
+					to: {
+						opacity: '100%',
+						transform: 'scale(1)',
+					},
+				},
+				floating: {
+					from: {
+						transform: 'translate(2px, 3px) rotate(1deg)',
+					},
+					'20%': {
+						transform: 'translate(3px, -2px) rotate(-2deg)',
+					},
+					'40%': {
+						transform: 'translate(-1px, -3px) rotate(1deg)',
+					},
+					'60%': {
+						transform: 'translate(-2px, 0) rotate(1deg)',
+					},
+					'80%': {
+						transform: 'translate(-1px, 3px) rotate(2deg)',
+					},
+					to: {
+						transform: 'translate(2px, 3px) rotate(1deg)',
+					},
+				},
 			},
-			// colors: {
-			// 	primary: 'var(--primary)',
-			// 	secondary: 'var(--secondary)',
-			// 	tertiary: 'var(--tertiary)',
-			// 	'color-light': 'var(--color-light)',
-			// 	'color-dark': 'var(--color-dark)',
-			// 	'accent-primary': 'var(--accent-primary)',
-			// 	'accent-primary-state': 'var(--accent-primary-state)',
-			// },
 		},
 		fontFamily: {
 			sans: ['"General Sans"', 'Arial', ...defaultTheme.fontFamily.sans],
@@ -88,22 +125,6 @@ module.exports = {
 						'background-color': '#ffffff',
 					},
 				},
-				// dark: {
-				// 	...darkTheme,
-				// 	'--rounded-btn': '0.65rem',
-				// 	primary: '#eeeedd',
-				// 	secondary: '#999999',
-				// 	accent: '#443355',
-				// 	neutral: '#555555',
-				// 	'base-100': '#333333',
-				// 	info: '#80caea',
-				// 	success: '#139659',
-				// 	warning: '#df9a07',
-				// 	error: '#fa665c',
-				// 	'.bg-dark': {
-				// 		'background-color': '#181C32',
-				// 	},
-				// },
 			},
 		],
 		darkTheme: 'dark',

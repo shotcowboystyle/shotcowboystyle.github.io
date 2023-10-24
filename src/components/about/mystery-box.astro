@@ -105,47 +105,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			))
 		}
 	</div>
-
-	<!-- <p class="box-title font-sans uppercase">Mystery Box o' Links</p> -->
 </div>
-
-<script>
-	window.addEventListener(
-		'load',
-		() => {
-			let windowObjectReference: Window | null;
-			function openRequestedPopupWindow(url: string, windowName: string, attrs: DOMStringMap) {
-				if (windowObjectReference === null || windowObjectReference.closed) {
-					const LeftPosition = window.innerWidth
-						? (window.innerWidth - Number(attrs.popupWidth)) / 2
-						: 0;
-					const TopPosition = window.innerHeight
-						? (window.innerHeight - Number(attrs.popupHeight)) / 2
-						: 0;
-					const settings = `height=${Number(attrs.popupHeight)},width=${Number(
-						attrs.popupWidth,
-					)},top=${TopPosition},left=${LeftPosition},resizable`;
-					windowObjectReference = window.open(url, windowName, settings);
-				} else {
-					windowObjectReference.focus();
-				}
-			}
-
-			const popupLinks: HTMLAnchorElement | null = document.querySelector(
-				"a[target='OpenMysteryPopupWindow']",
-			);
-			popupLinks?.addEventListener(
-				'click',
-				(event) => {
-					openRequestedPopupWindow(popupLinks.href, popupLinks.target, popupLinks.dataset);
-					event.preventDefault();
-				},
-				false,
-			);
-		},
-		{ once: true },
-	);
-</script>
 
 <style>
 	.mystery-box-card {
