@@ -54,8 +54,8 @@ dependencies:
     specifier: ^1.0.6
     version: 1.0.6
   swiper:
-    specifier: ^10.3.0
-    version: 10.3.1
+    specifier: ^11.0.3
+    version: 11.0.3
   three:
     specifier: ^0.158.0
     version: 0.158.0
@@ -152,8 +152,8 @@ devDependencies:
     specifier: ^3.3.0
     version: 3.3.0(typescript@5.2.2)
   daisyui:
-    specifier: ^3.9.3
-    version: 3.9.3
+    specifier: ^3.9.4
+    version: 3.9.4
   eslint:
     specifier: ^8.52.0
     version: 8.52.0
@@ -4833,8 +4833,8 @@ packages:
       - typescript
     dev: true
 
-  /daisyui@3.9.3:
-    resolution: {integrity: sha512-8li177QCu6dqlEOzE3h/dAV1y9Movbjx5bzJIO/hNqMNZtJkbHM0trjTzbDejV7N57eNGdjBvAGtxZYKzS4jow==}
+  /daisyui@3.9.4:
+    resolution: {integrity: sha512-fvi2RGH4YV617/6DntOVGcOugOPym9jTGWW2XySb5ZpvdWO4L7bEG77VHirrnbRUEWvIEVXkBpxUz2KFj0rVnA==}
     engines: {node: '>=16.9.0'}
     dependencies:
       colord: 2.9.3
@@ -11658,8 +11658,8 @@ packages:
       picocolors: 1.0.0
     dev: true
 
-  /swiper@10.3.1:
-    resolution: {integrity: sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==}
+  /swiper@11.0.3:
+    resolution: {integrity: sha512-MyV9ooQsriAe2EibeamqewLjgCfSvl2xoyratl6S3ln5BXDL4BzlO6mxcbLMCzQL6Z60b/u0AS/nKrepL0+TAg==}
     engines: {node: '>= 4.7.0'}
     dev: false
 
