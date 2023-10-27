@@ -1,13 +1,15 @@
 ---
 import SvgSprite from '@/components/SvgSprite.astro';
-import { SOCIALS } from '@/lib/constants';
+import { getCollection } from 'astro:content';
+
+const socials = await getCollection('social');
 ---
 
 <div class="social-card h-full">
 	<div class="background"></div>
-	<div class="logo">
+	<div class="social-icon-wrapper">
 		<svg
-			class="logo-svg"
+			class="social-icon"
 			xmlns="http://www.w3.org/2000/svg"
 			width="24"
 			height="24"
@@ -27,27 +29,29 @@ import { SOCIALS } from '@/lib/constants';
 	</div>
 
 	{
-		SOCIALS.map((link) => (
+		socials.map((social) => (
 			<a
-				aria-label={`Go to my ${link.title} profile`}
-				class={`box ${link.title.toLowerCase()}`}
-				href={link.href}
+				aria-label={`Go to my ${social.data.name} profile`}
+				class={`link ${social.data.name.toLowerCase()}`}
+				href={social.data.link}
 				rel="me noopener noreferrer"
 				target="_blank"
 			>
-				<span class="icon">
-					<SvgSprite name={link.icon} class="h-4 w-4 fill-white sm:h-8 sm:w-8 lg:h-4 lg:w-4" />
+				<span class="link-icon-wrapper">
+					<SvgSprite
+						name={social.data.icon}
+						class="h-4 w-4 fill-white sm:h-8 sm:w-8 lg:h-4 lg:w-4"
+					/>
 				</span>
 			</a>
 		))
 	}
 </div>
 
-<div class="box extra"></div>
+<div class="extra link"></div>
 
 <style>
 	.social-card {
-		/* @apply relative transform-gpu overflow-hidden transition-all duration-[1s] ease-[ease-in-out] max-sm:min-h-[6rem]; */
 		@apply relative overflow-hidden transition-all duration-[1s] ease-[ease-in-out] max-sm:min-h-[6rem];
 
 		background: rgb(212 212 212);
@@ -64,90 +68,104 @@ import { SOCIALS } from '@/lib/constants';
 			);
 		}
 
-		.logo {
+		.social-icon-wrapper {
 			@apply absolute bottom-2/4 right-2/4 translate-x-2/4 translate-y-2/4 transform-gpu transition-all duration-[0.6s] ease-[ease-in-out];
 		}
 
-		.logo .logo-svg {
+		.social-icon {
 			@apply h-10 w-10 stroke-[white];
 		}
 
-		.icon {
-			@apply inline-block h-4 w-4;
+		.link-icon-wrapper {
+			@apply m-2 inline-block h-4 w-4;
+
+			svg {
+				@apply w-full transform-gpu fill-[rgba(107,96,96,0.8)] transition-all duration-[0.5s] ease-[ease-in-out];
+			}
 		}
 
-		.icon svg {
-			@apply w-full transform-gpu fill-[rgba(255,255,255,0.797)] transition-all duration-[0.5s] ease-[ease-in-out];
-		}
-
-		.box {
+		.link {
 			@apply absolute origin-bottom-left rounded-[10%_13%_42%_0%/10%_12%_75%_0%] border-r border-t-2 border-solid border-r-[white] border-t-white p-2.5 text-right shadow-[rgba(100,100,111,0.364)_-7px_7px_29px_0px] transition-all duration-[1s] ease-[ease-in-out] before:absolute before:inset-0 before:rounded-[inherit] before:opacity-0 before:transition-all before:duration-[0.5s] before:ease-[ease-in-out] before:content-[""];
 
 			background: rgb(255 255 255 / 38.9%);
+
+			&:hover svg {
+				@apply fill-[white];
+
+				filter: drop-shadow(0 0 5px rgb(255 255 255));
+			}
 		}
 
-		.box:hover svg {
-			@apply stroke-[white];
+		.facebook {
+			@apply bottom-[-80%] left-[-80%] h-[80%] w-[80%] hover:before:opacity-100;
+
+			&::before {
+				background: radial-gradient(circle at 30% 107%, rgb(189 189 189) 0%, rgb(64 119 191) 90%);
+			}
 		}
 
 		.github {
-			@apply bottom-[-70%] left-[-70%] h-[70%] w-[70%] hover:before:opacity-100;
+			@apply bottom-[-68%] left-[-68%] h-[68%] w-[68%] delay-[0.2s] hover:before:opacity-100;
+
+			&::before {
+				background: radial-gradient(
+					circle at 30% 107%,
+					rgb(250 250 250) 0%,
+					rgb(245 245 245) 5%,
+					rgb(110 84 148) 60%,
+					rgb(64 119 191) 90%
+				);
+			}
 		}
 
-		.github::before {
-			background: radial-gradient(
-				circle at 30% 107%,
-				rgb(250 250 250) 0%,
-				rgb(245 245 245) 5%,
-				rgb(110 84 148) 60%,
-				rgb(64 119 191) 90%
-			);
-		}
+		.instagram {
+			@apply bottom-[-56%] left-[-56%] h-[56%] w-[56%] delay-[0.4s] hover:before:opacity-100;
 
-		.github:hover .icon svg {
-			filter: drop-shadow(0 0 5px rgb(255 255 255));
+			&::before {
+				background: radial-gradient(
+					circle at 30% 107%,
+					rgb(253 244 151) 0%,
+					rgb(253 244 151) 5%,
+					rgb(255 83 212) 60%,
+					rgb(98 194 254) 90%
+				);
+			}
 		}
 
 		.linkedin {
-			@apply -bottom-2/4 -left-2/4 h-3/6 w-6/12 delay-[0.2s] hover:before:opacity-100;
-		}
+			@apply bottom-[-44%] left-[-44%] h-[44%] w-[44%] delay-[0.6s] hover:before:opacity-100;
 
-		.linkedin::before {
-			background: radial-gradient(circle at 30% 107%, rgb(0 161 219) 0%, rgb(189 189 189) 90%);
-		}
-
-		.linkedin:hover .icon svg {
-			filter: drop-shadow(0 0 5px rgb(255 255 255));
+			&::before {
+				background: radial-gradient(circle at 30% 107%, rgb(189 189 189) 0%, rgb(0 161 219) 90%);
+			}
 		}
 
 		.twitter {
-			@apply bottom-[-30%] left-[-30%] h-[30%] w-[30%] delay-[0.4s] hover:before:opacity-100;
-		}
+			@apply bottom-[-32%] left-[-32%] h-[32%] w-[32%] delay-[0.8s] hover:before:opacity-100;
 
-		.twitter::before {
-			background: radial-gradient(
-				circle at 30% 107%,
-				rgb(245 248 250) 0%,
-				rgb(102 117 128) 5%,
-				rgb(54 215 255) 60%,
-				rgb(0 170 237) 90%
-			);
-		}
-
-		.twitter:hover .icon svg {
-			filter: drop-shadow(0 0 5px rgb(255 255 255));
+			&::before {
+				background: radial-gradient(
+					circle at 30% 107%,
+					rgb(245 248 250) 0%,
+					rgb(102 117 128) 5%,
+					rgb(54 215 255) 60%,
+					rgb(0 170 237) 90%
+				);
+			}
 		}
 
 		.extra {
-			@apply bottom-[-10%] left-[-10%] h-[10%] w-[10%] delay-[0.6s];
+			@apply bottom-[-20%] left-[-20%] h-[20%] w-[20%] delay-[0.6s];
 		}
-	}
 
-	.social-card:hover .box {
-		@apply -bottom-px -left-px;
-	}
+		&:hover {
+			.link {
+				@apply -bottom-px -left-px;
+			}
 
-	.social-card:hover .logo {
-		@apply bottom-5 right-5 translate-x-0 translate-y-0 transform-gpu;
+			.social-icon-wrapper {
+				@apply bottom-5 right-5 translate-x-0 translate-y-0 transform-gpu;
+			}
+		}
 	}
 </style>

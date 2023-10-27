@@ -1,20 +1,24 @@
 ---
-import type { Projects } from '@/types';
 import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 
-const { bgImage, description, linkText, screenshot, tags, title, url } = Astro.props as Projects;
+interface Props {
+	project: CollectionEntry<'project'>;
+}
+
+const { data } = Astro.props.project;
 ---
 
 <Image
-	src={screenshot}
-	widths={[480, 680, 720, screenshot.width]}
-	alt={`${title} screenshot`}
+	src={data.screenshotImage}
+	widths={[480, 680, 720, data.screenshotImage.width]}
+	alt={`${data.title} screenshot`}
 	class="pointer-events-none absolute right-0 top-0 z-[2] inline-block w-[130%] max-w-none translate-y-[5%] align-middle max-sm:left-0 sm:-top-[5%] sm:right-auto sm:w-11/12 sm:max-w-full lg:-top-[25%] lg:right-0 lg:w-[60%]"
 />
 <Image
-	src={bgImage}
-	widths={[354, 740, 790, bgImage.width]}
-	alt={`${title} section background`}
+	src={data.bgImage}
+	widths={[354, 740, 790, data.bgImage.width]}
+	alt={`${data.title} section background`}
 	class="desktop pointer-events-none absolute left-0 top-0 h-full w-full max-w-none object-cover"
 />
 
@@ -23,7 +27,7 @@ const { bgImage, description, linkText, screenshot, tags, title, url } = Astro.p
 >
 	<div class="max-sm:-mb-16">
 		<h2 class="mb-4 font-bold text-6xl sm:text-9xl lg:text-8xl">
-			{title}
+			{data.title}
 		</h2>
 
 		<div>
@@ -33,7 +37,7 @@ const { bgImage, description, linkText, screenshot, tags, title, url } = Astro.p
 				style={{ 'flex-flow': 'wrap' }}
 			>
 				{
-					tags.map((tag) => (
+					data.tags.map((tag: string) => (
 						<li class="relative rounded-full border border-base-100 px-3 pb-1 font-medium uppercase sm:px-5 sm:py-2 sm:font-semibold">
 							<small class="whitespace-nowrap">{tag}</small>
 						</li>
@@ -43,18 +47,18 @@ const { bgImage, description, linkText, screenshot, tags, title, url } = Astro.p
 		</div>
 
 		<p class="!mb-0 max-w-[39ch] max-sm:mr-24 sm:!leading-snug sm:text-2xl lg:text-lg">
-			{description}
+			{data.description}
 		</p>
 	</div>
 
 	<a
-		href={url}
+		href={data.url}
 		target="_blank"
 		rel="noopener noreferrer"
 		class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
 	>
 		<span class="project-card-button-label">
-			{linkText}
+			{data.linkText}
 		</span>
 		<span class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
 		></span>

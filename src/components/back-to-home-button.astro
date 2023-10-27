@@ -1,0 +1,107 @@
+---
+
+---
+
+<button id="back-to-home-button" class="back-button">
+	<div class="back-button-box">
+		<span class="back-button-elem">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 40">
+				<path
+					d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+				></path>
+			</svg>
+		</span>
+		<span class="back-button-elem">
+			<svg viewBox="0 0 46 40">
+				<path
+					d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+				></path>
+			</svg>
+		</span>
+	</div>
+</button>
+
+<script>
+	import { navigate } from 'astro:transitions/client';
+
+	document.addEventListener('astro:page-load', () => {
+		const backToHomeButton = document.getElementById('back-to-home-button');
+		if (backToHomeButton) {
+			backToHomeButton.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				navigate('/');
+			});
+		}
+	});
+</script>
+
+<style>
+	.back-button {
+		@apply relative z-50 m-0 block h-14 w-14 cursor-pointer overflow-hidden border-none bg-transparent outline-none;
+
+		&::before,
+		&::after {
+			@apply absolute rounded-full;
+
+			content: '';
+			inset: 7px;
+		}
+
+		&::before {
+			@apply border-neutral;
+
+			border: 4px solid;
+			transition:
+				opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+				transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+		}
+
+		&::after {
+			@apply border-neutral-focus opacity-0;
+
+			border: 4px solid;
+			transition:
+				opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+				transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+			transform: scale(1.3);
+		}
+	}
+
+	.back-button:hover::before,
+	.back-button:focus::before {
+		@apply opacity-0;
+
+		transition:
+			opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+			transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		transform: scale(0.7);
+	}
+
+	.back-button:hover::after,
+	.back-button:focus::after {
+		@apply opacity-100;
+
+		transition:
+			opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+			transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+		transform: scale(1);
+	}
+
+	.back-button-box {
+		@apply absolute left-0 top-0 flex;
+	}
+
+	.back-button-elem {
+		@apply block h-5 w-5 fill-neutral;
+
+		margin: 17px 18px 0;
+		transform: rotate(180deg);
+	}
+
+	.back-button:hover .back-button-box,
+	.back-button:focus .back-button-box {
+		transition: 0.4s;
+		transform: translateX(-56px);
+	}
+</style>

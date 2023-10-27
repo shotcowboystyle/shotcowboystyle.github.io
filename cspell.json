@@ -1,5 +1,11 @@
 {
-	"dictionaries": ["css", "html", "node", "npm", "typescript"],
+	"dictionaries": [
+		"css",
+		"html",
+		"node",
+		"npm",
+		"typescript"
+	],
 	"ignorePaths": [
 		".vscode/**",
 		".gitignore",
@@ -25,7 +31,9 @@
 		"Binks",
 		"Blanton",
 		"bombad",
+		"broadphase",
 		"brotli",
+		"cannonjs",
 		"codegen",
 		"codeql",
 		"commitzen",
@@ -63,6 +71,7 @@
 		"noodly",
 		"nosa",
 		"Phong",
+		"purgecss",
 		"resizers",
 		"RESU",
 		"shotcowboystyle",
@@ -72,12 +81,14 @@
 		"swiper",
 		"tailwindcss",
 		"Tanken",
+		"threejs",
 		"toon",
 		"treeshake",
 		"tsconfigs",
 		"typecheck",
 		"urlset",
 		"vsoch",
+		"webp",
 		"zindex"
 	]
 }

@@ -2,7 +2,9 @@
 import About from '@/components/about/about.astro';
 import HeaderContent from '@/components/header-content.astro';
 import ProjectCard from '@/components/project-card.astro';
-import { PROJECTS } from '@/lib/constants';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('project');
 ---
 
 <header id="header" class="full-screen-section pointer-events-none relative -mb-[100vh] h-[200vh]">
@@ -16,22 +18,14 @@ import { PROJECTS } from '@/lib/constants';
 <div>
 	<section id="project-cards" class="pointer-events-none relative h-full w-full">
 		{
-			PROJECTS.map((project, idx) => (
+			projects.map((project, idx) => (
 				<div
 					id={`project-card_${idx + 1}`}
 					class="project-card pointer-events-none relative -mb-[100vh] h-[250vh]"
 				>
 					<div class="full-screen-section h-full-mobile pointer-events-none sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
 						<div class="full-screen-section-content pointer-events-none sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
-							<ProjectCard
-								bgImage={project.bgImage}
-								description={project.description}
-								linkText={project.linkText}
-								screenshot={project.screenshot}
-								tags={project.tags}
-								title={project.title}
-								url={project.url}
-							/>
+							<ProjectCard project={project} />
 						</div>
 					</div>
 				</div>
@@ -50,7 +44,7 @@ import { PROJECTS } from '@/lib/constants';
 <script is:inline defer>
 	document.addEventListener(
 		'astro:page-load',
-		function () {
+		() => {
 			const TIMELINE_ANIMATION = {
 				opacity: [1, 0],
 				transform: ['scale3d(1, 1, 1)', 'scale3d(0.3, 0.3, 1)'],
@@ -60,7 +54,6 @@ import { PROJECTS } from '@/lib/constants';
 			const headerSection = document.getElementById('header');
 			const headerSectionContent = headerSection.querySelector('.full-screen-section-content');
 			headerSectionContent.animate(TIMELINE_ANIMATION, {
-				// eslint-disable-next-line no-undef
 				timeline: new ViewTimeline({
 					subject: headerSection,
 					axis: 'block',
@@ -75,7 +68,6 @@ import { PROJECTS } from '@/lib/constants';
 				'.full-screen-section-content',
 			);
 			projectCardOneSectionContent.animate(TIMELINE_ANIMATION, {
-				// eslint-disable-next-line no-undef
 				timeline: new ViewTimeline({
 					subject: projectCardOneSection,
 					axis: 'block',
@@ -90,7 +82,6 @@ import { PROJECTS } from '@/lib/constants';
 				'.full-screen-section-content',
 			);
 			projectCardTwoSectionContent.animate(TIMELINE_ANIMATION, {
-				// eslint-disable-next-line no-undef
 				timeline: new ViewTimeline({
 					subject: projectCardTwoSection,
 					axis: 'block',
@@ -100,9 +91,7 @@ import { PROJECTS } from '@/lib/constants';
 				rangeEnd: `contain ${CSS.percent(100)}`,
 			});
 		},
-		{
-			once: true,
-		},
+		{ once: true },
 	);
 </script>
 

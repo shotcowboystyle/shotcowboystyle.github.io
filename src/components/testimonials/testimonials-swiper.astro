@@ -1,20 +1,16 @@
 ---
 import TestimonialCard from '@/components/testimonials/testimonial-card.astro';
-import { TESTIMONIALS } from '@/lib/constants';
+import { getCollection } from 'astro:content';
+
+const testimonials = await getCollection('testimonial');
 ---
 
 <div class="testimonials-swiper relative z-[1] mx-auto h-full w-full overflow-hidden p-0">
 	<div class="swiper-wrapper relative z-[1] flex h-full w-full transition-transform">
 		{
-			TESTIMONIALS.map((testimonial) => (
-				<div class="swiper-slide relative flex h-full w-full flex-none shrink-0 flex-col justify-between px-6 pb-10 pt-4 md:px-10 md:pb-6">
-					<TestimonialCard
-						companyName={testimonial.companyName}
-						name={testimonial.name}
-						designation={testimonial.designation}
-						testimonial={testimonial.testimonial}
-						image={testimonial.image}
-					/>
+			testimonials.map((testimonial) => (
+				<div class="swiper-slide relative !flex h-full w-full flex-none shrink-0 flex-col justify-between px-6 pb-10 pt-4 md:px-10 md:pb-6">
+					<TestimonialCard testimonial={testimonial} />
 				</div>
 			))
 		}
@@ -83,6 +79,7 @@ import { TESTIMONIALS } from '@/lib/constants';
 	document.addEventListener('astro:page-load', () => {
 		new Swiper('.testimonials-swiper', {
 			modules: [Navigation],
+			loop: true,
 			slidesPerView: 1,
 			navigation: {
 				nextEl: '#next',
