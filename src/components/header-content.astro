@@ -3,8 +3,10 @@ import openProjectsBadge from '@/assets/open-projects-badge.svg';
 import Availability from '@/components/availability.astro';
 import ResumeButton from '@/components/resume-button.astro';
 import SvgSprite from '@/components/SvgSprite.astro';
-import { SOCIALS } from '@/lib/constants';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+const socials = await getCollection('social');
 ---
 
 <div
@@ -76,7 +78,7 @@ import { Image } from 'astro:assets';
 				id="header-intro"
 				class="reveal mb-0 mt-4 max-w-[25ch] !leading-5 sm:mb-16 sm:!leading-tight lg:mb-4 lg:ml-auto"
 			>
-				I help businesses build robust, scalable and engaging experiences through motion and space.
+				I help companies build robust, scalable and engaging experiences through motion and space.
 			</p>
 		</div>
 
@@ -88,17 +90,17 @@ import { Image } from 'astro:assets';
 					class="header-social-links grid auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] items-center justify-start gap-4"
 				>
 					{
-						SOCIALS.map((link) => (
+						socials.map((social) => (
 							<a
-								aria-label={`Go to my ${link.title} profile`}
-								href={link.href}
+								aria-label={`Go to my ${social.data.name} profile`}
+								href={social.data.link}
 								target="_blank"
 								rel="me noopener noreferrer"
 								class="inline-block h-5 w-5 sm:block sm:h-8 sm:w-8 lg:h-5 lg:w-5"
 							>
 								<div class="h-5 w-5 text-black sm:h-8 sm:w-8 lg:h-5 lg:w-5">
 									<SvgSprite
-										name={link.icon}
+										name={social.data.icon}
 										class="h-5 w-5 stroke-black sm:h-8 sm:w-8 lg:h-5 lg:w-5"
 									/>
 								</div>
@@ -195,10 +197,5 @@ import { Image } from 'astro:assets';
 		svg {
 			@apply fill-neutral;
 		}
-	}
-
-	.header-badge,
-	.header-badge > img {
-		transform-style: preserve-3d;
 	}
 </style>

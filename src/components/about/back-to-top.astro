@@ -18,10 +18,10 @@
 	import type { AnimationItem } from 'lottie-web';
 	import lottie from 'lottie-web';
 
-	document.addEventListener('astro:page-load', () => {
-		const backToTopButton = document.getElementById('back-to-top-button') as HTMLAnchorElement;
-		const container = document.getElementById('back-to-top-button-animation') as HTMLElement;
+	const backToTopButton = document.getElementById('back-to-top-button') as HTMLAnchorElement;
+	const container = document.getElementById('back-to-top-button-animation') as HTMLElement;
 
+	document.addEventListener('astro:page-load', () => {
 		let animation: AnimationItem | null = null;
 		let animationCompleted = true;
 
@@ -41,7 +41,7 @@
 			animationCompleted = true;
 		});
 
-		backToTopButton.addEventListener('mouseenter', () => {
+		backToTopButton?.addEventListener('mouseenter', () => {
 			if (animationCompleted) {
 				animation?.playSegments([0, 23], true);
 				animationCompleted = false;

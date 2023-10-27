@@ -11,8 +11,9 @@ module.exports = {
 	plugins: ['@typescript-eslint'],
 	extends: [
 		'plugin:@typescript-eslint/recommended',
-		'plugin:astro/recommended',
 		'plugin:astro/jsx-a11y-recommended',
+		'plugin:markdown/recommended',
+		'plugin:astro/recommended',
 	],
 	rules: {
 		'@typescript-eslint/no-var-requires': 'off',

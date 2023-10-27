@@ -1,15 +1,16 @@
 ---
-import type { Testimonials } from '@/types';
 import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 
-const { companyName, designation, image, name, testimonial } = Astro.props as Omit<
-	Testimonials,
-	'id'
->;
+interface Props {
+	testimonial: CollectionEntry<'testimonial'>;
+}
+
+const { data } = Astro.props.testimonial;
 ---
 
 <p class="my-4 !leading-normal text-base sm:text-xl lg:!leading-relaxed lg:!text-sm">
-	{testimonial}
+	{data.testimonial}
 </p>
 
 <div
@@ -17,16 +18,21 @@ const { companyName, designation, image, name, testimonial } = Astro.props as Om
 >
 	<div class="avatar order-2 ml-4 md:order-1 md:mb-2 md:ml-0">
 		<div class="w-16 rounded-full">
-			<Image src={image} widths={[72, 144, image.width]} class="rounded-circle" alt={name} />
+			<Image
+				src={data.avatar}
+				widths={[72, 144, data.avatar.width]}
+				class="rounded-circle"
+				alt={data.name}
+			/>
 		</div>
 	</div>
 
 	<div class="mb-0 flex flex-col justify-end md:order-2">
 		<div class="mb-0 font-sans-serif font-bold uppercase leading-none text-base sm:text-lg">
-			{name}
+			{data.name}
 		</div>
 		<div class="-mt-1 leading-none text-xs sm:text-base lg:text-sm">
-			{designation}, {companyName}
+			{data.designation}, {data.companyName}
 		</div>
 	</div>
 </div>

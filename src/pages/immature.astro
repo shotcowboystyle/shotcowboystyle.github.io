@@ -2,24 +2,18 @@
 import leftHandBottom from '@/assets/hand-sex-bottom.png';
 import rightHand from '@/assets/hand-sex-middle.png';
 import leftHandTop from '@/assets/hand-sex-top.png';
+import BackToHomeButton from '@/components/back-to-home-button.astro';
 import ResizerContainer from '@/components/resizer-container.astro';
-import SvgSprite from '@/components/SvgSprite.astro';
 import HomeLayout from '@/layouts/home.astro';
 import { Image } from 'astro:assets';
 ---
 
 <HomeLayout>
-	<div>
-		<a
-			href="/"
-			class="z-10 mr-4 rounded-full bg-gray-900 p-2 font-semibold text-white hover:bg-gray-800"
-		>
-			<SvgSprite name="mdi:chevron-left" class="h-6 w-6" />
-		</a>
-		<a class="capitalize after:pl-2 after:content-['/']" href="/">home</a>
-	</div>
+	<BackToHomeButton />
+
 	<div class="select-none p-24">
 		<h1 class="mx-auto max-w-4xl text-center text-white">Responsive design can be so immature.</h1>
+
 		<ResizerContainer class="relative mx-auto h-screen min-h-screen w-full">
 			<div class="relative h-[60vh] min-h-[60vh] w-full overflow-hidden">
 				<div id="bottom" class="absolute left-0 top-1/2 w-full">
@@ -51,26 +45,25 @@ import { Image } from 'astro:assets';
 </HomeLayout>
 
 <script>
-	document.addEventListener('astro:page-load', () => {
-		const bottom: HTMLElement | null = document.getElementById('bottom');
-		const top: HTMLElement | null = document.getElementById('top');
-		const body: HTMLElement | null = document.body;
+	const bottom: HTMLElement | null = document.getElementById('bottom');
+	const top: HTMLElement | null = document.getElementById('top');
+	const body: HTMLElement | null = document.body;
+	const resizer = document.getElementById('resize-me');
 
-		const resizer = document.getElementById('resize-me');
-
-		const resizeObserver = new ResizeObserver((entries) => {
-			for (const entry of entries) {
-				const resizerBounds = entry.contentRect;
-				if (entry.contentRect && bottom != null && top != null && resizerBounds != null) {
-					if (resizerBounds.right <= 654) {
-						body.classList.add('w-screen', 'h-screen', 'bg-red-500');
-					} else if (resizerBounds?.right && resizerBounds.right > 654) {
-						body.classList.remove('w-screen', 'h-screen', 'bg-red-500');
-					}
+	const resizeObserver = new ResizeObserver((entries) => {
+		for (const entry of entries) {
+			const resizerBounds = entry.contentRect;
+			if (entry.contentRect && bottom != null && top != null && resizerBounds != null) {
+				if (resizerBounds.right <= 654) {
+					body.classList.add('w-screen', 'h-screen', 'bg-red-500');
+				} else if (resizerBounds?.right && resizerBounds.right > 654) {
+					body.classList.remove('w-screen', 'h-screen', 'bg-red-500');
 				}
 			}
-		});
+		}
+	});
 
+	document.addEventListener('astro:page-load', () => {
 		resizeObserver.observe(resizer!);
 	});
 </script>
