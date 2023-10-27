@@ -1,5 +1,7 @@
 module.exports = {
 	plugins: {
+		'postcss-for': {},
+		'postcss-random': { round: true, noSeed: true },
 		'postcss-import': {},
 		'tailwindcss/nesting': 'postcss-nesting',
 		tailwindcss: {},

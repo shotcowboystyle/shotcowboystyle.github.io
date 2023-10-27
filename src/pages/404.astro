@@ -1,123 +1,132 @@
 ---
 import HomeLayout from '@/layouts/home.astro';
+import '@/styles/404.css';
 
 const title = `Error 404`;
 ---
 
 <HomeLayout meta={{ title }}>
-	<div id="stars">
-		{Array.from({ length: 80 }).map(() => <div class="star" />)}
-	</div>
-
-	<div class="center">
-		<div class="circle circle-outer"></div>
-
-		<div class="circle circle-inner">
-			{Array.from({ length: 2 }).map((_, idx) => <div class={`four four-${idx + 1}`}>4</div>)}
-
-			<div id="movable" class="circle oh">
-				<div class="astronaut">
-					<div class="astronaut-backpack"></div>
-
-					<div class="astronaut-head"></div>
-
-					{
-						Array.from({ length: 50 }).map((_, idx) => (
-							<div
-								class:list={[
-									'astronaut-antenna',
-									`${idx === 0 ? 'antenna-left' : 'antenna-right'}`,
-								]}
-							>
-								<div class="ear-down" />
-								<div class="ear-up" />
-								<div class="antenna" />
-								<div class="antenna-tip" />
-							</div>
-						))
-					}
-
-					<div class="astronaut-helmet">
-						<div class="astronaut-glass"></div>
-						{Array.from({ length: 2 }).map((_, idx) => <div class={`glow glow-${idx + 1}`} />)}
-					</div>
-
-					<div class="astronaut-body"></div>
-				</div>
-
-				<svg class="astronaut-wire" viewBox="-9 -9 259 823" width="259" height="823">
-					<path
-						d="M241 0c-24 54-30 113-78 148S63 159 27 215c-35 55 32 102 73 141s103 94 98 166c-6 97-169 66-192 157-10 43-8 84 9 126"
-						fill="none"
-						stroke-width="6"
-						stroke="#FFF"></path>
-				</svg>
-
-				<div class="circle planet">
-					<div class="craters">
-						{Array.from({ length: 6 }).map((_, idx) => <div class={`crater crater-${idx + 1}`} />)}
-					</div>
-				</div>
-
-				<div class="astronaut-hands">
-					<div class="astronaut-hand hand-left">
-						<svg width="35" height="75">
-							<path
-								d="M30.23 17.209c-7.925 5.118-11.657 12.786-11.226 22.975-7.113.934-12.948 4.345-18.44 5.117C-1.951 26.539 3.92 9.346 18.635 1.369 30.66-4.39 39.53 9.398 30.23 17.209z"
-								fill="#D2D2D2"></path>
-							<g fill="none" stroke="#999" stroke-linecap="round">
-								<path
-									d="M11.78 6.977c7.983.129 13.547 3.968 16.308 11.111M4.67 17.161c7.307-.379 13.1 1.924 17.93 6.94"
-								></path>
-								<path d="M.816 31.334c6.439-2.441 12.295-1.746 18.149 2.488" stroke-linejoin="round"
-								></path>
-							</g>
-							<g fill="#fff">
-								<path
-									d="M7.721 37.171c5.875-1.994 12.264 1.156 14.258 7.031l1.218 3.588c1.995 5.875-1.156 12.264-7.03 14.258-5.875 1.995-12.264-1.156-14.259-7.031L.69 51.429c-1.994-5.875 1.156-12.263 7.031-14.258z"
-								></path>
-								<path
-									d="M7.829 38.159c5.794-1.967 12.094 1.14 14.061 6.934l5.044 14.855c1.967 5.794-1.14 12.095-6.934 14.062-5.794 1.967-12.095-1.14-14.062-6.934L.895 52.221c-1.967-5.794 1.14-12.095 6.934-14.062z"
-								></path>
-								<path
-									d="M16.863 39.472l12.879 7.384a3.876 3.876 0 0 1 1.433 5.287 3.875 3.875 0 0 1-5.286 1.433l-12.878-7.384a3.874 3.874 0 0 1-1.434-5.286 3.874 3.874 0 0 1 5.286-1.434z"
-								></path>
-							</g>
-						</svg>
-					</div>
-
-					<div class="astronaut-hand hand-right">
-						<svg width="35" height="75">
-							<path
-								d="M30.23 17.209c-7.925 5.118-11.657 12.786-11.226 22.975-7.113.934-12.948 4.345-18.44 5.117C-1.951 26.539 3.92 9.346 18.635 1.369 30.66-4.39 39.53 9.398 30.23 17.209z"
-								fill="#D2D2D2"></path>
-							<g fill="none" stroke="#999" stroke-linecap="round">
-								<path
-									d="M11.78 6.977c7.983.129 13.547 3.968 16.308 11.111M4.67 17.161c7.307-.379 13.1 1.924 17.93 6.94"
-								></path>
-								<path d="M.816 31.334c6.439-2.441 12.295-1.746 18.149 2.488" stroke-linejoin="round"
-								></path>
-							</g>
-							<g fill="#fff">
-								<path
-									d="M7.721 37.171c5.875-1.994 12.264 1.156 14.258 7.031l1.218 3.588c1.995 5.875-1.156 12.264-7.03 14.258-5.875 1.995-12.264-1.156-14.259-7.031L.69 51.429c-1.994-5.875 1.156-12.263 7.031-14.258z"
-								></path>
-								<path
-									d="M7.829 38.159c5.794-1.967 12.094 1.14 14.061 6.934l5.044 14.855c1.967 5.794-1.14 12.095-6.934 14.062-5.794 1.967-12.095-1.14-14.062-6.934L.895 52.221c-1.967-5.794 1.14-12.095 6.934-14.062z"
-								></path>
-								<path
-									d="M16.863 39.472l12.879 7.384a3.876 3.876 0 0 1 1.433 5.287 3.875 3.875 0 0 1-5.286 1.433l-12.878-7.384a3.874 3.874 0 0 1-1.434-5.286 3.874 3.874 0 0 1 5.286-1.434z"
-								></path>
-							</g>
-						</svg>
-					</div>
-				</div>
-			</div>
-
-			<a href="/" class="button">GO HOME</a>
+	<div id="page-wrapper">
+		<div id="stars">
+			{Array.from({ length: 80 }).map(() => <div class="star" />)}
 		</div>
 
-		<div class="sorry">Oops! Sorry, page not found.</div>
+		<div class="center">
+			<div class="circle circle-outer"></div>
+
+			<div class="circle circle-inner">
+				{Array.from({ length: 2 }).map((_, idx) => <div class={`four four-${idx + 1}`}>4</div>)}
+
+				<div id="movable" class="circle oh">
+					<div class="astronaut">
+						<div class="astronaut-backpack"></div>
+
+						<div class="astronaut-head"></div>
+
+						{
+							Array.from({ length: 50 }).map((_, idx) => (
+								<div
+									class:list={[
+										'astronaut-antenna',
+										`${idx === 0 ? 'antenna-left' : 'antenna-right'}`,
+									]}
+								>
+									<div class="ear-down" />
+									<div class="ear-up" />
+									<div class="antenna" />
+									<div class="antenna-tip" />
+								</div>
+							))
+						}
+
+						<div class="astronaut-helmet">
+							<div class="astronaut-glass"></div>
+							{Array.from({ length: 2 }).map((_, idx) => <div class={`glow glow-${idx + 1}`} />)}
+						</div>
+
+						<div class="astronaut-body"></div>
+					</div>
+
+					<svg class="astronaut-wire" viewBox="-9 -9 259 823" width="259" height="823">
+						<path
+							d="M241 0c-24 54-30 113-78 148S63 159 27 215c-35 55 32 102 73 141s103 94 98 166c-6 97-169 66-192 157-10 43-8 84 9 126"
+							fill="none"
+							stroke-width="6"
+							stroke="#FFF"></path>
+					</svg>
+
+					<div class="circle planet">
+						<div class="craters">
+							{
+								Array.from({ length: 6 }).map((_, idx) => (
+									<div class={`crater crater-${idx + 1}`} />
+								))
+							}
+						</div>
+					</div>
+
+					<div class="astronaut-hands">
+						<div class="astronaut-hand hand-left">
+							<svg width="35" height="75">
+								<path
+									d="M30.23 17.209c-7.925 5.118-11.657 12.786-11.226 22.975-7.113.934-12.948 4.345-18.44 5.117C-1.951 26.539 3.92 9.346 18.635 1.369 30.66-4.39 39.53 9.398 30.23 17.209z"
+									fill="#D2D2D2"></path>
+								<g fill="none" stroke="#999" stroke-linecap="round">
+									<path
+										d="M11.78 6.977c7.983.129 13.547 3.968 16.308 11.111M4.67 17.161c7.307-.379 13.1 1.924 17.93 6.94"
+									></path>
+									<path
+										d="M.816 31.334c6.439-2.441 12.295-1.746 18.149 2.488"
+										stroke-linejoin="round"></path>
+								</g>
+								<g fill="#fff">
+									<path
+										d="M7.721 37.171c5.875-1.994 12.264 1.156 14.258 7.031l1.218 3.588c1.995 5.875-1.156 12.264-7.03 14.258-5.875 1.995-12.264-1.156-14.259-7.031L.69 51.429c-1.994-5.875 1.156-12.263 7.031-14.258z"
+									></path>
+									<path
+										d="M7.829 38.159c5.794-1.967 12.094 1.14 14.061 6.934l5.044 14.855c1.967 5.794-1.14 12.095-6.934 14.062-5.794 1.967-12.095-1.14-14.062-6.934L.895 52.221c-1.967-5.794 1.14-12.095 6.934-14.062z"
+									></path>
+									<path
+										d="M16.863 39.472l12.879 7.384a3.876 3.876 0 0 1 1.433 5.287 3.875 3.875 0 0 1-5.286 1.433l-12.878-7.384a3.874 3.874 0 0 1-1.434-5.286 3.874 3.874 0 0 1 5.286-1.434z"
+									></path>
+								</g>
+							</svg>
+						</div>
+
+						<div class="astronaut-hand hand-right">
+							<svg width="35" height="75">
+								<path
+									d="M30.23 17.209c-7.925 5.118-11.657 12.786-11.226 22.975-7.113.934-12.948 4.345-18.44 5.117C-1.951 26.539 3.92 9.346 18.635 1.369 30.66-4.39 39.53 9.398 30.23 17.209z"
+									fill="#D2D2D2"></path>
+								<g fill="none" stroke="#999" stroke-linecap="round">
+									<path
+										d="M11.78 6.977c7.983.129 13.547 3.968 16.308 11.111M4.67 17.161c7.307-.379 13.1 1.924 17.93 6.94"
+									></path>
+									<path
+										d="M.816 31.334c6.439-2.441 12.295-1.746 18.149 2.488"
+										stroke-linejoin="round"></path>
+								</g>
+								<g fill="#fff">
+									<path
+										d="M7.721 37.171c5.875-1.994 12.264 1.156 14.258 7.031l1.218 3.588c1.995 5.875-1.156 12.264-7.03 14.258-5.875 1.995-12.264-1.156-14.259-7.031L.69 51.429c-1.994-5.875 1.156-12.263 7.031-14.258z"
+									></path>
+									<path
+										d="M7.829 38.159c5.794-1.967 12.094 1.14 14.061 6.934l5.044 14.855c1.967 5.794-1.14 12.095-6.934 14.062-5.794 1.967-12.095-1.14-14.062-6.934L.895 52.221c-1.967-5.794 1.14-12.095 6.934-14.062z"
+									></path>
+									<path
+										d="M16.863 39.472l12.879 7.384a3.876 3.876 0 0 1 1.433 5.287 3.875 3.875 0 0 1-5.286 1.433l-12.878-7.384a3.874 3.874 0 0 1-1.434-5.286 3.874 3.874 0 0 1 5.286-1.434z"
+									></path>
+								</g>
+							</svg>
+						</div>
+					</div>
+				</div>
+
+				<a href="/" class="button">GO HOME</a>
+			</div>
+
+			<div class="sorry">Oops! Sorry, page not found.</div>
+		</div>
 	</div>
 
 	<script>
@@ -147,411 +156,4 @@ const title = `Error 404`;
 			});
 		}
 	</script>
-
-	<style is:global lang="scss">
-		@use 'sass:math';
-
-		#main {
-			overflow: hidden;
-			width: 100vw;
-			height: 100vh;
-			min-height: 0;
-			background-image: linear-gradient(to right bottom, #a9347e, #4b32a7);
-			color: #fff;
-			font-size: 12px;
-			font-family: 'General Sans', sans-serif;
-			letter-spacing: 0.2px;
-		}
-
-		.center {
-			@apply relative left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-transform;
-
-			transition-duration: 0.5s;
-			transform: translate(-50%, -50%) scale(0.6);
-		}
-
-		@media screen and (height <= 600px) {
-			.center {
-				transform: translate(-50%, -50%) scale(0.75);
-			}
-		}
-
-		@media screen and (width > 400px) {
-			.center {
-				@apply -translate-y-1/2;
-			}
-		}
-
-		.star {
-			@apply absolute z-10;
-		}
-
-		@for $i from 1 through 81 {
-			$size: math.random(4) + px;
-
-			.star:nth-child(#{$i}) {
-				top: math.random(100) + vh;
-				left: math.random(100) + vw;
-
-				&:before,
-				&:after {
-					@apply absolute animate-blink rounded-xl bg-white;
-
-					content: '';
-					animation-delay: $i * -1s;
-				}
-
-				&:before {
-					top: calc($size / 2);
-					left: calc(calc($size / 2) * -1);
-					width: calc($size * 3);
-					height: $size;
-				}
-
-				&:after {
-					top: calc(calc($size / 2) * -1);
-					left: calc($size / 2);
-					width: $size;
-					height: calc($size * 3);
-				}
-			}
-		}
-
-		.circle {
-			$circle-size: 50%;
-
-			@apply absolute -translate-x-1/2 -translate-y-1/2 rounded-full;
-
-			top: $circle-size;
-			left: $circle-size;
-
-			&.circle-outer {
-				$circle-outer-size: 550px;
-
-				width: $circle-outer-size;
-				height: $circle-outer-size;
-
-				&:before {
-					@apply absolute inset-0 h-full w-full scale-0 animate-pulse-scale rounded-full opacity-0;
-
-					background-image: linear-gradient(to right bottom, #802b89, #5631a1);
-					box-shadow: 0 0 20px -8px #000;
-					content: '';
-				}
-			}
-
-			&.circle-inner {
-				$circle-inner-size: 355px;
-
-				width: $circle-inner-size;
-				height: $circle-inner-size;
-
-				&:before {
-					@apply absolute inset-0 h-full w-full scale-0 animate-pulse-scale rounded-full opacity-0;
-
-					background-image: linear-gradient(to right bottom, #75278b, #5530a2);
-					box-shadow: 0 0 20px -8px #000;
-					content: '';
-				}
-			}
-		}
-
-		.four {
-			$four-top: 100px;
-
-			position: absolute;
-			font-weight: 900;
-			font-size: 150px;
-			text-shadow: 0 2px 10px rgb(0 0 0 / 50%);
-			user-select: none;
-
-			&.four-1 {
-				@apply z-10;
-
-				top: $four-top;
-				left: 30px;
-			}
-
-			&.four-2 {
-				@apply z-20;
-
-				top: $four-top;
-				left: 230px;
-			}
-		}
-
-		.astronaut {
-			$antenna-color: #c3c3c3;
-			$antenna-side-position: 10px;
-			$antenna-side-antenna-position: 5px;
-			$antenna-side-tip-position: 3px;
-			$antenna-border-radius: 5px;
-			$ear-width: 15px;
-			$ear-height: 20px;
-
-			position: absolute;
-			top: -115px;
-			left: -30px;
-			transform: rotate(17deg);
-
-			.astronaut-backpack {
-				$backpack-size: 100px;
-
-				width: $backpack-size;
-				height: $backpack-size;
-
-				border-radius: 10px;
-				background-color: #e3e3e3;
-			}
-
-			.antenna-left {
-				left: $antenna-side-position;
-
-				.antenna {
-					left: $antenna-side-antenna-position;
-				}
-
-				.antenna-tip {
-					left: $antenna-side-tip-position;
-				}
-			}
-
-			.antenna-right {
-				right: $antenna-side-position;
-
-				.antenna {
-					right: $antenna-side-antenna-position;
-				}
-
-				.antenna-tip {
-					right: $antenna-side-tip-position;
-				}
-			}
-
-			.astronaut-antenna {
-				@apply absolute;
-
-				top: -7px;
-
-				.ear-down {
-					@apply absolute z-10;
-
-					bottom: -5px;
-					width: $ear-width;
-					height: $ear-height;
-					border-radius: $antenna-border-radius;
-					background-color: #afafaf;
-				}
-
-				.ear-up {
-					@apply relative z-20;
-
-					width: $ear-width;
-					height: $ear-height;
-					border-radius: $antenna-border-radius;
-					background-color: $antenna-color;
-				}
-
-				.antenna {
-					@apply absolute w-0.5;
-
-					top: -29px;
-					height: 30px;
-					border-radius: $antenna-border-radius;
-					background-color: $antenna-color;
-				}
-
-				.antenna-tip {
-					@apply absolute h-1.5 w-1.5 rounded-full;
-
-					top: -33px;
-					background-color: $antenna-color;
-				}
-			}
-
-			.astronaut-helmet {
-				$helmet-size: 66px;
-
-				@apply absolute left-1/2 z-30 -translate-x-1/2 overflow-hidden rounded-full bg-white;
-
-				top: -30px;
-				width: $helmet-size;
-				height: $helmet-size;
-				box-shadow: 0 5px 1px -3px #808080;
-			}
-
-			.astronaut-glass {
-				$glass-size: 56px;
-
-				@apply absolute rounded-xl;
-
-				top: 13px;
-				left: 5px;
-				width: $glass-size;
-				height: $glass-size;
-				background: #00202e;
-			}
-
-			.glow {
-				@apply absolute rounded-full;
-
-				background-color: #334d57;
-			}
-
-			.glow-1 {
-				$glow-1-size: 17px;
-
-				top: 25px;
-				left: 15px;
-				width: $glow-1-size;
-				height: $glow-1-size;
-			}
-
-			.glow-2 {
-				$glow-2-size: 7px;
-
-				top: 44px;
-				left: 13px;
-				width: $glow-2-size;
-				height: $glow-2-size;
-			}
-
-			.astronaut-body {
-				$astronaut-body-size: 50px;
-
-				@apply absolute left-1/2 -translate-x-1/2;
-
-				top: 30px;
-				width: $astronaut-body-size;
-				height: $astronaut-body-size;
-				background-color: $antenna-color;
-			}
-		}
-
-		.astronaut-wire {
-			@apply absolute;
-
-			top: -40px;
-			left: -260px;
-		}
-
-		.astronaut-hands {
-			@apply absolute z-30;
-
-			top: -89px;
-			left: -23px;
-			width: 100px;
-			transform: rotate(17deg);
-
-			.astronaut-hand {
-				@apply absolute;
-			}
-
-			.hand-left {
-				left: -3px;
-			}
-
-			.hand-right {
-				right: -3px;
-				transform: scaleX(-1);
-			}
-		}
-
-		.oh {
-			@apply z-20 animate-floating;
-
-			transition: all 0.1s linear;
-		}
-
-		.planet {
-			$planet-size: 155px;
-
-			width: $planet-size;
-			height: $planet-size;
-			background-color: #ff4980;
-			box-shadow:
-				inset -6px -10px 0 1px #cc3b6b,
-				0 2px 10px rgb(0 0 0 / 40%);
-		}
-
-		.craters {
-			.crater {
-				@apply absolute rounded-full;
-
-				background-color: #c93667;
-			}
-
-			.crater-1 {
-				$crater-1-size: 35px;
-
-				top: 30px;
-				left: 25px;
-				width: $crater-1-size;
-				height: $crater-1-size;
-			}
-
-			.crater-2 {
-				$crater-2-size: 23px;
-
-				top: 20px;
-				left: 93px;
-				width: $crater-2-size;
-				height: $crater-2-size;
-			}
-
-			.crater-3 {
-				$crater-3-size: 17px;
-
-				top: 77px;
-				left: $crater-3-size;
-				width: $crater-3-size;
-				height: $crater-3-size;
-			}
-
-			.crater-4 {
-				$crater-4-size: 10px;
-
-				top: 90px;
-				left: 80px;
-				width: $crater-4-size;
-				height: $crater-4-size;
-			}
-
-			.crater-5 {
-				$crater-5-size: 25px;
-
-				top: 115px;
-				left: 50px;
-				width: $crater-5-size;
-				height: $crater-5-size;
-			}
-
-			.crater-6 {
-				$crater-6-size: 13px;
-
-				top: 118px;
-				left: 105px;
-				width: $crater-6-size;
-				height: $crater-6-size;
-			}
-		}
-
-		.button {
-			@apply absolute bottom-8 left-1/2 z-20 -translate-x-1/2 rounded px-3 py-2;
-
-			border: 1px solid #fff;
-			border-radius: 3px;
-
-			&:active {
-				transform: translateX(-50%) scale(0.95);
-			}
-		}
-
-		.sorry {
-			@apply absolute left-1/2 -translate-x-1/2;
-
-			top: 210px;
-			font-size: 15px;
-		}
-	</style>
 </HomeLayout>

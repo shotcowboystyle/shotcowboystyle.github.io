@@ -1,0 +1,394 @@
+#page-wrapper {
+	@apply h-screen min-h-0 w-screen overflow-hidden font-sans tracking-tighter text-white text-sm;
+
+	background-image: linear-gradient(to right bottom, rgb(169 52 126), rgb(75 50 167));
+}
+
+.center {
+	@apply relative left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-transform;
+
+	transition-duration: 0.5s;
+	transform: translate(-50%, -50%) scale(0.6);
+}
+
+@media screen and (height <= 600px) {
+	.center {
+		transform: translate(-50%, -50%) scale(0.75);
+	}
+}
+
+@media screen and (width > 400px) {
+	.center {
+		@apply -translate-y-1/2;
+	}
+}
+
+.star {
+	--size: calc(1px * random(0, 4, {round: true, noSeed: true}));
+
+	@apply absolute z-10;
+}
+
+@for $i from 1 to 81 {
+	.star:nth-child($(i)) {
+		top: calc(1vh * random(0, 99, {round: true, noSeed: true}));
+		left: calc(1vw * random(0, 99, {round: true, noSeed: true}));
+
+		&::before,
+		&::after {
+			@apply absolute animate-blink rounded-xl bg-white;
+
+			content: '';
+			animation-delay: calc(-1s * $(i));
+		}
+
+		&::before {
+			top: calc(var(--size) / 2);
+			left: calc(calc(var(--size) / 2) * -1);
+			width: calc(var(--size) * 3);
+			height: var(--size);
+		}
+
+		&::after {
+			top: calc(calc(var(--size) / 2) * -1);
+			left: calc(var(--size) / 2);
+			width: var(--size);
+			height: calc(var(--size) * 3);
+		}
+	}
+}
+
+.circle {
+	--circle-size: 50%;
+
+	@apply absolute -translate-x-1/2 -translate-y-1/2 rounded-full;
+
+	top: var(--circle-size);
+	left: var(--circle-size);
+
+	&.circle-outer {
+		--circle-outer-size: 550px;
+
+		width: var(--circle-outer-size);
+		height: var(--circle-outer-size);
+
+		&::before {
+			@apply absolute inset-0 h-full w-full scale-0 animate-pulse-scale rounded-full opacity-0;
+
+			content: '';
+			background-image: linear-gradient(to right bottom, rgb(128 43 137), rgb(86 49 161));
+			box-shadow: 0 0 20px -8px rgb(0 0 0);
+		}
+	}
+
+	&.circle-inner {
+		--circle-inner-size: 355px;
+
+		width: var(--circle-inner-size);
+		height: var(--circle-inner-size);
+
+		&::before {
+			@apply absolute inset-0 h-full w-full scale-0 animate-pulse-scale rounded-full opacity-0;
+
+			content: '';
+			background-image: linear-gradient(to right bottom, rgb(117 39 139), rgb(85 48 162));
+			box-shadow: 0 0 20px -8px rgb(0 0 0);
+		}
+	}
+}
+
+.four {
+	--four-top: 100px;
+
+	@apply absolute select-none font-black;
+
+	font-size: 150px;
+	text-shadow: 0 2px 10px rgb(0 0 0 / 50%);
+
+	&.four-1 {
+		@apply z-10;
+
+		top: var(--four-top);
+		left: 30px;
+	}
+
+	&.four-2 {
+		@apply z-20;
+
+		top: var(--four-top);
+		left: 230px;
+	}
+}
+
+.astronaut {
+	--antenna-color: rgb(194 194 194);
+	--antenna-side-position: 10px;
+	--antenna-side-antenna-position: 5px;
+	--antenna-side-tip-position: 3px;
+	--antenna-border-radius: 5px;
+	--ear-width: 15px;
+	--ear-height: 20px;
+
+	@apply absolute;
+
+	top: -115px;
+	left: -30px;
+	transform: rotate(17deg);
+
+	.astronaut-backpack {
+		--backpack-size: 100px;
+
+		@apply rounded-lg bg-stone-200;
+
+		width: var(--backpack-size);
+		height: var(--backpack-size);
+
+		/* border-radius: 10px; */
+	}
+
+	.antenna-left {
+		left: var(--antenna-side-position);
+
+		.antenna {
+			left: var(--antenna-side-antenna-position);
+		}
+
+		.antenna-tip {
+			left: var(--antenna-side-tip-position);
+		}
+	}
+
+	.antenna-right {
+		right: var(--antenna-side-position);
+
+		.antenna {
+			right: var(--antenna-side-antenna-position);
+		}
+
+		.antenna-tip {
+			right: var(--antenna-side-tip-position);
+		}
+	}
+
+	.astronaut-antenna {
+		@apply absolute;
+
+		top: -7px;
+
+		.ear-down {
+			@apply absolute z-10;
+
+			bottom: -5px;
+			width: var(--ear-width);
+			height: var(--ear-height);
+			border-radius: var(--antenna-border-radius);
+			background-color: rgb(175 175 175);
+		}
+
+		.ear-up {
+			@apply relative z-20;
+
+			width: var(--ear-width);
+			height: var(--ear-height);
+			border-radius: var(--antenna-border-radius);
+			background-color: var(--antenna-color);
+		}
+
+		.antenna {
+			@apply absolute w-0.5;
+
+			top: -29px;
+			height: 30px;
+			border-radius: var(--antenna-border-radius);
+			background-color: var(--antenna-color);
+		}
+
+		.antenna-tip {
+			@apply absolute h-1.5 w-1.5 rounded-full;
+
+			top: -33px;
+			background-color: var(--antenna-color);
+		}
+	}
+
+	.astronaut-helmet {
+		--helmet-size: 66px;
+
+		@apply absolute left-1/2 z-30 -translate-x-1/2 overflow-hidden rounded-full bg-white;
+
+		top: -30px;
+		width: var(--helmet-size);
+		height: var(--helmet-size);
+		box-shadow: 0 5px 1px -3px rgb(128 128 128);
+	}
+
+	.astronaut-glass {
+		--glass-size: 56px;
+
+		@apply absolute rounded-xl;
+
+		top: 13px;
+		left: 5px;
+		width: var(--glass-size);
+		height: var(--glass-size);
+		background: rgb(0 32 46);
+	}
+
+	.glow {
+		@apply absolute rounded-full;
+
+		background-color: rgb(51 77 87);
+	}
+
+	.glow-1 {
+		--glow-1-size: 17px;
+
+		top: 25px;
+		left: 15px;
+		width: var(--glow-1-size);
+		height: var(--glow-1-size);
+	}
+
+	.glow-2 {
+		--glow-2-size: 7px;
+
+		top: 44px;
+		left: 13px;
+		width: var(--glow-2-size);
+		height: var(--glow-2-size);
+	}
+
+	.astronaut-body {
+		--astronaut-body-size: 50px;
+
+		@apply absolute left-1/2 -translate-x-1/2;
+
+		top: 30px;
+		width: var(--astronaut-body-size);
+		height: var(--astronaut-body-size);
+		background-color: var(--antenna-color);
+	}
+}
+
+.astronaut-wire {
+	@apply absolute;
+
+	top: -40px;
+	left: -260px;
+}
+
+.astronaut-hands {
+	@apply absolute z-30;
+
+	top: -89px;
+	left: -23px;
+	width: 100px;
+	transform: rotate(17deg);
+
+	.astronaut-hand {
+		@apply absolute;
+	}
+
+	.hand-left {
+		left: -3px;
+	}
+
+	.hand-right {
+		right: -3px;
+		transform: scaleX(-1);
+	}
+}
+
+.oh {
+	@apply z-20 animate-floating;
+
+	transition: all 0.1s linear;
+}
+
+.planet {
+	--planet-size: 155px;
+
+	width: var(--planet-size);
+	height: var(--planet-size);
+	background-color: rgb(255 73 128);
+	box-shadow:
+		inset -6px -10px 0 1px rgb(204 59 107),
+		0 2px 10px rgb(0 0 0 / 40%);
+}
+
+.craters {
+	.crater {
+		@apply absolute rounded-full;
+
+		background-color: rgb(201 54 103);
+	}
+
+	.crater-1 {
+		--crater-1-size: 35px;
+
+		top: 30px;
+		left: 25px;
+		width: var(--crater-1-size);
+		height: var(--crater-1-size);
+	}
+
+	.crater-2 {
+		--crater-2-size: 23px;
+
+		top: 20px;
+		left: 93px;
+		width: var(--crater-2-size);
+		height: var(--crater-2-size);
+	}
+
+	.crater-3 {
+		--crater-3-size: 17px;
+
+		top: 77px;
+		left: var(--crater-3-size);
+		width: var(--crater-3-size);
+		height: var(--crater-3-size);
+	}
+
+	.crater-4 {
+		--crater-4-size: 10px;
+
+		top: 90px;
+		left: 80px;
+		width: var(--crater-4-size);
+		height: var(--crater-4-size);
+	}
+
+	.crater-5 {
+		--crater-5-size: 25px;
+
+		top: 115px;
+		left: 50px;
+		width: var(--crater-5-size);
+		height: var(--crater-5-size);
+	}
+
+	.crater-6 {
+		--crater-6-size: 13px;
+
+		top: 118px;
+		left: 105px;
+		width: var(--crater-6-size);
+		height: var(--crater-6-size);
+	}
+}
+
+.button {
+	@apply absolute bottom-8 left-1/2 z-20 -translate-x-1/2 rounded border border-white px-3 py-2;
+
+	&:active {
+		transform: translateX(-50%) scale(0.95);
+	}
+}
+
+.sorry {
+	@apply absolute left-1/2 -translate-x-1/2;
+
+	top: 210px;
+	font-size: 15px;
+}

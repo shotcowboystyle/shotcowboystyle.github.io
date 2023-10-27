@@ -24,7 +24,6 @@ export default {
 		'eslint-plugin-import',
 		'eslint-plugin-jsx-a11y',
 		'postcss-nesting',
-		'sass',
 	],
 	ignore: ['src/sw/**/*'],
 	paths: {

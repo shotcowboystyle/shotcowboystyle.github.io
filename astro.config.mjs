@@ -79,4 +79,7 @@ export default defineConfig({
 			noExternal: ['swiper/css'],
 		},
 	},
+	experimental: {
+		devOverlay: true,
+	},
 });

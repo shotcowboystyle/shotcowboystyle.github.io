@@ -63,8 +63,8 @@
 	},
 	"stylelint.enable": false,
 	"stylelint.packageManager": "pnpm",
-	"stylelint.snippet": ["astro", "css", "postcss", "sass", "scss", "html", "tailwindcss"],
-	"stylelint.validate": ["css", "postcss", "sass", "scss", "html", "astro", "tailwindcss"],
+	"stylelint.snippet": ["astro", "css", "postcss", "html", "tailwindcss"],
+	"stylelint.validate": ["css", "postcss", "html", "astro", "tailwindcss"],
 	"tailwindCSS.includeLanguages": {
 		/*
       Astro Language Server can handle Tailwind extension communication,

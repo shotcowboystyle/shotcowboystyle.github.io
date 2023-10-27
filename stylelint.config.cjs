@@ -24,7 +24,10 @@ const config = {
 		'hue-degree-notation': 'angle',
 
 		/** Allow `tailwind` directive. */
-		'at-rule-no-unknown': [true, { ignoreAtRules: ['tailwind', 'apply', 'layer', 'config'] }],
+		'at-rule-no-unknown': [
+			true,
+			{ ignoreAtRules: ['tailwind', 'apply', 'layer', 'config', 'for'] },
+		],
 		/** Allow `tailwind` media query functions. */
 		'media-query-no-invalid': null,
 
