@@ -64,7 +64,7 @@
 		"solid-js": "^1.8.4",
 		"solidjs-use": "^2.3.0",
 		"splitting": "^1.0.6",
-		"swiper": "^10.3.0",
+		"swiper": "^11.0.3",
 		"three": "^0.158.0"
 	},
 	"devDependencies": {
@@ -98,7 +98,7 @@
 		"cspell": "^7.3.6",
 		"cssnano": "^6.0.1",
 		"cz-conventional-changelog": "^3.3.0",
-		"daisyui": "^3.9.3",
+		"daisyui": "^3.9.4",
 		"eslint": "^8.52.0",
 		"eslint-import-resolver-typescript": "^3.6.1",
 		"eslint-plugin-astro": "^0.29.1",
