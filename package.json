@@ -18,7 +18,7 @@
 		"old:postinstall": "pnpm dlx lefthook install",
 		"astro": "astro",
 		"build": "astro build",
-		"clean": "rm -rf dist node_modules pnpm-lock.yaml",
+		"clean": "rm -rf .astro dist lighthouse node_modules pnpm-lock.yaml",
 		"cz": "git-cz",
 		"dev": "astro dev",
 		"format:check": "prettier '**/*.{tsx,ts,mjs,cjs,js,json,css,yml,yaml,md,astro}' --check",
