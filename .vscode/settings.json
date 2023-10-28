@@ -93,6 +93,5 @@
 		"editor.codeActionsOnSave": {
 			"source.fixAll.markdownlint": true
 		}
-	},
-	"cSpell.words": ["memoji"]
+	}
 }

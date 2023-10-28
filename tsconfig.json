@@ -38,5 +38,5 @@
 		"useUnknownInCatchVariables": true
 	},
 	"include": ["src", "*.ts"],
-	"exclude": ["node_modules", ".vscode", "dist"]
+	"exclude": ["node_modules", ".vscode", "dist", ".astro"]
 }
