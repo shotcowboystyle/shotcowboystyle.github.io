@@ -3,9 +3,11 @@
 ---
 
 <a
-	href="mailto:curt.blanton@gmail.com"
+	href="nowayjose"
 	class="group/contact-button group pointer-events-auto relative flex h-full flex-col justify-between overflow-hidden p-6 no-underline md:p-10"
 	id="contact-button"
+	target="_blank"
+	rel="noopener noreferrer"
 >
 	<div class="relative z-10 -ml-10 mt-0 w-[110%] max-sm:mb-10">
 		<div id="contact-button-animation"></div>
@@ -15,18 +17,24 @@
 		<h3 class="mb-4 !leading-none text-white !text-6xl lg:!text-5xl">
 			Wanna talk? Send me a message.
 		</h3>
-		<p class="mb-0 text-white text-base">curt.blanton@gmail.com</p>
+		<p id="email-text" class="mb-0 text-white text-base"></p>
 	</div>
 </a>
 
 <script>
+	import { injectContactEmailLink, injectContactEmailTextContent } from '@/utils/email';
 	import type { AnimationItem } from 'lottie-web';
 	import lottie from 'lottie-web';
 
-	window.addEventListener(
-		'load',
+	document.addEventListener(
+		'astro:page-load',
 		() => {
-			const contactButton = document.getElementById('contact-button') as HTMLAnchorElement;
+			const CONTACT_BUTTON_ID = 'contact-button';
+
+			injectContactEmailLink(CONTACT_BUTTON_ID);
+			injectContactEmailTextContent('email-text');
+
+			const contactButton = document.getElementById(CONTACT_BUTTON_ID) as HTMLAnchorElement;
 			const container = document.getElementById('contact-button-animation') as HTMLElement;
 
 			let animation: AnimationItem | null = null;
