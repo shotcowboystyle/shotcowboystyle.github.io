@@ -29,7 +29,9 @@ const socials = await getCollection('social');
 			</div>
 
 			<a
-				href="mailto:curt.blanton@gmail.com"
+				id="lets-talk-button"
+				href="nowayjose"
+				target="_blank"
 				rel="noopener noreferrer"
 				class="group btn btn-circle btn-neutral relative flex h-20 w-20 items-center justify-center bg-black text-center font-medium !leading-none text-white text-base sm:h-32 sm:w-32 lg:h-24 lg:w-24"
 			>
@@ -168,6 +170,7 @@ const socials = await getCollection('social');
 </script>
 
 <script>
+	import { injectContactEmailLink } from '@/utils/email';
 	import lottie from 'lottie-web';
 
 	document.addEventListener('astro:page-load', () => {
@@ -183,6 +186,8 @@ const socials = await getCollection('social');
 			},
 			path: '/animation/lottie-scroll.json',
 		});
+
+		injectContactEmailLink('lets-talk-button');
 	});
 </script>
 
