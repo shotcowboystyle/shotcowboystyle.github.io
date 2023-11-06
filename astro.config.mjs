@@ -26,7 +26,9 @@ export default defineConfig({
 		tailwind({
 			applyBaseStyles: false,
 		}),
-		prefetch(),
+		prefetch({
+			throttle: 4,
+		}),
 		critters({ Logger: 2 }),
 		purgecss({
 			safelist: [/^dot\d/, /^four-/, /^glow-/, /^crater-/, 'github', 'linkedin', 'twitter'],
