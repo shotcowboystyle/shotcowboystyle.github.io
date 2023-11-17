@@ -22,7 +22,11 @@ h3,
 h4,
 h5,
 h6 {
-	@apply my-0 font-sans-serif font-extrabold uppercase;
+	@apply my-0 font-sans-serif font-bold uppercase;
+
+	@media screen(sm) {
+		@apply font-extrabold;
+	}
 }
 
 h1,
