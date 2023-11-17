@@ -2,7 +2,7 @@
 
 ---
 
-<button id="download-resume-button" class="button" title="Download resume">
+<button id="download-resume-button" class="resume-button" title="Download resume">
 	RESU<span id="me">Me</span>
 	<span id="bubbles"></span>
 </button>
@@ -10,7 +10,7 @@
 <script>
 	const downloadResumeButton = document.getElementById('download-resume-button');
 	if (downloadResumeButton) {
-		downloadResumeButton.addEventListener('click', () => window.open('/resume.pdf'));
+		downloadResumeButton.addEventListener('click', () => window.open('/downloads/Resume.pdf'));
 	}
 </script>
 
@@ -28,7 +28,7 @@
 		-webkit-text-fill-color: transparent;
 	}
 
-	.button {
+	.resume-button {
 		@apply btn btn-neutral btn-sm gap-0 rounded-full bg-black font-medium text-white;
 
 		position: relative;
@@ -44,14 +44,14 @@
 		}
 	}
 
-	.button #bubbles {
+	.resume-button #bubbles {
 		position: absolute;
 		inset: 0;
 		z-index: -1;
 	}
 
-	.button #bubbles::before,
-	.button #bubbles::after {
+	.resume-button #bubbles::before,
+	.resume-button #bubbles::after {
 		content: '';
 		position: absolute;
 		left: 50%;
@@ -62,7 +62,7 @@
 		transform: translateX(-50%);
 	}
 
-	.button:hover #bubbles::before {
+	.resume-button:hover #bubbles::before {
 		@apply animate-resume-button-top-bubbles;
 
 		top: -70%;
@@ -88,7 +88,7 @@
 			18% 18%;
 	}
 
-	.button:hover #bubbles::after {
+	.resume-button:hover #bubbles::after {
 		@apply animate-resume-button-bottom-bubbles;
 
 		bottom: -70%;

@@ -188,31 +188,43 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			container-type: inline-size;
 
 			.size-5 {
-				--size: 0.5cqb;
+				--size: 1cqb;
 
 				@apply rounded-sm;
 
 				width: var(--size);
+
+				@media screen(md) {
+					--size: 0.5cqb;
+				}
 			}
 
 			.size-10 {
-				--size: 1cqb;
+				--size: 2cqb;
 
 				@apply rounded;
 
 				width: var(--size);
+
+				@media screen(md) {
+					--size: 1cqb;
+				}
 			}
 
 			.size-15 {
-				--size: 1.5cqb;
+				--size: 3cqb;
 
 				@apply rounded-md;
 
 				width: var(--size);
+
+				@media screen(md) {
+					--size: 1.5cqb;
+				}
 			}
 
 			.size-20 {
-				--size: 2cqb;
+				--size: 4cqb;
 
 				@apply rounded-lg;
 
@@ -220,6 +232,10 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 				place-content: center;
 				width: var(--size);
 				border: 1px solid rgb(255 255 255);
+
+				@media screen(md) {
+					--size: 2cqb;
+				}
 
 				&::before {
 					content: '';
@@ -276,415 +292,622 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			.dot1 {
 				top: calc(100cqi + calc(0.1 * 0px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 208px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -80px) * 2), calc(calc(2cqb - -40px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -80px) * 2), calc(calc(2cqb - -40px) * 2.7), 0);
+				}
 			}
 
 			.dot2 {
 				top: calc(100cqi + calc(0.1 * 0px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 367px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -30px) * 2), calc(calc(2cqb - 110px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -30px) * 2), calc(calc(2cqb - 110px) * 2.7), 0);
+				}
 			}
 
 			.dot3 {
 				top: calc(100cqi + calc(0.1 * 0px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 478px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -70px) * 2), calc(calc(2cqb - -20px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -70px) * 2), calc(calc(2cqb - -20px) * 2.7), 0);
+				}
 			}
 
 			.dot4 {
 				top: calc(100cqi + calc(0.1 * 0px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 589px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -50px) * 2), calc(calc(2cqb - 40px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -50px) * 2), calc(calc(2cqb - 40px) * 2.7), 0);
+				}
 			}
 
 			.dot5 {
 				top: calc(100cqi + calc(0.1 * 50px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 154px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -20px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -20px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+				}
 			}
 
 			.dot6 {
 				top: calc(100cqi + calc(0.1 * 50px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 423px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -45px) * 2), calc(calc(2cqb - 30px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -45px) * 2), calc(calc(2cqb - 30px) * 2.7), 0);
+				}
 			}
 
 			.dot7 {
 				top: calc(100cqi + calc(0.1 * 50px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 534px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -60px) * 2), calc(calc(2cqb - 80px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -60px) * 2), calc(calc(2cqb - 80px) * 2.7), 0);
+				}
 			}
 
 			.dot8 {
 				top: calc(100cqi + calc(0.1 * 105px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 208px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -35px) * 2), calc(calc(2cqb - 70px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -35px) * 2), calc(calc(2cqb - 70px) * 2.7), 0);
+				}
 			}
 
 			.dot9 {
 				top: calc(100cqi + calc(0.1 * 100px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 478px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -50px) * 2), calc(calc(2cqb - 0px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -50px) * 2), calc(calc(2cqb - 0px) * 2.7), 0);
+				}
 			}
 
 			.dot10 {
 				top: calc(100cqi + calc(0.1 * 100px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 589px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -20px) * 2), calc(calc(2cqb - 80px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -20px) * 2), calc(calc(2cqb - 80px) * 2.7), 0);
+				}
 			}
 
 			.dot11 {
 				top: calc(100cqi + calc(0.1 * 100px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 697px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 0px) * 2), calc(calc(2cqb - 110px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 0px) * 2), calc(calc(2cqb - 110px) * 2.7), 0);
+				}
 			}
 
 			.dot12 {
 				top: calc(100cqi + calc(0.1 * 152px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 50px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -25px) * 2), calc(calc(2cqb - -40px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -25px) * 2), calc(calc(2cqb - -40px) * 2.7), 0);
+				}
 			}
 
 			.dot13 {
 				top: calc(100cqi + calc(0.1 * 152px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 150px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -10px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -10px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+				}
 			}
 
 			.dot14 {
 				top: calc(100cqi + calc(0.1 * 152px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 250px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 10px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 10px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+				}
 			}
 
 			.dot15 {
 				top: calc(100cqi + calc(0.1 * 152px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 644px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 0px) * 2), calc(calc(2cqb - 70px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 0px) * 2), calc(calc(2cqb - 70px) * 2.7), 0);
+				}
 			}
 
 			.dot16 {
 				top: calc(100cqi + calc(0.1 * 205px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 0px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 20px) * 2), calc(calc(2cqb - 0px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 20px) * 2), calc(calc(2cqb - 0px) * 2.7), 0);
+				}
 			}
 
 			.dot17 {
 				top: calc(100cqi + calc(0.1 * 205px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 105px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 10px) * 2), calc(calc(2cqb - 80px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 10px) * 2), calc(calc(2cqb - 80px) * 2.7), 0);
+				}
 			}
 
 			.dot18 {
 				top: calc(100cqi + calc(0.1 * 205px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 587px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 0px) * 2), calc(calc(2cqb - -35px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 0px) * 2), calc(calc(2cqb - -35px) * 2.7), 0);
+				}
 			}
 
 			.dot19 {
 				top: calc(100cqi + calc(0.1 * 205px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 800px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 30px) * 2), calc(calc(2cqb - 95px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 30px) * 2), calc(calc(2cqb - 95px) * 2.7), 0);
+				}
 			}
 
 			.dot20 {
 				top: calc(100cqi + calc(0.1 * 307px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 264px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 10px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 10px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
+				}
 			}
 
 			.dot21 {
 				top: calc(100cqi + calc(0.1 * 307px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 802px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 10px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 10px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+				}
 			}
 
 			.dot22 {
 				top: calc(100cqi + calc(0.1 * 310px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 903px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 35px) * 2), calc(calc(2cqb - 60px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 35px) * 2), calc(calc(2cqb - 60px) * 2.7), 0);
+				}
 			}
 
 			.dot23 {
 				top: calc(100cqi + calc(0.1 * 357px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 207px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 45px) * 2), calc(calc(2cqb - 130px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 45px) * 2), calc(calc(2cqb - 130px) * 2.7), 0);
+				}
 			}
 
 			.dot24 {
 				top: calc(100cqi + calc(0.1 * 360px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 849px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 30px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 30px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
+				}
 			}
 
 			.dot25 {
 				top: calc(100cqi + calc(0.1 * 407px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 264px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 40px) * 2), calc(calc(2cqb - -5px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 40px) * 2), calc(calc(2cqb - -5px) * 2.7), 0);
+				}
 			}
 
 			.dot26 {
 				top: calc(100cqi + calc(0.1 * 414px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 901px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 60px) * 2), calc(calc(2cqb - 45px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 60px) * 2), calc(calc(2cqb - 45px) * 2.7), 0);
+				}
 			}
 
 			.dot27 {
 				top: calc(100cqi + calc(0.1 * 525px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 320px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 70px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 70px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+				}
 			}
 
 			.dot28 {
 				top: calc(100cqi + calc(0.1 * 577px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 640px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 40px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 40px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+				}
 			}
 
 			.dot29 {
 				top: calc(100cqi + calc(0.1 * 578px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 746px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 90px) * 2), calc(calc(2cqb - -15px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 90px) * 2), calc(calc(2cqb - -15px) * 2.7), 0);
+				}
 			}
 
 			.dot30 {
 				top: calc(100cqi + calc(0.1 * 577px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 851px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 40px) * 2), calc(calc(2cqb - 20px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 40px) * 2), calc(calc(2cqb - 20px) * 2.7), 0);
+				}
 			}
 
 			.dot31 {
 				top: calc(100cqi + calc(0.1 * 626px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 320px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 80px) * 2), calc(calc(2cqb - 85px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 80px) * 2), calc(calc(2cqb - 85px) * 2.7), 0);
+				}
 			}
 
 			.dot32 {
 				top: calc(100cqi + calc(0.1 * 633px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 588px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 60px) * 2), calc(calc(2cqb - 0px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 60px) * 2), calc(calc(2cqb - 0px) * 2.7), 0);
+				}
 			}
 
 			.dot33 {
 				top: calc(100cqi + calc(0.1 * 629px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 692px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 130px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 130px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
+				}
 			}
 
 			.dot34 {
 				top: calc(100cqi + calc(0.1 * 637px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 905px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 70px) * 2), calc(calc(2cqb - 70px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 70px) * 2), calc(calc(2cqb - 70px) * 2.7), 0);
+				}
 			}
 
 			.dot35 {
 				top: calc(100cqi + calc(0.1 * 680px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 425px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 90px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 90px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+				}
 			}
 
 			.dot36 {
 				top: calc(100cqi + calc(0.1 * 680px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 532px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 80px) * 2), calc(calc(2cqb - 65px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 80px) * 2), calc(calc(2cqb - 65px) * 2.7), 0);
+				}
 			}
 
 			.dot37 {
 				top: calc(100cqi + calc(0.1 * 733px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 479px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 130px) * 2), calc(calc(2cqb - 10px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 130px) * 2), calc(calc(2cqb - 10px) * 2.7), 0);
+				}
 			}
 
 			.dot38 {
 				top: calc(100cqi + calc(0.1 * 731px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 587px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 90px) * 2), calc(calc(2cqb - 10px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 90px) * 2), calc(calc(2cqb - 10px) * 2.7), 0);
+				}
 			}
 
 			.dot39 {
 				top: calc(100cqi + 22px);
 				left: calc(100cqi + calc(0.1 * 905px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 115px) * 2), calc(calc(2cqb - 30px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 115px) * 2), calc(calc(2cqb - 30px) * 2.7), 0);
+				}
 			}
 
 			.dot40 {
 				top: calc(100cqi + calc(0.1 * 895px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 527px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 120px) * 2), calc(calc(2cqb - 40px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 120px) * 2), calc(calc(2cqb - 40px) * 2.7), 0);
+				}
 			}
 
 			.dot41 {
 				top: calc(100cqi + calc(0.1 * 934px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 585px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 110px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 110px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+				}
 			}
 
 			.dot42 {
 				top: calc(100cqi + calc(0.1 * 1068px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 482px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 110px) * 2), calc(calc(2cqb - 90px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 110px) * 2), calc(calc(2cqb - 90px) * 2.7), 0);
+				}
 			}
 
 			.dot43 {
 				top: calc(100cqi + calc(0.1 * 1121px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 427px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 170px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 170px) * 2), calc(calc(2cqb - 50px) * 2.7), 0);
+				}
 			}
 
 			.dot44 {
 				top: calc(100cqi + calc(0.1 * 0px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 262px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 130px) * 2), calc(calc(2cqb - 60px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 130px) * 2), calc(calc(2cqb - 60px) * 2.7), 0);
+				}
 			}
 
 			.dot45 {
 				top: calc(100cqi + calc(0.1 * 0px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 648px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 160px) * 2), calc(calc(2cqb - 10px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 160px) * 2), calc(calc(2cqb - 10px) * 2.7), 0);
+				}
 			}
 
 			.dot46 {
 				top: calc(100cqi + calc(0.1 * 203px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 208px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 120px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 120px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+				}
 			}
 
 			.dot47 {
 				top: calc(100cqi + calc(0.1 * 161px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 480px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 175px) * 2), calc(calc(2cqb - 0px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 175px) * 2), calc(calc(2cqb - 0px) * 2.7), 0);
+				}
 			}
 
 			.dot48 {
 				top: calc(100cqi + calc(0.1 * 205px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 855px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 180px) * 2), calc(calc(2cqb - 20px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 180px) * 2), calc(calc(2cqb - 20px) * 2.7), 0);
+				}
 			}
 
 			.dot49 {
 				top: calc(100cqi + calc(0.1 * 525px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 533px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 190px) * 2), calc(calc(2cqb - 45px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 190px) * 2), calc(calc(2cqb - 45px) * 2.7), 0);
+				}
 			}
 
 			.dot50 {
 				top: calc(100cqi + calc(0.1 * 470px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 851px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 180px) * 2), calc(calc(2cqb - 120px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 180px) * 2), calc(calc(2cqb - 120px) * 2.7), 0);
+				}
 			}
 
 			.dot51 {
 				top: calc(100cqi + calc(0.1 * 681px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 319px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 105px) * 2), calc(calc(2cqb - -5px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 105px) * 2), calc(calc(2cqb - -5px) * 2.7), 0);
+				}
 			}
 
 			.dot52 {
 				top: calc(100cqi + calc(0.1 * 686px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 643px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -75px) * 2), calc(calc(2cqb - 10px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -75px) * 2), calc(calc(2cqb - 10px) * 2.7), 0);
+				}
 			}
 
 			.dot53 {
 				top: calc(100cqi + calc(0.1 * 787px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 528px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -80px) * 2), calc(calc(2cqb - 125px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -80px) * 2), calc(calc(2cqb - 125px) * 2.7), 0);
+				}
 			}
 
 			.dot54 {
 				top: calc(100cqi + calc(0.1 * 1067px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 321px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -20px) * 2), calc(calc(2cqb - 120px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -20px) * 2), calc(calc(2cqb - 120px) * 2.7), 0);
+				}
 			}
 
 			.dot55 {
 				top: calc(100cqi + calc(0.1 * 1067px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 537px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -30px) * 2), calc(calc(2cqb - 60px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -30px) * 2), calc(calc(2cqb - 60px) * 2.7), 0);
+				}
 			}
 
 			.dot56 {
 				top: calc(100cqi + calc(0.1 * 0px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 1px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - -5px) * 2), calc(calc(2cqb - 85px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - -5px) * 2), calc(calc(2cqb - 85px) * 2.7), 0);
+				}
 			}
 
 			.dot57 {
 				top: calc(100cqi + calc(0.1 * 109px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 318px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 15px) * 2), calc(calc(2cqb - 30px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 15px) * 2), calc(calc(2cqb - 30px) * 2.7), 0);
+				}
 			}
 
 			.dot58 {
 				top: calc(100cqi + calc(0.1 * 214px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 643px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 0px) * 2), calc(calc(2cqb - -20px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 0px) * 2), calc(calc(2cqb - -20px) * 2.7), 0);
+				}
 			}
 
 			.dot59 {
 				top: calc(100cqi + calc(0.1 * 525px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 377px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 30px) * 2), calc(calc(2cqb - 110px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 30px) * 2), calc(calc(2cqb - 110px) * 2.7), 0);
+				}
 			}
 
 			.dot60 {
 				top: calc(100cqi + calc(0.1 * 0px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 754px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 20px) * 2), calc(calc(2cqb - -15px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 20px) * 2), calc(calc(2cqb - -15px) * 2.7), 0);
+				}
 			}
 
 			.dot61 {
 				top: calc(100cqi + calc(0.1 * 257px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 0px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 20px) * 2), calc(calc(2cqb - 75px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 20px) * 2), calc(calc(2cqb - 75px) * 2.7), 0);
+				}
 			}
 
 			.dot62 {
 				top: calc(100cqi + calc(0.1 * 370px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 639px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 55px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 55px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+				}
 			}
 
 			.dot63 {
 				top: calc(100cqi + calc(0.1 * 787px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 319px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 55px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 55px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
+				}
 			}
 
 			.dot64 {
 				top: calc(100cqi + calc(0.1 * 1193px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 437px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 45px) * 2), calc(calc(2cqb - 80px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 45px) * 2), calc(calc(2cqb - 80px) * 2.7), 0);
+				}
 			}
 
 			.dot65 {
 				top: calc(100cqi + calc(0.1 * 637px - 60px) * 2);
 				left: calc(100cqi + calc(0.1 * 750px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 30px) * 2), calc(calc(2cqb - 30px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 30px) * 2), calc(calc(2cqb - 30px) * 2.7), 0);
+				}
 			}
 
 			.dot66 {
 				top: calc(100cqi + 115px);
 				left: calc(100cqi + calc(0.1 * 380px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 95px) * 2), calc(calc(2cqb - 70px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 95px) * 2), calc(calc(2cqb - 70px) * 2.7), 0);
+				}
 			}
 
 			.dot67 {
 				top: calc(100cqi + 125px);
 				left: calc(100cqi + calc(0.1 * 327px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 140px) * 2), calc(calc(2cqb - 40px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 140px) * 2), calc(calc(2cqb - 40px) * 2.7), 0);
+				}
 			}
 
 			.dot68 {
 				top: calc(100cqi + 135px);
 				left: calc(100cqi + calc(0.1 * 381px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 100px) * 2), calc(calc(2cqb - 110px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 100px) * 2), calc(calc(2cqb - 110px) * 2.7), 0);
+				}
 			}
 
 			.dot69 {
 				top: calc(100cqi + 145px);
 				left: calc(100cqi + calc(0.1 * 326px - 50px) * 2);
-				transform: translate3d(calc(calc(3cqh - 135px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+
+				@media screen(sm) {
+					transform: translate3d(calc(calc(3cqh - 135px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
+				}
 			}
 		}
 	}
