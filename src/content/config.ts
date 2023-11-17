@@ -23,6 +23,7 @@ const testimonialCollection = defineCollection({
 			avatar: image(),
 			designation: z.string(),
 			companyName: z.string(),
+			order: z.number(),
 		}),
 });
 

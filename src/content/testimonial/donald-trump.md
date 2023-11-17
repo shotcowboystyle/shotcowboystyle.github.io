@@ -4,4 +4,5 @@ testimonial: The Art of the Deal, which Obama and Kerry obviously did not read, 
 avatar: ../../assets/images/donald-trump.jpeg
 designation: Head Honcho
 companyName: MAGA
+order: 3
 ---

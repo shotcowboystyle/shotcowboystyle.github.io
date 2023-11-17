@@ -38,7 +38,9 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 1} size-20`}
 			id="programming-motherfucker-site-link"
 		>
-			<SvgSprite name="crosshair" class="svg stroke h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			<div class="lg:tooltip" data-tip="Programming Motherfucker">
+				<SvgSprite name="crosshair" class="svg stroke h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			</div>
 		</a>
 
 		<a
@@ -47,7 +49,9 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 2} size-20`}
 			id="immature-page-link"
 		>
-			<SvgSprite name="ok-hand" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			<div class="lg:tooltip" data-tip="Immature Responsive Design">
+				<SvgSprite name="ok-hand" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			</div>
 		</a>
 
 		<a
@@ -56,18 +60,22 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 3} size-20`}
 			id="tower-blocks-page-link"
 		>
-			<SvgSprite name="blocks" class="svg stroke h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			<div class="lg:tooltip" data-tip="Tower Blocks">
+				<SvgSprite name="blocks" class="svg stroke h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			</div>
 		</a>
 
 		<button
 			onclick="
-      viewing_time.showModal()
-      "
+			viewing_time.showModal()
+			"
 			title="Visit mystery link four"
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 4} size-20`}
 			id="viewing-time-dialog-link"
 		>
-			<SvgSprite name="clock" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			<div class="lg:tooltip" data-tip="Simple Stats">
+				<SvgSprite name="clock" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			</div>
 		</button>
 		<dialog id="viewing_time" class="modal modal-bottom sm:modal-middle">
 			<div class="modal-box !min-w-[18rem] !max-w-md items-center justify-center">
@@ -92,7 +100,9 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 5} size-20`}
 			id="ecograder-site-link"
 		>
-			<SvgSprite name="leaf" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			<div class="lg:tooltip" data-tip="Ecograder">
+				<SvgSprite name="leaf" class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3" />
+			</div>
 		</a>
 
 		<span class={`dot dot${LINK_DOTS_STARTING_NUMBER + LINK_DOTS_TOTAL + 1} size-15`}></span>

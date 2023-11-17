@@ -4,4 +4,5 @@ testimonial: We have had great chats and shared a lot of knowledge. He noodly-ne
 avatar: ../../assets/images/ned-flanders.jpeg
 designation: Founder
 companyName: Leftorium
+order: 2
 ---

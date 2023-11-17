@@ -41,7 +41,12 @@ const Location = (props: LocationProps) => {
 
 	return (
 		<div id="location-map-wrapper" class="relative h-full w-full">
-			<div id="location-map" class="min-h-16 h-full w-full" />
+			<div id="location-map" class="min-h-16 h-full w-full">
+				<div class="flex h-full w-full flex-col items-center justify-center">
+					<div class="loading loading-dots loading-md"></div>
+					<div class="text-center uppercase">Loading...</div>
+				</div>
+			</div>
 			<div id="map-marker" class="hidden">
 				{props.children}
 			</div>
