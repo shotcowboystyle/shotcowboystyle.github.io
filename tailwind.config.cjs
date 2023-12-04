@@ -1,4 +1,4 @@
-const lightTheme = require('daisyui/src/theming/themes')['[data-theme=autumn]'];
+// const lightTheme = require('daisyui/src/theming/themes')['[data-theme=autumn]'];
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
@@ -14,6 +14,8 @@ module.exports = {
 				'spin-circle': 'spinCircle 8s linear infinite',
 				blink: 'blink 1.5s infinite',
 				floating: 'floating 4s linear infinite',
+				'fade-in': 'fadeIn',
+				'fade-out': 'fadeOut',
 			},
 			keyframes: {
 				resumeButtonBottomBubbles: {
@@ -42,6 +44,16 @@ module.exports = {
 						backgroundPosition:
 							'0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%',
 						backgroundSize: '0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%',
+					},
+				},
+				fadeIn: {
+					to: {
+						opacity: 1,
+					},
+				},
+				fadeOut: {
+					to: {
+						opacity: 0,
 					},
 				},
 				pulseScale: {
@@ -102,6 +114,34 @@ module.exports = {
 			sans: ['"General Sans"', 'Arial', ...defaultTheme.fontFamily.sans],
 			'sans-serif': ['"Thunder"', 'system-ui', ...defaultTheme.fontFamily.serif],
 		},
+		fluidTypeSettings: {},
+		fluidType: {
+			settings: {
+				fontSizeMin: 1.125,
+				fontSizeMax: 1.25,
+				ratioMin: 1.125,
+				ratioMax: 1.2,
+				screenMin: 20,
+				screenMax: 96,
+				unit: 'rem',
+				prefix: '',
+			},
+			values: {
+				xs: [-2, 1.6],
+				sm: [-1, 1.6],
+				base: [0, 1.6],
+				lg: [1, 1.6],
+				xl: [2, 1.2],
+				'2xl': [3, 1.2],
+				'3xl': [4, 1.2],
+				'4xl': [5, 1.1],
+				'5xl': [6, 1.1],
+				'6xl': [7, 1.1],
+				'7xl': [8, 1],
+				'8xl': [9, 1],
+				'9xl': [10, 1],
+			},
+		},
 	},
 	corePlugins: {
 		fontSize: false,
@@ -110,24 +150,19 @@ module.exports = {
 		themes: [
 			{
 				light: {
-					...lightTheme,
+					...require('daisyui/src/theming/themes')['autumn'],
 					primary: '#20D489',
 					secondary: '#377cfb',
 					accent: '#abaddd',
 					neutral: '#333c4d',
 					'base-100': '#e2e2e2',
-					'base-content': '#000000',
 					info: '#2a27e2',
 					success: '#36d399',
 					warning: '#FFC700',
 					error: '#F1416C',
-					'.bg-light': {
-						'background-color': '#ffffff',
-					},
 				},
 			},
 		],
-		darkTheme: 'dark',
 	},
 	plugins: [require('tailwindcss-fluid-type'), require('daisyui')],
 };

@@ -4,33 +4,44 @@ import rightHand from '@/assets/hand-sex-middle.png';
 import leftHandTop from '@/assets/hand-sex-top.png';
 import BackToHomeButton from '@/components/back-to-home-button.astro';
 import ResizerContainer from '@/components/resizer-container.astro';
-import HomeLayout from '@/layouts/home.astro';
+import BaseLayout from '@/layouts/base.astro';
 import { Image } from 'astro:assets';
+
+const title = `Immature Responsive Design`;
 ---
 
-<HomeLayout>
+<BaseLayout meta={{ title }}>
 	<BackToHomeButton />
 
-	<div class="select-none p-24">
+	<div class="p-24 pb-0">
 		<h1 class="mx-auto max-w-4xl text-center text-white">Responsive design can be so immature.</h1>
 
-		<ResizerContainer class="relative mx-auto h-screen min-h-screen w-full">
-			<div class="relative h-[60vh] min-h-[60vh] w-full overflow-hidden">
-				<div id="bottom" class="absolute left-0 top-1/2 w-full">
+		<ResizerContainer class="relative mx-auto w-full">
+			<div class="relative h-[60vh] min-h-[60vh] w-full select-none overflow-hidden">
+				<div
+					id="bottom"
+					class="absolute left-0 top-1/2 w-full"
+				>
 					<Image
 						src={leftHandBottom}
 						alt="outer stacked image of a left hand"
 						class="absolute left-0 top-1/2 -mt-[116px] h-[232px] min-w-[511px]"
 					/>
 				</div>
-				<div id="middle" class="absolute right-0 top-[57%] w-full">
+				<div
+					id="middle"
+					class="absolute right-0 top-[57%] w-full"
+				>
 					<Image
 						src={rightHand}
 						alt="image of a right hand"
 						class="absolute right-0 top-1/2 -mt-[95px] h-[190px] min-w-[496px]"
 					/>
 				</div>
-				<div id="top" class="absolute left-0 top-1/2 w-full">
+				<div
+					id="top"
+					class="absolute left-0 top-1/2 w-full"
+				>
 					<Image
 						src={leftHandTop}
 						alt="inner stacked image of a left hand"
@@ -38,32 +49,41 @@ import { Image } from 'astro:assets';
 					/>
 				</div>
 
-				<div class="absolute bottom-0 right-0 p-2 text-white" id="resize">Resize me &gt;</div>
+				<div
+					class="absolute bottom-0 right-0 p-2 text-white"
+					id="resize"
+				>
+					Resize me &gt;
+				</div>
 			</div>
 		</ResizerContainer>
 	</div>
-</HomeLayout>
+</BaseLayout>
 
 <script>
-	const bottom: HTMLElement | null = document.getElementById('bottom');
-	const top: HTMLElement | null = document.getElementById('top');
-	const body: HTMLElement | null = document.body;
-	const resizer = document.getElementById('resize-me');
+	function initializePage() {
+		const bottom: HTMLElement | null = document.getElementById('bottom');
+		const top: HTMLElement | null = document.getElementById('top');
+		const body: HTMLElement | null = document.body;
+		const resizer = document.getElementById('resize-me');
 
-	const resizeObserver = new ResizeObserver((entries) => {
-		for (const entry of entries) {
-			const resizerBounds = entry.contentRect;
-			if (entry.contentRect && bottom != null && top != null && resizerBounds != null) {
-				if (resizerBounds.right <= 654) {
-					body.classList.add('w-screen', 'h-screen', 'bg-red-500');
-				} else if (resizerBounds?.right && resizerBounds.right > 654) {
-					body.classList.remove('w-screen', 'h-screen', 'bg-red-500');
+		const resizeObserver = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				const resizerBounds = entry.contentRect;
+				if (entry.contentRect && bottom != null && top != null && resizerBounds != null) {
+					if (resizerBounds.right <= 654) {
+						body.classList.add('w-screen', 'h-screen', 'bg-red-500');
+					} else if (resizerBounds?.right && resizerBounds.right > 654) {
+						body.classList.remove('w-screen', 'h-screen', 'bg-red-500');
+					}
 				}
 			}
-		}
-	});
+		});
 
-	document.addEventListener('astro:page-load', () => {
-		resizeObserver.observe(resizer!);
-	});
+		if (resizer) {
+			resizeObserver.observe(resizer);
+		}
+	}
+
+	document.addEventListener('astro:page-load', initializePage);
 </script>

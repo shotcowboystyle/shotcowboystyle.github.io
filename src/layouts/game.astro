@@ -3,7 +3,16 @@ import BaseLayout from '@/layouts/base.astro';
 ---
 
 <BaseLayout>
-	<slot name="head-scripts" slot="head-scripts" />
+	<Fragment slot="head-end">
+		<meta
+			name="viewport"
+			content="width=device-width,user-scalable=no"
+		/>
+	</Fragment>
+
 	<slot />
-	<slot name="footer-scripts" slot="footer-scripts" />
+	<slot
+		name="body-end"
+		slot="body-end"
+	/>
 </BaseLayout>

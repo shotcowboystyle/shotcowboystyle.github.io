@@ -10,22 +10,3 @@ type ImportMetaEnv = {
 type ImportMeta = {
 	readonly env: ImportMetaEnv;
 };
-
-// TODO replace if added to lib.dom.d.ts
-declare let ScrollTimeline: {
-	prototype: AnimationTimeline;
-	new (opts: {
-		source: Element;
-		axis?: 'block' | 'inline' | 'y' | 'x' | undefined;
-	}): AnimationTimeline;
-};
-
-// TODO replace if added to lib.dom.d.ts
-declare let ViewTimeline: {
-	prototype: AnimationTimeline;
-	new (opts: {
-		subject: Element;
-		axis?: 'block' | 'inline' | 'y' | 'x' | undefined;
-		inset?: 'auto' | (string & object) | undefined;
-	}): AnimationTimeline;
-};

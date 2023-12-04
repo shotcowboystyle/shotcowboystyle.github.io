@@ -5,7 +5,7 @@
 <a
 	href="#header"
 	id="back-to-top-button"
-	class="scroll-link relative grid auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 text-base-content no-underline sm:p-8 lg:gap-4 lg:p-10"
+	class="scroll-link relative grid auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 text-warning-content no-underline sm:p-8 lg:gap-4 lg:p-10"
 	role="button"
 >
 	<h3 class="mb-0 self-end !leading-none !text-6xl sm:!text-7xl lg:!text-5xl">Back to the top</h3>
@@ -15,39 +15,42 @@
 </a>
 
 <script>
-	import type { AnimationItem } from 'lottie-web';
 	import lottie from 'lottie-web';
 
-	const backToTopButton = document.getElementById('back-to-top-button') as HTMLAnchorElement;
-	const container = document.getElementById('back-to-top-button-animation') as HTMLElement;
-
-	document.addEventListener('astro:page-load', () => {
-		let animation: AnimationItem | null = null;
+	function initializeBackToTop() {
 		let animationCompleted = true;
 
-		animation = lottie.loadAnimation({
-			container,
-			renderer: 'svg',
-			loop: false,
-			autoplay: false,
-			path: '/animation/lottie-back-to-top.json',
-			initialSegment: [23, 23],
-			rendererSettings: {
-				progressiveLoad: true,
-			},
-		});
+		const backToTopButton = document.getElementById('back-to-top-button');
+		const backToTopAnimationEl = document.getElementById(
+			'back-to-top-button-animation',
+		) as HTMLElement;
+		if (backToTopAnimationEl && backToTopButton) {
+			const animation = lottie.loadAnimation({
+				container: backToTopAnimationEl,
+				renderer: 'svg',
+				loop: false,
+				autoplay: false,
+				path: '/animation/lottie-back-to-top.json',
+				initialSegment: [23, 23],
+				rendererSettings: {
+					progressiveLoad: true,
+				},
+			});
 
-		animation.addEventListener('complete', () => {
-			animationCompleted = true;
-		});
+			animation.addEventListener('complete', () => {
+				animationCompleted = true;
+			});
 
-		backToTopButton?.addEventListener('mouseenter', () => {
-			if (animationCompleted) {
-				animation?.playSegments([0, 23], true);
-				animationCompleted = false;
-			}
-		});
-	});
+			backToTopButton.addEventListener('mouseenter', () => {
+				if (animationCompleted) {
+					animation.playSegments([0, 23], true);
+					animationCompleted = false;
+				}
+			});
+		}
+	}
+
+	document.addEventListener('astro:page-load', initializeBackToTop);
 </script>
 
 <style>

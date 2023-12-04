@@ -37,7 +37,8 @@ const TESTIMONIALS = testimonials.sort((a, b) => a.data.order - b.data.order);
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					stroke-width="2"
-					d="m16 4-8 8 8 8"></path>
+					d="m16 4-8 8 8 8"
+				></path>
 			</svg>
 		</div>
 		<div
@@ -62,7 +63,8 @@ const TESTIMONIALS = testimonials.sort((a, b) => a.data.order - b.data.order);
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					stroke-width="2"
-					d="m8 4 8 8-8 8"></path>
+					d="m8 4 8 8-8 8"
+				></path>
 			</svg>
 		</div>
 		<div
@@ -77,7 +79,7 @@ const TESTIMONIALS = testimonials.sort((a, b) => a.data.order - b.data.order);
 	import { Navigation } from 'swiper/modules';
 	import 'swiper/css';
 
-	document.addEventListener('astro:page-load', () => {
+	document.addEventListener('DOMContentLoaded', () => {
 		new Swiper('.testimonials-swiper', {
 			modules: [Navigation],
 			loop: true,

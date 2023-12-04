@@ -2,16 +2,14 @@ import { BASE64_EMAIL } from '@/constants';
 
 const getDecodeContactEmail = () => atob(BASE64_EMAIL);
 
-export const injectContactEmailLink = (elementId: string) => {
-	const link = document.getElementById(elementId);
-	if (link) {
-		link.setAttribute('href', 'mailto:'.concat(getDecodeContactEmail()));
+export const injectContactEmailLink = (linkContainer: HTMLAnchorElement) => {
+	if (linkContainer) {
+		linkContainer.setAttribute('href', 'mailto:'.concat(getDecodeContactEmail()));
 	}
 };
 
-export const injectContactEmailTextContent = (elementId: string) => {
-	const element = document.getElementById(elementId);
-	if (element) {
-		element.textContent = getDecodeContactEmail();
+export const injectContactEmailTextContent = (textEl: HTMLElement) => {
+	if (textEl) {
+		textEl.textContent = getDecodeContactEmail();
 	}
 };

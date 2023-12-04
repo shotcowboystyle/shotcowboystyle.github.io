@@ -1,6 +1,5 @@
 import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
-import solid from '@astrojs/solid-js';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import compressor from 'astro-compressor';
@@ -22,7 +21,6 @@ export default defineConfig({
 		svgSprite(),
 		serviceWorker(),
 		sitemap(),
-		solid(),
 		tailwind({
 			applyBaseStyles: false,
 		}),
@@ -61,9 +59,6 @@ export default defineConfig({
 						}
 						if (id.includes('swiper')) {
 							return 'swiper';
-						}
-						if (id.includes('three')) {
-							return 'three';
 						}
 						if (id.includes('gsap')) {
 							return 'gsap';

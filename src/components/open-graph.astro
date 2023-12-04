@@ -1,0 +1,64 @@
+---
+import type { PageMetaData } from '@/types';
+
+export type Props = {
+	meta?: PageMetaData;
+};
+
+const {
+	meta = {
+		title: 'Curtis Blanton Portfolio',
+		description:
+			"I'm a software engineer that specializes in building fun and useful applications.",
+	},
+} = Astro.props;
+---
+
+<!-- Open Graph -->
+<meta
+	property="og:url"
+	content={Astro.url}
+/>
+<meta
+	property="og:type"
+	content="website"
+/>
+<meta
+	property="og:title"
+	content={meta.title}
+/>
+<meta
+	name="description"
+	property="og:description"
+	content={meta.description}
+/>
+<meta
+	property="og:image"
+	content={`${Astro.url}socialImage.webp`}
+/>
+
+<!-- Twitter -->
+<meta
+	name="twitter:card"
+	content="summary_large_image"
+/>
+<meta
+	property="twitter:domain"
+	content="shotcowboystyle.github.io"
+/>
+<meta
+	property="twitter:url"
+	content={Astro.url}
+/>
+<meta
+	name="twitter:title"
+	content={meta.title}
+/>
+<meta
+	name="twitter:description"
+	content={meta.description}
+/>
+<meta
+	name="twitter:image"
+	content={`${Astro.url}socialImage.webp`}
+/>

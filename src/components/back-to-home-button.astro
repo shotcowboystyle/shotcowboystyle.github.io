@@ -2,15 +2,23 @@
 
 ---
 
-<button id="back-to-home-button" class="back-button">
+<a
+	id="back-to-home-button"
+	class="back-button"
+	href="/"
+>
 	<div class="back-button-box">
 		<span class="back-button-elem">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 40">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 46 40"
+			>
 				<path
 					d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
 				></path>
 			</svg>
 		</span>
+
 		<span class="back-button-elem">
 			<svg viewBox="0 0 46 40">
 				<path
@@ -19,26 +27,11 @@
 			</svg>
 		</span>
 	</div>
-</button>
-
-<script>
-	import { navigate } from 'astro:transitions/client';
-
-	document.addEventListener('astro:page-load', () => {
-		const backToHomeButton = document.getElementById('back-to-home-button');
-		if (backToHomeButton) {
-			backToHomeButton.addEventListener('click', (e) => {
-				e.preventDefault();
-				e.stopPropagation();
-				navigate('/');
-			});
-		}
-	});
-</script>
+</a>
 
 <style>
 	.back-button {
-		@apply relative z-50 m-0 block h-14 w-14 cursor-pointer overflow-hidden border-none bg-transparent outline-none;
+		@apply fixed top-6 z-50 mx-6 block h-14 w-14 cursor-pointer overflow-hidden border-none bg-transparent outline-none;
 
 		&::before,
 		&::after {
@@ -49,7 +42,7 @@
 		}
 
 		&::before {
-			@apply border-neutral;
+			@apply border-white;
 
 			border: 4px solid;
 			transition:
@@ -58,7 +51,7 @@
 		}
 
 		&::after {
-			@apply border-neutral-focus opacity-0;
+			@apply border-white opacity-0;
 
 			border: 4px solid;
 			transition:
@@ -93,7 +86,7 @@
 	}
 
 	.back-button-elem {
-		@apply block h-5 w-5 fill-neutral;
+		@apply block h-5 w-5 fill-white;
 
 		margin: 17px 18px 0;
 		transform: rotate(180deg);

@@ -8,7 +8,7 @@ module.exports = {
 		'postcss-preset-env': {
 			features: { 'nesting-rules': false },
 		},
-		'postcss-combine-media-query': {},
+		// 'postcss-combine-media-query': {},
 		'postcss-combine-duplicated-selectors': {
 			removeDuplicatedProperties: true,
 			removeDuplicatedValues: false,

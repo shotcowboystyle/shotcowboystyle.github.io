@@ -1,14 +1,11 @@
 ---
-import memoji from '@/assets/images/memoji.png';
 import BackToTop from '@/components/about/back-to-top.astro';
 import Bio from '@/components/about/bio.astro';
-import Location from '@/components/about/location';
+import Location from '@/components/about/location.astro';
 import MysteryBox from '@/components/about/mystery-box.astro';
 import SocialCard from '@/components/about/social-card.astro';
 import Contact from '@/components/contact.astro';
-import { SolidWrapper } from '@/components/solid-wrapper';
 import Testimonials from '@/components/testimonials/testimonials.astro';
-import { Image } from 'astro:assets';
 ---
 
 <div
@@ -25,18 +22,14 @@ import { Image } from 'astro:assets';
 		id="about-box-2"
 		class="pointer-events-auto relative flex flex-col overflow-hidden rounded-2xl bg-accent p-0 sm:rounded-3xl sm:p-4 xl:p-0"
 	>
-		<SolidWrapper client:visible>
-			<Testimonials />
-		</SolidWrapper>
+		<Testimonials />
 	</div>
 
 	<div
 		id="about-box-3"
 		class="grid-about-box pointer-events-auto min-h-[360px] !p-0 sm:min-h-[20vh] lg:min-h-[30vh]"
 	>
-		<Location client:visible>
-			<Image src={memoji} alt="Its a me" widths={[72, 120, 220, memoji.width]} />
-		</Location>
+		<Location />
 	</div>
 
 	<div
@@ -57,18 +50,14 @@ import { Image } from 'astro:assets';
 		id="back-to-top"
 		class="grid-about-box pointer-events-auto !grid !auto-cols-[1fr] !grid-flow-col !grid-cols-[auto_auto] !grid-rows-[auto] !gap-4 overflow-hidden !bg-warning !p-0 !text-warning-content transition-transform hover:scale-105 sm:!p-4 lg:min-h-[25vh] lg:!p-0"
 	>
-		<SolidWrapper client:visible>
-			<BackToTop />
-		</SolidWrapper>
+		<BackToTop />
 	</div>
 
 	<div
 		id="about-box-6"
 		class="grid-about-box pointer-events-auto !bg-info !p-0 !text-info-content transition-transform hover:scale-105 sm:!p-4 lg:!p-0"
 	>
-		<SolidWrapper client:visible>
-			<Contact />
-		</SolidWrapper>
+		<Contact />
 	</div>
 </div>
 

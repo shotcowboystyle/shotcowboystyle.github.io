@@ -10,15 +10,15 @@ const socials = await getCollection('social');
 ---
 
 <div
-	class="pointer-events-none flex w-full flex-col justify-between rounded-2xl bg-gray-200 p-5 text-black sm:rounded-3xl sm:p-24 lg:p-20"
+	class="flex w-full flex-col justify-between rounded-2xl bg-gray-200 p-5 text-black sm:rounded-3xl sm:p-24 lg:p-20"
 >
 	<div class="flex items-center justify-between">
 		<a
 			href="/"
 			aria-current="page"
-			class="font-sans-serif font-semibold uppercase leading-none text-3xl sm:font-extrabold"
+			class="c-animated-big-text-line tag-line-parent font-sans-serif font-semibold uppercase leading-none text-3xl sm:font-extrabold"
 		>
-			<span>shotcowboystyle.</span>
+			<span class="tag-line block">shotcowboystyle.</span>
 		</a>
 
 		<div
@@ -51,13 +51,25 @@ const socials = await getCollection('social');
 
 	<div class="relative">
 		<div class="mb-6 flex items-start max-lg:flex-col lg:mb-16 lg:items-end">
-			<div class="relative">
-				<h1
+			<div class="c-animated-big-text__text relative">
+				<!-- <h1
 					id="header-headline"
-					class="reveal mb-2 max-w-[8ch] uppercase !leading-[.9] max-sm:!text-9xl sm:mb-0 sm:max-w-[18ch]"
+					class="c-animated-big-text-line js-anim-reveal-text mb-2 max-w-[8ch] uppercase !leading-[.9] max-sm:!text-9xl sm:mb-0 sm:max-w-[18ch]"
 				>
 					Full Stack<br />Senior Developer.
-				</h1>
+				</h1> -->
+				<!-- <div class="heading-wrapper"> -->
+				<div class="anim-h1-wrapper">
+					<!-- <div class="h1-text-wrapper"> -->
+					<h1
+						id="header-headline"
+						class="c-animated-big-text-line js-anim-reveal-text mb-2 max-w-[8ch] uppercase !leading-[.9] max-sm:!text-9xl sm:mb-0 sm:max-w-[18ch]"
+					>
+						Full Stack<br />Senior Developer.
+					</h1>
+					<!-- </div> -->
+				</div>
+				<!-- </div> -->
 
 				<div
 					id="header-badge"
@@ -78,7 +90,7 @@ const socials = await getCollection('social');
 
 			<p
 				id="header-intro"
-				class="reveal mb-0 mt-4 max-w-[25ch] !leading-5 sm:mb-16 sm:!leading-tight lg:mb-4 lg:ml-auto"
+				class="c-animated-big-text-line js-animation-reveal-text mb-0 mt-4 max-w-[25ch] !leading-5 sm:mb-16 sm:!leading-tight lg:mb-4 lg:ml-auto"
 			>
 				I help companies build robust, scalable and engaging experiences through motion and space.
 			</p>
@@ -133,45 +145,60 @@ const socials = await getCollection('social');
 </div>
 
 <script>
-	import { animate, inView, spring } from 'motion';
-	import Splitting from 'splitting';
-
-	document.addEventListener('astro:page-load', () => {
-		const headerHeadline = document.getElementById('header-headline');
-		if (headerHeadline) {
-			Splitting({
-				target: headerHeadline,
-				by: 'words',
-				whitespace: true,
-			});
-		}
-
-		const headerIntro = document.getElementById('header-intro');
-		if (headerIntro) {
-			Splitting({
-				target: headerIntro,
-				by: 'words',
-				whitespace: true,
-			});
-		}
-
-		const headerRevealElements = document.querySelectorAll('.reveal');
-		[...headerRevealElements].forEach((element) => element.classList.add('animate'));
-
-		const headerBadge = document.getElementById('header-badge')!;
-		inView(headerBadge, ({ target }) => {
-			animate(
-				target,
-				{ opacity: 1, transform: 'none' },
-				{ delay: 0.5, duration: 0.2, easing: spring() },
-			);
-		});
-	});
-</script>
-
-<script>
 	import { injectContactEmailLink } from '@/utils/email';
+	import { gsap } from 'gsap';
 	import lottie from 'lottie-web';
+	import SplitType from 'split-type';
+
+	function initHeroTextAnimations() {
+		const defaultAnimationSettings = {
+			y: 0,
+			duration: 0.5,
+			ease: 'power1.out',
+		};
+
+		let headerHeadline: HTMLElement | null | SplitType = document.getElementById('header-headline');
+		let headerIntro: HTMLElement | null | SplitType = document.getElementById('header-intro');
+
+		if (headerHeadline && headerIntro) {
+			headerHeadline = new SplitType(headerHeadline, {
+				types: 'words',
+				wordClass: 'word-parent',
+			});
+
+			headerIntro = new SplitType(headerIntro, {
+				types: 'lines',
+				lineClass: 'line-parent',
+			});
+
+			if (headerHeadline.words && headerIntro.lines) {
+				new SplitType(headerHeadline.words, {
+					types: 'words',
+					wordClass: 'word-child',
+				});
+
+				new SplitType(headerIntro.lines, {
+					types: 'lines',
+					lineClass: 'line-child',
+				});
+
+				gsap.set('.c-animated-big-text-line', {
+					opacity: '100%',
+				});
+
+				gsap.to('.word-child', {
+					...defaultAnimationSettings,
+					stagger: 0.08,
+				});
+
+				gsap.to('.tag-line', defaultAnimationSettings);
+				gsap.to('.line-child', {
+					...defaultAnimationSettings,
+					stagger: 0.08,
+				});
+			}
+		}
+	}
 
 	document.addEventListener('astro:page-load', () => {
 		const container = document.getElementById('scroll-animation') as HTMLElement;
@@ -187,7 +214,9 @@ const socials = await getCollection('social');
 			path: '/animation/lottie-scroll.json',
 		});
 
-		injectContactEmailLink('lets-talk-button');
+		const emailButton = document.getElementById('lets-talk-button') as HTMLAnchorElement;
+		injectContactEmailLink(emailButton);
+		initHeroTextAnimations();
 	});
 </script>
 

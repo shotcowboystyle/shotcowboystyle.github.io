@@ -1,0 +1,267 @@
+---
+import CircleButtonStars from '@/components/circle-button-stars.astro';
+
+interface Props {
+	link: string;
+	label: string;
+}
+
+const { link, label } = Astro.props;
+---
+
+<div class="notify-button-wrapper relative rounded-full p-8 shadow-[0_0_20px_10px] shadow-white/30">
+	<a
+		class="notify-button-button relative flex h-32 w-32 items-center justify-center rounded-full border-2 border-neutral-50"
+		href={link}
+		target="_blank"
+		rel="noopener noreferrer"
+	>
+		<span class="absolute inset-0 overflow-hidden rounded-full">
+			<svg
+				width="100%"
+				viewBox="0 0 50 50"
+			>
+				<g class="notify-button-space">
+					<g transform="translate(0,0)">
+						<CircleButtonStars />
+					</g>
+
+					<g transform="translate(0,-50)">
+						<CircleButtonStars />
+					</g>
+
+					<g transform="translate(50,0)">
+						<CircleButtonStars />
+					</g>
+
+					<g transform="translate(50,-50)">
+						<CircleButtonStars />
+					</g>
+				</g>
+
+				<defs>
+					<linearGradient
+						id="plane-gradient"
+						gradientTransform="rotate(90)"
+					>
+						<stop
+							offset="30%"
+							class="text-neutral-50"
+							stop-color="currentColor"
+						>
+						</stop>
+						<stop
+							offset="80%"
+							class="text-background"
+							stop-color="currentColor"
+						>
+						</stop>
+					</linearGradient>
+				</defs>
+
+				<g class="notify-button-stream">
+					<g
+						stroke-width="0.8"
+						stroke-linecap="round"
+						stroke="url('#plane-gradient')"
+					>
+						<line
+							x1="11"
+							y1="25"
+							x2="0"
+							y2="35"
+						>
+						</line>
+						<line
+							x1="25"
+							y1="39"
+							x2="15"
+							y2="50"
+						>
+						</line>
+					</g>
+					<g class="fill-current">
+						<circle
+							cx="11"
+							cy="25"
+							r="1"
+						>
+						</circle>
+						<circle
+							cx="25"
+							cy="39"
+							r="1"
+						>
+						</circle>
+					</g>
+				</g>
+			</svg>
+		</span>
+
+		<span class="notify-button-plane block">
+			<svg
+				width="80"
+				height="80"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-width="1"
+				class="fill-background -translate-y-[5px] translate-x-[5px] rotate-45"
+			>
+				<path d="M4.75 19.25L12 4.75L19.25 19.25L12 15.75L4.75 19.25Z"></path>
+				<path d="M12 15.5V12.75"></path>
+			</svg>
+		</span>
+		<span class="sr-only">{label}</span>
+	</a>
+
+	<div class="animate-spin-slow pointer-events-none absolute inset-2">
+		<svg
+			width="100%"
+			viewBox="0 0 100 100"
+		>
+			<text
+				class="fill-current font-medium"
+				font-size="10"
+			>
+				<textPath
+					href="#text-path"
+					textLength="260"
+				>
+					{label} • {label} • {label} • {label} •
+				</textPath>
+			</text>
+			<path
+				d="M 50 8 a 42 42 0 0 1 0 84 a 42 42 0 0 1 0 -84 z"
+				id="text-path"
+				class="fill-none"
+			>
+			</path>
+		</svg>
+	</div>
+</div>
+
+<style>
+	.notify-button-space {
+		transition: opacity 0.2s ease-in-out;
+		animation: notify-button-space 3s linear infinite;
+	}
+
+	.notify-button-star {
+		transition: opacity 0.2s ease-in-out;
+		animation: notify-button-star 2s ease-in-out infinite var(--delay);
+	}
+
+	.notify-button-stream {
+		transition: opacity 0.2s ease-in-out;
+		animation: notify-button-stream 2s ease-in-out infinite;
+	}
+
+	.notify-button-plane {
+		animation: notify-button-plane 2s ease-in-out infinite;
+	}
+
+	.notify-button-button:hover {
+		.notify-button-space,
+		.notify-button-star,
+		.notify-button-stream {
+			opacity: 100%;
+		}
+	}
+
+	.notify-button-wrapper:hover {
+		.animate-spin-slow {
+			--duration: 15s;
+
+			animation: spin var(--duration) linear infinite;
+		}
+	}
+
+	:global(.lenis.lenis-scrolling .animate-spin-slow) {
+		animation: none;
+	}
+
+	@media screen and (width >= 768px) {
+		.notify-button-space,
+		.notify-button-star,
+		.notify-button-stream {
+			opacity: 0%;
+		}
+
+		.notify-button-plane,
+		.notify-button-stream {
+			animation: none;
+		}
+
+		.notify-button-button:hover {
+			.notify-button-stream {
+				opacity: 100%;
+				animation: notify-button-stream 2s ease-in-out infinite;
+			}
+
+			.notify-button-plane {
+				animation: notify-button-plane 2s ease-in-out infinite;
+			}
+		}
+	}
+
+	@keyframes notify-button-star {
+		0% {
+			transform: scale(1);
+		}
+
+		50% {
+			transform: scale(0);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	@keyframes notify-button-plane {
+		0% {
+			transform: translateY(-3px);
+		}
+
+		50% {
+			transform: translateY(3px);
+		}
+
+		100% {
+			transform: translateY(-3px);
+		}
+	}
+
+	@keyframes notify-button-stream {
+		0% {
+			transform: translateY(-1px);
+		}
+
+		50% {
+			transform: translateY(1px);
+		}
+
+		100% {
+			transform: translateY(-1px);
+		}
+	}
+
+	@keyframes notify-button-space {
+		0% {
+			transform: translate(0);
+		}
+
+		100% {
+			transform: translate(-50px, 50px);
+		}
+	}
+
+	@keyframes spin {
+		100% {
+			transform: rotate(1turn);
+		}
+	}
+</style>
