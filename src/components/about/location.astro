@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import memoji from '@/assets/images/memoji.png';
+import '@/components/about/location.css';
+---
+
+<div
+	id="location-map-wrapper"
+	class="relative h-full w-full"
+>
+	<div
+		id="location-map"
+		class="min-h-16 h-full w-full"
+	>
+		<div class="flex h-full w-full flex-col items-center justify-center">
+			<div class="loading loading-dots loading-md"></div>
+			<div class="text-center uppercase">Loading...</div>
+		</div>
+	</div>
+	<div
+		id="map-marker"
+		class="hidden"
+	>
+		<Image
+			src={memoji}
+			alt="Its a me"
+			widths={[72, 120, 220, memoji.width]}
+		/>
+	</div>
+</div>
+
+<script>
+	import maplibregl from 'maplibre-gl';
+
+	const ACCESS_TOKEN = import.meta.env.PUBLIC_MAPLIBRE_TILES_API_KEY;
+	const LONGITUDE_LATITUDE: [number, number] = [-79.942368, 32.796824];
+
+	function initLocationMap() {
+		const locationMapWrapper = document.getElementById('location-map');
+		if (locationMapWrapper) {
+			const map = new maplibregl.Map({
+				container: 'location-map',
+				style: `/geojson/portfolio_location_map.json?key=${ACCESS_TOKEN}`,
+				center: LONGITUDE_LATITUDE ?? [0, 0],
+				zoom: 12,
+				maxZoom: 12,
+				minZoom: 6,
+				attributionControl: false,
+				scrollZoom: false,
+				interactive: false,
+			});
+
+			const nav = new maplibregl.NavigationControl({
+				showCompass: false,
+			});
+
+			map.on('load', () => {
+				map.addControl(nav, 'bottom-left');
+
+				const mapMarker = document.getElementById('map-marker')!;
+				mapMarker.classList.remove('hidden');
+				new maplibregl.Marker({ element: mapMarker }).setLngLat(LONGITUDE_LATITUDE).addTo(map);
+			});
+		}
+	}
+
+	document.addEventListener('astro:page-load', initLocationMap);
+</script>

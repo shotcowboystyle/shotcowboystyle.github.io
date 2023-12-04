@@ -7,24 +7,30 @@ import { getCollection } from 'astro:content';
 const projects = await getCollection('project');
 ---
 
-<header id="header" class="full-screen-section pointer-events-none relative -mb-[100vh] h-[200vh]">
+<header
+	id="header"
+	class="full-screen-section relative -mb-[100vh] h-[200vh]"
+>
 	<div
-		class="full-screen-section-content h-full-mobile pointer-events-none sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
+		class="full-screen-section-content h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
 	>
 		<HeaderContent />
 	</div>
 </header>
 
 <div>
-	<section id="project-cards" class="pointer-events-none relative h-full w-full">
+	<section
+		id="project-cards"
+		class="relative h-full w-full"
+	>
 		{
 			projects.map((project, idx) => (
 				<div
 					id={`project-card_${idx + 1}`}
-					class="project-card pointer-events-none relative -mb-[100vh] h-[250vh]"
+					class="project-card full-screen-section relative -mb-[100vh] h-[250vh]"
 				>
-					<div class="full-screen-section h-full-mobile pointer-events-none sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
-						<div class="full-screen-section-content pointer-events-none sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
+					<div class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
+						<div class="full-screen-section-content sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
 							<ProjectCard project={project} />
 						</div>
 					</div>
@@ -34,77 +40,41 @@ const projects = await getCollection('project');
 	</section>
 </div>
 
-<footer id="about" class="pointer-events-none relative z-10">
+<footer
+	id="about"
+	class="relative"
+>
 	<About />
 </footer>
 
-<script is:inline defer src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"
-></script>
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/all';
 
-<script is:inline defer>
-	document.addEventListener(
-		'astro:page-load',
-		() => {
-			const TIMELINE_ANIMATION = {
-				opacity: [1, 0],
-				transform: ['scale3d(1, 1, 1)', 'scale3d(0.3, 0.3, 1)'],
-				filter: ['blur(0px)', 'blur(20px)'],
-			};
+	gsap.registerPlugin(ScrollTrigger);
 
-			const headerSection = document.getElementById('header');
-			const headerSectionContent = headerSection.querySelector('.full-screen-section-content');
-			headerSectionContent.animate(TIMELINE_ANIMATION, {
-				timeline: new ViewTimeline({
-					subject: headerSection,
-					axis: 'block',
-				}),
-				fill: 'forwards',
-				rangeStart: `contain ${CSS.percent(0)}`,
-				rangeEnd: `contain ${CSS.percent(100)}`,
+	function initCardSectionsAnimations() {
+		const cardWrappers = document.querySelectorAll<HTMLElement>('.full-screen-section');
+		cardWrappers.forEach(($el) => {
+			const card = $el.querySelector<HTMLElement>('.full-screen-section-content');
+			gsap.to(card, {
+				scale: 0.5,
+				autoAlpha: 0,
+				filter: 'blur(20px)',
+				scrollTrigger: {
+					trigger: $el,
+					start: `bottom bottom+=${card?.offsetHeight}`,
+					end: `+=${window.innerHeight}`,
+					scrub: true,
+					invalidateOnRefresh: true,
+				},
 			});
+		});
+	}
 
-			const projectCardOneSection = document.getElementById('project-card_1');
-			const projectCardOneSectionContent = projectCardOneSection.querySelector(
-				'.full-screen-section-content',
-			);
-			projectCardOneSectionContent.animate(TIMELINE_ANIMATION, {
-				timeline: new ViewTimeline({
-					subject: projectCardOneSection,
-					axis: 'block',
-				}),
-				fill: 'forwards',
-				rangeStart: `contain ${CSS.percent(33)}`,
-				rangeEnd: `contain ${CSS.percent(100)}`,
-			});
+	function initApp() {
+		initCardSectionsAnimations();
+	}
 
-			const projectCardTwoSection = document.getElementById('project-card_2');
-			const projectCardTwoSectionContent = projectCardTwoSection.querySelector(
-				'.full-screen-section-content',
-			);
-			projectCardTwoSectionContent.animate(TIMELINE_ANIMATION, {
-				timeline: new ViewTimeline({
-					subject: projectCardTwoSection,
-					axis: 'block',
-				}),
-				fill: 'forwards',
-				rangeStart: `contain ${CSS.percent(33)}`,
-				rangeEnd: `contain ${CSS.percent(100)}`,
-			});
-		},
-		{ once: true },
-	);
+	document.addEventListener('astro:page-load', initApp);
 </script>
-
-<style>
-	.full-screen-section {
-		pointer-events: none;
-		user-select: none;
-	}
-
-	.full-screen-section-content {
-		pointer-events: none;
-		user-select: none;
-		will-change: opacity, transform, filter;
-		transform-style: preserve-3d;
-	}
-</style>

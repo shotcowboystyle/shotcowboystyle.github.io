@@ -3,7 +3,10 @@ const { class: className } = Astro.props;
 ---
 
 <div class:list={['container', className]}>
-	<div class="resizable" id="resize-me">
+	<div
+		class="resizable"
+		id="resize-me"
+	>
 		<slot />
 		<div class="resizer resizer-r"></div>
 		<div class="resizer resizer-b"></div>
@@ -11,9 +14,8 @@ const { class: className } = Astro.props;
 </div>
 
 <script>
-	document.addEventListener('astro:page-load', function () {
+	document.addEventListener('astro:page-load', () => {
 		const el = document.getElementById('resize-me');
-
 		if (!el) {
 			return;
 		}
@@ -24,9 +26,20 @@ const { class: className } = Astro.props;
 		// The dimension of the element
 		let w = 0;
 
+		const mouseMoveHandler = (e: MouseEvent) => {
+			// How far the mouse has been moved
+			const dx = e.clientX - x;
+
+			if (w + dx <= 654) {
+				el.style.width = `654px`;
+			} else {
+				el.style.width = `${w + dx}px`;
+			}
+		};
+
 		// Handle the mousedown event
 		// that's triggered when user drags the resizer
-		const mouseDownHandler = function (e: MouseEvent) {
+		const mouseDownHandler = (e: MouseEvent) => {
 			// Get the current mouse position
 			x = e.clientX;
 
@@ -39,18 +52,7 @@ const { class: className } = Astro.props;
 			document.addEventListener('mouseup', mouseUpHandler);
 		};
 
-		const mouseMoveHandler = function (e: MouseEvent) {
-			// How far the mouse has been moved
-			const dx = e.clientX - x;
-
-			if (w + dx <= 654) {
-				el.style.width = `654px`;
-			} else {
-				el.style.width = `${w + dx}px`;
-			}
-		};
-
-		const mouseUpHandler = function () {
+		const mouseUpHandler = () => {
 			// Remove the handlers of mousemove and mouseup
 			document.removeEventListener('mousemove', mouseMoveHandler);
 			document.removeEventListener('mouseup', mouseUpHandler);
@@ -60,7 +62,7 @@ const { class: className } = Astro.props;
 		const resizers = el.querySelectorAll('.resizer');
 
 		// Loop over them
-		[].forEach.call(resizers, function (resizer: HTMLElement) {
+		[].forEach.call(resizers, (resizer: HTMLElement) => {
 			resizer.addEventListener('mousedown', mouseDownHandler);
 		});
 	});

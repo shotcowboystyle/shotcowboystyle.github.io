@@ -1,9 +1,9 @@
-import type { JSX } from 'solid-js';
+// import type { JSX } from 'solid-js';
 
-export type SolidWrapperProps = {
-	children?: JSX.Element;
-};
+// export type FrameworkWrapperProps = {
+// 	children?: JSX.Element;
+// };
 
-export function SolidWrapper(props: SolidWrapperProps) {
-	return <>{props.children}</>;
-}
+// export function FrameworkWrapper(props: FrameworkWrapperProps) {
+// 	return <>{props.children}</>;
+// }

@@ -1,7 +1,13 @@
 /** @type {import("@types/eslint").Linter.Config} */
 module.exports = {
-	ignorePatterns: ['node_modules', 'dist'],
 	root: true,
+	ignorePatterns: ['node_modules', 'dist'],
+	// env: {
+	// 	node: true,
+	// 	es2022: true,
+	// 	browser: true,
+	// },
+	reportUnusedDisableDirectives: true,
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		tsconfigRootDir: __dirname,
@@ -11,9 +17,9 @@ module.exports = {
 	plugins: ['@typescript-eslint'],
 	extends: [
 		'plugin:@typescript-eslint/recommended',
+		'plugin:astro/recommended',
 		'plugin:astro/jsx-a11y-recommended',
 		'plugin:markdown/recommended',
-		'plugin:astro/recommended',
 	],
 	rules: {
 		'@typescript-eslint/no-var-requires': 'off',
@@ -29,6 +35,7 @@ module.exports = {
 			parserOptions: {
 				parser: '@typescript-eslint/parser',
 				extraFileExtensions: ['.astro'],
+				sourceType: 'module',
 			},
 			rules: {
 				'astro/jsx-a11y/no-redundant-roles': [

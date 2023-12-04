@@ -14,34 +14,39 @@
 	</div>
 
 	<div>
-		<h3 class="mb-4 !leading-none text-white !text-6xl lg:!text-5xl">
+		<h3 class="mb-4 !leading-none text-info-content !text-6xl lg:!text-5xl">
 			Wanna talk? Send me a message.
 		</h3>
-		<p id="email-text" class="mb-0 text-white text-base"></p>
+		<p
+			id="email-text"
+			class="mb-0 text-info-content text-base"
+		>
+		</p>
 	</div>
 </a>
 
 <script>
 	import { injectContactEmailLink, injectContactEmailTextContent } from '@/utils/email';
-	import type { AnimationItem } from 'lottie-web';
 	import lottie from 'lottie-web';
 
-	document.addEventListener(
-		'astro:page-load',
-		() => {
-			const CONTACT_BUTTON_ID = 'contact-button';
+	const CONTACT_BUTTON_ID = 'contact-button';
 
-			injectContactEmailLink(CONTACT_BUTTON_ID);
-			injectContactEmailTextContent('email-text');
+	function initContactButton() {
+		const emailTextEl = document.getElementById('email-text');
+		if (emailTextEl) {
+			injectContactEmailTextContent(emailTextEl);
+		}
 
-			const contactButton = document.getElementById(CONTACT_BUTTON_ID) as HTMLAnchorElement;
-			const container = document.getElementById('contact-button-animation') as HTMLElement;
+		const contactButton = document.getElementById(CONTACT_BUTTON_ID);
+		const contactButtonAnimationEl = document.getElementById('contact-button-animation');
 
-			let animation: AnimationItem | null = null;
+		if (contactButton && contactButtonAnimationEl) {
+			injectContactEmailLink(contactButton as HTMLAnchorElement);
+
 			let animationCompleted = true;
 
-			animation = lottie.loadAnimation({
-				container,
+			const animation = lottie.loadAnimation({
+				container: contactButtonAnimationEl,
 				renderer: 'svg',
 				loop: false,
 				autoplay: false,
@@ -62,7 +67,8 @@
 					animationCompleted = false;
 				}
 			});
-		},
-		{ once: true },
-	);
+		}
+	}
+
+	document.addEventListener('astro:page-load', initContactButton);
 </script>

@@ -1,4 +1,5 @@
 ---
+import CircleButton from '@/components/circle-button.astro';
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
@@ -52,18 +53,10 @@ const { data } = Astro.props.project;
 		</p>
 	</div>
 
-	<a
-		href={data.url}
-		target="_blank"
-		rel="noopener noreferrer"
-		class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
-	>
-		<span class="project-card-button-label">
-			{data.linkText}
-		</span>
-		<span class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
-		></span>
-	</a>
+	<CircleButton
+		link={data.url}
+		label={data.linkText}
+	/>
 </div>
 
 <style>

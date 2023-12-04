@@ -1,0 +1,21 @@
+---
+const items = [...Array(7)];
+---
+
+<ul
+	class="transition-container"
+	id="transition-container"
+	transition:persist="loader"
+>
+	{items.map(() => <li class="transition-container-list-item" />)}
+</ul>
+
+<style>
+	.transition-container {
+		@apply pointer-events-none fixed left-0 top-[-71vh] z-50 m-0 flex h-[200vh] rotate-45 overflow-x-hidden p-0 md:top-[-105vh] md:h-[300vh];
+	}
+
+	.transition-container-list-item {
+		@apply w-[20vh] scale-y-0 rounded-[200px] before:content-none odd:bg-primary even:bg-secondary md:w-[32vh];
+	}
+</style>

@@ -7,9 +7,10 @@ module.exports = {
 	singleQuote: true,
 	jsxSingleQuote: false,
 	trailingComma: 'all',
-	bracketSpacing: true,
-	bracketSameLine: false,
+	// bracketSpacing: true,
+	// bracketSameLine: false,
 	arrowParens: 'always',
+	singleAttributePerLine: true,
 	plugins: [
 		require.resolve('prettier-plugin-astro'),
 		require.resolve('@ianvs/prettier-plugin-sort-imports'),

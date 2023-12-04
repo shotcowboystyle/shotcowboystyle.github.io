@@ -16,6 +16,22 @@
 	}
 }
 
+html {
+	@apply h-full !bg-black text-base;
+}
+
+@media screen(sm) {
+	html {
+		font-size: 1.1vw;
+	}
+}
+
+@media screen(md) {
+	html {
+		font-size: 0.9vw;
+	}
+}
+
 h1,
 h2,
 h3,
@@ -74,4 +90,76 @@ p {
 	@media screen(lg) {
 		font-size: 2rem;
 	}
+}
+
+/* Improve Page speed */
+
+/* https://css-tricks.com/almanac/properties/c/content-visibility/ */
+img {
+	content-visibility: auto;
+}
+
+.c-animated-big-text-line {
+	opacity: 0%;
+
+	.tag-line,
+	.word-child,
+	.line-child {
+		transform: translateY(100%);
+	}
+
+	.tag-line {
+		display: block;
+	}
+}
+
+.tag-line-parent,
+.word-parent,
+.line-parent {
+	position: relative;
+	overflow: hidden;
+}
+
+.word-parent {
+	height: 0.75em;
+
+	@media screen and (width <= 991px) {
+		height: 6.4em;
+	}
+
+	@media screen and (width <= 479px) {
+		height: 9em;
+	}
+}
+
+.tag-line-parent,
+.line-parent {
+	height: 1.2em;
+
+	@media screen and (width <= 991px) {
+		height: 6.4em;
+	}
+
+	@media screen and (width <= 479px) {
+		height: 9em;
+	}
+}
+
+.is-loading #main > * {
+	display: none;
+}
+
+::view-transition-image-pair(root) {
+	isolation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
+::view-transition-old(main),
+::view-transition-new(main) {
+	visibility: hidden;
 }

@@ -1,13 +1,11 @@
 ---
 import BackToHomeButton from '@/components/back-to-home-button.astro';
 import GameLayout from '@/layouts/game.astro';
+
+const title = `Tower Blocks Game`;
 ---
 
-<GameLayout>
-	<Fragment slot="head-scripts">
-		<meta name="viewport" content="width=device-width,user-scalable=no" />
-	</Fragment>
-
+<GameLayout meta={{ title }}>
 	<BackToHomeButton />
 
 	<div id="container">
@@ -23,7 +21,12 @@ import GameLayout from '@/layouts/game.astro';
 		<div class="game-ready">
 			<div>
 				<h1 id="start-message">Incase you were bored</h1>
-				<button type="button" id="start-button"> Start</button>
+				<button
+					type="button"
+					id="start-button"
+				>
+					Start</button
+				>
 			</div>
 			<div></div>
 		</div>
@@ -64,11 +67,13 @@ import GameLayout from '@/layouts/game.astro';
 	let overhangs: GeneratedBlock[]; // Overhanging parts that fall down
 	let gameState: (typeof GAME_STATES)[keyof typeof GAME_STATES];
 
-	const pageContainerElement = document.getElementById('container');
-	const gameContainerElement = document.getElementById('game');
-	const scoreElement = document.getElementById('score');
-	const instructionsElement = document.getElementById('instructions');
-	const startButton = document.getElementById('start-button');
+	// const pageContainerElement = document.getElementById('container');
+	// const gameContainerElement = document.getElementById('game');
+	// const scoreElement = document.getElementById('score');
+	// const instructionsElement = document.getElementById('instructions');
+	// const startButton = document.getElementById('start-button');
+	let scoreElement: HTMLElement | null;
+	let pageContainerElement: HTMLElement | null;
 
 	function generateBlock(
 		x: number,
@@ -112,7 +117,10 @@ import GameLayout from '@/layouts/game.astro';
 		stack.push(layer);
 
 		if (stack.length >= 5) {
-			instructionsElement?.classList.add('hide');
+			const instructionsElement = document.getElementById('instructions');
+			if (instructionsElement) {
+				instructionsElement.classList.add('hide');
+			}
 		}
 	}
 
@@ -184,74 +192,13 @@ import GameLayout from '@/layouts/game.astro';
 	}
 
 	function updateState(newState: string) {
-		for (let key in GAME_STATES) {
-			pageContainerElement?.classList.remove(GAME_STATES[key as keyof typeof GAME_STATES]);
-		}
+		if (pageContainerElement) {
+			for (let key in GAME_STATES) {
+				pageContainerElement?.classList.remove(GAME_STATES[key as keyof typeof GAME_STATES]);
+			}
 
-		pageContainerElement?.classList.add(newState);
-		gameState = newState;
-	}
-
-	function init() {
-		lastTime = 0;
-		stack = [];
-		overhangs = [];
-
-		// Initialize CannonJS
-		world = new CANNON.World();
-		world.gravity.set(0, -10, 0); // Gravity pulls things down
-		world.broadphase = new CANNON.NaiveBroadphase();
-		world.solver.iterations = 40;
-
-		// Initialize ThreeJs
-		const aspect = window.innerWidth / window.innerHeight;
-		const width = 20;
-		const height = width / aspect;
-
-		camera = new THREE.OrthographicCamera(
-			width / -2, // left
-			width / 2, // right
-			height / 2, // top
-			height / -2, // bottom
-			-100, // near plane
-			1000, // far plane
-		);
-
-		/*
-		// If you want to use perspective camera instead, uncomment these lines
-		camera = new THREE.PerspectiveCamera(
-			45, // field of view
-			aspect, // aspect ratio
-			1, // near plane
-			100 // far plane
-		);
-		*/
-
-		camera.position.set(4, 4, 4);
-		camera.lookAt(0, 0, 0);
-
-		scene = new THREE.Scene();
-
-		// Foundation
-		addLayer(0, 0, ORIGINAL_BOX_SIZE, ORIGINAL_BOX_SIZE);
-
-		// Set up lights
-		const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-		scene.add(ambientLight);
-
-		const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
-		dirLight.position.set(10, 20, 0);
-		scene.add(dirLight);
-
-		// Set up renderer
-		if (gameContainerElement) {
-			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			renderer.setClearColor('#D0CBC7', 1);
-			renderer.setAnimationLoop(animation);
-			gameContainerElement.appendChild(renderer.domElement);
-
-			updateState(GAME_STATES.READY);
+			pageContainerElement?.classList.add(newState);
+			gameState = newState;
 		}
 	}
 
@@ -367,38 +314,124 @@ import GameLayout from '@/layouts/game.astro';
 			camera.lookAt(0, 0, 0);
 		}
 
-		updateState(GAME_STATES.PLAYING);
+		// updateState(GAME_STATES.PLAYING);
+	}
+
+	function init() {
+		lastTime = 0;
+		stack = [];
+		overhangs = [];
+
+		// Initialize CannonJS
+		world = new CANNON.World();
+		world.gravity.set(0, -10, 0); // Gravity pulls things down
+		world.broadphase = new CANNON.NaiveBroadphase();
+		world.solver.iterations = 40;
+
+		// Initialize ThreeJs
+		const aspect = window.innerWidth / window.innerHeight;
+		const width = 20;
+		const height = width / aspect;
+
+		camera = new THREE.OrthographicCamera(
+			width / -2, // left
+			width / 2, // right
+			height / 2, // top
+			height / -2, // bottom
+			-100, // near plane
+			1000, // far plane
+		);
+
+		/*
+		// If you want to use perspective camera instead, uncomment these lines
+		camera = new THREE.PerspectiveCamera(
+			45, // field of view
+			aspect, // aspect ratio
+			1, // near plane
+			100 // far plane
+		);
+		*/
+
+		camera.position.set(4, 4, 4);
+		camera.lookAt(0, 0, 0);
+
+		scene = new THREE.Scene();
+
+		// Foundation
+		addLayer(0, 0, ORIGINAL_BOX_SIZE, ORIGINAL_BOX_SIZE);
+
+		// Set up lights
+		const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+		scene.add(ambientLight);
+
+		const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+		dirLight.position.set(10, 20, 0);
+		scene.add(dirLight);
+
+		// Set up renderer
+		const gameContainerElement = document.getElementById('game');
+		if (gameContainerElement) {
+			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.setClearColor('#D0CBC7', 1);
+			renderer.setAnimationLoop(animation);
+			gameContainerElement.appendChild(renderer.domElement);
+
+			updateState(GAME_STATES.READY);
+		}
+	}
+
+	function handleOnKeydown(event: KeyboardEvent) {
+		if (event.key === ' ' || event.code === 'Space') {
+			event.preventDefault();
+			if ([GAME_STATES.READY, GAME_STATES.ENDED].includes(gameState)) {
+				startGame();
+			} else {
+				splitBlockAndAddNextOneIfOverlaps();
+			}
+		}
+	}
+
+	function handleOnResize() {
+		// Adjust camera
+		const aspect = window.innerWidth / window.innerHeight;
+		const width = 20;
+		const height = width / aspect;
+
+		camera.top = height / 2;
+		camera.bottom = height / -2;
+
+		// Reset renderer
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		renderer.render(scene, camera);
 	}
 
 	document.addEventListener('astro:page-load', () => {
-		init();
+		let controller: AbortController | null;
 
-		startButton?.addEventListener('click', startGame);
-		window.addEventListener('touchstart', splitBlockAndAddNextOneIfOverlaps);
-		window.addEventListener('keydown', function (event) {
-			if (event.key === ' ' || event.code === 'Space') {
-				event.preventDefault();
-				if ([GAME_STATES.READY, GAME_STATES.ENDED].includes(gameState)) {
-					startGame();
-				} else {
-					splitBlockAndAddNextOneIfOverlaps();
-				}
-				return;
+		updateState(GAME_STATES.LOADING);
+
+		pageContainerElement = document.getElementById('container');
+		scoreElement = document.getElementById('score');
+		if (scoreElement && pageContainerElement) {
+			init();
+		}
+
+		const startButton = document.getElementById('start-button');
+		if (startButton) {
+			controller = new AbortController();
+			const { signal } = controller;
+
+			startButton?.addEventListener('click', startGame, { signal });
+			document.addEventListener('touchstart', splitBlockAndAddNextOneIfOverlaps, { signal });
+			document.addEventListener('keydown', handleOnKeydown, { signal });
+			window.addEventListener('resize', handleOnResize, { signal });
+		}
+
+		document.addEventListener('astro:before-preparation', () => {
+			if (controller) {
+				controller.abort();
 			}
-		});
-
-		window.addEventListener('resize', () => {
-			// Adjust camera
-			const aspect = window.innerWidth / window.innerHeight;
-			const width = 20;
-			const height = width / aspect;
-
-			camera.top = height / 2;
-			camera.bottom = height / -2;
-
-			// Reset renderer
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			renderer.render(scene, camera);
 		});
 	});
 </script>

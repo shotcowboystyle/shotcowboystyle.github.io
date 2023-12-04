@@ -1,11 +1,11 @@
 ---
-import HomeLayout from '@/layouts/home.astro';
+import BaseLayout from '@/layouts/base.astro';
 import '@/styles/404.css';
 
 const title = `Error 404`;
 ---
 
-<HomeLayout meta={{ title }}>
+<BaseLayout meta={{ title }}>
 	<div id="page-wrapper">
 		<div id="stars">
 			{Array.from({ length: 80 }).map(() => <div class="star" />)}
@@ -17,7 +17,10 @@ const title = `Error 404`;
 			<div class="circle circle-inner">
 				{Array.from({ length: 2 }).map((_, idx) => <div class={`four four-${idx + 1}`}>4</div>)}
 
-				<div id="movable" class="circle oh">
+				<div
+					id="movable"
+					class="circle oh"
+				>
 					<div class="astronaut">
 						<div class="astronaut-backpack"></div>
 
@@ -47,12 +50,18 @@ const title = `Error 404`;
 						<div class="astronaut-body"></div>
 					</div>
 
-					<svg class="astronaut-wire" viewBox="-9 -9 259 823" width="259" height="823">
+					<svg
+						class="astronaut-wire"
+						viewBox="-9 -9 259 823"
+						width="259"
+						height="823"
+					>
 						<path
 							d="M241 0c-24 54-30 113-78 148S63 159 27 215c-35 55 32 102 73 141s103 94 98 166c-6 97-169 66-192 157-10 43-8 84 9 126"
 							fill="none"
 							stroke-width="6"
-							stroke="#FFF"></path>
+							stroke="#FFF"
+						></path>
 					</svg>
 
 					<div class="circle planet">
@@ -67,17 +76,26 @@ const title = `Error 404`;
 
 					<div class="astronaut-hands">
 						<div class="astronaut-hand hand-left">
-							<svg width="35" height="75">
+							<svg
+								width="35"
+								height="75"
+							>
 								<path
 									d="M30.23 17.209c-7.925 5.118-11.657 12.786-11.226 22.975-7.113.934-12.948 4.345-18.44 5.117C-1.951 26.539 3.92 9.346 18.635 1.369 30.66-4.39 39.53 9.398 30.23 17.209z"
-									fill="#D2D2D2"></path>
-								<g fill="none" stroke="#999" stroke-linecap="round">
+									fill="#D2D2D2"
+								></path>
+								<g
+									fill="none"
+									stroke="#999"
+									stroke-linecap="round"
+								>
 									<path
 										d="M11.78 6.977c7.983.129 13.547 3.968 16.308 11.111M4.67 17.161c7.307-.379 13.1 1.924 17.93 6.94"
 									></path>
 									<path
 										d="M.816 31.334c6.439-2.441 12.295-1.746 18.149 2.488"
-										stroke-linejoin="round"></path>
+										stroke-linejoin="round"
+									></path>
 								</g>
 								<g fill="#fff">
 									<path
@@ -94,17 +112,26 @@ const title = `Error 404`;
 						</div>
 
 						<div class="astronaut-hand hand-right">
-							<svg width="35" height="75">
+							<svg
+								width="35"
+								height="75"
+							>
 								<path
 									d="M30.23 17.209c-7.925 5.118-11.657 12.786-11.226 22.975-7.113.934-12.948 4.345-18.44 5.117C-1.951 26.539 3.92 9.346 18.635 1.369 30.66-4.39 39.53 9.398 30.23 17.209z"
-									fill="#D2D2D2"></path>
-								<g fill="none" stroke="#999" stroke-linecap="round">
+									fill="#D2D2D2"
+								></path>
+								<g
+									fill="none"
+									stroke="#999"
+									stroke-linecap="round"
+								>
 									<path
 										d="M11.78 6.977c7.983.129 13.547 3.968 16.308 11.111M4.67 17.161c7.307-.379 13.1 1.924 17.93 6.94"
 									></path>
 									<path
 										d="M.816 31.334c6.439-2.441 12.295-1.746 18.149 2.488"
-										stroke-linejoin="round"></path>
+										stroke-linejoin="round"
+									></path>
 								</g>
 								<g fill="#fff">
 									<path
@@ -122,38 +149,42 @@ const title = `Error 404`;
 					</div>
 				</div>
 
-				<a href="/" class="button">GO HOME</a>
+				<a
+					href="/"
+					class="button"
+					>GO HOME</a
+				>
 			</div>
 
 			<div class="sorry">Oops! Sorry, page not found.</div>
 		</div>
 	</div>
+</BaseLayout>
 
-	<script>
-		const movableEl: HTMLElement | null = document.getElementById('movable');
+<script>
+	const movableEl: HTMLElement | null = document.getElementById('movable');
 
-		if (movableEl) {
-			document.addEventListener('mousemove', (event) => {
-				const domainX = [0, document.body.clientWidth];
-				const domainY = [0, document.body.clientHeight];
-				const range = [-10, 10];
+	if (movableEl) {
+		document.addEventListener('mousemove', (event) => {
+			const domainX = [0, document.body.clientWidth];
+			const domainY = [0, document.body.clientHeight];
+			const range = [-10, 10];
 
-				const translate = {
-					x:
-						range[0] +
-						((event.clientX - domainX[0]) * (range[1] - range[0])) / (domainX[1] - domainX[0]),
-					y:
-						range[0] +
-						((event.clientY - domainY[0]) * (range[1] - range[0])) / (domainY[1] - domainY[0]),
-				};
+			const translate = {
+				x:
+					range[0] +
+					((event.clientX - domainX[0]) * (range[1] - range[0])) / (domainX[1] - domainX[0]),
+				y:
+					range[0] +
+					((event.clientY - domainY[0]) * (range[1] - range[0])) / (domainY[1] - domainY[0]),
+			};
 
-				movableEl.style.animation = 'none';
-				movableEl.style.transform = `translate(${translate.x}px, ${translate.y}px)`;
-			});
+			movableEl.style.animation = 'none';
+			movableEl.style.transform = `translate(${translate.x}px, ${translate.y}px)`;
+		});
 
-			document.addEventListener('mouseleave', () => {
-				movableEl.style.animation = 'floating 3s linear infinite';
-			});
-		}
-	</script>
-</HomeLayout>
+		document.addEventListener('mouseleave', () => {
+			movableEl.style.animation = 'floating 3s linear infinite';
+		});
+	}
+</script>
