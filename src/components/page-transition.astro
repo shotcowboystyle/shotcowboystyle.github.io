@@ -3,11 +3,11 @@ const items = [...Array(7)];
 ---
 
 <ul
-	class="transition-container"
+	class="transition-container js-loader-wrapper"
 	id="transition-container"
-	transition:persist="loader"
+	transition:persist
 >
-	{items.map(() => <li class="transition-container-list-item" />)}
+	{items.map(() => <li class="transition-container-list-item js-loader-item" />)}
 </ul>
 
 <style>
@@ -16,6 +16,6 @@ const items = [...Array(7)];
 	}
 
 	.transition-container-list-item {
-		@apply w-[20vh] scale-y-0 rounded-[200px] before:content-none odd:bg-primary even:bg-secondary md:w-[32vh];
+		@apply w-[20vh] rounded-[200px] opacity-0 before:content-none odd:bg-primary even:bg-secondary md:w-[32vh];
 	}
 </style>

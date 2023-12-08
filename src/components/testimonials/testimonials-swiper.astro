@@ -6,7 +6,9 @@ const testimonials = await getCollection('testimonial');
 const TESTIMONIALS = testimonials.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<div class="testimonials-swiper relative z-[1] mx-auto h-full w-full overflow-hidden p-0">
+<div
+	class="testimonials-swiper js-animation-swiper relative z-[1] mx-auto h-full w-full overflow-hidden p-0"
+>
 	<div class="swiper-wrapper relative z-[1] flex h-full w-full transition-transform">
 		{
 			TESTIMONIALS.map((testimonial) => (
@@ -19,7 +21,7 @@ const TESTIMONIALS = testimonials.sort((a, b) => a.data.order - b.data.order);
 </div>
 
 <div
-	class="relative bottom-0 z-10 grid auto-cols-[1fr] grid-flow-col grid-cols-[1fr] grid-rows-[auto] gap-4 px-6 pb-6 sm:absolute sm:bottom-8 sm:left-6 lg:bottom-2 lg:left-4"
+	class="testimonials-nav-wrapper relative bottom-0 z-10 grid auto-cols-[1fr] grid-flow-col grid-cols-[1fr] grid-rows-[auto] gap-4 px-6 pb-6 sm:absolute sm:bottom-8 sm:left-6 lg:bottom-2 lg:left-4"
 >
 	<div
 		id="prev"
@@ -78,16 +80,41 @@ const TESTIMONIALS = testimonials.sort((a, b) => a.data.order - b.data.order);
 	import { Swiper } from 'swiper';
 	import { Navigation } from 'swiper/modules';
 	import 'swiper/css';
+	import { eventBus } from '@/utils/event-bus';
 
-	document.addEventListener('DOMContentLoaded', () => {
-		new Swiper('.testimonials-swiper', {
-			modules: [Navigation],
-			loop: true,
-			slidesPerView: 1,
-			navigation: {
-				nextEl: '#next',
-				prevEl: '#prev',
-			},
-		});
-	});
+	function loadModules() {
+		const swiperWrapper = document.querySelector('.js-animation-swiper');
+		if (swiperWrapper) {
+			new Swiper('.js-animation-swiper', {
+				modules: [Navigation],
+				loop: true,
+				slidesPerView: 1,
+				navigation: {
+					nextEl: '#next',
+					prevEl: '#prev',
+				},
+			});
+		}
+	}
+
+	document.addEventListener(
+		'astro:page-load',
+		() => {
+			loadModules();
+			eventBus.on('landingLoaded', loadModules);
+		},
+		{ once: true },
+	);
 </script>
+
+<style>
+	@media screen and (orientation: landscape) and (hover: none) {
+		.swiper-slide {
+			@apply pb-3;
+		}
+
+		.testimonials-nav-wrapper {
+			@apply bottom-2 left-2;
+		}
+	}
+</style>

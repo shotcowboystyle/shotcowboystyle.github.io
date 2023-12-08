@@ -4,71 +4,42 @@
 
 <a
 	href="nowayjose"
-	class="group/contact-button group pointer-events-auto relative flex h-full flex-col justify-between overflow-hidden p-6 no-underline md:p-10"
+	class="js-inject-email-link group/contact-button group pointer-events-auto relative flex h-full flex-col justify-between overflow-hidden p-6 no-underline md:p-10"
 	id="contact-button"
 	target="_blank"
 	rel="noopener noreferrer"
 >
-	<div class="relative z-10 -ml-10 mt-0 w-[110%] max-sm:mb-10">
-		<div id="contact-button-animation"></div>
+	<div
+		id="contact-button-animation"
+		class="js-lottie-animation relative z-10 -ml-10 mt-0 w-[110%] max-sm:mb-10"
+		data-animation-name="contact-button-animation"
+		data-animation-source="/animation/lottie-contact-button-animation.json"
+		data-animation-play-control="hover"
+		data-animation-target="1"
+		data-animation-initial-state="99"
+	>
 	</div>
 
 	<div>
-		<h3 class="mb-4 !leading-none text-info-content !text-6xl lg:!text-5xl">
+		<h3 class="contact-button-title mb-4 !leading-none text-white !text-6xl lg:!text-5xl">
 			Wanna talk? Send me a message.
 		</h3>
 		<p
 			id="email-text"
-			class="mb-0 text-info-content text-base"
+			class="js-inject-email-text mb-0 text-white text-base"
 		>
 		</p>
 	</div>
 </a>
 
-<script>
-	import { injectContactEmailLink, injectContactEmailTextContent } from '@/utils/email';
-	import lottie from 'lottie-web';
-
-	const CONTACT_BUTTON_ID = 'contact-button';
-
-	function initContactButton() {
-		const emailTextEl = document.getElementById('email-text');
-		if (emailTextEl) {
-			injectContactEmailTextContent(emailTextEl);
+<style>
+	@media screen and (orientation: landscape) and (hover: none) {
+		#contact-button {
+			@apply p-4;
 		}
 
-		const contactButton = document.getElementById(CONTACT_BUTTON_ID);
-		const contactButtonAnimationEl = document.getElementById('contact-button-animation');
-
-		if (contactButton && contactButtonAnimationEl) {
-			injectContactEmailLink(contactButton as HTMLAnchorElement);
-
-			let animationCompleted = true;
-
-			const animation = lottie.loadAnimation({
-				container: contactButtonAnimationEl,
-				renderer: 'svg',
-				loop: false,
-				autoplay: false,
-				path: '/animation/lottie-contact-button-animation.json',
-				initialSegment: [25, 25],
-				rendererSettings: {
-					progressiveLoad: true,
-				},
-			});
-
-			animation.addEventListener('complete', () => {
-				animationCompleted = true;
-			});
-
-			contactButton.addEventListener('mouseenter', () => {
-				if (animationCompleted) {
-					animation?.playSegments([0, 25], true);
-					animationCompleted = false;
-				}
-			});
+		.contact-button-title {
+			@apply font-semibold !text-5xl;
 		}
 	}
-
-	document.addEventListener('astro:page-load', initContactButton);
-</script>
+</style>

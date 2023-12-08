@@ -7,6 +7,18 @@ import BaseLayout from '@/layouts/base.astro';
 	<Landing />
 </BaseLayout>
 
+<script>
+	import Landing from '@/lib/landing';
+
+	document.addEventListener(
+		'astro:page-load',
+		() => {
+			new Landing();
+		},
+		{ once: true },
+	);
+</script>
+
 <style is:inline>
 	html.lenis {
 		height: auto;

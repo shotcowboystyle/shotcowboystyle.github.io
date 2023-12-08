@@ -2,8 +2,12 @@
 
 ---
 
-<button id="download-resume-button" class="resume-button" title="Download resume">
-	RESU<span id="me">Me</span>
+<button
+	id="download-resume-button"
+	class="resume-button"
+	title="Download resume"
+>
+	RESU<span id="me">ME</span>
 	<span id="bubbles"></span>
 </button>
 
@@ -29,9 +33,8 @@
 	}
 
 	.resume-button {
-		@apply btn btn-neutral btn-sm gap-0 rounded-full bg-black font-medium text-white;
+		@apply btn btn-neutral btn-sm relative gap-0 rounded-full bg-black font-medium text-white;
 
-		position: relative;
 		z-index: 2;
 		transition: all 0.2s ease;
 
@@ -45,20 +48,18 @@
 	}
 
 	.resume-button #bubbles {
-		position: absolute;
-		inset: 0;
+		@apply absolute inset-0;
+
 		z-index: -1;
 	}
 
 	.resume-button #bubbles::before,
 	.resume-button #bubbles::after {
+		@apply absolute left-1/2 h-full bg-no-repeat;
+
 		content: '';
-		position: absolute;
-		left: 50%;
 		z-index: -1000;
 		width: 150%;
-		height: 100%;
-		background-repeat: no-repeat;
 		transform: translateX(-50%);
 	}
 

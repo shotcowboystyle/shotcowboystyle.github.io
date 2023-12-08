@@ -75,10 +75,21 @@ const {
 				sessionStorage.setItem('session-started-at', new Date().toString());
 			}
 
-			document.addEventListener('astro:page-load', () => {
-				initialize();
-				new App();
-			});
+			document.addEventListener(
+				'DOMContentLoaded',
+				() => {
+					initialize();
+				},
+				{ once: true },
+			);
+
+			document.addEventListener(
+				'astro:page-load',
+				() => {
+					new App();
+				},
+				{ once: true },
+			);
 		</script>
 	</body>
 </html>

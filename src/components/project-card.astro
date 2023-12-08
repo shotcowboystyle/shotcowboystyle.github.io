@@ -57,27 +57,46 @@ const { data } = Astro.props.project;
 		link={data.url}
 		label={data.linkText}
 	/>
+
+	<a
+		href={data.url}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
+	>
+		<span class="project-card-button-label">
+			{data.linkText}
+		</span>
+		<span class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
+		></span>
+	</a>
 </div>
 
 <style>
 	.project-screenshot {
 		@apply pointer-events-none absolute right-0 top-0 z-[2] inline-block w-[130%] max-w-none translate-y-[5%] align-middle max-sm:left-0 sm:-top-[5%] sm:right-auto sm:w-11/12 sm:max-w-full lg:-top-[25%] lg:right-0 lg:w-[60%];
+
+		@media screen and (orientation: landscape) and (hover: none) {
+			@apply -top-[25%] right-0 w-[60%];
+		}
 	}
 
 	.project-bg {
 		@apply pointer-events-none absolute left-0 top-0 h-full w-full max-w-none object-cover;
 	}
 
+	@media screen and (orientation: landscape) and (hover: none) {
+		.project-card-link {
+			@apply flex;
+		}
+	}
+
 	.project-card-button-label {
-		@apply relative z-10 leading-tight text-base-content;
+		@apply relative z-10 px-8 leading-tight text-base-content;
 
 		font-size: 0.8rem;
 
-		@media screen(md) {
-			font-size: 2.2rem;
-		}
-
-		@media screen(lg) {
+		@media screen and (orientation: landscape) and (hover: none) {
 			font-size: 2rem;
 		}
 	}

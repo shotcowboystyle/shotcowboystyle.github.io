@@ -56,6 +56,10 @@ h1 {
 	@media screen(lg) {
 		font-size: 8rem;
 	}
+
+	@media screen and (orientation: landscape) and (hover: none) {
+		font-size: 8rem;
+	}
 }
 
 h2 {
@@ -90,6 +94,10 @@ p {
 	@media screen(lg) {
 		font-size: 2rem;
 	}
+
+	@media screen and (orientation: landscape) and (hover: none) {
+		font-size: 2rem;
+	}
 }
 
 /* Improve Page speed */
@@ -99,50 +107,27 @@ img {
 	content-visibility: auto;
 }
 
-.c-animated-big-text-line {
+.c-animated-text {
 	opacity: 0%;
-
-	.tag-line,
-	.word-child,
-	.line-child {
-		transform: translateY(100%);
-	}
-
-	.tag-line {
-		display: block;
-	}
 }
 
-.tag-line-parent,
-.word-parent,
-.line-parent {
+.split-word-parent,
+.split-line-parent {
 	position: relative;
 	overflow: hidden;
 }
 
-.word-parent {
-	height: 0.75em;
-
-	@media screen and (width <= 991px) {
-		height: 6.4em;
-	}
-
-	@media screen and (width <= 479px) {
-		height: 9em;
-	}
+.split-word-parent {
+	height: 1.2em;
 }
 
-.tag-line-parent,
-.line-parent {
-	height: 1.2em;
+.split-line-parent {
+	height: 1em;
+}
 
-	@media screen and (width <= 991px) {
-		height: 6.4em;
-	}
-
-	@media screen and (width <= 479px) {
-		height: 9em;
-	}
+.split-word-child,
+.split-line-child {
+	transform: translateY(100%);
 }
 
 .is-loading #main > * {

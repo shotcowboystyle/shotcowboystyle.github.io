@@ -9,7 +9,9 @@ interface Props {
 const { data } = Astro.props.testimonial;
 ---
 
-<p class="my-4 !leading-normal text-base sm:text-xl lg:!leading-relaxed lg:!text-sm">
+<p
+	class="testimonial-text my-4 !leading-normal text-base sm:text-xl lg:!leading-relaxed lg:!text-sm"
+>
 	{data.testimonial}
 </p>
 
@@ -28,11 +30,21 @@ const { data } = Astro.props.testimonial;
 	</div>
 
 	<div class="mb-0 flex flex-col justify-end md:order-2">
-		<div class="mb-0 font-sans-serif font-bold uppercase leading-none text-base sm:text-lg">
+		<div
+			class="testimonial-name mb-0 font-sans-serif font-bold uppercase leading-none text-base sm:text-lg"
+		>
 			{data.name}
 		</div>
-		<div class="-mt-1 leading-none text-xs sm:text-base lg:text-sm">
+		<div class="testimonial-byline -mt-1 leading-none text-xs sm:text-base lg:text-sm">
 			{data.designation}, {data.companyName}
 		</div>
 	</div>
 </div>
+
+<style>
+	@media screen and (orientation: landscape) and (hover: none) {
+		.testimonial-text {
+			@apply mb-16;
+		}
+	}
+</style>
