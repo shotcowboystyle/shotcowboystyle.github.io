@@ -9,63 +9,9 @@
 		@media screen(lg) {
 			@apply h-32 w-32;
 		}
-	}
 
-	.maplibregl-ctrl-bottom-left {
-		@apply w-full p-0;
-	}
-
-	.maplibregl-ctrl-group {
-		@apply relative w-full p-0;
-	}
-
-	.maplibregl-ctrl {
-		@apply shadow-none;
-
-		button {
-			@apply btn btn-circle btn-sm absolute bottom-3 flex h-8 w-8 items-center justify-center rounded-full bg-white p-0 text-base-content opacity-100;
-
-			transition: box-shadow 0.2s ease 0s;
-
-			@media screen(sm) {
-				@apply btn-md h-16 w-16;
-			}
-
-			@media screen(lg) {
-				@apply btn-sm h-12 w-12;
-			}
-
-			&:active,
-			&:focus,
-			&:hover {
-				@apply !rounded-full;
-
-				box-shadow:
-					rgb(255 255 255) 0 0 0 1px,
-					rgb(255 255 255 / 50%) 0 0 0 6px;
-				cursor: pointer;
-				transition: box-shadow 0.2s ease-out 0s;
-			}
-
-			&:disabled {
-				@apply !hidden;
-			}
-		}
-	}
-
-	.maplibregl-ctrl-zoom-out {
-		@apply left-3;
-	}
-
-	.maplibregl-ctrl-zoom-in {
-		@apply right-6;
-
-		@media screen(sm) {
-			@apply right-16;
-		}
-
-		@media screen(lg) {
-			@apply right-10;
+		@media screen and (orientation: landscape) and (hover: none) {
+			@apply h-32 w-32;
 		}
 	}
 }

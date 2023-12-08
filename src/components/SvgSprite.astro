@@ -2,6 +2,8 @@
 export interface Props {
 	name: string;
 	class?: string;
+	width?: string;
+	height?: string;
 }
 
 const { class: className, name, ...rest } = Astro.props;

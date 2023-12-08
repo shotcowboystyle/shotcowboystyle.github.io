@@ -2,11 +2,15 @@
 
 ---
 
-<h2 class="mb-0 self-end font-semibold sm:max-w-[18ch] sm:font-extrabold">
+<h2
+	id="bio-headline"
+	class="mb-0 self-end font-semibold sm:max-w-[18ch] sm:font-extrabold"
+>
 	I'm Curtis, A full-stack developer based in Charleston, SC.
 </h2>
 <div class="self-end">
 	<div
+		id="bio-description"
 		class="mb-2 font-sans font-medium !leading-normal text-base-content text-base sm:mb-4 sm:font-semibold sm:text-xl xl:text-base"
 	>
 		My 15+ years of hands-on experience developing scalable and maintainable websites and apps
@@ -42,7 +46,6 @@
 		<div class="dropdown sm:dropdown-end sm:dropdown-left sm:dropdown-hover">
 			<span
 				role="link"
-				tabindex="0"
 				class="underline decoration-double"
 			>
 				biz-ops integrations</span
@@ -74,3 +77,16 @@
 		than delivering inclusive software, available on the majority of devices.
 	</div>
 </div>
+
+<style>
+	@media screen(md) and (hover: hover) and (pointer: fine) {
+		#bio-headline {
+			font-size: 4.5rem;
+		}
+
+		#bio-description {
+			font-weight: 500 !important;
+			font-size: 1.125em !important;
+		}
+	}
+</style>

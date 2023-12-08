@@ -20,11 +20,33 @@ const socials = await getCollection('social');
 			stroke-linecap="round"
 			stroke-linejoin="round"
 		>
-			<circle cx="18" cy="5" r="3"></circle>
-			<circle cx="6" cy="12" r="3"></circle>
-			<circle cx="18" cy="19" r="3"></circle>
-			<line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
-			<line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+			<circle
+				cx="18"
+				cy="5"
+				r="3"
+			></circle>
+			<circle
+				cx="6"
+				cy="12"
+				r="3"
+			></circle>
+			<circle
+				cx="18"
+				cy="19"
+				r="3"
+			></circle>
+			<line
+				x1="8.59"
+				x2="15.42"
+				y1="13.51"
+				y2="17.49"
+			></line>
+			<line
+				x1="15.41"
+				x2="8.59"
+				y1="6.51"
+				y2="10.49"
+			></line>
 		</svg>
 	</div>
 
@@ -68,10 +90,6 @@ const socials = await getCollection('social');
 			);
 		}
 
-		.social-icon-wrapper {
-			@apply absolute bottom-2/4 right-2/4 translate-x-2/4 translate-y-2/4 transform-gpu transition-all duration-[0.6s] ease-[ease-in-out];
-		}
-
 		.social-icon {
 			@apply h-10 w-10 stroke-[white];
 		}
@@ -81,18 +99,6 @@ const socials = await getCollection('social');
 
 			svg {
 				@apply w-full transform-gpu fill-[rgba(107,96,96,0.8)] transition-all duration-[0.5s] ease-[ease-in-out];
-			}
-		}
-
-		.link {
-			@apply absolute origin-bottom-left rounded-[10%_13%_42%_0%/10%_12%_75%_0%] border-r border-t-2 border-solid border-r-[white] border-t-white p-2.5 text-right shadow-[rgba(100,100,111,0.364)_-7px_7px_29px_0px] transition-all duration-[1s] ease-[ease-in-out] before:absolute before:inset-0 before:rounded-[inherit] before:opacity-0 before:transition-all before:duration-[0.5s] before:ease-[ease-in-out] before:content-[""];
-
-			background: rgb(255 255 255 / 38.9%);
-
-			&:hover svg {
-				@apply fill-[white];
-
-				filter: drop-shadow(0 0 5px rgb(255 255 255));
 			}
 		}
 
@@ -157,14 +163,57 @@ const socials = await getCollection('social');
 		.extra {
 			@apply bottom-[-20%] left-[-20%] h-[20%] w-[20%] delay-[0.6s];
 		}
+	}
 
-		&:hover {
+	.social-icon-wrapper {
+		@apply absolute bottom-5 right-5;
+	}
+
+	.social-card .link {
+		@apply absolute rounded-[10%_13%_42%_0%/10%_12%_75%_0%] border-r border-t-2 border-solid border-r-[white] border-t-white p-2.5 text-right shadow-[rgba(100,100,111,0.364)_-7px_7px_29px_0px] before:absolute before:inset-0 before:rounded-[inherit] before:content-[""];
+
+		background: rgb(255 255 255 / 38.9%);
+	}
+
+	@media screen and (hover: hover) and (pointer: fine) {
+		.social-card .link {
+			@apply origin-bottom-left transition-all duration-[1s] ease-[ease-in-out] before:opacity-0 before:ease-[ease-in-out];
+
+			&:hover svg {
+				@apply fill-[white];
+
+				filter: drop-shadow(0 0 5px rgb(255 255 255));
+			}
+		}
+
+		.social-icon-wrapper {
+			@apply bottom-2/4 right-2/4 translate-x-2/4 translate-y-2/4 transform-gpu transition-all duration-[0.6s] ease-[ease-in-out];
+		}
+
+		.social-card:hover .link {
+			@apply -bottom-px -left-px;
+		}
+
+		.social-card:hover .social-icon-wrapper {
+			@apply bottom-5 right-5 translate-x-0 translate-y-0;
+		}
+	}
+
+	@media screen and (orientation: portrait) and (hover: none),
+		screen and (orientation: landscape) and (hover: none) {
+		.social-card {
 			.link {
 				@apply -bottom-px -left-px;
+
+				svg {
+					@apply fill-[white];
+
+					filter: drop-shadow(0 0 5px rgb(255 255 255));
+				}
 			}
 
 			.social-icon-wrapper {
-				@apply bottom-5 right-5 translate-x-0 translate-y-0 transform-gpu;
+				@apply bottom-5 right-5 translate-x-0 translate-y-0;
 			}
 		}
 	}

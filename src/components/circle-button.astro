@@ -9,7 +9,9 @@ interface Props {
 const { link, label } = Astro.props;
 ---
 
-<div class="notify-button-wrapper relative rounded-full p-8 shadow-[0_0_20px_10px] shadow-white/30">
+<div
+	class="notify-button-wrapper relative hidden rounded-full p-8 shadow-[0_0_20px_10px] shadow-white/30 sm:block"
+>
 	<a
 		class="notify-button-button relative flex h-32 w-32 items-center justify-center rounded-full border-2 border-neutral-50"
 		href={link}
@@ -144,6 +146,12 @@ const { link, label } = Astro.props;
 </div>
 
 <style>
+	@media screen and (orientation: landscape) and (hover: none) {
+		.notify-button-wrapper {
+			display: none;
+		}
+	}
+
 	.notify-button-space {
 		transition: opacity 0.2s ease-in-out;
 		animation: notify-button-space 3s linear infinite;

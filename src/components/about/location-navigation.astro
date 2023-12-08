@@ -1,0 +1,132 @@
+---
+
+---
+
+<div
+	id="map-nav-controls"
+	class="maplibregl-control-container hidden"
+>
+	<div class="maplibregl-ctrl-bottom-left">
+		<div class="maplibregl-ctrl maplibregl-ctrl-group">
+			<button
+				class="maplibregl-ctrl-zoom-in"
+				type="button"
+				title="Zoom in"
+				aria-label="Zoom in"
+				aria-disabled="true"
+				disabled=""
+				id="zoom-in-button"
+			>
+				<span
+					class="maplibregl-ctrl-icon-wrapper"
+					aria-hidden="true"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-plus"
+					>
+						<path d="M5 12h14"></path>
+						<path d="M12 5v14"></path>
+					</svg>
+				</span>
+			</button>
+
+			<button
+				class="maplibregl-ctrl-zoom-out"
+				type="button"
+				title="Zoom out"
+				aria-label="Zoom out"
+				aria-disabled="false"
+				id="zoom-out-button"
+			>
+				<span
+					class="maplibregl-ctrl-icon-wrapper"
+					aria-hidden="true"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-minus"
+					>
+						<path d="M5 12h14"></path>
+					</svg>
+				</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	.maplibregl-ctrl-bottom-left {
+		@apply w-full p-0;
+	}
+
+	.maplibregl-ctrl-group {
+		@apply relative w-full p-0;
+	}
+
+	.maplibregl-ctrl {
+		@apply shadow-none;
+
+		button {
+			@apply btn btn-circle btn-sm absolute bottom-3 flex h-8 w-8 items-center justify-center rounded-full bg-white p-0 text-base-content opacity-100;
+
+			transition: box-shadow 0.2s ease 0s;
+
+			@media screen(sm) {
+				@apply btn-md h-16 w-16;
+			}
+
+			@media screen(lg) {
+				@apply btn-sm h-12 w-12;
+			}
+
+			&:active,
+			&:focus,
+			&:hover {
+				@apply !rounded-full;
+
+				box-shadow:
+					rgb(255 255 255) 0 0 0 1px,
+					rgb(255 255 255 / 50%) 0 0 0 6px;
+				cursor: pointer;
+				transition: box-shadow 0.2s ease-out 0s;
+			}
+
+			&:disabled {
+				@apply !hidden;
+			}
+		}
+	}
+
+	.maplibregl-ctrl-zoom-out {
+		@apply left-3;
+	}
+
+	.maplibregl-ctrl-zoom-in {
+		@apply right-6;
+
+		@media screen(sm) {
+			@apply right-16;
+		}
+
+		@media screen(lg) {
+			@apply right-10;
+		}
+	}
+</style>

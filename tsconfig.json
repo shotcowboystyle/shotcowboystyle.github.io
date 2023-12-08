@@ -21,8 +21,8 @@
 		// Enable stricter transpilation for better output.
 		// "isolatedModules": true,
 
-		// "jsx": "react-jsx",
-		// "jsxImportSource": "@builder.io/qwik",
+		"jsx": "react-jsx",
+		"jsxImportSource": "@builder.io/qwik",
 		// "skipLibCheck": true,
 		"baseUrl": ".",
 		"paths": {

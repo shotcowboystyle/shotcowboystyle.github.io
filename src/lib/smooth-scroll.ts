@@ -6,8 +6,12 @@ import { ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 export default class SmoothScroll extends Lenis {
+	DOM: {
+		scrollLink: string;
+	};
 	isActive: boolean;
 	callbacks: (() => void)[];
+	scrollLinks: NodeListOf<HTMLAnchorElement>;
 
 	constructor() {
 		super({
@@ -21,8 +25,17 @@ export default class SmoothScroll extends Lenis {
 			lerp: isMacOS ? 0.4 : 0.1,
 		});
 
+		this.DOM = {
+			scrollLink: '.scroll-link',
+		};
+
 		this.isActive = true;
+		this.time = 0;
+
 		this.callbacks = [];
+		this.scrollLinks = document.querySelectorAll<HTMLAnchorElement>(this.DOM.scrollLink);
+
+		this.init();
 	}
 
 	init() {
@@ -43,27 +56,38 @@ export default class SmoothScroll extends Lenis {
 
 		gsap.ticker.lagSmoothing(0);
 
-		document.querySelectorAll<HTMLAnchorElement>('a[href*="#"]').forEach(($linkEl) => {
-			if ($linkEl.hash && $linkEl.hash !== '') {
-				$linkEl.addEventListener('click', (event: Event) => {
-					event.preventDefault();
-					const $target = (event.target as HTMLElement).getAttribute('href');
-					if ($target) {
-						this.to($target);
+		this.initEvents();
+	}
 
-						if ($target === '#header') {
-							history.pushState(
-								'',
-								document.title,
-								window.location.pathname + window.location.search,
-							);
-						} else {
-							window.location.hash = $target;
-						}
-					}
-				});
+	initEvents() {
+		if (this.scrollLinks?.length) {
+			this.scrollLinks.forEach(($link) => {
+				$link.addEventListener('click', (event) => this.onLinkClick(event));
+			});
+		}
+	}
+
+	removeEvents() {
+		if (this.scrollLinks?.length) {
+			this.scrollLinks.forEach(($link) => {
+				$link.removeEventListener('click', (event) => this.onLinkClick(event));
+			});
+		}
+	}
+
+	onLinkClick(event: Event) {
+		event.preventDefault();
+
+		const $target = (event.target as HTMLElement).getAttribute('href');
+		if ($target) {
+			this.to($target);
+
+			if ($target === '#header') {
+				history.pushState('', document.title, window.location.pathname + window.location.search);
+			} else {
+				window.location.hash = $target;
 			}
-		});
+		}
 	}
 
 	scrollLock() {
@@ -75,6 +99,7 @@ export default class SmoothScroll extends Lenis {
 	}
 
 	kill() {
+		this.removeEvents();
 		this.destroy();
 	}
 

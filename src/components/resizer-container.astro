@@ -20,42 +20,66 @@ const { class: className } = Astro.props;
 			return;
 		}
 
-		// The current position of mouse
-		let x = 0;
+		// The current position of mouse/touch
+		let cx = 0;
 
 		// The dimension of the element
 		let w = 0;
 
-		const mouseMoveHandler = (e: MouseEvent) => {
-			// How far the mouse has been moved
-			const dx = e.clientX - x;
+		function onTouchDown(e: TouchEvent) {
+			onDown(e.touches[0]);
+			e.preventDefault();
+		}
 
-			if (w + dx <= 654) {
-				el.style.width = `654px`;
+		function onTouchMove(e: TouchEvent) {
+			onMove(e.touches[0], true);
+		}
+
+		function onTouchEnd(e: TouchEvent) {
+			if (e.touches.length == 0) {
+				onUp();
+			}
+		}
+
+		const onMove = (e: MouseEvent | Touch, isTouchEvent: boolean = false) => {
+			// How far the mouse has been moved
+			const dx = e.clientX - cx;
+
+			const minWidth = isTouchEvent ? 327 : 654;
+			if (w + dx <= minWidth) {
+				el.style.width = `${minWidth}px`;
+				document.body.classList.add('is-resize-limit');
 			} else {
 				el.style.width = `${w + dx}px`;
+				if (document.body.classList.contains('is-resize-limit')) {
+					document.body.classList.remove('is-resize-limit');
+				}
 			}
 		};
 
 		// Handle the mousedown event
 		// that's triggered when user drags the resizer
-		const mouseDownHandler = (e: MouseEvent) => {
+		const onDown = (e: MouseEvent | Touch) => {
 			// Get the current mouse position
-			x = e.clientX;
+			cx = e.clientX;
 
 			// Calculate the dimension of element
 			const styles = window.getComputedStyle(el);
 			w = parseInt(styles.width, 10);
 
 			// Attach the listeners to document
-			document.addEventListener('mousemove', mouseMoveHandler);
-			document.addEventListener('mouseup', mouseUpHandler);
+			document.addEventListener('mousemove', onMove);
+			document.addEventListener('mouseup', onUp);
+			document.addEventListener('touchmove', onTouchMove);
+			document.addEventListener('touchend', onTouchEnd);
 		};
 
-		const mouseUpHandler = () => {
+		const onUp = () => {
 			// Remove the handlers of mousemove and mouseup
-			document.removeEventListener('mousemove', mouseMoveHandler);
-			document.removeEventListener('mouseup', mouseUpHandler);
+			document.removeEventListener('mousemove', onMove);
+			document.removeEventListener('mouseup', onUp);
+			document.removeEventListener('touchmove', onTouchMove);
+			document.removeEventListener('touchend', onTouchEnd);
 		};
 
 		// Query all resizers
@@ -63,7 +87,8 @@ const { class: className } = Astro.props;
 
 		// Loop over them
 		[].forEach.call(resizers, (resizer: HTMLElement) => {
-			resizer.addEventListener('mousedown', mouseDownHandler);
+			resizer.addEventListener('mousedown', onDown);
+			resizer.addEventListener('touchstart', onTouchDown);
 		});
 	});
 </script>

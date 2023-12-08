@@ -1,8 +1,7 @@
-import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
+import qwikdev from '@qwikdev/astro';
 import compress from 'astro-compress';
-import compressor from 'astro-compressor';
 import critters from 'astro-critters';
 import purgecss from 'astro-purgecss';
 import svgSprite from 'astro-svg-sprite';
@@ -20,19 +19,22 @@ export default defineConfig({
 	integrations: [
 		svgSprite(),
 		serviceWorker(),
-		sitemap(),
+		qwikdev(),
 		tailwind({
 			applyBaseStyles: false,
-		}),
-		prefetch({
-			throttle: 4,
 		}),
 		critters({ Logger: 2 }),
 		purgecss({
 			safelist: [/^dot\d/, /^four-/, /^glow-/, /^crater-/, 'github', 'linkedin', 'twitter'],
 		}),
-		compressor(),
-		compress({ CSS: false, Logger: 1 }),
+		compress({
+			CSS: true,
+			HTML: false,
+			Image: false,
+			JavaScript: true,
+			SVG: true,
+		}),
+		sitemap(),
 	],
 	vite: {
 		plugins: [
@@ -76,7 +78,4 @@ export default defineConfig({
 			noExternal: ['swiper/css'],
 		},
 	},
-	// experimental: {
-	// 	devOverlay: true,
-	// },
 });

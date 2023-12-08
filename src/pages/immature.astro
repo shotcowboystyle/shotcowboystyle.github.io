@@ -13,8 +13,10 @@ const title = `Immature Responsive Design`;
 <BaseLayout meta={{ title }}>
 	<BackToHomeButton />
 
-	<div class="p-24 pb-0">
-		<h1 class="mx-auto max-w-4xl text-center text-white">Responsive design can be so immature.</h1>
+	<div class="immature-page-content relative h-full w-full px-0.5 pb-0 pt-8 lg:px-24 lg:pt-24">
+		<h1 class="page-header mx-auto text-center text-white max-lg:!text-8xl lg:max-w-4xl">
+			Responsive design can be so immature.
+		</h1>
 
 		<ResizerContainer class="relative mx-auto w-full">
 			<div class="relative h-[60vh] min-h-[60vh] w-full select-none overflow-hidden">
@@ -25,7 +27,7 @@ const title = `Immature Responsive Design`;
 					<Image
 						src={leftHandBottom}
 						alt="outer stacked image of a left hand"
-						class="absolute left-0 top-1/2 -mt-[116px] h-[232px] min-w-[511px]"
+						class="absolute left-0 top-1/2 -mt-[86px] h-auto max-w-[256px] lg:-mt-[116px] lg:h-[232px] lg:min-w-[511px]"
 					/>
 				</div>
 				<div
@@ -35,7 +37,7 @@ const title = `Immature Responsive Design`;
 					<Image
 						src={rightHand}
 						alt="image of a right hand"
-						class="absolute right-0 top-1/2 -mt-[95px] h-[190px] min-w-[496px]"
+						class="absolute right-0 top-1/2 -mt-[52px] h-auto max-w-[248px] lg:-mt-[95px] lg:h-[190px] lg:min-w-[496px]"
 					/>
 				</div>
 				<div
@@ -45,7 +47,7 @@ const title = `Immature Responsive Design`;
 					<Image
 						src={leftHandTop}
 						alt="inner stacked image of a left hand"
-						class="absolute -left-[1px] top-1/2 -mt-[27px] h-[136px] min-w-[317px]"
+						class="absolute -left-[1px] top-1/2 -mt-[41px] h-auto max-w-[159px] lg:-mt-[27px] lg:h-[136px] lg:min-w-[317px]"
 					/>
 				</div>
 
@@ -60,30 +62,35 @@ const title = `Immature Responsive Design`;
 	</div>
 </BaseLayout>
 
-<script>
-	function initializePage() {
-		const bottom: HTMLElement | null = document.getElementById('bottom');
-		const top: HTMLElement | null = document.getElementById('top');
-		const body: HTMLElement | null = document.body;
-		const resizer = document.getElementById('resize-me');
-
-		const resizeObserver = new ResizeObserver((entries) => {
-			for (const entry of entries) {
-				const resizerBounds = entry.contentRect;
-				if (entry.contentRect && bottom != null && top != null && resizerBounds != null) {
-					if (resizerBounds.right <= 654) {
-						body.classList.add('w-screen', 'h-screen', 'bg-red-500');
-					} else if (resizerBounds?.right && resizerBounds.right > 654) {
-						body.classList.remove('w-screen', 'h-screen', 'bg-red-500');
-					}
-				}
-			}
-		});
-
-		if (resizer) {
-			resizeObserver.observe(resizer);
+<style>
+	@media screen and (width >= 320px) and (width <= 767px) and (orientation: portrait) {
+		html {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			overflow-x: hidden;
+			width: 100vh;
+			height: 100vw;
+			transform: rotate(-90deg);
+			transform-origin: left top;
 		}
 	}
 
-	document.addEventListener('astro:page-load', initializePage);
-</script>
+	@media screen and (orientation: landscape) and (hover: none) {
+		.immature-page-content {
+			@apply pt-11;
+		}
+
+		.page-header {
+			@apply mb-8;
+		}
+
+		#resize {
+			@apply !text-2xl;
+		}
+	}
+
+	:global(.is-resize-limit) {
+		@apply bg-red-500;
+	}
+</style>

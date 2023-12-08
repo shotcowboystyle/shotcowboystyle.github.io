@@ -67,11 +67,6 @@ const title = `Tower Blocks Game`;
 	let overhangs: GeneratedBlock[]; // Overhanging parts that fall down
 	let gameState: (typeof GAME_STATES)[keyof typeof GAME_STATES];
 
-	// const pageContainerElement = document.getElementById('container');
-	// const gameContainerElement = document.getElementById('game');
-	// const scoreElement = document.getElementById('score');
-	// const instructionsElement = document.getElementById('instructions');
-	// const startButton = document.getElementById('start-button');
 	let scoreElement: HTMLElement | null;
 	let pageContainerElement: HTMLElement | null;
 
@@ -176,7 +171,6 @@ const title = `Tower Blocks Game`;
 				if (topLayer.threejs.position[topLayer.direction as BlockPlane] > 10) {
 					missedTheSpot();
 				}
-			} else {
 			}
 
 			// 4 is the initial camera height
@@ -279,6 +273,7 @@ const title = `Tower Blocks Game`;
 
 	function startGame() {
 		updateState(GAME_STATES.PLAYING);
+
 		lastTime = 0;
 		stack = [];
 		overhangs = [];
@@ -313,8 +308,6 @@ const title = `Tower Blocks Game`;
 			camera.position.set(4, 4, 4);
 			camera.lookAt(0, 0, 0);
 		}
-
-		// updateState(GAME_STATES.PLAYING);
 	}
 
 	function init() {
@@ -341,16 +334,6 @@ const title = `Tower Blocks Game`;
 			-100, // near plane
 			1000, // far plane
 		);
-
-		/*
-		// If you want to use perspective camera instead, uncomment these lines
-		camera = new THREE.PerspectiveCamera(
-			45, // field of view
-			aspect, // aspect ratio
-			1, // near plane
-			100 // far plane
-		);
-		*/
 
 		camera.position.set(4, 4, 4);
 		camera.lookAt(0, 0, 0);
@@ -487,13 +470,11 @@ const title = `Tower Blocks Game`;
 	}
 
 	#container #instructions {
-		@apply absolute left-0 top-1/4 w-full text-center opacity-0;
+		@apply absolute left-0 top-1/3 w-full text-center opacity-0;
 
 		transition:
 			opacity 0.5s ease,
 			transform 0.5s ease;
-
-		/* top: 16vh; */
 	}
 
 	#container #instructions.hide {

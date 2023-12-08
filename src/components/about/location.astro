@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import memoji from '@/assets/images/memoji.png';
+import LocationNavigation from '@/components/about/location-navigation.astro';
 import '@/components/about/location.css';
 ---
 
@@ -28,42 +29,26 @@ import '@/components/about/location.css';
 			widths={[72, 120, 220, memoji.width]}
 		/>
 	</div>
+	<LocationNavigation />
 </div>
 
 <script>
-	import maplibregl from 'maplibre-gl';
+	import { eventBus } from '@/utils/event-bus';
+	import { TRANSITION_AFTER_PREPARATION } from 'astro:transitions/client';
 
-	const ACCESS_TOKEN = import.meta.env.PUBLIC_MAPLIBRE_TILES_API_KEY;
-	const LONGITUDE_LATITUDE: [number, number] = [-79.942368, 32.796824];
-
-	function initLocationMap() {
-		const locationMapWrapper = document.getElementById('location-map');
-		if (locationMapWrapper) {
-			const map = new maplibregl.Map({
-				container: 'location-map',
-				style: `/geojson/portfolio_location_map.json?key=${ACCESS_TOKEN}`,
-				center: LONGITUDE_LATITUDE ?? [0, 0],
-				zoom: 12,
-				maxZoom: 12,
-				minZoom: 6,
-				attributionControl: false,
-				scrollZoom: false,
-				interactive: false,
-			});
-
-			const nav = new maplibregl.NavigationControl({
-				showCompass: false,
-			});
-
-			map.on('load', () => {
-				map.addControl(nav, 'bottom-left');
-
-				const mapMarker = document.getElementById('map-marker')!;
-				mapMarker.classList.remove('hidden');
-				new maplibregl.Marker({ element: mapMarker }).setLngLat(LONGITUDE_LATITUDE).addTo(map);
-			});
-		}
+	async function loadModules() {
+		const locationMap = await import('../../lib/location-map.ts').then(
+			(module) => new module.default(),
+		);
+		document.addEventListener(TRANSITION_AFTER_PREPARATION, () => locationMap?.destroy());
 	}
 
-	document.addEventListener('astro:page-load', initLocationMap);
+	document.addEventListener(
+		'astro:page-load',
+		() => {
+			loadModules();
+			eventBus.on('landingLoaded', loadModules);
+		},
+		{ once: true },
+	);
 </script>

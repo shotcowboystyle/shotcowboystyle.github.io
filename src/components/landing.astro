@@ -9,10 +9,10 @@ const projects = await getCollection('project');
 
 <header
 	id="header"
-	class="full-screen-section relative -mb-[100vh] h-[200vh]"
+	class="js-section-card-wrapper relative -mb-[100vh] h-[200vh]"
 >
 	<div
-		class="full-screen-section-content h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
+		class="js-section-card h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
 	>
 		<HeaderContent />
 	</div>
@@ -27,10 +27,10 @@ const projects = await getCollection('project');
 			projects.map((project, idx) => (
 				<div
 					id={`project-card_${idx + 1}`}
-					class="project-card full-screen-section relative -mb-[100vh] h-[250vh]"
+					class="project-card js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
 				>
 					<div class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
-						<div class="full-screen-section-content sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
+						<div class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
 							<ProjectCard project={project} />
 						</div>
 					</div>
@@ -48,33 +48,21 @@ const projects = await getCollection('project');
 </footer>
 
 <script>
-	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/all';
+	import { eventBus } from '@/utils/event-bus';
 
-	gsap.registerPlugin(ScrollTrigger);
-
-	function initCardSectionsAnimations() {
-		const cardWrappers = document.querySelectorAll<HTMLElement>('.full-screen-section');
-		cardWrappers.forEach(($el) => {
-			const card = $el.querySelector<HTMLElement>('.full-screen-section-content');
-			gsap.to(card, {
-				scale: 0.5,
-				autoAlpha: 0,
-				filter: 'blur(20px)',
-				scrollTrigger: {
-					trigger: $el,
-					start: `bottom bottom+=${card?.offsetHeight}`,
-					end: `+=${window.innerHeight}`,
-					scrub: true,
-					invalidateOnRefresh: true,
-				},
-			});
-		});
+	async function loadModules() {
+		await import('../lib/section-card-scroll-animation.ts').then((module) => new module.default());
+		await import('../lib/split-text.ts').then((module) => new module.default());
+		const textReveal = await import('../lib/text-reveal.ts').then((module) => new module.default());
+		textReveal.animate();
 	}
 
-	function initApp() {
-		initCardSectionsAnimations();
-	}
-
-	document.addEventListener('astro:page-load', initApp);
+	document.addEventListener(
+		'astro:page-load',
+		() => {
+			loadModules();
+			eventBus.on('landingLoaded', loadModules);
+		},
+		{ once: true },
+	);
 </script>
