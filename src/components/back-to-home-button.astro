@@ -1,16 +1,27 @@
 ---
 import SvgSprite from '@/components/SvgSprite.astro';
+
+interface Props {
+	variant?: 'light' | 'dark';
+}
+
+const { variant = 'light' } = Astro.props;
 ---
 
 <a
 	id="back-to-home-button"
-	class="back-button"
+	class:list={[
+		'back-button',
+		variant === 'dark'
+			? 'before:border-black after:border-black'
+			: 'before:border-white after:border-white',
+	]}
 	href="/"
 >
 	<div class="back-button-box">
 		{
 			Array.from({ length: 2 }).map(() => (
-				<span class="back-button-elem">
+				<span class:list={['back-button-elem', variant === 'dark' ? 'fill-black' : 'fill-white']}>
 					<SvgSprite
 						name="arrow-left"
 						class="h-auto w-6"
@@ -23,7 +34,7 @@ import SvgSprite from '@/components/SvgSprite.astro';
 
 <style>
 	.back-button {
-		@apply relative top-1 z-50 ml-1 block h-14 w-14 cursor-pointer overflow-hidden border-none bg-transparent outline-none md:top-6 md:ml-6;
+		@apply relative z-50 block h-14 w-14 cursor-pointer overflow-hidden border-none bg-transparent outline-none;
 
 		&::before,
 		&::after {
@@ -34,7 +45,7 @@ import SvgSprite from '@/components/SvgSprite.astro';
 		}
 
 		&::before {
-			@apply border-4 border-solid border-white;
+			@apply border-4 border-solid;
 
 			transition:
 				opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
@@ -42,7 +53,7 @@ import SvgSprite from '@/components/SvgSprite.astro';
 		}
 
 		&::after {
-			@apply border-4 border-solid border-white opacity-0;
+			@apply border-4 border-solid opacity-0;
 
 			transition:
 				opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
@@ -76,7 +87,7 @@ import SvgSprite from '@/components/SvgSprite.astro';
 	}
 
 	.back-button-elem {
-		@apply mx-4 my-0 block h-auto w-6 fill-white;
+		@apply mx-4 my-0 block h-auto w-6;
 
 		transform: rotate(180deg);
 	}
@@ -89,13 +100,19 @@ import SvgSprite from '@/components/SvgSprite.astro';
 
 	@media screen and (orientation: landscape) and (hover: none) {
 		.back-button {
-			@apply fixed h-32 w-32;
+			width: 8rem;
+			height: 8rem;
 		}
 
 		.back-button-elem {
-			@apply mx-9 w-14;
-
+			width: 4rem;
+			margin-right: 1.5rem;
+			margin-left: 1.5rem;
 			transform: rotate(180deg);
+		}
+
+		.back-button-elem svg {
+			width: 3rem;
 		}
 	}
 </style>

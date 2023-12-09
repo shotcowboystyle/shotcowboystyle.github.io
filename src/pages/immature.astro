@@ -11,12 +11,14 @@ const title = `Immature Responsive Design`;
 ---
 
 <BaseLayout meta={{ title }}>
-	<BackToHomeButton />
-
 	<div class="immature-page-content relative h-full w-full px-0.5 pb-0 pt-8 lg:px-24 lg:pt-24">
-		<h1 class="page-header mx-auto text-center text-white max-lg:!text-8xl lg:max-w-4xl">
-			Responsive design can be so immature.
-		</h1>
+		<div class="mx-auto flex w-full items-center px-16">
+			<BackToHomeButton />
+
+			<h1 class="page-header text-center text-white max-lg:!text-8xl lg:max-w-4xl">
+				Responsive design can be so immature
+			</h1>
+		</div>
 
 		<ResizerContainer class="relative mx-auto w-full">
 			<div class="relative h-[60vh] min-h-[60vh] w-full select-none overflow-hidden">
@@ -62,9 +64,9 @@ const title = `Immature Responsive Design`;
 	</div>
 </BaseLayout>
 
-<style>
+<style is:inline>
 	@media screen and (width >= 320px) and (width <= 767px) and (orientation: portrait) {
-		html {
+		main {
 			position: absolute;
 			top: 100%;
 			left: 0;
@@ -78,15 +80,21 @@ const title = `Immature Responsive Design`;
 
 	@media screen and (orientation: landscape) and (hover: none) {
 		.immature-page-content {
-			@apply pt-11;
+			padding-top: 2.75rem;
 		}
 
 		.page-header {
-			@apply mb-8;
+			margin-left: 2rem;
+			text-align: left !important;
 		}
 
 		#resize {
-			@apply !text-2xl;
+			font-size: clamp(
+				1.6018rem,
+				calc(1.6018rem + ((2.16 - 1.6018) * ((100vw - 20rem) / (96 - 20)))),
+				2.16rem
+			) !important;
+			line-height: 1.2 !important;
 		}
 	}
 
