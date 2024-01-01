@@ -233,7 +233,7 @@ devDependencies:
     specifier: 22.0.10
     version: 22.0.10(typescript@5.3.3)
   stylelint:
-    specifier: ^15.10.3
+    specifier: ^15.11.0
     version: 15.11.0(typescript@5.3.3)
   stylelint-config-html:
     specifier: ^1.1.0
