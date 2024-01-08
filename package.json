@@ -108,7 +108,7 @@
 		"npm-run-all2": "^6.1.1",
 		"playwright": "^1.40.1",
 		"playwright-lighthouse": "^3.2.5",
-		"postcss": "^8.4.32",
+		"postcss": "^8.4.33",
 		"postcss-combine-duplicated-selectors": "10.0.3",
 		"postcss-for": "^2.1.1",
 		"postcss-html": "^1.5.0",
