@@ -111,7 +111,7 @@
 		"postcss": "^8.4.33",
 		"postcss-combine-duplicated-selectors": "10.0.3",
 		"postcss-for": "^2.1.1",
-		"postcss-html": "^1.5.0",
+		"postcss-html": "^1.6.0",
 		"postcss-import": "^15.1.0",
 		"postcss-nesting": "^12.0.2",
 		"postcss-preset-env": "^9.3.0",
