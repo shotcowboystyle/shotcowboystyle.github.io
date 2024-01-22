@@ -107,7 +107,7 @@
 		"npm-package-json-lint-config-default": "^6.0.0",
 		"npm-run-all2": "^6.1.1",
 		"playwright": "^1.41.1",
-		"playwright-lighthouse": "^3.2.6",
+		"playwright-lighthouse": "^4.0.0",
 		"postcss": "^8.4.33",
 		"postcss-combine-duplicated-selectors": "10.0.3",
 		"postcss-for": "^2.1.1",
