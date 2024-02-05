@@ -58,7 +58,7 @@
 		"cannon": "^0.6.2",
 		"gsap": "^3.12.5",
 		"lottie-web": "^5.12.2",
-		"maplibre-gl": "^3.6.2",
+		"maplibre-gl": "^4.0.0",
 		"sharp": "^0.33.2",
 		"split-type": "^0.3.4",
 		"swiper": "^11.0.5",
