@@ -12,7 +12,7 @@ dependencies:
     specifier: ^5.1.0
     version: 5.1.0(astro@4.3.5)(tailwindcss@3.4.1)
   '@builder.io/qwik':
-    specifier: ^1.4.3
+    specifier: ^1.4.4
     version: 1.4.4(@types/node@20.11.17)(undici@6.6.2)
   '@qwikdev/astro':
     specifier: ^0.5.2
@@ -48,7 +48,7 @@ dependencies:
     specifier: ^0.3.4
     version: 0.3.4
   swiper:
-    specifier: ^11.0.5
+    specifier: ^11.0.6
     version: 11.0.6
   three:
     specifier: ^0.161.0
@@ -56,14 +56,14 @@ dependencies:
 
 devDependencies:
   '@astrojs/check':
-    specifier: ^0.4.1
-    version: 0.4.1(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.3.3)
+    specifier: ^0.5.3
+    version: 0.5.3(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.3.3)
   '@astrojs/ts-plugin':
-    specifier: ^1.4.0
+    specifier: ^1.5.1
     version: 1.5.1
   '@axe-core/playwright':
-    specifier: ^4.8.4
-    version: 4.8.4(playwright-core@1.41.2)
+    specifier: ^4.8.5
+    version: 4.8.5(playwright-core@1.41.2)
   '@commitlint/cli':
     specifier: ^18.6.0
     version: 18.6.0(@types/node@20.11.17)(typescript@5.3.3)
@@ -101,10 +101,10 @@ devDependencies:
     specifier: ^0.161.2
     version: 0.161.2
   '@typescript-eslint/eslint-plugin':
-    specifier: ^6.20.0
+    specifier: ^6.21.0
     version: 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)
   '@typescript-eslint/parser':
-    specifier: ^6.20.0
+    specifier: ^6.21.0
     version: 6.21.0(eslint@8.56.0)(typescript@5.3.3)
   astro-compress:
     specifier: 2.2.10
@@ -140,7 +140,7 @@ devDependencies:
     specifier: ^3.3.0
     version: 3.3.0(@types/node@20.11.17)(typescript@5.3.3)
   daisyui:
-    specifier: ^4.6.1
+    specifier: ^4.6.3
     version: 4.6.3(postcss@8.4.35)
   eslint:
     specifier: ^8.56.0
@@ -275,8 +275,8 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.22
 
-  /@astrojs/check@0.4.1(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.3.3):
-    resolution: {integrity: sha512-XEsuU4TlWkgcsvdeessq5mXLXV1fejtxIioCPv/FfhTzb1bDYe2BtLiSBK+rFTyD9Hl686YOas9AGNMJcpoRsw==}
+  /@astrojs/check@0.5.3(prettier-plugin-astro@0.13.0)(prettier@3.2.5)(typescript@5.3.3):
+    resolution: {integrity: sha512-+1zmcYOq0x5YM0ixFk+he/Px16b8eGDl9teAfmeXOsU3ZB1EtRvvanoF7CUYdxuNKirDXuzJn1Zn3WsN9fvAaw==}
     hasBin: true
     peerDependencies:
       typescript: ^5.0.0
@@ -409,8 +409,8 @@ packages:
       vscode-languageserver-textdocument: 1.0.11
     dev: true
 
-  /@axe-core/playwright@4.8.4(playwright-core@1.41.2):
-    resolution: {integrity: sha512-xpwd+T0BODt19hnXW0eX9xf+H/Ns1rdWwZNmuCV9UoTqjZ9mGm1F80pvh/A1r317ooltq8nwqcoVO9jbHWKSdA==}
+  /@axe-core/playwright@4.8.5(playwright-core@1.41.2):
+    resolution: {integrity: sha512-GFdXXAEn9uk0Vyzgl2eEP+VwvgGzas0YSnacoJ/0U237G83zWZ1PhbP/RDymm0cqevoA+xRjMo+ONzh9Q711nw==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
