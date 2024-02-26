@@ -10,19 +10,19 @@ dependencies:
     version: 3.1.1
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.4.0)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.4.4)(tailwindcss@3.4.1)
   '@builder.io/qwik':
     specifier: ^1.4.5
     version: 1.4.5(@types/node@20.11.19)(undici@6.6.2)
   '@qwikdev/astro':
     specifier: ^0.5.7
-    version: 0.5.7(@builder.io/qwik@1.4.5)(astro@4.4.0)(typescript@5.3.3)
+    version: 0.5.7(@builder.io/qwik@1.4.5)(astro@4.4.4)(typescript@5.3.3)
   '@studio-freight/lenis':
     specifier: ^1.0.39
     version: 1.0.39
   astro:
-    specifier: ^4.4.0
-    version: 4.4.0(@types/node@20.11.19)(typescript@5.3.3)
+    specifier: ^4.4.4
+    version: 4.4.4(@types/node@20.11.19)(typescript@5.3.3)
   astro-svg-sprite:
     specifier: ^1.1.0
     version: 1.1.0
@@ -117,7 +117,7 @@ devDependencies:
     version: 0.16.3
   astro-purgecss:
     specifier: ^4.1.0
-    version: 4.1.0(astro@4.4.0)(purgecss@5.0.0)
+    version: 4.1.0(astro@4.4.4)(purgecss@5.0.0)
   autoprefixer:
     specifier: ^10.4.17
     version: 10.4.17(postcss@8.4.35)
@@ -369,13 +369,13 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.4.0)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.4.4)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.4.0(@types/node@20.11.19)(typescript@5.3.3)
+      astro: 4.4.4(@types/node@20.11.19)(typescript@5.3.3)
       autoprefixer: 10.4.17(postcss@8.4.35)
       postcss: 8.4.35
       postcss-load-config: 4.0.2(postcss@8.4.35)
@@ -2740,14 +2740,14 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.5.7(@builder.io/qwik@1.4.5)(astro@4.4.0)(typescript@5.3.3):
+  /@qwikdev/astro@0.5.7(@builder.io/qwik@1.4.5)(astro@4.4.4)(typescript@5.3.3):
     resolution: {integrity: sha512-EftMvEaVTd8gt8K6sz3RnULUaPtME2ayVKz7TE4UzSUZYL5HSAfraA/hzEkNGX2Odl+XvcZFMVhweEiV+4HfyA==}
     peerDependencies:
       '@builder.io/qwik': ^1.4.2
       typescript: ^5.3.2
     dependencies:
       '@builder.io/qwik': 1.4.5(@types/node@20.11.19)(undici@6.6.2)
-      astro-integration-kit: 0.2.1(astro@4.4.0)
+      astro-integration-kit: 0.2.1(astro@4.4.4)
       fs-extra: 11.2.0
       typescript: 5.3.3
       vite-tsconfig-paths: 4.3.1(typescript@5.3.3)
@@ -3887,22 +3887,22 @@ packages:
       - supports-color
     dev: true
 
-  /astro-integration-kit@0.2.1(astro@4.4.0):
+  /astro-integration-kit@0.2.1(astro@4.4.4):
     resolution: {integrity: sha512-AWgFRvo3YSpFxVfDdhHRAkOR7KmNYrS7h4JCpOBgMtea6SrpARsmfZXXgFHF+nNFJxmIA//PYetkbB/HQGzutw==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
-      astro: 4.4.0(@types/node@20.11.19)(typescript@5.3.3)
+      astro: 4.4.4(@types/node@20.11.19)(typescript@5.3.3)
       pathe: 1.1.2
     dev: false
 
-  /astro-purgecss@4.1.0(astro@4.4.0)(purgecss@5.0.0):
+  /astro-purgecss@4.1.0(astro@4.4.4)(purgecss@5.0.0):
     resolution: {integrity: sha512-CVxAXVuKYJZS2lbFEJJ9lKCnUx0FSd9+5muZTLdhXBWHiNpx1PKmR9WNJykP4ArCdpDPjkWSudyYUqMDAAA43w==}
     peerDependencies:
       astro: ^4.0.0
       purgecss: ^5.0.0
     dependencies:
-      astro: 4.4.0(@types/node@20.11.19)(typescript@5.3.3)
+      astro: 4.4.4(@types/node@20.11.19)(typescript@5.3.3)
       purgecss: 5.0.0
     dev: true
 
@@ -3917,8 +3917,8 @@ packages:
       uglify-js: 3.17.4
     dev: false
 
-  /astro@4.4.0(@types/node@20.11.19)(typescript@5.3.3):
-    resolution: {integrity: sha512-JAsMrm1Z6W4Iqg9Q7LW/6lCXrqa4jndEOlR/yu7NGNP0BrPwSM8i4+yzya6hxgsNvyyVK8ywthaNhFmqd8Z+cg==}
+  /astro@4.4.4(@types/node@20.11.19)(typescript@5.3.3):
+    resolution: {integrity: sha512-EZrDTN888w4sFKqavGsHu8jSaymyxNwnoqIq5NKlMG9WNU/Xn4Yn41pUdBuAOrgNzRp1NyXXhhV6GV1pN71V2Q==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -3974,7 +3974,6 @@ packages:
       rehype: 13.0.1
       resolve: 1.22.8
       semver: 7.6.0
-      server-destroy: 1.0.1
       shikiji: 0.9.19
       shikiji-core: 0.9.19
       string-width: 7.1.0
@@ -5245,6 +5244,7 @@ packages:
   /deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
+    requiresBuild: true
 
   /deep-freeze@0.0.1:
     resolution: {integrity: sha512-Z+z8HiAvsGwmjqlphnHW5oz6yWlOwu6EQfFTjmeTWlDeda3FS2yv3jhq35TX/ewmsnqB+RX2IdsIOyjJCQN5tg==}
@@ -11437,9 +11437,6 @@ packages:
     dependencies:
       lru-cache: 6.0.0
 
-  /server-destroy@1.0.1:
-    resolution: {integrity: sha512-rb+9B5YBIEzYcD6x2VKidaa+cqYBJQKnU4oe4E3ANwRRN56yk/ua1YCJT1n21NTS8w6CcOclAKNP3PhdCXKYtQ==}
-
   /set-function-length@1.2.1:
     resolution: {integrity: sha512-j4t6ccc+VsKwYHso+kElc5neZpjtq9EnRICFZtWyBsLojhmeF/ZBd/elqm22WJh/BziDe/SBiOeAt0m2mfLD0g==}
     engines: {node: '>= 0.4'}
@@ -11951,6 +11948,7 @@ packages:
   /strip-json-comments@2.0.1:
     resolution: {integrity: sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
 
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
@@ -12265,6 +12263,7 @@ packages:
 
   /tar-stream@3.1.7:
     resolution: {integrity: sha512-qJj60CXt7IU1Ffyc3NJMjh6EkuCFej46zUqJ4J7pqYlThyd9bO0XBTmcOIhSzZJVWfsLks0+nle/j538YAW9RQ==}
+    requiresBuild: true
     dependencies:
       b4a: 1.6.6
       fast-fifo: 1.3.2
