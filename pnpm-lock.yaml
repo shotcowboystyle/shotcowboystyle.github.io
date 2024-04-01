@@ -6,17 +6,17 @@ settings:
 
 dependencies:
   '@astrojs/sitemap':
-    specifier: ^3.1.1
-    version: 3.1.1
+    specifier: ^3.1.2
+    version: 3.1.2
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.5.9)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.5.9)(tailwindcss@3.4.3)
   '@builder.io/qwik':
     specifier: ^1.5.1
     version: 1.5.1(@types/node@20.11.30)(undici@6.10.1)
   '@qwikdev/astro':
-    specifier: ^0.5.13
-    version: 0.5.13(@builder.io/qwik@1.5.1)(astro@4.5.9)(typescript@5.4.3)
+    specifier: ^0.5.14
+    version: 0.5.14(@builder.io/qwik@1.5.1)(astro@4.5.9)(typescript@5.4.3)
   '@studio-freight/lenis':
     specifier: ^1.0.42
     version: 1.0.42
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^5.12.2
     version: 5.12.2
   maplibre-gl:
-    specifier: ^4.1.1
-    version: 4.1.1
+    specifier: ^4.1.2
+    version: 4.1.2
   sharp:
     specifier: ^0.33.3
     version: 0.33.3
@@ -48,11 +48,11 @@ dependencies:
     specifier: ^0.3.4
     version: 0.3.4
   swiper:
-    specifier: ^11.0.7
-    version: 11.0.7
+    specifier: ^11.1.0
+    version: 11.1.0
   three:
-    specifier: ^0.162.0
-    version: 0.162.0
+    specifier: ^0.163.0
+    version: 0.163.0
 
 devDependencies:
   '@astrojs/check':
@@ -95,16 +95,16 @@ devDependencies:
     specifier: ^0.1.12
     version: 0.1.12
   '@types/eslint':
-    specifier: ^8.56.6
-    version: 8.56.6
+    specifier: ^8.56.7
+    version: 8.56.7
   '@types/three':
-    specifier: ^0.162.0
-    version: 0.162.0
+    specifier: ^0.163.0
+    version: 0.163.0
   '@typescript-eslint/eslint-plugin':
-    specifier: ^7.3.1
+    specifier: ^7.4.0
     version: 7.4.0(@typescript-eslint/parser@7.4.0)(eslint@8.57.0)(typescript@5.4.3)
   '@typescript-eslint/parser':
-    specifier: ^7.3.1
+    specifier: ^7.4.0
     version: 7.4.0(eslint@8.57.0)(typescript@5.4.3)
   astro-compress:
     specifier: 2.2.17
@@ -131,17 +131,17 @@ devDependencies:
     specifier: ^7.0.2
     version: 7.0.2
   cspell:
-    specifier: ^8.6.0
+    specifier: ^8.6.1
     version: 8.6.1
   cssnano:
-    specifier: ^6.1.1
+    specifier: ^6.1.2
     version: 6.1.2(postcss@8.4.38)
   cz-conventional-changelog:
     specifier: ^3.3.0
     version: 3.3.0(@types/node@20.11.30)(typescript@5.4.3)
   daisyui:
-    specifier: ^4.8.0
-    version: 4.8.0(postcss@8.4.38)
+    specifier: ^4.9.0
+    version: 4.9.0(postcss@8.4.38)
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -161,8 +161,8 @@ devDependencies:
     specifier: ^4.0.1
     version: 4.0.1(eslint@8.57.0)
   knip:
-    specifier: ^5.4.0
-    version: 5.5.0(@types/node@20.11.30)(typescript@5.4.3)
+    specifier: ^5.7.0
+    version: 5.7.0(@types/node@20.11.30)(typescript@5.4.3)
   lefthook:
     specifier: 1.6.7
     version: 1.6.7
@@ -246,13 +246,13 @@ devDependencies:
     version: 36.0.0(stylelint@16.3.1)
   stylelint-config-tailwindcss:
     specifier: ^0.0.7
-    version: 0.0.7(stylelint@16.3.1)(tailwindcss@3.4.1)
+    version: 0.0.7(stylelint@16.3.1)(tailwindcss@3.4.3)
   tailwindcss:
-    specifier: ^3.4.1
-    version: 3.4.1
+    specifier: ^3.4.3
+    version: 3.4.3
   tailwindcss-fluid-type:
-    specifier: ^2.0.3
-    version: 2.0.6(tailwindcss@3.4.1)
+    specifier: ^2.0.6
+    version: 2.0.6(tailwindcss@3.4.3)
   typescript:
     specifier: ^5.4.3
     version: 5.4.3
@@ -366,14 +366,14 @@ packages:
     dependencies:
       prismjs: 1.29.0
 
-  /@astrojs/sitemap@3.1.1:
-    resolution: {integrity: sha512-qPgdBIcDUaea98mTtLfi5z9oXZpzSjEn/kes70/Ex8FOZZ+DIHVKRYOLOtvy8p+FTXr/9oc7BjmIbTYmYLLJVg==}
+  /@astrojs/sitemap@3.1.2:
+    resolution: {integrity: sha512-FxOJldIl5ltZ5CNjocQxHkAO9orwHBjqtaU28o4smobp9vowS0nbGp+I9CrPxkzWdl1crSDm9vjL9tnvG1DSug==}
     dependencies:
       sitemap: 7.1.1
       zod: 3.22.4
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.5.9)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.5.9)(tailwindcss@3.4.3):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
@@ -383,7 +383,7 @@ packages:
       autoprefixer: 10.4.19(postcss@8.4.38)
       postcss: 8.4.38
       postcss-load-config: 4.0.2(postcss@8.4.38)
-      tailwindcss: 3.4.1
+      tailwindcss: 3.4.3
     transitivePeerDependencies:
       - ts-node
     dev: false
@@ -2958,8 +2958,8 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.5.13(@builder.io/qwik@1.5.1)(astro@4.5.9)(typescript@5.4.3):
-    resolution: {integrity: sha512-AIyK+iVfP3NM4l7ecbdf0dmdzTLPXsEMonR0t4yUpWVVBhWZD9fbnKto8JG7T4gko9mjTCjSA2LZGhMLXD+o+g==}
+  /@qwikdev/astro@0.5.14(@builder.io/qwik@1.5.1)(astro@4.5.9)(typescript@5.4.3):
+    resolution: {integrity: sha512-lekZ9RPDqpJ6wjneSHXmmXk6/1IHfaZP6zcAozE0Q0WK7oacdOfb6JuPTpYn966IZDdgmnq3TFv3a9YwOCiq4Q==}
     peerDependencies:
       '@builder.io/qwik': ^1.5.1
       typescript: ^5.4.2
@@ -3345,8 +3345,8 @@ packages:
     dependencies:
       '@types/ms': 0.7.34
 
-  /@types/eslint@8.56.6:
-    resolution: {integrity: sha512-ymwc+qb1XkjT/gfoQwxIeHZ6ixH23A+tCT2ADSA/DPVKzAjwYkTXBMCQ/f6fe4wEa85Lhp26VPeUxI7wMhAi7A==}
+  /@types/eslint@8.56.7:
+    resolution: {integrity: sha512-SjDvI/x3zsZnOkYZ3lCt9lOZWZLB2jIlNKz+LBgCtDurK0JZcwucxYHn1w2BJkD34dgX9Tjnak0txtq4WTggEA==}
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
@@ -3445,7 +3445,7 @@ packages:
   /@types/sax@1.2.7:
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 20.11.30
     dev: false
 
   /@types/semver@7.5.8:
@@ -3462,13 +3462,13 @@ packages:
       '@types/geojson': 7946.0.14
     dev: false
 
-  /@types/three@0.162.0:
-    resolution: {integrity: sha512-0j5yZcVukVIhrhSIC7+LmBPkkMoMuEJ1AfYBZfgNytdYqYREMuiyXWhYOMeZLBElTEAlJIZn7r2W3vqTIgjWlg==}
+  /@types/three@0.163.0:
+    resolution: {integrity: sha512-uIdDhsXRpQiBUkflBS/i1l3JX14fW6Ot9csed60nfbZNXHDTRsnV2xnTVwXcgbvTiboAR4IW+t+lTL5f1rqIqA==}
     dependencies:
       '@tweenjs/tween.js': 23.1.1
       '@types/stats.js': 0.17.3
       '@types/webxr': 0.5.14
-      fflate: 0.6.10
+      fflate: 0.8.2
       meshoptimizer: 0.18.1
     dev: true
 
@@ -5356,8 +5356,8 @@ packages:
       - typescript
     dev: true
 
-  /daisyui@4.8.0(postcss@8.4.38):
-    resolution: {integrity: sha512-SXy6MVzhqaa1vPZIdo5K/QAyRaQ4dbRHG+oXy7BFqJnZlwOB6bGkQRqqvClBUY2wCyiiyhk4gY5Ngi1m2JRIEA==}
+  /daisyui@4.9.0(postcss@8.4.38):
+    resolution: {integrity: sha512-9JsDx4E+30kPxThE+6yEwQokqg1957uwTx/skP2RE98fG6Ten6U+S9YXeQg1a3CI958aF5aOb0oEA+KZFfrZUA==}
     engines: {node: '>=16.9.0'}
     dependencies:
       css-selector-tokenizer: 0.8.0
@@ -6393,8 +6393,8 @@ packages:
         optional: true
     dev: true
 
-  /fflate@0.6.10:
-    resolution: {integrity: sha512-IQrh3lEPM93wVCEczc9SaAOvkmcoQn/G8Bo1e8ZPlY3X3bnAxWaBdvTdvM1hP62iZp0BXWDy4vTAy4fF0+Dlpg==}
+  /fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
     dev: true
 
   /figures@2.0.0:
@@ -7970,8 +7970,8 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
 
-  /knip@5.5.0(@types/node@20.11.30)(typescript@5.4.3):
-    resolution: {integrity: sha512-50hMAFPBW2z/IJeW5rNKKNNLXVQNJFJDQ72C4o+vsCNCiPv5mn4M52iQVsp8hwjOcVGYB7bKFKaNVzPAQ6C4gw==}
+  /knip@5.7.0(@types/node@20.11.30)(typescript@5.4.3):
+    resolution: {integrity: sha512-wTw7Mt7nGa8dBelC3UrAzBtRqHwER7o6m+GzNYGMlt6HnJ/5IoKoxC/1KvPfyXanEJfsSq0ciSchdtnN0RA9RA==}
     engines: {node: '>=18.6.0'}
     hasBin: true
     peerDependencies:
@@ -7996,6 +7996,7 @@ packages:
       picocolors: 1.0.0
       picomatch: 4.0.1
       pretty-ms: 9.0.0
+      resolve: 1.22.8
       smol-toml: 1.1.4
       strip-json-comments: 5.0.1
       summary: 2.1.0
@@ -8518,8 +8519,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /maplibre-gl@4.1.1:
-    resolution: {integrity: sha512-DmHru9FTHCOngNHzIx9W2+MlUziYPfPxd2qjyeWwczBYNx2SDpmH394MkuCvSgnfUm5Zvs4NaYCqMu44jUga1Q==}
+  /maplibre-gl@4.1.2:
+    resolution: {integrity: sha512-98T+3BesL4w/N39q/rgs9q6HzHLG6pgbS9UaTqg6fMISfzy2WGKokjK205ENFDDmEljj54/LTfdXgqg2XfYU4A==}
     engines: {node: '>=16.14.0', npm: '>=8.1.0'}
     dependencies:
       '@mapbox/geojson-rewind': 0.5.2
@@ -12280,14 +12281,14 @@ packages:
       stylelint-config-recommended: 14.0.0(stylelint@16.3.1)
     dev: true
 
-  /stylelint-config-tailwindcss@0.0.7(stylelint@16.3.1)(tailwindcss@3.4.1):
+  /stylelint-config-tailwindcss@0.0.7(stylelint@16.3.1)(tailwindcss@3.4.3):
     resolution: {integrity: sha512-n2dCWH+0ppr0/by4EYCLWW7g5LU+l4UzUIsYS7xbVHqvm9UWa7UhltNdNiz5NmLF/FmbJR4Yd/v9DuUGvLw1Tg==}
     peerDependencies:
       stylelint: '>=13.13.1'
       tailwindcss: '>=2.2.16'
     dependencies:
       stylelint: 16.3.1(typescript@5.4.3)
-      tailwindcss: 3.4.1
+      tailwindcss: 3.4.3
     dev: true
 
   /stylelint-order@6.0.4(stylelint@16.3.1):
@@ -12432,8 +12433,8 @@ packages:
       picocolors: 1.0.0
     dev: true
 
-  /swiper@11.0.7:
-    resolution: {integrity: sha512-cDfglW1B6uSmB6eB6pNmzDTNLmZtu5bWWa1vak0RU7fOI9qHjMzl7gVBvYSl34b0RU2N11HxxETJqQ5LeqI1cA==}
+  /swiper@11.1.0:
+    resolution: {integrity: sha512-Pm78CgU7Wvg+w/MgIL/1NwMSLgx0XqFof25EnVyX8iZFCYJv5CppH7LHkBj43qW2k5Cp3Iz7FcdBxrox7XX2AQ==}
     engines: {node: '>= 4.7.0'}
     dev: false
 
@@ -12456,16 +12457,16 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss-fluid-type@2.0.6(tailwindcss@3.4.1):
+  /tailwindcss-fluid-type@2.0.6(tailwindcss@3.4.3):
     resolution: {integrity: sha512-52cOi3zDHWNChRbwlZ9r7UnY/1LGBFQA0enaFfy8zGrXuXuWSxZZFssrMBh717C9HjdBay7Qn3amH89VirsIsw==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.4.1
+      tailwindcss: 3.4.3
     dev: true
 
-  /tailwindcss@3.4.1:
-    resolution: {integrity: sha512-qAYmXRfk3ENzuPBakNK0SRrUDipP8NQnEY6772uDhflcQz5EhRdD7JNZxyrFHVQNCwULPBn6FNPp9brpO7ctcA==}
+  /tailwindcss@3.4.3:
+    resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -12592,8 +12593,8 @@ packages:
     resolution: {integrity: sha512-8m5jexZL3k+7fsHZleBvVzECTUI+38CYgT+0KkFtu3elXSAm7WbWB3z3jk78CuKQmNWYHoN4u5zb0BUTSpNUrw==}
     dev: true
 
-  /three@0.162.0:
-    resolution: {integrity: sha512-xfCYj4RnlozReCmUd+XQzj6/5OjDNHBy5nT6rVwrOKGENAvpXe2z1jL+DZYaMu4/9pNsjH/4Os/VvS9IrH7IOQ==}
+  /three@0.163.0:
+    resolution: {integrity: sha512-HlMgCb2TF/dTLRtknBnjUTsR8FsDqBY43itYop2+Zg822I+Kd0Ua2vs8CvfBVefXkBdNDrLMoRTGCIIpfCuDew==}
     dev: false
 
   /through2@2.0.5:
