@@ -63,7 +63,7 @@ devDependencies:
     version: 1.6.1
   '@axe-core/playwright':
     specifier: ^4.9.0
-    version: 4.9.0(playwright-core@1.42.1)
+    version: 4.9.0(playwright-core@1.43.0)
   '@commitlint/cli':
     specifier: ^19.2.1
     version: 19.2.1(@types/node@20.12.4)(typescript@5.4.4)
@@ -183,7 +183,7 @@ devDependencies:
     version: 1.43.0
   playwright-lighthouse:
     specifier: ^4.0.0
-    version: 4.0.0(lighthouse@11.7.1)(playwright-core@1.42.1)
+    version: 4.0.0(lighthouse@11.7.1)(playwright-core@1.43.0)
   postcss:
     specifier: ^8.4.38
     version: 8.4.38
@@ -203,8 +203,8 @@ devDependencies:
     specifier: ^12.1.1
     version: 12.1.1(postcss@8.4.38)
   postcss-preset-env:
-    specifier: ^9.5.4
-    version: 9.5.4(postcss@8.4.38)
+    specifier: ^9.5.5
+    version: 9.5.5(postcss@8.4.38)
   postcss-random:
     specifier: ^1.0.9
     version: 1.0.9
@@ -417,13 +417,13 @@ packages:
       vscode-languageserver-textdocument: 1.0.11
     dev: true
 
-  /@axe-core/playwright@4.9.0(playwright-core@1.42.1):
+  /@axe-core/playwright@4.9.0(playwright-core@1.43.0):
     resolution: {integrity: sha512-Q1Lz75dNsX38jof+aev7RficDMdH/HLOLySkDdXR0fUoeFcLdw4UNgDO2CNNP4CTpoesEdfYRdd6VmDXjhBgbA==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
       axe-core: 4.9.0
-      playwright-core: 1.42.1
+      playwright-core: 1.43.0
     dev: true
 
   /@babel/code-frame@7.24.2:
@@ -9968,19 +9968,13 @@ packages:
     dependencies:
       find-up: 4.1.0
 
-  /playwright-core@1.42.1:
-    resolution: {integrity: sha512-mxz6zclokgrke9p1vtdy/COWBH+eOZgYUVVU34C73M+4j4HLlQJHtfcqiqqxpP0o8HhMkflvfbquLX5dg6wlfA==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dev: true
-
   /playwright-core@1.43.0:
     resolution: {integrity: sha512-iWFjyBUH97+pUFiyTqSLd8cDMMOS0r2ZYz2qEsPjH8/bX++sbIJT35MSwKnp1r/OQBAqC5XO99xFbJ9XClhf4w==}
     engines: {node: '>=16'}
     hasBin: true
     dev: true
 
-  /playwright-lighthouse@4.0.0(lighthouse@11.7.1)(playwright-core@1.42.1):
+  /playwright-lighthouse@4.0.0(lighthouse@11.7.1)(playwright-core@1.43.0):
     resolution: {integrity: sha512-8sLhKLYD9k08UjKMSPzYBCZZ6Ct+wZPUe+K58hZEHIdyyXHg+jniWgd+C2W57B+MDstHiYSbyBiN9S8mzUH82w==}
     engines: {node: '>=16.x'}
     peerDependencies:
@@ -9992,7 +9986,7 @@ packages:
     dependencies:
       chalk: 4.1.2
       lighthouse: 11.7.1
-      playwright-core: 1.42.1
+      playwright-core: 1.43.0
       ua-parser-js: 1.0.37
     dev: true
 
@@ -10138,8 +10132,8 @@ packages:
       postcss: 8.4.38
     dev: true
 
-  /postcss-custom-properties@13.3.6(postcss@8.4.38):
-    resolution: {integrity: sha512-vVVIwQbJiIz+PBLMIWA6XMi53Zg66/f474KolA7x0Das6EwkATc/9ZvM6zZx2gs7ZhcgVHjmWBbHkK9FlCgLeA==}
+  /postcss-custom-properties@13.3.7(postcss@8.4.38):
+    resolution: {integrity: sha512-0N9F/GUCr/D0IazjzHahyYW2bQVDT6qDtEudiGHAhMd3XqhfM3VmfYVlkc/40DOhsPtngSNb54/Ctu8msvFOvQ==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
@@ -10591,8 +10585,8 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-preset-env@9.5.4(postcss@8.4.38):
-    resolution: {integrity: sha512-o/jOlJjhm4f6rI5q1f+4Og3tz1cjaO50er9ndk7ZdcXHjWOH49kMAhqDC/nQifypQkOAiAmF46dPt3pZM+Cwbg==}
+  /postcss-preset-env@9.5.5(postcss@8.4.38):
+    resolution: {integrity: sha512-tg71KfEgTHMM+C4LpWtKfHFWEunfWj1JThq/Odsw60MOowcffBrMAcSBDE+imftW5/BD3mpOiiTL6c+KcnGaLQ==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
@@ -10639,7 +10633,7 @@ packages:
       postcss-color-hex-alpha: 9.0.4(postcss@8.4.38)
       postcss-color-rebeccapurple: 9.0.3(postcss@8.4.38)
       postcss-custom-media: 10.0.4(postcss@8.4.38)
-      postcss-custom-properties: 13.3.6(postcss@8.4.38)
+      postcss-custom-properties: 13.3.7(postcss@8.4.38)
       postcss-custom-selectors: 7.1.8(postcss@8.4.38)
       postcss-dir-pseudo-class: 8.0.1(postcss@8.4.38)
       postcss-double-position-gradients: 5.0.6(postcss@8.4.38)
