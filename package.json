@@ -114,7 +114,7 @@
 		"postcss-html": "^1.6.0",
 		"postcss-import": "^16.1.0",
 		"postcss-nesting": "^12.1.1",
-		"postcss-preset-env": "^9.5.4",
+		"postcss-preset-env": "^9.5.5",
 		"postcss-random": "^1.0.9",
 		"postcss-reporter": "7.1.0",
 		"prettier": "^3.2.5",
