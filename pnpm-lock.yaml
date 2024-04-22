@@ -10,19 +10,19 @@ dependencies:
     version: 3.1.4
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.6.1)(tailwindcss@3.4.3)
+    version: 5.1.0(astro@4.6.3)(tailwindcss@3.4.3)
   '@builder.io/qwik':
     specifier: ^1.5.2
     version: 1.5.2(@types/node@20.12.4)(undici@6.10.1)
   '@qwikdev/astro':
     specifier: ^0.5.14
-    version: 0.5.14(@builder.io/qwik@1.5.2)(astro@4.6.1)(typescript@5.4.5)
+    version: 0.5.14(@builder.io/qwik@1.5.2)(astro@4.6.3)(typescript@5.4.5)
   '@studio-freight/lenis':
     specifier: ^1.0.42
     version: 1.0.42
   astro:
-    specifier: ^4.6.1
-    version: 4.6.1(@types/node@20.12.4)(typescript@5.4.5)
+    specifier: ^4.6.3
+    version: 4.6.3(@types/node@20.12.4)(typescript@5.4.5)
   astro-svg-sprite:
     specifier: ^1.1.0
     version: 1.1.0
@@ -117,7 +117,7 @@ devDependencies:
     version: 0.17.0(typescript@5.4.5)
   astro-purgecss:
     specifier: ^4.1.0
-    version: 4.1.0(astro@4.6.1)(purgecss@5.0.0)
+    version: 4.1.0(astro@4.6.3)(purgecss@5.0.0)
   autoprefixer:
     specifier: ^10.4.19
     version: 10.4.19(postcss@8.4.38)
@@ -343,7 +343,7 @@ packages:
   /@astrojs/markdown-remark@5.0.0:
     resolution: {integrity: sha512-QBXbxXZamVRoqCNN2gjDXa7qYPUkJZq7KYFfg3DX7rze3QL6xiz4N+Wg202dNPRaIkQa16BV6D8+EHibQFubRg==}
     dependencies:
-      '@astrojs/prism': 3.0.0
+      '@astrojs/prism': 3.1.0
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.1
       hast-util-to-text: 4.0.0
@@ -389,13 +389,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@astrojs/prism@3.0.0:
-    resolution: {integrity: sha512-g61lZupWq1bYbcBnYZqdjndShr/J3l/oFobBKPA3+qMat146zce3nz2kdO4giGbhYDt4gYdhmoBz0vZJ4sIurQ==}
-    engines: {node: '>=18.14.1'}
-    dependencies:
-      prismjs: 1.29.0
-    dev: true
-
   /@astrojs/prism@3.1.0:
     resolution: {integrity: sha512-Z9IYjuXSArkAUx3N6xj6+Bnvx8OdUSHA8YoOgyepp3+zJmtVYJIl/I18GozdJVW1p5u/CNpl3Km7/gwTJK85cw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
@@ -410,13 +403,13 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.6.1)(tailwindcss@3.4.3):
+  /@astrojs/tailwind@5.1.0(astro@4.6.3)(tailwindcss@3.4.3):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.6.1(@types/node@20.12.4)(typescript@5.4.5)
+      astro: 4.6.3(@types/node@20.12.4)(typescript@5.4.5)
       autoprefixer: 10.4.19(postcss@8.4.38)
       postcss: 8.4.38
       postcss-load-config: 4.0.2(postcss@8.4.38)
@@ -2849,14 +2842,14 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.5.14(@builder.io/qwik@1.5.2)(astro@4.6.1)(typescript@5.4.5):
+  /@qwikdev/astro@0.5.14(@builder.io/qwik@1.5.2)(astro@4.6.3)(typescript@5.4.5):
     resolution: {integrity: sha512-lekZ9RPDqpJ6wjneSHXmmXk6/1IHfaZP6zcAozE0Q0WK7oacdOfb6JuPTpYn966IZDdgmnq3TFv3a9YwOCiq4Q==}
     peerDependencies:
       '@builder.io/qwik': ^1.5.1
       typescript: ^5.4.2
     dependencies:
       '@builder.io/qwik': 1.5.2(@types/node@20.12.4)(undici@6.10.1)
-      astro-integration-kit: 0.2.1(astro@4.6.1)
+      astro-integration-kit: 0.2.1(astro@4.6.3)
       fs-extra: 11.2.0
       fs-move: 6.0.0
       typescript: 5.4.5
@@ -3220,6 +3213,9 @@ packages:
     dependencies:
       '@types/node': 20.12.4
     dev: true
+
+  /@types/cookie@0.5.4:
+    resolution: {integrity: sha512-7z/eR6O859gyWIAjuvBWFzNURmf2oPBmJlfVWkwehU5nzIyjwBsTh7WMmEEV4JFnHuQ3ex4oyTvfKzcyJVDBNA==}
 
   /@types/css-tree@2.3.7:
     resolution: {integrity: sha512-LUlutQBpR2TgqZJdvXCPOx9EME7a4PHSEo2Y2c8POFpj1E9a6V94PUZNwjVdfHWyb8RQZoNHTYOKs980+sOi+g==}
@@ -4037,22 +4033,22 @@ packages:
       - typescript
     dev: true
 
-  /astro-integration-kit@0.2.1(astro@4.6.1):
+  /astro-integration-kit@0.2.1(astro@4.6.3):
     resolution: {integrity: sha512-AWgFRvo3YSpFxVfDdhHRAkOR7KmNYrS7h4JCpOBgMtea6SrpARsmfZXXgFHF+nNFJxmIA//PYetkbB/HQGzutw==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
-      astro: 4.6.1(@types/node@20.12.4)(typescript@5.4.5)
+      astro: 4.6.3(@types/node@20.12.4)(typescript@5.4.5)
       pathe: 1.1.2
     dev: false
 
-  /astro-purgecss@4.1.0(astro@4.6.1)(purgecss@5.0.0):
+  /astro-purgecss@4.1.0(astro@4.6.3)(purgecss@5.0.0):
     resolution: {integrity: sha512-CVxAXVuKYJZS2lbFEJJ9lKCnUx0FSd9+5muZTLdhXBWHiNpx1PKmR9WNJykP4ArCdpDPjkWSudyYUqMDAAA43w==}
     peerDependencies:
       astro: ^4.0.0
       purgecss: ^5.0.0
     dependencies:
-      astro: 4.6.1(@types/node@20.12.4)(typescript@5.4.5)
+      astro: 4.6.3(@types/node@20.12.4)(typescript@5.4.5)
       purgecss: 5.0.0
     dev: true
 
@@ -4148,8 +4144,8 @@ packages:
       - typescript
     dev: true
 
-  /astro@4.6.1(@types/node@20.12.4)(typescript@5.4.5):
-    resolution: {integrity: sha512-gcL22NEhuRi4wu9/x5Kn2eJf7nT6GeU5BxdN6AHbUnX6UzEDIWtpgHs5lBIZYExKbHKN9PjEGXWQzQtFwLU+5g==}
+  /astro@4.6.3(@types/node@20.12.4)(typescript@5.4.5):
+    resolution: {integrity: sha512-p2zs1Gac+ysdc/yFCoc8pOXTZE5L9foAtmqUzUVL22WX68bYTRovd03GRs7J1MDpwzsl9kJtlK20ROpjyIFpNw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     dependencies:
@@ -4164,6 +4160,7 @@ packages:
       '@babel/traverse': 7.24.1
       '@babel/types': 7.24.0
       '@types/babel__core': 7.20.5
+      '@types/cookie': 0.5.4
       acorn: 8.11.3
       aria-query: 5.3.0
       axobject-query: 4.0.0
