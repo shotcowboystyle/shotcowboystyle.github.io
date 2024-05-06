@@ -94,7 +94,7 @@
 		"cssnano": "^6.1.2",
 		"cz-conventional-changelog": "^3.3.0",
 		"daisyui": "^4.10.5",
-		"eslint": "^9.1.1",
+		"eslint": "^9.2.0",
 		"eslint-import-resolver-typescript": "^3.6.1",
 		"eslint-plugin-astro": "^0.34.0",
 		"eslint-plugin-import": "^2.29.1",
