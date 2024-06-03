@@ -86,8 +86,8 @@ devDependencies:
     specifier: 10.0.1
     version: 10.0.1(semantic-release@23.1.1)
   '@semantic-release/github':
-    specifier: ^10.0.4
-    version: 10.0.4(semantic-release@23.1.1)
+    specifier: ^10.0.5
+    version: 10.0.5(semantic-release@23.1.1)
   '@semantic-release/release-notes-generator':
     specifier: ^13.0.0
     version: 13.0.0(semantic-release@23.1.1)
@@ -1722,14 +1722,6 @@ packages:
     resolution: {integrity: sha512-fXVXEyFA5Yv3M3n8sUGT7+fvecGrZP4k6FnWWMSZVQf69kAq0LLpaBQLGcPR30m3zMmKYhECP4k/ZkzvhEW5kw==}
     dev: true
 
-  /@emnapi/runtime@1.1.0:
-    resolution: {integrity: sha512-gCGlE0fJGWalfy+wbFApjhKn6uoSVvopru77IPyxNKkjkaiSx2HxDS7eOYSmo9dcMIhmmIvoxiC3N9TM1c3EaA==}
-    requiresBuild: true
-    dependencies:
-      tslib: 2.6.2
-    dev: true
-    optional: true
-
   /@emnapi/runtime@1.2.0:
     resolution: {integrity: sha512-bV21/9LQmcQeCPEg3BDFtvwL6cwiTMksYNWQQ4KOxCZikEGalWtenoZ0wCiukJINlGCIi2KXx01g4FoH/LxpzQ==}
     requiresBuild: true
@@ -2484,7 +2476,7 @@ packages:
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@emnapi/runtime': 1.1.0
+      '@emnapi/runtime': 1.2.0
     dev: true
     optional: true
 
@@ -3035,8 +3027,8 @@ packages:
       - supports-color
     dev: true
 
-  /@semantic-release/github@10.0.4(semantic-release@23.1.1):
-    resolution: {integrity: sha512-eHCfW3jlzax5OKd5nTovlvoCdg+b9YBa31M2JGT1KmzmJR3TIalu2ahVU+V/xATVeOx+S8fbCiPnBBgMlzH5Vw==}
+  /@semantic-release/github@10.0.5(semantic-release@23.1.1):
+    resolution: {integrity: sha512-hmuCDkfru/Uc9+ZBNOSremAupu6BCslvOVDiG0wYcL8TQodCycp6uvwDyeym1H0M4l3ob9c0s0xMBiZjjXQ2yA==}
     engines: {node: '>=20.8.1'}
     peerDependencies:
       semantic-release: '>=20.1.0'
@@ -11460,7 +11452,7 @@ packages:
     dependencies:
       '@semantic-release/commit-analyzer': 12.0.0(semantic-release@23.1.1)
       '@semantic-release/error': 4.0.0
-      '@semantic-release/github': 10.0.4(semantic-release@23.1.1)
+      '@semantic-release/github': 10.0.5(semantic-release@23.1.1)
       '@semantic-release/npm': 12.0.0(semantic-release@23.1.1)
       '@semantic-release/release-notes-generator': 13.0.0(semantic-release@23.1.1)
       aggregate-error: 5.0.0
