@@ -91,7 +91,7 @@
 		"commitizen": "^4.3.0",
 		"conventional-changelog-conventionalcommits": "^8.0.0",
 		"cspell": "^8.8.4",
-		"cssnano": "^6.1.2",
+		"cssnano": "^7.0.2",
 		"cz-conventional-changelog": "^3.3.0",
 		"daisyui": "^4.12.2",
 		"eslint": "^9.4.0",
