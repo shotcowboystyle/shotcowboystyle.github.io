@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@astrojs/sitemap':
-    specifier: ^3.1.5
+    specifier: ^3.1.6
     version: 3.1.6
   '@astrojs/tailwind':
     specifier: ^5.1.0
@@ -39,7 +39,7 @@ dependencies:
     specifier: ^5.12.2
     version: 5.12.2
   maplibre-gl:
-    specifier: ^4.4.0
+    specifier: ^4.4.1
     version: 4.4.1
   sharp:
     specifier: ^0.33.4
@@ -74,8 +74,8 @@ devDependencies:
     specifier: ^4.2.1
     version: 4.2.1(prettier@3.3.2)
   '@playwright/test':
-    specifier: ^1.44.1
-    version: 1.44.1
+    specifier: ^1.45.0
+    version: 1.45.0
   '@semantic-release/changelog':
     specifier: ^6.0.3
     version: 6.0.3(semantic-release@24.0.0)
@@ -101,10 +101,10 @@ devDependencies:
     specifier: ^0.165.0
     version: 0.165.0
   '@typescript-eslint/eslint-plugin':
-    specifier: ^7.13.0
+    specifier: ^7.14.1
     version: 7.14.1(@typescript-eslint/parser@7.14.1)(eslint@9.5.0)(typescript@5.5.2)
   '@typescript-eslint/parser':
-    specifier: ^7.13.0
+    specifier: ^7.14.1
     version: 7.14.1(eslint@9.5.0)(typescript@5.5.2)
   astro-compress:
     specifier: 2.2.28
@@ -131,17 +131,17 @@ devDependencies:
     specifier: ^8.0.0
     version: 8.0.0
   cspell:
-    specifier: ^8.8.4
+    specifier: ^8.9.1
     version: 8.9.1
   cssnano:
-    specifier: ^7.0.2
+    specifier: ^7.0.3
     version: 7.0.3(postcss@8.4.38)
   cz-conventional-changelog:
     specifier: ^3.3.0
     version: 3.3.0(@types/node@20.14.8)(typescript@5.5.2)
   daisyui:
-    specifier: ^4.12.2
-    version: 4.12.7(postcss@8.4.38)
+    specifier: ^4.12.8
+    version: 4.12.8(postcss@8.4.38)
   eslint:
     specifier: ^9.5.0
     version: 9.5.0
@@ -161,13 +161,13 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.0.0(eslint@9.5.0)
   knip:
-    specifier: ^5.20.0
+    specifier: ^5.22.3
     version: 5.22.3(@types/node@20.14.8)(typescript@5.5.2)
   lefthook:
-    specifier: 1.6.16
-    version: 1.6.16
+    specifier: 1.6.18
+    version: 1.6.18
   lighthouse:
-    specifier: ^12.0.0
+    specifier: ^12.1.0
     version: 12.1.0
   npm-package-json-lint:
     specifier: ^8.0.0
@@ -179,8 +179,8 @@ devDependencies:
     specifier: ^6.2.0
     version: 6.2.0
   playwright:
-    specifier: ^1.44.1
-    version: 1.44.1
+    specifier: ^1.45.0
+    version: 1.45.0
   playwright-lighthouse:
     specifier: ^4.0.0
     version: 4.0.0(lighthouse@12.1.0)(playwright-core@1.44.1)
@@ -254,7 +254,7 @@ devDependencies:
     specifier: ^2.0.6
     version: 2.0.6(tailwindcss@3.4.4)
   typescript:
-    specifier: ^5.4.5
+    specifier: ^5.5.2
     version: 5.5.2
 
 packages:
@@ -2395,12 +2395,12 @@ packages:
       fast-glob: 3.3.2
     dev: true
 
-  /@playwright/test@1.44.1:
-    resolution: {integrity: sha512-1hZ4TNvD5z9VuhNJ/walIjvMVvYkZKf71axoF/uiAqpntQJXpG64dlXhoDXE3OczPuTuvjf/M5KWFg5VAVUS3Q==}
-    engines: {node: '>=16'}
+  /@playwright/test@1.45.0:
+    resolution: {integrity: sha512-TVYsfMlGAaxeUllNkywbwek67Ncf8FRGn8ZlRdO291OL3NjG9oMbfVhyP82HQF0CZLMrYsvesqoUekxdWuF9Qw==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      playwright: 1.44.1
+      playwright: 1.45.0
     dev: true
 
   /@pnpm/config.env-replace@1.1.0:
@@ -2975,7 +2975,7 @@ packages:
   /@types/sax@1.2.7:
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 20.14.8
     dev: false
 
   /@types/semver@7.5.8:
@@ -4865,8 +4865,8 @@ packages:
       - typescript
     dev: true
 
-  /daisyui@4.12.7(postcss@8.4.38):
-    resolution: {integrity: sha512-KQN3BFs+c5eaDN6xNYbVX9ob7b830PiRF8o5m6os7e4WDTgMg8S3o21CZ/gDttNAfLS2zz1esass9oDP6pv2WA==}
+  /daisyui@4.12.8(postcss@8.4.38):
+    resolution: {integrity: sha512-FDdh0z9BsWMI0VeUSwZy6rwp9frEuUgd83SCPOaCYV3iULPzcgTEQT3IlcAbMCrsriu2ziDYZfGOUwPYHkHrfw==}
     engines: {node: '>=16.9.0'}
     dependencies:
       css-selector-tokenizer: 0.8.0
@@ -7485,83 +7485,83 @@ packages:
       language-subtag-registry: 0.3.23
     dev: true
 
-  /lefthook-darwin-arm64@1.6.16:
-    resolution: {integrity: sha512-VwOegHjdu3jHBUoNsf2k/BUipHs7SpkF861ZQNTkLKqXneLDmiqljkPwruJi688oUC4otNOYJNqoron+DFy4BA==}
+  /lefthook-darwin-arm64@1.6.18:
+    resolution: {integrity: sha512-AkpsTeO7aLZIIy6CKQ7Chx8RltE8a9uItbwQWoeaCkIdzpV8TFjq7/Pw4F5CkoJ2315sHtB8k+VFkgipQMBw1w==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-darwin-x64@1.6.16:
-    resolution: {integrity: sha512-opl1Yz1F5t11LLnelcu7Bok/1cnYaoCBSPve71jFwAq8W9wwHLbDLHLGLpRUcj5PxUpUkYzfl5RmGoNFLfD44A==}
+  /lefthook-darwin-x64@1.6.18:
+    resolution: {integrity: sha512-qwKa+PaNIYjZ2PVrRRLq+HjNjQsjEItXN21byvSD89r7EYCULsIC8aW4H6aniOP2A6X1DIZ+djpg+3hNJ/94NA==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-freebsd-arm64@1.6.16:
-    resolution: {integrity: sha512-MFsGFkNRRtpphTa+gLFt5PwtaBFlgEXVlfhzwUZOZcRT99B2EkvTP8MacOuWeixy0yfIa+kluqonPXBZdQ9f0w==}
+  /lefthook-freebsd-arm64@1.6.18:
+    resolution: {integrity: sha512-UIOzQ+okwB7Ah9p8sNqomOiU6cPfmJnyW3HDPutRsdoHRD8udIap9d+ja4Kg4m/PkoYtkcLO78omANqAgA5wxQ==}
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-freebsd-x64@1.6.16:
-    resolution: {integrity: sha512-4+7StS5Tffzri3Zof3jMm0QvdUgF+vRGIfw31cDydxcSPIXJjJSEKwA2AhMOSPeq1i9MyJmqfFXSsgskHP+dvg==}
+  /lefthook-freebsd-x64@1.6.18:
+    resolution: {integrity: sha512-UQANUgyNpaAh0+2/PjPFiJ7yd6aF15yyJxKZCXyna5cQF7VU8pSHu5tiDDquNpjToXOg+6TmiIAJKyfrrwTF3w==}
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-linux-arm64@1.6.16:
-    resolution: {integrity: sha512-ytlMhHscl6kSGMRPtl2E+yMll3sLT41lsXUo6HyJ53Eg7fJ7sAhP38QdZBnXqJDZBh0Z21DbWuwaJ2QOgCvNew==}
+  /lefthook-linux-arm64@1.6.18:
+    resolution: {integrity: sha512-4erletIa2HKUgY17/1ROvndAj6xn/9wkqO2GhBT3C0vFwIv6ycy5wpFzXOwKRZpFYv7UacN7iXhAZSK+vSOZZg==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-linux-x64@1.6.16:
-    resolution: {integrity: sha512-te+dZNhFhGRQqKFiSG4zeBcklXBRHNtLHzoGi15vRTZAocLrQkVydd9KGBRPgEvelXJuS4X7dGzuI7ijFVFZqA==}
+  /lefthook-linux-x64@1.6.18:
+    resolution: {integrity: sha512-l5SRqYMYygw9RjZncEg8uh29wShYN8kiYr53sp74DkntrlCttqWhLILBUlIr3fxH5s0ZyrmqUEjtMBryMk7b/g==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-windows-arm64@1.6.16:
-    resolution: {integrity: sha512-ip4BuMTdT7lGNo6zfVaoHmROJIrkgUf0LzpI6LpjbVuNPWsM896vEB0pzCj9HXOZtAdqHcLwzA647SDakveUVQ==}
+  /lefthook-windows-arm64@1.6.18:
+    resolution: {integrity: sha512-jeNBRoya3+mOEsKyT4wXf29Kng1nkJD7Uv/dqGBszoGMktGVNUFdIjWoxx6HSfhUssucs5pKRZpXSMgK/KCP+Q==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-windows-x64@1.6.16:
-    resolution: {integrity: sha512-gsfzmVIXe8sk8JbVcK3JDub1ymcQmdv9UYy+8NkkymJJ98WE6tb29LQatiWmwDhMsn7i2DvhBC/aCTYK4xAlbA==}
+  /lefthook-windows-x64@1.6.18:
+    resolution: {integrity: sha512-iEG8PbFOwMqlpAgCiqzANTxutERjwlwMx6WF6HDGEYwFJSCJsvi06TehDxaPIFbhmLLYYlbVrfSBlttWGoN0dg==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook@1.6.16:
-    resolution: {integrity: sha512-KPwx9zyu+LivC8h6v+8CUGMK6TZ9ZqTv326OWFWJFsWXLUffG2uRaolui7b8gCGavJZMl8mYPXvsiNJgn8RolA==}
+  /lefthook@1.6.18:
+    resolution: {integrity: sha512-Ftr/NkU1P1EsEyphsCqCX7lesGZA+QDXyUx4dS1RlSKB72xKtGW9VPjbGLK2kSQkONG5M+XYfbJkGA/r9NLTYQ==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      lefthook-darwin-arm64: 1.6.16
-      lefthook-darwin-x64: 1.6.16
-      lefthook-freebsd-arm64: 1.6.16
-      lefthook-freebsd-x64: 1.6.16
-      lefthook-linux-arm64: 1.6.16
-      lefthook-linux-x64: 1.6.16
-      lefthook-windows-arm64: 1.6.16
-      lefthook-windows-x64: 1.6.16
+      lefthook-darwin-arm64: 1.6.18
+      lefthook-darwin-x64: 1.6.18
+      lefthook-freebsd-arm64: 1.6.18
+      lefthook-freebsd-x64: 1.6.18
+      lefthook-linux-arm64: 1.6.18
+      lefthook-linux-x64: 1.6.18
+      lefthook-windows-arm64: 1.6.18
+      lefthook-windows-x64: 1.6.18
     dev: true
 
   /levn@0.3.0:
@@ -9355,6 +9355,12 @@ packages:
     hasBin: true
     dev: true
 
+  /playwright-core@1.45.0:
+    resolution: {integrity: sha512-lZmHlFQ0VYSpAs43dRq1/nJ9G/6SiTI7VPqidld9TDefL9tX87bTKExWZZUF5PeRyqtXqd8fQi2qmfIedkwsNQ==}
+    engines: {node: '>=18'}
+    hasBin: true
+    dev: true
+
   /playwright-lighthouse@4.0.0(lighthouse@12.1.0)(playwright-core@1.44.1):
     resolution: {integrity: sha512-8sLhKLYD9k08UjKMSPzYBCZZ6Ct+wZPUe+K58hZEHIdyyXHg+jniWgd+C2W57B+MDstHiYSbyBiN9S8mzUH82w==}
     engines: {node: '>=16.x'}
@@ -9371,12 +9377,12 @@ packages:
       ua-parser-js: 1.0.38
     dev: true
 
-  /playwright@1.44.1:
-    resolution: {integrity: sha512-qr/0UJ5CFAtloI3avF95Y0L1xQo6r3LQArLIg/z/PoGJ6xa+EwzrwO5lpNr/09STxdHuUoP2mvuELJS+hLdtgg==}
-    engines: {node: '>=16'}
+  /playwright@1.45.0:
+    resolution: {integrity: sha512-4z3ac3plDfYzGB6r0Q3LF8POPR20Z8D0aXcxbJvmfMgSSq1hkcgvFRXJk9rUq5H/MJ0Ktal869hhOdI/zUTeLA==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      playwright-core: 1.44.1
+      playwright-core: 1.45.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
