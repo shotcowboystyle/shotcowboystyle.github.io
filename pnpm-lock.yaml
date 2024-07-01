@@ -12,11 +12,11 @@ dependencies:
     specifier: ^5.1.0
     version: 5.1.0(astro@4.11.3)(tailwindcss@3.4.4)
   '@builder.io/qwik':
-    specifier: ^1.5.7
-    version: 1.5.7(@types/node@20.14.8)(undici@6.19.2)
+    specifier: ^1.6.0
+    version: 1.6.0(@types/node@20.14.8)(undici@6.19.2)
   '@qwikdev/astro':
     specifier: ^0.5.16
-    version: 0.5.16(@builder.io/qwik@1.5.7)(astro@4.11.3)(typescript@5.5.2)
+    version: 0.5.16(@builder.io/qwik@1.6.0)(astro@4.11.3)(typescript@5.5.2)
   '@studio-freight/lenis':
     specifier: ^1.0.42
     version: 1.0.42
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^5.12.2
     version: 5.12.2
   maplibre-gl:
-    specifier: ^4.4.1
-    version: 4.4.1
+    specifier: ^4.5.0
+    version: 4.5.0
   sharp:
     specifier: ^0.33.4
     version: 0.33.4
@@ -51,8 +51,8 @@ dependencies:
     specifier: ^11.1.4
     version: 11.1.4
   three:
-    specifier: ^0.165.0
-    version: 0.165.0
+    specifier: ^0.166.0
+    version: 0.166.0
 
 devDependencies:
   '@astrojs/check':
@@ -71,8 +71,8 @@ devDependencies:
     specifier: ^19.2.2
     version: 19.2.2
   '@ianvs/prettier-plugin-sort-imports':
-    specifier: ^4.2.1
-    version: 4.2.1(prettier@3.3.2)
+    specifier: ^4.3.0
+    version: 4.3.0(prettier@3.3.2)
   '@playwright/test':
     specifier: ^1.45.0
     version: 1.45.0
@@ -98,8 +98,8 @@ devDependencies:
     specifier: ^8.56.10
     version: 8.56.10
   '@types/three':
-    specifier: ^0.165.0
-    version: 0.165.0
+    specifier: ^0.166.0
+    version: 0.166.0
   '@typescript-eslint/eslint-plugin':
     specifier: ^7.14.1
     version: 7.14.1(@typescript-eslint/parser@7.14.1)(eslint@9.6.0)(typescript@5.5.2)
@@ -140,8 +140,8 @@ devDependencies:
     specifier: ^3.3.0
     version: 3.3.0(@types/node@20.14.8)(typescript@5.5.2)
   daisyui:
-    specifier: ^4.12.8
-    version: 4.12.8(postcss@8.4.39)
+    specifier: ^4.12.10
+    version: 4.12.10(postcss@8.4.39)
   eslint:
     specifier: ^9.6.0
     version: 9.6.0
@@ -161,8 +161,8 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.0.0(eslint@9.6.0)
   knip:
-    specifier: ^5.22.3
-    version: 5.22.3(@types/node@20.14.8)(typescript@5.5.2)
+    specifier: ^5.23.3
+    version: 5.23.3(@types/node@20.14.8)(typescript@5.5.2)
   lefthook:
     specifier: 1.6.18
     version: 1.6.18
@@ -219,7 +219,7 @@ devDependencies:
     version: 0.14.0
   prettier-plugin-tailwindcss:
     specifier: ^0.6.5
-    version: 0.6.5(@ianvs/prettier-plugin-sort-imports@4.2.1)(prettier-plugin-astro@0.14.0)(prettier@3.3.2)
+    version: 0.6.5(@ianvs/prettier-plugin-sort-imports@4.3.0)(prettier-plugin-astro@0.14.0)(prettier@3.3.2)
   purgecss:
     specifier: ^6.0.0
     version: 6.0.0
@@ -630,8 +630,8 @@ packages:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  /@builder.io/qwik@1.5.7(@types/node@20.14.8)(undici@6.19.2):
-    resolution: {integrity: sha512-+pbimhUk4dLQJNobWv1UgCkkQR8pWT/fuqE0djOj9NfAuxYTMrP+oJVeAyTiloIZwuXwsxIh/Pj1m5c7Ofqtww==}
+  /@builder.io/qwik@1.6.0(@types/node@20.14.8)(undici@6.19.2):
+    resolution: {integrity: sha512-IaVLxK+hK2qzi1hMTl2M48f5I49OE//UQeNQo6Kil+Mu+/Ov2N5oMTwq8UFKpk9ZnurKQmWRc5CKwtM04js9tg==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
     hasBin: true
     peerDependencies:
@@ -1943,8 +1943,8 @@ packages:
     engines: {node: '>=18.18'}
     dev: true
 
-  /@ianvs/prettier-plugin-sort-imports@4.2.1(prettier@3.3.2):
-    resolution: {integrity: sha512-NKN1LVFWUDGDGr3vt+6Ey3qPeN/163uR1pOPAlkWpgvAqgxQ6kSdUf1F0it8aHUtKRUzEGcK38Wxd07O61d7+Q==}
+  /@ianvs/prettier-plugin-sort-imports@4.3.0(prettier@3.3.2):
+    resolution: {integrity: sha512-OOMtUcO4J3LoL63dOKAe7bn+lSRRPeit2DqNHpx+wvBp3Grejo2PMaK4Mp1mwy8pnat64ccSgk/lBZbsAdLErw==}
     peerDependencies:
       '@vue/compiler-sfc': 2.7.x || 3.x
       prettier: 2 || 3
@@ -2469,13 +2469,13 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.5.16(@builder.io/qwik@1.5.7)(astro@4.11.3)(typescript@5.5.2):
+  /@qwikdev/astro@0.5.16(@builder.io/qwik@1.6.0)(astro@4.11.3)(typescript@5.5.2):
     resolution: {integrity: sha512-eGpieVOLdO9H96+d/OY684GPYPjhyuSupsPeM829EA/Giwtbb1zXoLC+sUNYhqlyA/bSFjdUv/fwryOPpPfChw==}
     peerDependencies:
       '@builder.io/qwik': 1.5.6
       typescript: ^5.4.2
     dependencies:
-      '@builder.io/qwik': 1.5.7(@types/node@20.14.8)(undici@6.19.2)
+      '@builder.io/qwik': 1.6.0(@types/node@20.14.8)(undici@6.19.2)
       astro-integration-kit: 0.2.1(astro@4.11.3)
       fs-extra: 11.2.0
       fs-move: 6.0.0
@@ -3020,8 +3020,8 @@ packages:
       '@types/geojson': 7946.0.14
     dev: false
 
-  /@types/three@0.165.0:
-    resolution: {integrity: sha512-AJK8JZAFNBF0kBXiAIl5pggYlzAGGA8geVYQXAcPCEDRbyA+oEjkpUBcJJrtNz6IiALwzGexFJGZG2yV3WsYBw==}
+  /@types/three@0.166.0:
+    resolution: {integrity: sha512-FHMnpcdhdbdOOIYbfkTkUVpYMW53odxbTRwd0/xJpYnTzEsjnVnondGAvHZb4z06UW0vo6WPVuvH0/9qrxKx7g==}
     dependencies:
       '@tweenjs/tween.js': 23.1.2
       '@types/stats.js': 0.17.3
@@ -4893,8 +4893,8 @@ packages:
       - typescript
     dev: true
 
-  /daisyui@4.12.8(postcss@8.4.39):
-    resolution: {integrity: sha512-FDdh0z9BsWMI0VeUSwZy6rwp9frEuUgd83SCPOaCYV3iULPzcgTEQT3IlcAbMCrsriu2ziDYZfGOUwPYHkHrfw==}
+  /daisyui@4.12.10(postcss@8.4.39):
+    resolution: {integrity: sha512-jp1RAuzbHhGdXmn957Z2XsTZStXGHzFfF0FgIOZj3Wv9sH7OZgLfXTRZNfKVYxltGUOBsG1kbWAdF5SrqjebvA==}
     engines: {node: '>=16.9.0'}
     dependencies:
       css-selector-tokenizer: 0.8.0
@@ -6164,8 +6164,8 @@ packages:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
 
-  /geojson-vt@3.2.1:
-    resolution: {integrity: sha512-EvGQQi/zPrDA6zr6BnJD/YhwAkBP8nnJ9emh3EnHQKVMfg/MRVtPbMYdgVy/IaEmn4UfagD2a6fafPDL5hbtwg==}
+  /geojson-vt@4.0.2:
+    resolution: {integrity: sha512-AV9ROqlNqoZEIJGfm1ncNjEXfkz2hdFlZf0qkVfmkwdKa8vj7H16YUOT81rJw1rdFhyEDlN2Tds91p/glzbl5A==}
     dev: false
 
   /get-caller-file@2.0.5:
@@ -7470,8 +7470,8 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
 
-  /knip@5.22.3(@types/node@20.14.8)(typescript@5.5.2):
-    resolution: {integrity: sha512-aPHUMkl81WSAd1z3de7YWuPvrD7invRc5p70JGZnB/jH1O7KSqKNKwW9jTf4n5v/iGNFTM9YjnqZKTEKqsJoRw==}
+  /knip@5.23.3(@types/node@20.14.8)(typescript@5.5.2):
+    resolution: {integrity: sha512-i0vFlpe3D9AZmp3Hlq3ZncjJQB2x21LeVrIV+9rnBavaKpTLhV/sLmE4iqTjEWedLtpfJsax68S68aqZzcXpsQ==}
     engines: {node: '>=18.6.0'}
     hasBin: true
     peerDependencies:
@@ -7983,8 +7983,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /maplibre-gl@4.4.1:
-    resolution: {integrity: sha512-tD+wn8qWSLCGhABKBrbewmgFfyopZDz+fkYXeOM8vdBhnf126DvMPyaYGGoKvoF4QuswCsgikETd2c39wK+OQw==}
+  /maplibre-gl@4.5.0:
+    resolution: {integrity: sha512-qOS1hn4d/pn2i0uva4S5Oz+fACzTkgBKq+NpwT/Tqzi4MSyzcWNtDELzLUSgWqHfNIkGCl5CZ/w7dtis+t4RCw==}
     engines: {node: '>=16.14.0', npm: '>=8.1.0'}
     dependencies:
       '@mapbox/geojson-rewind': 0.5.2
@@ -8003,7 +8003,7 @@ packages:
       '@types/pbf': 3.0.5
       '@types/supercluster': 7.1.3
       earcut: 2.2.4
-      geojson-vt: 3.2.1
+      geojson-vt: 4.0.2
       gl-matrix: 3.4.3
       global-prefix: 3.0.0
       kdbush: 4.0.2
@@ -10244,7 +10244,7 @@ packages:
       sass-formatter: 0.7.9
     dev: true
 
-  /prettier-plugin-tailwindcss@0.6.5(@ianvs/prettier-plugin-sort-imports@4.2.1)(prettier-plugin-astro@0.14.0)(prettier@3.3.2):
+  /prettier-plugin-tailwindcss@0.6.5(@ianvs/prettier-plugin-sort-imports@4.3.0)(prettier-plugin-astro@0.14.0)(prettier@3.3.2):
     resolution: {integrity: sha512-axfeOArc/RiGHjOIy9HytehlC0ZLeMaqY09mm8YCkMzznKiDkwFzOpBvtuhuv3xG5qB73+Mj7OCe2j/L1ryfuQ==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
@@ -10296,7 +10296,7 @@ packages:
       prettier-plugin-svelte:
         optional: true
     dependencies:
-      '@ianvs/prettier-plugin-sort-imports': 4.2.1(prettier@3.3.2)
+      '@ianvs/prettier-plugin-sort-imports': 4.3.0(prettier@3.3.2)
       prettier: 3.3.2
       prettier-plugin-astro: 0.14.0
     dev: true
@@ -11797,8 +11797,8 @@ packages:
     resolution: {integrity: sha512-imE6hXZyaCeGinGFCvpWsv0oelsEaufSG39qYBQhp3urGq4OLOtsuEddf3XgKxmAAczBD/I1Tnp8L3gJ3ksTuQ==}
     dev: true
 
-  /three@0.165.0:
-    resolution: {integrity: sha512-cc96IlVYGydeceu0e5xq70H8/yoVT/tXBxV/W8A/U6uOq7DXc4/s1Mkmnu6SqoYGhSRWWYFOhVwvq6V0VtbplA==}
+  /three@0.166.0:
+    resolution: {integrity: sha512-3Gw7oyZ/vCmz3RmNx1xuyNu7Ou/igDtoh953QsJh/QkAoi6B7jpkKwk05N8Y7/9bZeIE44zdC+i2KZNF+KWQ8A==}
     dev: false
 
   /through2@2.0.5:
