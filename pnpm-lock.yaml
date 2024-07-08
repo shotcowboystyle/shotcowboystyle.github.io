@@ -10,19 +10,19 @@ dependencies:
     version: 3.1.6
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.11.3)(tailwindcss@3.4.4)
+    version: 5.1.0(astro@4.11.5)(tailwindcss@3.4.4)
   '@builder.io/qwik':
     specifier: ^1.6.0
     version: 1.6.0(@types/node@20.14.9)(undici@6.19.2)
   '@qwikdev/astro':
     specifier: ^0.5.16
-    version: 0.5.16(@builder.io/qwik@1.6.0)(astro@4.11.3)(typescript@5.5.3)
+    version: 0.5.16(@builder.io/qwik@1.6.0)(astro@4.11.5)(typescript@5.5.3)
   '@studio-freight/lenis':
     specifier: ^1.0.42
     version: 1.0.42
   astro:
-    specifier: ^4.11.3
-    version: 4.11.3(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
+    specifier: ^4.11.5
+    version: 4.11.5(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
   astro-svg-sprite:
     specifier: ^1.1.0
     version: 1.1.0
@@ -117,7 +117,7 @@ devDependencies:
     version: 1.0.2(typescript@5.5.3)
   astro-purgecss:
     specifier: ^4.1.1
-    version: 4.1.1(astro@4.11.3)(purgecss@6.0.0)
+    version: 4.1.1(astro@4.11.5)(purgecss@6.0.0)
   autoprefixer:
     specifier: ^10.4.19
     version: 10.4.19(postcss@8.4.39)
@@ -369,13 +369,13 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.11.3)(tailwindcss@3.4.4):
+  /@astrojs/tailwind@5.1.0(astro@4.11.5)(tailwindcss@3.4.4):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.11.3(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
+      astro: 4.11.5(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
       autoprefixer: 10.4.19(postcss@8.4.39)
       postcss: 8.4.39
       postcss-load-config: 4.0.2(postcss@8.4.39)
@@ -685,6 +685,7 @@ packages:
   /@commitlint/config-validator@19.0.3:
     resolution: {integrity: sha512-2D3r4PKjoo59zBc2auodrSCaUnCSALCx54yveOFwwP/i2kfEAQrygwOleFWswLqK0UL/F9r07MFi5ev2ohyM4Q==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': 19.0.3
       ajv: 8.16.0
@@ -705,6 +706,7 @@ packages:
   /@commitlint/execute-rule@19.0.0:
     resolution: {integrity: sha512-mtsdpY1qyWgAO/iOK0L6gSGeR7GFcdW7tIjcNFxcWkfLDF5qVbPHKuGATFqRMsxcO8OUKNj0+3WOHB7EHm4Jdw==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
 
   /@commitlint/format@19.3.0:
@@ -780,6 +782,7 @@ packages:
   /@commitlint/resolve-extends@19.1.0:
     resolution: {integrity: sha512-z2riI+8G3CET5CPgXJPlzftH+RiWYLMYv4C9tSLdLXdr6pBNimSKukYP9MS27ejmscqCTVA4almdLh0ODD2KYg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 19.0.3
       '@commitlint/types': 19.0.3
@@ -2441,14 +2444,14 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.5.16(@builder.io/qwik@1.6.0)(astro@4.11.3)(typescript@5.5.3):
+  /@qwikdev/astro@0.5.16(@builder.io/qwik@1.6.0)(astro@4.11.5)(typescript@5.5.3):
     resolution: {integrity: sha512-eGpieVOLdO9H96+d/OY684GPYPjhyuSupsPeM829EA/Giwtbb1zXoLC+sUNYhqlyA/bSFjdUv/fwryOPpPfChw==}
     peerDependencies:
       '@builder.io/qwik': 1.5.6
       typescript: ^5.4.2
     dependencies:
       '@builder.io/qwik': 1.6.0(@types/node@20.14.9)(undici@6.19.2)
-      astro-integration-kit: 0.2.1(astro@4.11.3)
+      astro-integration-kit: 0.2.1(astro@4.11.5)
       fs-extra: 11.2.0
       fs-move: 6.0.0
       typescript: 5.5.3
@@ -3609,7 +3612,7 @@ packages:
       '@playform/pipe': 0.0.6
       '@types/csso': 5.0.4
       '@types/html-minifier-terser': 7.0.2
-      astro: 4.11.3(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
+      astro: 4.11.5(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
       csso: 5.0.5
       html-minifier-terser: 7.2.0
       kleur: 4.1.5
@@ -3631,7 +3634,7 @@ packages:
     resolution: {integrity: sha512-eOKq/DKoPgBymHHFV+ZLaWMFqe1DJDhTQ7rTPFJuYJup+T5BAz2dCQ39styNWNihhixXfTJEUxAkOPSGgRVo4w==}
     dependencies:
       '@playform/pipe': 0.0.5
-      astro: 4.11.3(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
+      astro: 4.11.5(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
       critters: 0.0.22
     transitivePeerDependencies:
       - '@playform/build'
@@ -3669,22 +3672,22 @@ packages:
       - typescript
     dev: true
 
-  /astro-integration-kit@0.2.1(astro@4.11.3):
+  /astro-integration-kit@0.2.1(astro@4.11.5):
     resolution: {integrity: sha512-AWgFRvo3YSpFxVfDdhHRAkOR7KmNYrS7h4JCpOBgMtea6SrpARsmfZXXgFHF+nNFJxmIA//PYetkbB/HQGzutw==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
-      astro: 4.11.3(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
+      astro: 4.11.5(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
       pathe: 1.1.2
     dev: false
 
-  /astro-purgecss@4.1.1(astro@4.11.3)(purgecss@6.0.0):
+  /astro-purgecss@4.1.1(astro@4.11.5)(purgecss@6.0.0):
     resolution: {integrity: sha512-Lrtd+8iwznjQUBW1aqgdEYyc5xSgRa+Ir97EMsX17WvI6aVXGLoEWsVxQD9qtcGfLU5Qoq1hQOUKzVbCJSHcAg==}
     peerDependencies:
       astro: ^4.0.0
       purgecss: ^6.0.0
     dependencies:
-      astro: 4.11.3(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
+      astro: 4.11.5(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3)
       purgecss: 6.0.0
     dev: true
 
@@ -3699,8 +3702,8 @@ packages:
       uglify-js: 3.18.0
     dev: false
 
-  /astro@4.11.3(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3):
-    resolution: {integrity: sha512-SuZbB/71XVn+WqWNCe7XOfHuqhS+k4gj8+A3wluTZQrORGaHUFRn/f8F9Tu5yESQZB1q8UKhahvHwkTV3AdVsg==}
+  /astro@4.11.5(@types/node@20.14.9)(lightningcss@1.25.1)(terser@5.31.1)(typescript@5.5.3):
+    resolution: {integrity: sha512-TCRhuaLwrxwMhS8S1GG+ZTdrAXigX9C8E/YUTs/r2t+owHxDgwl86IV9xH1IHrCPoqhK6civyAQNOT+GKmkb0A==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     dependencies:
@@ -4514,6 +4517,7 @@ packages:
   /cosmiconfig-typescript-loader@5.0.0(@types/node@20.14.9)(cosmiconfig@9.0.0)(typescript@5.5.3):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=8.2'
@@ -6831,6 +6835,7 @@ packages:
   /ini@4.1.1:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+    requiresBuild: true
     dev: true
 
   /inquirer@8.2.5:
@@ -7872,6 +7877,7 @@ packages:
 
   /lodash.mergewith@4.6.2:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.snakecase@4.1.1:
