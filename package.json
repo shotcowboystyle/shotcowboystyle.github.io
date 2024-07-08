@@ -62,7 +62,7 @@
 		"sharp": "^0.33.4",
 		"split-type": "^0.3.4",
 		"swiper": "^11.1.4",
-		"three": "^0.166.0"
+		"three": "^0.166.1"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.7.0",
@@ -71,7 +71,7 @@
 		"@commitlint/cli": "^19.3.0",
 		"@commitlint/config-conventional": "^19.2.2",
 		"@ianvs/prettier-plugin-sort-imports": "^4.3.0",
-		"@playwright/test": "^1.45.0",
+		"@playwright/test": "^1.45.1",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/commit-analyzer": "^13.0.0",
 		"@semantic-release/git": "10.0.1",
@@ -80,8 +80,8 @@
 		"@types/cannon": "^0.1.12",
 		"@types/eslint": "^8.56.10",
 		"@types/three": "^0.166.0",
-		"@typescript-eslint/eslint-plugin": "^7.14.1",
-		"@typescript-eslint/parser": "^7.14.1",
+		"@typescript-eslint/eslint-plugin": "^7.15.0",
+		"@typescript-eslint/parser": "^7.15.0",
 		"astro-compress": "2.2.28",
 		"astro-critters": "^2.1.10",
 		"astro-eslint-parser": "^1.0.2",
@@ -90,8 +90,8 @@
 		"ci-info": "^4.0.0",
 		"commitizen": "^4.3.0",
 		"conventional-changelog-conventionalcommits": "^8.0.0",
-		"cspell": "^8.9.1",
-		"cssnano": "^7.0.3",
+		"cspell": "^8.10.4",
+		"cssnano": "^7.0.4",
 		"cz-conventional-changelog": "^3.3.0",
 		"daisyui": "^4.12.10",
 		"eslint": "^9.6.0",
@@ -100,13 +100,13 @@
 		"eslint-plugin-import": "^2.29.1",
 		"eslint-plugin-jsx-a11y": "^6.9.0",
 		"eslint-plugin-markdown": "^5.0.0",
-		"knip": "^5.23.3",
+		"knip": "^5.24.1",
 		"lefthook": "1.6.18",
 		"lighthouse": "^12.1.0",
 		"npm-package-json-lint": "^8.0.0",
 		"npm-package-json-lint-config-default": "^7.0.1",
-		"npm-run-all2": "^6.2.0",
-		"playwright": "^1.45.0",
+		"npm-run-all2": "^6.2.2",
+		"playwright": "^1.45.1",
 		"playwright-lighthouse": "^4.0.0",
 		"postcss": "^8.4.39",
 		"postcss-combine-duplicated-selectors": "10.0.3",
@@ -131,6 +131,6 @@
 		"stylelint-config-tailwindcss": "^0.0.7",
 		"tailwindcss": "^3.4.4",
 		"tailwindcss-fluid-type": "^2.0.6",
-		"typescript": "^5.5.2"
+		"typescript": "^5.5.3"
 	}
 }
