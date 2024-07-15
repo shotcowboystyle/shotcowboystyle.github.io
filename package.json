@@ -117,7 +117,7 @@
 		"postcss-preset-env": "^9.6.0",
 		"postcss-random": "^1.0.9",
 		"postcss-reporter": "7.1.0",
-		"prettier": "^3.3.2",
+		"prettier": "^3.3.3",
 		"prettier-plugin-astro": "^0.14.0",
 		"prettier-plugin-tailwindcss": "^0.6.5",
 		"purgecss": "^6.0.0",
