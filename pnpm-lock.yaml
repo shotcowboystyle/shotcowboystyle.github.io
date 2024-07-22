@@ -63,7 +63,7 @@ devDependencies:
     version: 1.9.0
   '@axe-core/playwright':
     specifier: ^4.9.1
-    version: 4.9.1(playwright-core@1.45.1)
+    version: 4.9.1(playwright-core@1.45.2)
   '@commitlint/cli':
     specifier: ^19.3.0
     version: 19.3.0(@types/node@20.14.10)(typescript@5.5.3)
@@ -86,8 +86,8 @@ devDependencies:
     specifier: 10.0.1
     version: 10.0.1(semantic-release@24.0.0)
   '@semantic-release/github':
-    specifier: ^10.1.0
-    version: 10.1.0(semantic-release@24.0.0)
+    specifier: ^10.1.1
+    version: 10.1.1(semantic-release@24.0.0)
   '@semantic-release/release-notes-generator':
     specifier: ^14.0.1
     version: 14.0.1(semantic-release@24.0.0)
@@ -183,7 +183,7 @@ devDependencies:
     version: 1.45.2
   playwright-lighthouse:
     specifier: ^4.0.0
-    version: 4.0.0(lighthouse@12.1.0)(playwright-core@1.45.1)
+    version: 4.0.0(lighthouse@12.1.0)(playwright-core@1.45.2)
   postcss:
     specifier: ^8.4.39
     version: 8.4.39
@@ -414,13 +414,13 @@ packages:
       vscode-languageserver-textdocument: 1.0.11
     dev: true
 
-  /@axe-core/playwright@4.9.1(playwright-core@1.45.1):
+  /@axe-core/playwright@4.9.1(playwright-core@1.45.2):
     resolution: {integrity: sha512-8m4WZbZq7/aq7ZY5IG8GqV+ZdvtGn/iJdom+wBg+iv/3BAOBIfNQtIu697a41438DzEEyptXWmC3Xl5Kx/o9/g==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
       axe-core: 4.9.1
-      playwright-core: 1.45.1
+      playwright-core: 1.45.2
     dev: true
 
   /@babel/code-frame@7.24.7:
@@ -2604,8 +2604,8 @@ packages:
       - supports-color
     dev: true
 
-  /@semantic-release/github@10.1.0(semantic-release@24.0.0):
-    resolution: {integrity: sha512-g4RHBaCWJjGcEy95TeTdajlmUoP5jAaF5trGkFXHKsT/VpCwawhZbNW66+sUr0c2CIAdfpCxxmK+E7GyWBWJDw==}
+  /@semantic-release/github@10.1.1(semantic-release@24.0.0):
+    resolution: {integrity: sha512-sSmsBKGpAlTtXf9rUJf/si16p+FwPEsvsJRjl3KCwFP0WywaSpynvUhlYvE18n5rzkQNbGJnObAKIoo3xFMSjA==}
     engines: {node: '>=20.8.1'}
     peerDependencies:
       semantic-release: '>=20.1.0'
@@ -9298,19 +9298,13 @@ packages:
     dependencies:
       find-up: 4.1.0
 
-  /playwright-core@1.45.1:
-    resolution: {integrity: sha512-LF4CUUtrUu2TCpDw4mcrAIuYrEjVDfT1cHbJMfwnE2+1b8PZcFzPNgvZCvq2JfQ4aTjRCCHw5EJ2tmr2NSzdPg==}
-    engines: {node: '>=18'}
-    hasBin: true
-    dev: true
-
   /playwright-core@1.45.2:
     resolution: {integrity: sha512-ha175tAWb0dTK0X4orvBIqi3jGEt701SMxMhyujxNrgd8K0Uy5wMSwwcQHtyB4om7INUkfndx02XnQ2p6dvLDw==}
     engines: {node: '>=18'}
     hasBin: true
     dev: true
 
-  /playwright-lighthouse@4.0.0(lighthouse@12.1.0)(playwright-core@1.45.1):
+  /playwright-lighthouse@4.0.0(lighthouse@12.1.0)(playwright-core@1.45.2):
     resolution: {integrity: sha512-8sLhKLYD9k08UjKMSPzYBCZZ6Ct+wZPUe+K58hZEHIdyyXHg+jniWgd+C2W57B+MDstHiYSbyBiN9S8mzUH82w==}
     engines: {node: '>=16.x'}
     peerDependencies:
@@ -9322,7 +9316,7 @@ packages:
     dependencies:
       chalk: 4.1.2
       lighthouse: 12.1.0
-      playwright-core: 1.45.1
+      playwright-core: 1.45.2
       ua-parser-js: 1.0.38
     dev: true
 
@@ -10811,7 +10805,7 @@ packages:
     dependencies:
       '@semantic-release/commit-analyzer': 13.0.0(semantic-release@24.0.0)
       '@semantic-release/error': 4.0.0
-      '@semantic-release/github': 10.1.0(semantic-release@24.0.0)
+      '@semantic-release/github': 10.1.1(semantic-release@24.0.0)
       '@semantic-release/npm': 12.0.1(semantic-release@24.0.0)
       '@semantic-release/release-notes-generator': 14.0.1(semantic-release@24.0.0)
       aggregate-error: 5.0.0
