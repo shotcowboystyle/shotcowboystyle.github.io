@@ -10,19 +10,19 @@ dependencies:
     version: 3.1.6
   '@astrojs/tailwind':
     specifier: ^5.1.0
-    version: 5.1.0(astro@4.13.1)(tailwindcss@3.4.9)
+    version: 5.1.0(astro@4.13.3)(tailwindcss@3.4.9)
   '@builder.io/qwik':
     specifier: ^1.8.0
     version: 1.8.0(@types/node@20.14.12)
   '@qwikdev/astro':
     specifier: ^0.6.3
-    version: 0.6.3(@builder.io/qwik@1.8.0)(astro@4.13.1)(typescript@5.5.4)
+    version: 0.6.3(@builder.io/qwik@1.8.0)(astro@4.13.3)(typescript@5.5.4)
   '@studio-freight/lenis':
     specifier: ^1.0.42
     version: 1.0.42
   astro:
-    specifier: ^4.13.1
-    version: 4.13.1(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
+    specifier: ^4.13.3
+    version: 4.13.3(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
   astro-svg-sprite:
     specifier: ^1.1.0
     version: 1.1.0
@@ -116,8 +116,8 @@ devDependencies:
     specifier: ^1.0.2
     version: 1.0.2(typescript@5.5.4)
   astro-purgecss:
-    specifier: ^4.2.0
-    version: 4.2.0(astro@4.13.1)(purgecss@6.0.0)
+    specifier: ^4.3.0
+    version: 4.3.0(astro@4.13.3)(purgecss@6.0.0)
   autoprefixer:
     specifier: ^10.4.20
     version: 10.4.20(postcss@8.4.41)
@@ -289,10 +289,10 @@ packages:
 
   /@astrojs/compiler@2.10.1:
     resolution: {integrity: sha512-XmM4j6BjvOVMag2xELq0JuG2yKOW8wgIu6dvb9BsjbGYmnvoStJn/pqEzVqc1EBszf2xYT7onIkftIOUz9AwrQ==}
+    dev: true
 
   /@astrojs/compiler@2.10.2:
     resolution: {integrity: sha512-bvH+v8AirwpRWCkYJEyWYdc5Cs/BjG2ZTxIJzttHilXgfKJAdW2496KsUQKzf5j2tOHtaHXKKn9hb9WZiBGpEg==}
-    dev: true
 
   /@astrojs/compiler@2.9.2:
     resolution: {integrity: sha512-Vpu0Ffsj8SoV+N0DFHlxxOMKHwSC9059Xy/OlG1t6uFYSoJXxkBC2WyF6igO7x10V+8uJrhOxaXr3nA90kJXow==}
@@ -374,13 +374,13 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.13.1)(tailwindcss@3.4.9):
+  /@astrojs/tailwind@5.1.0(astro@4.13.3)(tailwindcss@3.4.9):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.13.1(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
+      astro: 4.13.3(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
       autoprefixer: 10.4.20(postcss@8.4.41)
       postcss: 8.4.41
       postcss-load-config: 4.0.2(postcss@8.4.41)
@@ -2541,14 +2541,14 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.6.3(@builder.io/qwik@1.8.0)(astro@4.13.1)(typescript@5.5.4):
+  /@qwikdev/astro@0.6.3(@builder.io/qwik@1.8.0)(astro@4.13.3)(typescript@5.5.4):
     resolution: {integrity: sha512-32ETFBuYNo5/PzDAEe5Zec0Wk+7TQf/EpjLKhvfRVmARQXInMfJ5waF5Rxn2gcBA9GYP1B9KP40TbzJusTqG3Q==}
     peerDependencies:
       '@builder.io/qwik': ^1.7.2
       typescript: ^5.4.2
     dependencies:
       '@builder.io/qwik': 1.8.0(@types/node@20.14.12)
-      astro-integration-kit: 0.2.1(astro@4.13.1)
+      astro-integration-kit: 0.2.1(astro@4.13.3)
       fs-extra: 11.2.0
       fs-move: 6.0.0
       typescript: 5.5.4
@@ -3678,7 +3678,7 @@ packages:
       '@playform/pipe': 0.1.0
       '@types/csso': 5.0.4
       '@types/html-minifier-terser': 7.0.2
-      astro: 4.13.1(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
+      astro: 4.13.3(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
       csso: 5.0.5
       deepmerge-ts: 7.1.0
       html-minifier-terser: 7.2.0
@@ -3701,7 +3701,7 @@ packages:
     resolution: {integrity: sha512-Ieuu4uR8nas2KT3RogITH41BCdEr3Ro8712S4Lm5xnaI1iEGZA+ajqpj2jgll6HjWm1LzlehRWH1ituUn4X/Cg==}
     dependencies:
       '@playform/pipe': 0.1.0
-      astro: 4.13.1(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
+      astro: 4.13.3(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
       critters: 0.0.24
     transitivePeerDependencies:
       - '@types/node'
@@ -3737,22 +3737,22 @@ packages:
       - typescript
     dev: true
 
-  /astro-integration-kit@0.2.1(astro@4.13.1):
+  /astro-integration-kit@0.2.1(astro@4.13.3):
     resolution: {integrity: sha512-AWgFRvo3YSpFxVfDdhHRAkOR7KmNYrS7h4JCpOBgMtea6SrpARsmfZXXgFHF+nNFJxmIA//PYetkbB/HQGzutw==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
-      astro: 4.13.1(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
+      astro: 4.13.3(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
       pathe: 1.1.2
     dev: false
 
-  /astro-purgecss@4.2.0(astro@4.13.1)(purgecss@6.0.0):
-    resolution: {integrity: sha512-pPviVt25JIiu62wegFMH+S2+NgENwIeCLLBESN1/SM1ghNI/0+WkxJqeONdP4lBr9QOwr1A/kvUiyBJ1XD82zw==}
+  /astro-purgecss@4.3.0(astro@4.13.3)(purgecss@6.0.0):
+    resolution: {integrity: sha512-zlGKJTlZ4qh6z5IGC9vcSBN9JND8WCju8EVm8Ap64JeynmOagPRnLtpcjuwNtxuX1wcE5ua+cKJyHlhSvrr2Jw==}
     peerDependencies:
       astro: ^4.0.0
       purgecss: ^6.0.0
     dependencies:
-      astro: 4.13.1(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
+      astro: 4.13.3(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4)
       purgecss: 6.0.0
     dev: true
 
@@ -3767,12 +3767,12 @@ packages:
       uglify-js: 3.19.0
     dev: false
 
-  /astro@4.13.1(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4):
-    resolution: {integrity: sha512-VnMjAc+ykFsIVjgbu9Mt/EA1fMIcPMXbU89h3ATwGOzSIKDsQH72bDgfJkWiwk6u0OE90GeP5EPhAT28Twf9oA==}
+  /astro@4.13.3(@types/node@20.14.12)(lightningcss@1.25.1)(terser@5.31.3)(typescript@5.5.4):
+    resolution: {integrity: sha512-MyhmM0v5sphiVwxAm5jjKxWeuPZijWPJ8Ajdign9QzEmLWSH8vUYIJWx/dWRQ6vF1I0jXrksoj3wtw5nzXt9nw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     dependencies:
-      '@astrojs/compiler': 2.10.1
+      '@astrojs/compiler': 2.10.2
       '@astrojs/internal-helpers': 0.4.1
       '@astrojs/markdown-remark': 5.2.0
       '@astrojs/telemetry': 3.1.0
