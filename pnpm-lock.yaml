@@ -10,19 +10,19 @@ dependencies:
     version: 3.2.1
   '@astrojs/tailwind':
     specifier: ^5.1.2
-    version: 5.1.2(astro@4.16.6)(tailwindcss@3.4.14)
+    version: 5.1.2(astro@4.16.7)(tailwindcss@3.4.14)
   '@builder.io/qwik':
     specifier: ^1.9.1
     version: 1.9.1(@types/node@22.7.7)
   '@qwikdev/astro':
     specifier: ^0.6.3
-    version: 0.6.3(@builder.io/qwik@1.9.1)(astro@4.16.6)(typescript@5.6.3)
+    version: 0.6.3(@builder.io/qwik@1.9.1)(astro@4.16.7)(typescript@5.6.3)
   '@studio-freight/lenis':
     specifier: ^1.0.42
     version: 1.0.42
   astro:
-    specifier: ^4.16.6
-    version: 4.16.6(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)(typescript@5.6.3)
+    specifier: ^4.16.7
+    version: 4.16.7(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3)
   astro-svg-sprite:
     specifier: ^1.1.0
     version: 1.1.0
@@ -107,8 +107,8 @@ devDependencies:
     specifier: ^8.11.0
     version: 8.11.0(eslint@9.13.0)(typescript@5.6.3)
   astro-compress:
-    specifier: 2.3.3
-    version: 2.3.3(@types/node@22.7.7)(typescript@5.6.3)
+    specifier: 2.3.5
+    version: 2.3.5(@types/node@22.7.7)(typescript@5.6.3)
   astro-critters:
     specifier: ^2.2.0
     version: 2.2.0(@types/node@22.7.7)(typescript@5.6.3)
@@ -117,7 +117,7 @@ devDependencies:
     version: 1.0.3(typescript@5.6.3)
   astro-purgecss:
     specifier: ^4.6.1
-    version: 4.6.1(astro@4.16.6)(purgecss@6.0.0)
+    version: 4.6.1(astro@4.16.7)(purgecss@6.0.0)
   autoprefixer:
     specifier: ^10.4.20
     version: 10.4.20(postcss@8.4.47)
@@ -366,13 +366,13 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/tailwind@5.1.2(astro@4.16.6)(tailwindcss@3.4.14):
+  /@astrojs/tailwind@5.1.2(astro@4.16.7)(tailwindcss@3.4.14):
     resolution: {integrity: sha512-IvOF0W/dtHElcXvhrPR35nHmhyV3cfz1EzPitMGtU7sYy9Hci3BNK1To6FWmVuuNKPxza1IgCGetSynJZL7fOg==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0 || ^5.0.0-beta.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.16.6(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)(typescript@5.6.3)
+      astro: 4.16.7(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3)
       autoprefixer: 10.4.20(postcss@8.4.47)
       postcss: 8.4.47
       postcss-load-config: 4.0.2(postcss@8.4.47)
@@ -617,7 +617,7 @@ packages:
     hasBin: true
     dependencies:
       csstype: 3.1.3
-      vite: 5.4.9(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)
+      vite: 5.4.9(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -2438,14 +2438,14 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.6.3(@builder.io/qwik@1.9.1)(astro@4.16.6)(typescript@5.6.3):
+  /@qwikdev/astro@0.6.3(@builder.io/qwik@1.9.1)(astro@4.16.7)(typescript@5.6.3):
     resolution: {integrity: sha512-32ETFBuYNo5/PzDAEe5Zec0Wk+7TQf/EpjLKhvfRVmARQXInMfJ5waF5Rxn2gcBA9GYP1B9KP40TbzJusTqG3Q==}
     peerDependencies:
       '@builder.io/qwik': ^1.7.2
       typescript: ^5.4.2
     dependencies:
       '@builder.io/qwik': 1.9.1(@types/node@22.7.7)
-      astro-integration-kit: 0.2.1(astro@4.16.6)
+      astro-integration-kit: 0.2.1(astro@4.16.7)
       fs-extra: 11.2.0
       fs-move: 6.0.0
       typescript: 5.6.3
@@ -3014,7 +3014,7 @@ packages:
   /@types/sax@1.2.7:
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 22.7.7
     dev: false
 
   /@types/semver@7.5.8:
@@ -3622,13 +3622,13 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /astro-compress@2.3.3(@types/node@22.7.7)(typescript@5.6.3):
-    resolution: {integrity: sha512-cZjavw83F4JWn4mjsFkSK7uSWDUgrZOwQSkCbjgiD6uNlnce2jkCyNewSkseHfJkriueAxh76DqshZbICasL9w==}
+  /astro-compress@2.3.5(@types/node@22.7.7)(typescript@5.6.3):
+    resolution: {integrity: sha512-TWZr/7IbIyi5e4vjuVN8UgkKMOhFqH25466Ct1jIG9UoDz50uNP5iPFQ2zPqO/Oe2541kYU7CchZt7cJ32w0Wg==}
     dependencies:
       '@playform/pipe': 0.1.1
       '@types/csso': 5.0.4
       '@types/html-minifier-terser': 7.0.2
-      astro: 4.16.6(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)(typescript@5.6.3)
+      astro: 4.16.7(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3)
       commander: 12.1.0
       csso: 5.0.5
       deepmerge-ts: 7.1.3
@@ -3638,7 +3638,7 @@ packages:
       lightningcss: 1.27.0
       sharp: 0.33.5
       svgo: 3.3.2
-      terser: 5.34.1
+      terser: 5.36.0
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -3655,7 +3655,7 @@ packages:
     resolution: {integrity: sha512-Ieuu4uR8nas2KT3RogITH41BCdEr3Ro8712S4Lm5xnaI1iEGZA+ajqpj2jgll6HjWm1LzlehRWH1ituUn4X/Cg==}
     dependencies:
       '@playform/pipe': 0.1.0
-      astro: 4.16.6(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)(typescript@5.6.3)
+      astro: 4.16.7(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3)
       critters: 0.0.24
     transitivePeerDependencies:
       - '@types/node'
@@ -3693,22 +3693,22 @@ packages:
       - typescript
     dev: true
 
-  /astro-integration-kit@0.2.1(astro@4.16.6):
+  /astro-integration-kit@0.2.1(astro@4.16.7):
     resolution: {integrity: sha512-AWgFRvo3YSpFxVfDdhHRAkOR7KmNYrS7h4JCpOBgMtea6SrpARsmfZXXgFHF+nNFJxmIA//PYetkbB/HQGzutw==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
-      astro: 4.16.6(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)(typescript@5.6.3)
+      astro: 4.16.7(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3)
       pathe: 1.1.2
     dev: false
 
-  /astro-purgecss@4.6.1(astro@4.16.6)(purgecss@6.0.0):
+  /astro-purgecss@4.6.1(astro@4.16.7)(purgecss@6.0.0):
     resolution: {integrity: sha512-SVxd2RY7FIVPcMYA6hD919dQySEVRND2wd2aKMx8uw8YSomix5EWtBwPMsXOrBlVQREPYn0WvuwzvXDrxpOmHQ==}
     peerDependencies:
       astro: ^4.0.0
       purgecss: ^6.0.0
     dependencies:
-      astro: 4.16.6(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)(typescript@5.6.3)
+      astro: 4.16.7(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3)
       purgecss: 6.0.0
     dev: true
 
@@ -3723,8 +3723,8 @@ packages:
       uglify-js: 3.19.3
     dev: false
 
-  /astro@4.16.6(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)(typescript@5.6.3):
-    resolution: {integrity: sha512-LMMbjr+4aN26MOyJzTdjM+Y+srpAIkx7IX9IcdF3eHQLGr8PgkioZp+VQExRfioDIyA2HY6ottVg3QccTzJqYA==}
+  /astro@4.16.7(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.6.3):
+    resolution: {integrity: sha512-nON+8MUEkWTFwXbS4zsQIq4t0Fs42eulM4x236AL+qNnWfqNAOOqAnFxO1dxfJ1q+XopIBbbT9Mtev+0zH47PQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     dependencies:
@@ -3782,7 +3782,7 @@ packages:
       tsconfck: 3.1.4(typescript@5.6.3)
       unist-util-visit: 5.0.0
       vfile: 6.0.3
-      vite: 5.4.9(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)
+      vite: 5.4.9(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)
       vitefu: 1.0.3(vite@5.4.9)
       which-pm: 3.0.0
       xxhash-wasm: 1.0.2
@@ -6647,7 +6647,7 @@ packages:
       entities: 4.5.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.34.1
+      terser: 5.36.0
     dev: true
 
   /html-tags@3.3.1:
@@ -11681,8 +11681,8 @@ packages:
       unique-string: 3.0.0
     dev: true
 
-  /terser@5.34.1:
-    resolution: {integrity: sha512-FsJZ7iZLd/BXkz+4xrRTGJ26o/6VTjQytUk8b8OxkwcD2I+79VPJlz7qss1+zE7h8GNIScFqXcDyJ/KqBYZFVA==}
+  /terser@5.36.0:
+    resolution: {integrity: sha512-IYV9eNMuFAV4THUspIRXkLakHnV6XO7FEdtKjf/mDyrnqUg9LnlOn6/RwRvM9SZjR4GUq8Nk8zj67FzVARr74w==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -12191,7 +12191,7 @@ packages:
       - typescript
     dev: false
 
-  /vite@5.4.9(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1):
+  /vite@5.4.9(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0):
     resolution: {integrity: sha512-20OVpJHh0PAM0oSOELa5GaZNWeDjcAvQjGXy2Uyr+Tp+/D2/Hdz6NLgpJLsarPTA2QJ6v8mX2P1ZfbsSKvdMkg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -12227,7 +12227,7 @@ packages:
       lightningcss: 1.27.0
       postcss: 8.4.47
       rollup: 4.24.0
-      terser: 5.34.1
+      terser: 5.36.0
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -12239,7 +12239,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 5.4.9(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.34.1)
+      vite: 5.4.9(@types/node@22.7.7)(lightningcss@1.27.0)(terser@5.36.0)
 
   /volar-service-css@0.0.61(@volar/language-service@2.4.6):
     resolution: {integrity: sha512-Ct9L/w+IB1JU8F4jofcNCGoHy6TF83aiapfZq9A0qYYpq+Kk5dH+ONS+rVZSsuhsunq8UvAuF8Gk6B8IFLfniw==}
