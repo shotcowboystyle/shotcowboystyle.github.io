@@ -239,8 +239,8 @@ devDependencies:
     specifier: ^1.1.0
     version: 1.1.0(postcss-html@1.7.0)(stylelint@16.10.0)
   stylelint-config-hudochenkov:
-    specifier: ^10.0.0
-    version: 10.0.0(stylelint-order@6.0.4)(stylelint@16.10.0)
+    specifier: ^11.0.0
+    version: 11.0.0(stylelint-order@6.0.4)(stylelint@16.10.0)
   stylelint-config-standard:
     specifier: ^36.0.1
     version: 36.0.1(stylelint@16.10.0)
@@ -11385,8 +11385,8 @@ packages:
       stylelint: 16.10.0(typescript@5.6.3)
     dev: true
 
-  /stylelint-config-hudochenkov@10.0.0(stylelint-order@6.0.4)(stylelint@16.10.0):
-    resolution: {integrity: sha512-/foIJpc2grEsG1NxPXLgqEOezOW1ArC5EvUssLEwcGVkrCMgVzyPN/OxL696oj137ZOJckv0raCjZEiCCoWAVw==}
+  /stylelint-config-hudochenkov@11.0.0(stylelint-order@6.0.4)(stylelint@16.10.0):
+    resolution: {integrity: sha512-Pub4qG22m09I4P4rvZ007XzXhNsM9HzPqB0cZ6xTid1fcZtddjJ91YqZZMPJDjZ3NtjQc5csNikHJ9sOxJXBMw==}
     peerDependencies:
       stylelint: ^16.0.2
       stylelint-order: ^6.0.4
