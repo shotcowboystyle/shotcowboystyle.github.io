@@ -63,7 +63,7 @@ devDependencies:
     version: 1.10.4
   '@axe-core/playwright':
     specifier: ^4.10.1
-    version: 4.10.1(playwright-core@1.48.2)
+    version: 4.10.1(playwright-core@1.49.0)
   '@commitlint/cli':
     specifier: ^19.6.0
     version: 19.6.0(@types/node@22.9.0)(typescript@5.7.2)
@@ -117,7 +117,7 @@ devDependencies:
     version: 1.1.0(typescript@5.7.2)
   astro-purgecss:
     specifier: ^4.9.0
-    version: 4.9.0(astro@4.16.14)(purgecss@6.0.0)
+    version: 4.9.0(astro@4.16.14)(purgecss@7.0.2)
   autoprefixer:
     specifier: ^10.4.20
     version: 10.4.20(postcss@8.4.49)
@@ -183,7 +183,7 @@ devDependencies:
     version: 1.49.0
   playwright-lighthouse:
     specifier: ^4.0.0
-    version: 4.0.0(lighthouse@12.2.2)(playwright-core@1.48.2)
+    version: 4.0.0(lighthouse@12.2.2)(playwright-core@1.49.0)
   postcss:
     specifier: ^8.4.49
     version: 8.4.49
@@ -221,8 +221,8 @@ devDependencies:
     specifier: ^0.6.9
     version: 0.6.9(@ianvs/prettier-plugin-sort-imports@4.4.0)(prettier-plugin-astro@0.14.1)(prettier@3.3.3)
   purgecss:
-    specifier: ^6.0.0
-    version: 6.0.0
+    specifier: ^7.0.2
+    version: 7.0.2
   rollup-plugin-analyzer:
     specifier: ^4.0.0
     version: 4.0.0
@@ -413,13 +413,13 @@ packages:
       yaml: 2.6.0
     dev: true
 
-  /@axe-core/playwright@4.10.1(playwright-core@1.48.2):
+  /@axe-core/playwright@4.10.1(playwright-core@1.49.0):
     resolution: {integrity: sha512-EV5t39VV68kuAfMKqb/RL+YjYKhfuGim9rgIaQ6Vntb2HgaCaau0h98Y3WEUqW1+PbdzxDtDNjFAipbtZuBmEA==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
       axe-core: 4.10.2
-      playwright-core: 1.48.2
+      playwright-core: 1.49.0
     dev: true
 
   /@babel/code-frame@7.26.2:
@@ -3695,14 +3695,14 @@ packages:
       pathe: 1.1.2
     dev: false
 
-  /astro-purgecss@4.9.0(astro@4.16.14)(purgecss@6.0.0):
+  /astro-purgecss@4.9.0(astro@4.16.14)(purgecss@7.0.2):
     resolution: {integrity: sha512-Ymio3P4kVCPqTbP2x/wpuDn4C3J0/kNYXW77BrDAZcj42CXRwVuo+9atyH9CN4i1efqTIOLvsh3JGcaalRVhHQ==}
     peerDependencies:
       astro: ^4.0.0
       purgecss: ^7.0.0
     dependencies:
       astro: 4.16.14(@types/node@22.9.0)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
-      purgecss: 6.0.0
+      purgecss: 7.0.2
     dev: true
 
   /astro-svg-sprite@1.1.0:
@@ -4508,6 +4508,7 @@ packages:
   /cosmiconfig-typescript-loader@5.1.0(@types/node@22.9.0)(cosmiconfig@9.0.0)(typescript@5.7.2):
     resolution: {integrity: sha512-7PtBB+6FdsOvZyJtlF3hEPpACq7RQX6BVGsgC7/lfVXnKMvNCu/XY3ykreqG5w/rBNdu2z8LCIKoF3kpHHdHlA==}
     engines: {node: '>=v16'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=8.2'
@@ -6272,6 +6273,19 @@ packages:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
+  /glob@11.0.0:
+    resolution: {integrity: sha512-9UiX/Bl6J2yaBbxKoEBRm4Cipxgok8kQYcOPEhScPwebu2I0HoQOuYdIO6S3hLuWoZgpDpwQZMzTFxgpkyT76g==}
+    engines: {node: 20 || >=22}
+    hasBin: true
+    dependencies:
+      foreground-child: 3.3.0
+      jackspeak: 4.0.2
+      minimatch: 10.0.1
+      minipass: 7.1.2
+      package-json-from-dist: 1.0.1
+      path-scurry: 2.0.0
+    dev: true
+
   /glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Glob versions prior to v9 are no longer supported
@@ -7195,6 +7209,13 @@ packages:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
+  /jackspeak@4.0.2:
+    resolution: {integrity: sha512-bZsjR/iRjl1Nk1UkjGpAzLNfQtzuijhn2g+pbZb98HQ1Gk8vM9hfbxeMBP+M2/UUdwj0RqGG3mlvk2MsAqwvEw==}
+    engines: {node: 20 || >=22}
+    dependencies:
+      '@isaacs/cliui': 8.0.2
+    dev: true
+
   /java-properties@1.0.2:
     resolution: {integrity: sha512-qjdpeo2yKlYTH7nFdK0vbZWuTCesk4o63v5iVOlhMQPfuIZQfW/HI35SjfhA+4qpg36rnFSvUK5b1m+ckIblQQ==}
     engines: {node: '>= 0.6.0'}
@@ -7876,6 +7897,11 @@ packages:
   /lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
+  /lru-cache@11.0.2:
+    resolution: {integrity: sha512-123qHRfJBmo2jXDbo/a5YOQrJoHF/GNQTLzQ5+IdK5pWpceK17yRc6ozlWd25FxvGKQbIUs91fDFkXmDHTKcyA==}
+    engines: {node: 20 || >=22}
+    dev: true
+
   /lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
     dependencies:
@@ -8467,6 +8493,13 @@ packages:
   /min-indent@1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
+    dev: true
+
+  /minimatch@10.0.1:
+    resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
+    engines: {node: 20 || >=22}
+    dependencies:
+      brace-expansion: 2.0.1
     dev: true
 
   /minimatch@3.1.2:
@@ -9272,6 +9305,14 @@ packages:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
+  /path-scurry@2.0.0:
+    resolution: {integrity: sha512-ypGJsmGtdXUOeM5u93TyeIEfEhM6s+ljAhrk5vAvSx8uyY/02OvrZnA0YNGUrPXfpJMgI1ODd3nwz8Npx4O4cg==}
+    engines: {node: 20 || >=22}
+    dependencies:
+      lru-cache: 11.0.2
+      minipass: 7.1.2
+    dev: true
+
   /path-type@4.0.0:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
@@ -9346,19 +9387,13 @@ packages:
     dependencies:
       find-up: 4.1.0
 
-  /playwright-core@1.48.2:
-    resolution: {integrity: sha512-sjjw+qrLFlriJo64du+EK0kJgZzoQPsabGF4lBvsid+3CNIZIYLgnMj9V6JY5VhM2Peh20DJWIVpVljLLnlawA==}
-    engines: {node: '>=18'}
-    hasBin: true
-    dev: true
-
   /playwright-core@1.49.0:
     resolution: {integrity: sha512-R+3KKTQF3npy5GTiKH/T+kdhoJfJojjHESR1YEWhYuEKRVfVaxH3+4+GvXE5xyCngCxhxnykk0Vlah9v8fs3jA==}
     engines: {node: '>=18'}
     hasBin: true
     dev: true
 
-  /playwright-lighthouse@4.0.0(lighthouse@12.2.2)(playwright-core@1.48.2):
+  /playwright-lighthouse@4.0.0(lighthouse@12.2.2)(playwright-core@1.49.0):
     resolution: {integrity: sha512-8sLhKLYD9k08UjKMSPzYBCZZ6Ct+wZPUe+K58hZEHIdyyXHg+jniWgd+C2W57B+MDstHiYSbyBiN9S8mzUH82w==}
     engines: {node: '>=16.x'}
     peerDependencies:
@@ -9370,7 +9405,7 @@ packages:
     dependencies:
       chalk: 4.1.2
       lighthouse: 12.2.2
-      playwright-core: 1.48.2
+      playwright-core: 1.49.0
       ua-parser-js: 1.0.39
     dev: true
 
@@ -10391,12 +10426,12 @@ packages:
       - utf-8-validate
     dev: true
 
-  /purgecss@6.0.0:
-    resolution: {integrity: sha512-s3EBxg5RSWmpqd0KGzNqPiaBbWDz1/As+2MzoYVGMqgDqRTLBhJW6sywfTBek7OwNfoS/6pS0xdtvChNhFj2cw==}
+  /purgecss@7.0.2:
+    resolution: {integrity: sha512-4Ku8KoxNhOWi9X1XJ73XY5fv+I+hhTRedKpGs/2gaBKU8ijUiIKF/uyyIyh7Wo713bELSICF5/NswjcuOqYouQ==}
     hasBin: true
     dependencies:
       commander: 12.1.0
-      glob: 10.4.5
+      glob: 11.0.0
       postcss: 8.4.49
       postcss-selector-parser: 6.1.2
     dev: true
