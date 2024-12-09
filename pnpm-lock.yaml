@@ -10,19 +10,19 @@ dependencies:
     version: 3.2.1
   '@astrojs/tailwind':
     specifier: ^5.1.3
-    version: 5.1.3(astro@4.16.16)(tailwindcss@3.4.16)
+    version: 5.1.3(astro@4.16.17)(tailwindcss@3.4.16)
   '@builder.io/qwik':
     specifier: ^1.11.0
     version: 1.11.0(vite@5.4.11)
   '@qwikdev/astro':
     specifier: ^0.6.3
-    version: 0.6.3(@builder.io/qwik@1.11.0)(astro@4.16.16)(typescript@5.7.2)(vite@5.4.11)
+    version: 0.6.3(@builder.io/qwik@1.11.0)(astro@4.16.17)(typescript@5.7.2)(vite@5.4.11)
   '@studio-freight/lenis':
     specifier: ^1.0.42
     version: 1.0.42
   astro:
-    specifier: ^4.16.16
-    version: 4.16.16(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
+    specifier: ^4.16.17
+    version: 4.16.17(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
   astro-svg-sprite:
     specifier: ^1.1.0
     version: 1.1.0
@@ -117,7 +117,7 @@ devDependencies:
     version: 1.1.0(typescript@5.7.2)
   astro-purgecss:
     specifier: ^4.9.0
-    version: 4.9.0(astro@4.16.16)(purgecss@7.0.2)
+    version: 4.9.0(astro@4.16.17)(purgecss@7.0.2)
   autoprefixer:
     specifier: ^10.4.20
     version: 10.4.20(postcss@8.4.49)
@@ -366,13 +366,13 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/tailwind@5.1.3(astro@4.16.16)(tailwindcss@3.4.16):
+  /@astrojs/tailwind@5.1.3(astro@4.16.17)(tailwindcss@3.4.16):
     resolution: {integrity: sha512-XF7WhXRhqEHGvADqc0kDtF7Yv/g4wAWTaj91jBBTBaYnc4+MQLH94duFfFa4NlTkRG40VQd012eF3MhO3Kk+bg==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0 || ^5.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.16.16(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
+      astro: 4.16.17(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
       autoprefixer: 10.4.20(postcss@8.4.49)
       postcss: 8.4.49
       postcss-load-config: 4.0.2(postcss@8.4.49)
@@ -2426,14 +2426,14 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.6.3(@builder.io/qwik@1.11.0)(astro@4.16.16)(typescript@5.7.2)(vite@5.4.11):
+  /@qwikdev/astro@0.6.3(@builder.io/qwik@1.11.0)(astro@4.16.17)(typescript@5.7.2)(vite@5.4.11):
     resolution: {integrity: sha512-32ETFBuYNo5/PzDAEe5Zec0Wk+7TQf/EpjLKhvfRVmARQXInMfJ5waF5Rxn2gcBA9GYP1B9KP40TbzJusTqG3Q==}
     peerDependencies:
       '@builder.io/qwik': ^1.7.2
       typescript: ^5.4.2
     dependencies:
       '@builder.io/qwik': 1.11.0(vite@5.4.11)
-      astro-integration-kit: 0.2.1(astro@4.16.16)
+      astro-integration-kit: 0.2.1(astro@4.16.17)
       fs-extra: 11.2.0
       fs-move: 6.0.0
       typescript: 5.7.2
@@ -3601,7 +3601,7 @@ packages:
       '@playform/pipe': 0.1.1
       '@types/csso': 5.0.4
       '@types/html-minifier-terser': 7.0.2
-      astro: 4.16.16(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
+      astro: 4.16.17(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
       commander: 12.1.0
       csso: 5.0.5
       deepmerge-ts: 7.1.3
@@ -3628,7 +3628,7 @@ packages:
     resolution: {integrity: sha512-Ieuu4uR8nas2KT3RogITH41BCdEr3Ro8712S4Lm5xnaI1iEGZA+ajqpj2jgll6HjWm1LzlehRWH1ituUn4X/Cg==}
     dependencies:
       '@playform/pipe': 0.1.0
-      astro: 4.16.16(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
+      astro: 4.16.17(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
       critters: 0.0.24
     transitivePeerDependencies:
       - '@types/node'
@@ -3666,22 +3666,22 @@ packages:
       - typescript
     dev: true
 
-  /astro-integration-kit@0.2.1(astro@4.16.16):
+  /astro-integration-kit@0.2.1(astro@4.16.17):
     resolution: {integrity: sha512-AWgFRvo3YSpFxVfDdhHRAkOR7KmNYrS7h4JCpOBgMtea6SrpARsmfZXXgFHF+nNFJxmIA//PYetkbB/HQGzutw==}
     peerDependencies:
       astro: ^4.0.0
     dependencies:
-      astro: 4.16.16(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
+      astro: 4.16.17(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
       pathe: 1.1.2
     dev: false
 
-  /astro-purgecss@4.9.0(astro@4.16.16)(purgecss@7.0.2):
+  /astro-purgecss@4.9.0(astro@4.16.17)(purgecss@7.0.2):
     resolution: {integrity: sha512-Ymio3P4kVCPqTbP2x/wpuDn4C3J0/kNYXW77BrDAZcj42CXRwVuo+9atyH9CN4i1efqTIOLvsh3JGcaalRVhHQ==}
     peerDependencies:
       astro: ^4.0.0
       purgecss: ^7.0.0
     dependencies:
-      astro: 4.16.16(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
+      astro: 4.16.17(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2)
       purgecss: 7.0.2
     dev: true
 
@@ -3697,8 +3697,8 @@ packages:
       uglify-js: 3.19.3
     dev: false
 
-  /astro@4.16.16(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2):
-    resolution: {integrity: sha512-H1CttrV6+JFrDBQx0Mcbq5i5AeLhCbztB786+9wEu3svWL/QPNeCGqF0dgNORAYmP+rODGCPu/y9qKSh87iLuA==}
+  /astro@4.16.17(@types/node@22.9.3)(lightningcss@1.27.0)(terser@5.36.0)(typescript@5.7.2):
+    resolution: {integrity: sha512-OuD+BP7U6OqQLKtZ/FJkU2S+TOlifxS/OKUbZOb5p6y+LLBa1J3zHRJrIl7DUSq6eXY+9wSWwbJpD9JS+lqhxA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     dependencies:
