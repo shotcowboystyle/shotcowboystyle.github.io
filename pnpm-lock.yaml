@@ -63,7 +63,7 @@ devDependencies:
     version: 1.10.4
   '@axe-core/playwright':
     specifier: ^4.10.1
-    version: 4.10.1(playwright-core@1.49.0)
+    version: 4.10.1(playwright-core@1.49.1)
   '@commitlint/cli':
     specifier: ^19.6.1
     version: 19.6.1(@types/node@22.9.3)(typescript@5.7.2)
@@ -183,7 +183,7 @@ devDependencies:
     version: 1.49.1
   playwright-lighthouse:
     specifier: ^4.0.0
-    version: 4.0.0(lighthouse@12.3.0)(playwright-core@1.49.0)
+    version: 4.0.0(lighthouse@12.3.0)(playwright-core@1.49.1)
   postcss:
     specifier: ^8.4.49
     version: 8.4.49
@@ -203,8 +203,8 @@ devDependencies:
     specifier: ^13.0.1
     version: 13.0.1(postcss@8.4.49)
   postcss-preset-env:
-    specifier: ^10.1.1
-    version: 10.1.1(postcss@8.4.49)
+    specifier: ^10.1.2
+    version: 10.1.2(postcss@8.4.49)
   postcss-random:
     specifier: ^1.0.9
     version: 1.0.9
@@ -407,13 +407,13 @@ packages:
       yaml: 2.6.1
     dev: true
 
-  /@axe-core/playwright@4.10.1(playwright-core@1.49.0):
+  /@axe-core/playwright@4.10.1(playwright-core@1.49.1):
     resolution: {integrity: sha512-EV5t39VV68kuAfMKqb/RL+YjYKhfuGim9rgIaQ6Vntb2HgaCaau0h98Y3WEUqW1+PbdzxDtDNjFAipbtZuBmEA==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
       axe-core: 4.10.2
-      playwright-core: 1.49.0
+      playwright-core: 1.49.1
     dev: true
 
   /@babel/code-frame@7.26.2:
@@ -578,30 +578,10 @@ packages:
       '@commitlint/types': 19.5.0
     dev: true
 
-  /@commitlint/load@19.5.0(@types/node@22.9.3)(typescript@5.7.2):
-    resolution: {integrity: sha512-INOUhkL/qaKqwcTUvCE8iIUf5XHsEPCLY9looJ/ipzi7jtGhgmtH7OOFiNvwYgH7mA8osUWOUDV8t4E2HAi4xA==}
-    engines: {node: '>=v18'}
-    requiresBuild: true
-    dependencies:
-      '@commitlint/config-validator': 19.5.0
-      '@commitlint/execute-rule': 19.5.0
-      '@commitlint/resolve-extends': 19.5.0
-      '@commitlint/types': 19.5.0
-      chalk: 5.3.0
-      cosmiconfig: 9.0.0(typescript@5.7.2)
-      cosmiconfig-typescript-loader: 5.1.0(@types/node@22.9.3)(cosmiconfig@9.0.0)(typescript@5.7.2)
-      lodash.isplainobject: 4.0.6
-      lodash.merge: 4.6.2
-      lodash.uniq: 4.5.0
-    transitivePeerDependencies:
-      - '@types/node'
-      - typescript
-    dev: true
-    optional: true
-
   /@commitlint/load@19.6.1(@types/node@22.9.3)(typescript@5.7.2):
     resolution: {integrity: sha512-kE4mRKWWNju2QpsCWt428XBvUH55OET2N4QKQ0bF85qS/XbsRGG1MiTByDNlEVpEPceMkDr46LNH95DtRwcsfA==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 19.5.0
       '@commitlint/execute-rule': 19.5.0
@@ -4558,25 +4538,10 @@ packages:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
 
-  /cosmiconfig-typescript-loader@5.1.0(@types/node@22.9.3)(cosmiconfig@9.0.0)(typescript@5.7.2):
-    resolution: {integrity: sha512-7PtBB+6FdsOvZyJtlF3hEPpACq7RQX6BVGsgC7/lfVXnKMvNCu/XY3ykreqG5w/rBNdu2z8LCIKoF3kpHHdHlA==}
-    engines: {node: '>=v16'}
-    requiresBuild: true
-    peerDependencies:
-      '@types/node': '*'
-      cosmiconfig: '>=8.2'
-      typescript: '>=4'
-    dependencies:
-      '@types/node': 22.9.3
-      cosmiconfig: 9.0.0(typescript@5.7.2)
-      jiti: 1.21.6
-      typescript: 5.7.2
-    dev: true
-    optional: true
-
   /cosmiconfig-typescript-loader@6.1.0(@types/node@22.9.3)(cosmiconfig@9.0.0)(typescript@5.7.2):
     resolution: {integrity: sha512-tJ1w35ZRUiM5FeTzT7DtYWAFFv37ZLqSRkGi2oeCK1gPhvaWjkAtfXvLmvE1pRfxxp9aQo6ba/Pvg1dKj05D4g==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=9'
@@ -4814,8 +4779,8 @@ packages:
     engines: {node: '>=12 || >=16'}
     dev: true
 
-  /css-has-pseudo@7.0.1(postcss@8.4.49):
-    resolution: {integrity: sha512-EOcoyJt+OsuKfCADgLT7gADZI5jMzIe/AeI6MeAYKiFBDmNmM7kk46DtSfMj5AohUJisqVzopBpnQTlvbyaBWg==}
+  /css-has-pseudo@7.0.2(postcss@8.4.49):
+    resolution: {integrity: sha512-nzol/h+E0bId46Kn2dQH5VElaknX2Sr0hFuB/1EomdC7j+OISt2ZzK7EHX9DZDY53WbIVAR7FYKSO2XnSf07MQ==}
     engines: {node: '>=18'}
     peerDependencies:
       postcss: ^8.4
@@ -4881,8 +4846,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /cssdb@8.2.1:
-    resolution: {integrity: sha512-KwEPys7lNsC8OjASI8RrmwOYYDcm0JOW9zQhcV83ejYcQkirTEyeAGui8aO2F5PiS6SLpxuTzl6qlMElIdsgIg==}
+  /cssdb@8.2.3:
+    resolution: {integrity: sha512-9BDG5XmJrJQQnJ51VFxXCAtpZ5ebDlAREmO8sxMOVU0aSxN/gocbctjIG5LMh3WBUq+xTlb/jw2LoljBEqraTA==}
     dev: true
 
   /cssesc@3.0.0:
@@ -4976,7 +4941,7 @@ packages:
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 19.5.0(@types/node@22.9.3)(typescript@5.7.2)
+      '@commitlint/load': 19.6.1(@types/node@22.9.3)(typescript@5.7.2)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -7390,6 +7355,7 @@ packages:
   /jiti@2.4.1:
     resolution: {integrity: sha512-yPBThwecp1wS9DmoA4x4KR2h3QoslacnDR8ypuFM962kI4/456Iy1oHx2RAgh4jfZNdn0bctsdadceiBUgpU1g==}
     hasBin: true
+    requiresBuild: true
     dev: true
 
   /jpeg-js@0.4.4:
@@ -9481,19 +9447,13 @@ packages:
     dependencies:
       find-up: 4.1.0
 
-  /playwright-core@1.49.0:
-    resolution: {integrity: sha512-R+3KKTQF3npy5GTiKH/T+kdhoJfJojjHESR1YEWhYuEKRVfVaxH3+4+GvXE5xyCngCxhxnykk0Vlah9v8fs3jA==}
-    engines: {node: '>=18'}
-    hasBin: true
-    dev: true
-
   /playwright-core@1.49.1:
     resolution: {integrity: sha512-BzmpVcs4kE2CH15rWfzpjzVGhWERJfmnXmniSyKeRZUs9Ws65m+RGIi7mjJK/euCegfn3i7jvqWeWyHe9y3Vgg==}
     engines: {node: '>=18'}
     hasBin: true
     dev: true
 
-  /playwright-lighthouse@4.0.0(lighthouse@12.3.0)(playwright-core@1.49.0):
+  /playwright-lighthouse@4.0.0(lighthouse@12.3.0)(playwright-core@1.49.1):
     resolution: {integrity: sha512-8sLhKLYD9k08UjKMSPzYBCZZ6Ct+wZPUe+K58hZEHIdyyXHg+jniWgd+C2W57B+MDstHiYSbyBiN9S8mzUH82w==}
     engines: {node: '>=16.x'}
     peerDependencies:
@@ -9505,7 +9465,7 @@ packages:
     dependencies:
       chalk: 4.1.2
       lighthouse: 12.3.0
-      playwright-core: 1.49.0
+      playwright-core: 1.49.1
       ua-parser-js: 1.0.39
     dev: true
 
@@ -10099,8 +10059,8 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-preset-env@10.1.1(postcss@8.4.49):
-    resolution: {integrity: sha512-wqqsnBFD6VIwcHHRbhjTOcOi4qRVlB26RwSr0ordPj7OubRRxdWebv/aLjKLRR8zkZrbxZyuus03nOIgC5elMQ==}
+  /postcss-preset-env@10.1.2(postcss@8.4.49):
+    resolution: {integrity: sha512-OqUBZ9ByVfngWhMNuBEMy52Izj07oIFA6K/EOGBlaSv+P12MiE1+S2cqXtS1VuW82demQ/Tzc7typYk3uHunkA==}
     engines: {node: '>=18'}
     peerDependencies:
       postcss: ^8.4
@@ -10140,9 +10100,9 @@ packages:
       autoprefixer: 10.4.20(postcss@8.4.49)
       browserslist: 4.24.2
       css-blank-pseudo: 7.0.1(postcss@8.4.49)
-      css-has-pseudo: 7.0.1(postcss@8.4.49)
+      css-has-pseudo: 7.0.2(postcss@8.4.49)
       css-prefers-color-scheme: 10.0.0(postcss@8.4.49)
-      cssdb: 8.2.1
+      cssdb: 8.2.3
       postcss: 8.4.49
       postcss-attribute-case-insensitive: 7.0.1(postcss@8.4.49)
       postcss-clamp: 4.1.0(postcss@8.4.49)
