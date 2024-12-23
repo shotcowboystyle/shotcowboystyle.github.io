@@ -52,7 +52,7 @@
 		"@builder.io/qwik": "^1.11.0",
 		"@qwikdev/astro": "^0.6.3",
 		"@studio-freight/lenis": "^1.0.42",
-		"astro": "^5.0.5",
+		"astro": "^5.1.1",
 		"astro-svg-sprite": "^1.1.0",
 		"astro-sw": "^1.0.4",
 		"cannon": "^0.6.2",
