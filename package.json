@@ -50,7 +50,7 @@
 		"@astrojs/sitemap": "^3.2.1",
 		"@astrojs/tailwind": "^5.1.4",
 		"@builder.io/qwik": "^1.12.0",
-		"@qwikdev/astro": "^0.7.4",
+		"@qwikdev/astro": "^0.7.7",
 		"@studio-freight/lenis": "^1.0.42",
 		"astro": "^5.1.1",
 		"astro-svg-sprite": "^1.1.0",
@@ -61,8 +61,8 @@
 		"maplibre-gl": "^4.7.1",
 		"sharp": "^0.33.5",
 		"split-type": "^0.3.4",
-		"swiper": "^11.1.15",
-		"three": "^0.171.0"
+		"swiper": "^11.2.0",
+		"three": "^0.172.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.4",
@@ -80,8 +80,8 @@
 		"@types/cannon": "^0.1.13",
 		"@types/eslint": "^9.6.1",
 		"@types/three": "^0.171.0",
-		"@typescript-eslint/eslint-plugin": "^8.18.2",
-		"@typescript-eslint/parser": "^8.18.2",
+		"@typescript-eslint/eslint-plugin": "^8.19.0",
+		"@typescript-eslint/parser": "^8.19.0",
 		"astro-compress": "2.3.5",
 		"astro-critters": "^2.2.0",
 		"astro-eslint-parser": "^1.1.0",
