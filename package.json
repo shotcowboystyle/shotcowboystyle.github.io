@@ -123,7 +123,7 @@
 		"purgecss": "^7.0.2",
 		"rollup-plugin-analyzer": "^4.0.0",
 		"rollup-plugin-visualizer": "^5.13.1",
-		"semantic-release": "24.2.1",
+		"semantic-release": "24.2.3",
 		"stylelint": "^16.13.2",
 		"stylelint-config-html": "^1.1.0",
 		"stylelint-config-hudochenkov": "^11.0.0",
