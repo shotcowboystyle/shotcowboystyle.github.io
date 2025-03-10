@@ -242,11 +242,11 @@ devDependencies:
     specifier: ^11.0.0
     version: 11.0.0(stylelint-order@6.0.4)(stylelint@16.15.0)
   stylelint-config-standard:
-    specifier: ^36.0.1
-    version: 36.0.1(stylelint@16.15.0)
+    specifier: ^37.0.0
+    version: 37.0.0(stylelint@16.15.0)
   stylelint-config-tailwindcss:
-    specifier: ^0.0.7
-    version: 0.0.7(stylelint@16.15.0)(tailwindcss@4.0.12)
+    specifier: ^1.0.0
+    version: 1.0.0(stylelint@16.15.0)(tailwindcss@4.0.12)
   tailwindcss:
     specifier: ^4.0.12
     version: 4.0.12
@@ -11756,27 +11756,27 @@ packages:
       stylelint-order: 6.0.4(stylelint@16.15.0)
     dev: true
 
-  /stylelint-config-recommended@14.0.1(stylelint@16.15.0):
-    resolution: {integrity: sha512-bLvc1WOz/14aPImu/cufKAZYfXs/A/owZfSMZ4N+16WGXLoX5lOir53M6odBxvhgmgdxCVnNySJmZKx73T93cg==}
+  /stylelint-config-recommended@15.0.0(stylelint@16.15.0):
+    resolution: {integrity: sha512-9LejMFsat7L+NXttdHdTq94byn25TD+82bzGRiV1Pgasl99pWnwipXS5DguTpp3nP1XjvLXVnEJIuYBfsRjRkA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^16.1.0
+      stylelint: ^16.13.0
     dependencies:
       stylelint: 16.15.0(typescript@5.8.2)
     dev: true
 
-  /stylelint-config-standard@36.0.1(stylelint@16.15.0):
-    resolution: {integrity: sha512-8aX8mTzJ6cuO8mmD5yon61CWuIM4UD8Q5aBcWKGSf6kg+EC3uhB+iOywpTK4ca6ZL7B49en8yanOFtUW0qNzyw==}
+  /stylelint-config-standard@37.0.0(stylelint@16.15.0):
+    resolution: {integrity: sha512-+6eBlbSTrOn/il2RlV0zYGQwRTkr+WtzuVSs1reaWGObxnxLpbcspCUYajVQHonVfxVw2U+h42azGhrBvcg8OA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^16.1.0
+      stylelint: ^16.13.0
     dependencies:
       stylelint: 16.15.0(typescript@5.8.2)
-      stylelint-config-recommended: 14.0.1(stylelint@16.15.0)
+      stylelint-config-recommended: 15.0.0(stylelint@16.15.0)
     dev: true
 
-  /stylelint-config-tailwindcss@0.0.7(stylelint@16.15.0)(tailwindcss@4.0.12):
-    resolution: {integrity: sha512-n2dCWH+0ppr0/by4EYCLWW7g5LU+l4UzUIsYS7xbVHqvm9UWa7UhltNdNiz5NmLF/FmbJR4Yd/v9DuUGvLw1Tg==}
+  /stylelint-config-tailwindcss@1.0.0(stylelint@16.15.0)(tailwindcss@4.0.12):
+    resolution: {integrity: sha512-e6WUBJeLdOZ0sy8FZ1jk5Zy9iNGqqJbrMwnnV0Hpaw/yin6QO3gVv/zvyqSty8Yg6nEB5gqcyJbN387TPhEa7Q==}
     peerDependencies:
       stylelint: '>=13.13.1'
       tailwindcss: '>=2.2.16'
