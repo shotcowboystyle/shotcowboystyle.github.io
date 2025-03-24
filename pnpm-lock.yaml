@@ -9,8 +9,8 @@ dependencies:
     specifier: ^3.2.1
     version: 3.2.1
   '@astrojs/tailwind':
-    specifier: ^5.1.5
-    version: 5.1.5(astro@5.5.4)(tailwindcss@4.0.14)
+    specifier: ^6.0.1
+    version: 6.0.1(astro@5.5.4)(tailwindcss@4.0.14)
   '@builder.io/qwik':
     specifier: ^1.12.1
     version: 1.12.1(vite@5.4.11)
@@ -362,8 +362,8 @@ packages:
       zod: 3.24.1
     dev: false
 
-  /@astrojs/tailwind@5.1.5(astro@5.5.4)(tailwindcss@4.0.14):
-    resolution: {integrity: sha512-1diguZEau7FZ9vIjzE4BwavGdhD3+JkdS8zmibl1ene+EHgIU5hI0NMgRYG3yea+Niaf7cyMwjeWeLvzq/maxg==}
+  /@astrojs/tailwind@6.0.1(astro@5.5.4)(tailwindcss@4.0.14):
+    resolution: {integrity: sha512-jYrqG6dXwRnS3xUcRIoeYGFB2L2SISuTNaqMMFp0otW55HQ4fhiz941VaE9EVbs49tF2+1aAZCT3xgt2l/j5tQ==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0 || ^5.0.0
       tailwindcss: ^3.0.24
