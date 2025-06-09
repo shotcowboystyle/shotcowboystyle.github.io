@@ -233,20 +233,20 @@ devDependencies:
     specifier: 24.2.5
     version: 24.2.5(typescript@5.8.3)
   stylelint:
-    specifier: ^16.19.1
-    version: 16.19.1(typescript@5.8.3)
+    specifier: ^16.20.0
+    version: 16.20.0(typescript@5.8.3)
   stylelint-config-html:
     specifier: ^1.1.0
-    version: 1.1.0(postcss-html@1.8.0)(stylelint@16.19.1)
+    version: 1.1.0(postcss-html@1.8.0)(stylelint@16.20.0)
   stylelint-config-hudochenkov:
     specifier: ^12.0.0
-    version: 12.0.0(stylelint-order@7.0.0)(stylelint@16.19.1)
+    version: 12.0.0(stylelint-order@7.0.0)(stylelint@16.20.0)
   stylelint-config-standard:
     specifier: ^38.0.0
-    version: 38.0.0(stylelint@16.19.1)
+    version: 38.0.0(stylelint@16.20.0)
   stylelint-config-tailwindcss:
     specifier: ^1.0.0
-    version: 1.0.0(stylelint@16.19.1)(tailwindcss@4.1.8)
+    version: 1.0.0(stylelint@16.20.0)(tailwindcss@4.1.8)
   tailwindcss:
     specifier: ^4.1.8
     version: 4.1.8
@@ -1075,15 +1075,6 @@ packages:
       '@csstools/css-tokenizer': 3.0.4
     dev: true
 
-  /@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3):
-    resolution: {integrity: sha512-Up7rBoV77rv29d3uKHUIVubz1BTcgyUK72IvCQAbfbMv584xHcGKCKbWh7i8hPrRJ7qU4Y8IO3IY9m+iTB7P3A==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@csstools/css-tokenizer': ^3.0.3
-    dependencies:
-      '@csstools/css-tokenizer': 3.0.3
-    dev: true
-
   /@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4):
     resolution: {integrity: sha512-DaDeUkXZKjdGhgYaHNJTV9pV7Y9B3b644jCLs9Upc3VeNGg6LWARAT6O+Q+/COo+2gg/bM5rhpMAtf70WqfBdQ==}
     engines: {node: '>=18'}
@@ -1093,25 +1084,9 @@ packages:
       '@csstools/css-tokenizer': 3.0.4
     dev: true
 
-  /@csstools/css-tokenizer@3.0.3:
-    resolution: {integrity: sha512-UJnjoFsmxfKUdNYdWgOB0mWUypuLvAfQPH1+pyvRJs6euowbFkFC6P13w1l8mJyi3vxYMxc9kld5jZEGRQs6bw==}
-    engines: {node: '>=18'}
-    dev: true
-
   /@csstools/css-tokenizer@3.0.4:
     resolution: {integrity: sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==}
     engines: {node: '>=18'}
-    dev: true
-
-  /@csstools/media-query-list-parser@4.0.2(@csstools/css-parser-algorithms@3.0.4)(@csstools/css-tokenizer@3.0.3):
-    resolution: {integrity: sha512-EUos465uvVvMJehckATTlNqGj4UJWkTmdWuDMjqvSUkjGpmOyFZBVwb4knxCm/k2GMTXY+c/5RkdndzFYWeX5A==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@csstools/css-parser-algorithms': ^3.0.4
-      '@csstools/css-tokenizer': ^3.0.3
-    dependencies:
-      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
-      '@csstools/css-tokenizer': 3.0.3
     dev: true
 
   /@csstools/media-query-list-parser@4.0.3(@csstools/css-parser-algorithms@3.0.5)(@csstools/css-tokenizer@3.0.4):
@@ -2641,16 +2616,6 @@ packages:
       tinyqueue: 3.0.0
     dev: false
 
-  /@napi-rs/wasm-runtime@0.2.10:
-    resolution: {integrity: sha512-bCsCyeZEwVErsGmyPNSzwfwFn4OdxBj0mmv6hOFucB/k81Ojdu68RbZdxYsRQUPc9l6SU5F/cG+bXgWs3oUgsQ==}
-    requiresBuild: true
-    dependencies:
-      '@emnapi/core': 1.4.3
-      '@emnapi/runtime': 1.4.3
-      '@tybys/wasm-util': 0.9.0
-    dev: true
-    optional: true
-
   /@napi-rs/wasm-runtime@0.2.11:
     resolution: {integrity: sha512-9DPkXtvHydrcOsopiYpUgPHpmj0HWZKMUnL2dZqpvC42lsratuBG06V5ipyno0fUek5VlFsNQ+AcFATSrJXgMA==}
     requiresBuild: true
@@ -3871,7 +3836,7 @@ packages:
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@napi-rs/wasm-runtime': 0.2.10
+      '@napi-rs/wasm-runtime': 0.2.11
     dev: true
     optional: true
 
@@ -12353,7 +12318,7 @@ packages:
       postcss-selector-parser: 7.1.0
     dev: true
 
-  /stylelint-config-html@1.1.0(postcss-html@1.8.0)(stylelint@16.19.1):
+  /stylelint-config-html@1.1.0(postcss-html@1.8.0)(stylelint@16.20.0):
     resolution: {integrity: sha512-IZv4IVESjKLumUGi+HWeb7skgO6/g4VMuAYrJdlqQFndgbj6WJAXPhaysvBiXefX79upBdQVumgYcdd17gCpjQ==}
     engines: {node: ^12 || >=14}
     peerDependencies:
@@ -12361,49 +12326,49 @@ packages:
       stylelint: '>=14.0.0'
     dependencies:
       postcss-html: 1.8.0
-      stylelint: 16.19.1(typescript@5.8.3)
+      stylelint: 16.20.0(typescript@5.8.3)
     dev: true
 
-  /stylelint-config-hudochenkov@12.0.0(stylelint-order@7.0.0)(stylelint@16.19.1):
+  /stylelint-config-hudochenkov@12.0.0(stylelint-order@7.0.0)(stylelint@16.20.0):
     resolution: {integrity: sha512-q2h/RrdtaUDAULx1JN8qv5P5Qk5kDrlh1pvLZjEW6lvRZFmeZfPFwdw480449sYPUxvEBEXP8lF46wq28c/Y8A==}
     peerDependencies:
       stylelint: ^16.19.0
       stylelint-order: ^7.0.0
     dependencies:
-      stylelint: 16.19.1(typescript@5.8.3)
-      stylelint-order: 7.0.0(stylelint@16.19.1)
+      stylelint: 16.20.0(typescript@5.8.3)
+      stylelint-order: 7.0.0(stylelint@16.20.0)
     dev: true
 
-  /stylelint-config-recommended@16.0.0(stylelint@16.19.1):
+  /stylelint-config-recommended@16.0.0(stylelint@16.20.0):
     resolution: {integrity: sha512-4RSmPjQegF34wNcK1e1O3Uz91HN8P1aFdFzio90wNK9mjgAI19u5vsU868cVZboKzCaa5XbpvtTzAAGQAxpcXA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.16.0
     dependencies:
-      stylelint: 16.19.1(typescript@5.8.3)
+      stylelint: 16.20.0(typescript@5.8.3)
     dev: true
 
-  /stylelint-config-standard@38.0.0(stylelint@16.19.1):
+  /stylelint-config-standard@38.0.0(stylelint@16.20.0):
     resolution: {integrity: sha512-uj3JIX+dpFseqd/DJx8Gy3PcRAJhlEZ2IrlFOc4LUxBX/PNMEQ198x7LCOE2Q5oT9Vw8nyc4CIL78xSqPr6iag==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.18.0
     dependencies:
-      stylelint: 16.19.1(typescript@5.8.3)
-      stylelint-config-recommended: 16.0.0(stylelint@16.19.1)
+      stylelint: 16.20.0(typescript@5.8.3)
+      stylelint-config-recommended: 16.0.0(stylelint@16.20.0)
     dev: true
 
-  /stylelint-config-tailwindcss@1.0.0(stylelint@16.19.1)(tailwindcss@4.1.8):
+  /stylelint-config-tailwindcss@1.0.0(stylelint@16.20.0)(tailwindcss@4.1.8):
     resolution: {integrity: sha512-e6WUBJeLdOZ0sy8FZ1jk5Zy9iNGqqJbrMwnnV0Hpaw/yin6QO3gVv/zvyqSty8Yg6nEB5gqcyJbN387TPhEa7Q==}
     peerDependencies:
       stylelint: '>=13.13.1'
       tailwindcss: '>=2.2.16'
     dependencies:
-      stylelint: 16.19.1(typescript@5.8.3)
+      stylelint: 16.20.0(typescript@5.8.3)
       tailwindcss: 4.1.8
     dev: true
 
-  /stylelint-order@7.0.0(stylelint@16.19.1):
+  /stylelint-order@7.0.0(stylelint@16.20.0):
     resolution: {integrity: sha512-rSWxx0KscYfxU02wEskKXES9lkRzuuONMMNkZ7SUc6uiF3tDKm7e+sE0Ax/SBlG4TUf1sp1R6f3/SlsPGmzthg==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
@@ -12411,17 +12376,17 @@ packages:
     dependencies:
       postcss: 8.5.4
       postcss-sorting: 9.1.0(postcss@8.5.4)
-      stylelint: 16.19.1(typescript@5.8.3)
+      stylelint: 16.20.0(typescript@5.8.3)
     dev: true
 
-  /stylelint@16.19.1(typescript@5.8.3):
-    resolution: {integrity: sha512-C1SlPZNMKl+d/C867ZdCRthrS+6KuZ3AoGW113RZCOL0M8xOGpgx7G70wq7lFvqvm4dcfdGFVLB/mNaLFChRKw==}
+  /stylelint@16.20.0(typescript@5.8.3):
+    resolution: {integrity: sha512-B5Myu9WRxrgKuLs3YyUXLP2H0mrbejwNxPmyADlACWwFsrL8Bmor/nTSh4OMae5sHjOz6gkSeccQH34gM4/nAw==}
     engines: {node: '>=18.12.0'}
     hasBin: true
     dependencies:
-      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
-      '@csstools/css-tokenizer': 3.0.3
-      '@csstools/media-query-list-parser': 4.0.2(@csstools/css-parser-algorithms@3.0.4)(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
+      '@csstools/css-tokenizer': 3.0.4
+      '@csstools/media-query-list-parser': 4.0.3(@csstools/css-parser-algorithms@3.0.5)(@csstools/css-tokenizer@3.0.4)
       '@csstools/selector-specificity': 5.0.0(postcss-selector-parser@7.1.0)
       '@dual-bundle/import-meta-resolve': 4.1.0
       balanced-match: 2.0.0
