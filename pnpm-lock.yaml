@@ -10,19 +10,19 @@ dependencies:
     version: 3.4.1
   '@astrojs/tailwind':
     specifier: ^6.0.2
-    version: 6.0.2(astro@5.9.3)(tailwindcss@4.1.11)
+    version: 6.0.2(astro@5.11.0)(tailwindcss@4.1.11)
   '@builder.io/qwik':
     specifier: ^1.14.1
     version: 1.14.1(vite@5.4.19)
   '@qwikdev/astro':
     specifier: ^0.8.0
-    version: 0.8.0(@builder.io/qwik@1.14.1)(astro@5.9.3)
+    version: 0.8.0(@builder.io/qwik@1.14.1)(astro@5.11.0)
   '@studio-freight/lenis':
     specifier: ^1.0.42
     version: 1.0.42
   astro:
-    specifier: ^5.9.3
-    version: 5.9.3(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
+    specifier: ^5.11.0
+    version: 5.11.0(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
   astro-svg-sprite:
     specifier: ^1.1.0
     version: 1.1.0
@@ -116,8 +116,8 @@ devDependencies:
     specifier: ^1.2.2
     version: 1.2.2
   astro-purgecss:
-    specifier: ^5.2.3
-    version: 5.2.3(astro@5.9.3)(purgecss@7.0.2)
+    specifier: ^5.3.0
+    version: 5.3.0(astro@5.11.0)(purgecss@7.0.2)
   autoprefixer:
     specifier: ^10.4.21
     version: 10.4.21(postcss@8.5.6)
@@ -339,7 +339,7 @@ packages:
       remark-rehype: 11.1.2
       remark-smartypants: 3.0.2
       shiki: 3.4.2
-      smol-toml: 1.3.4
+      smol-toml: 1.4.1
       unified: 11.0.5
       unist-util-remove-position: 5.0.0
       unist-util-visit: 5.0.0
@@ -362,13 +362,13 @@ packages:
       zod: 3.25.7
     dev: false
 
-  /@astrojs/tailwind@6.0.2(astro@5.9.3)(tailwindcss@4.1.11):
+  /@astrojs/tailwind@6.0.2(astro@5.11.0)(tailwindcss@4.1.11):
     resolution: {integrity: sha512-j3mhLNeugZq6A8dMNXVarUa8K6X9AW+QHU9u3lKNrPLMHhOQ0S7VeWhHwEeJFpEK1BTKEUY1U78VQv2gN6hNGg==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0 || ^5.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 5.9.3(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
+      astro: 5.11.0(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
       autoprefixer: 10.4.21(postcss@8.5.6)
       postcss: 8.5.6
       postcss-load-config: 4.0.2(postcss@8.5.6)
@@ -3348,13 +3348,13 @@ packages:
       - supports-color
     dev: true
 
-  /@qwikdev/astro@0.8.0(@builder.io/qwik@1.14.1)(astro@5.9.3):
+  /@qwikdev/astro@0.8.0(@builder.io/qwik@1.14.1)(astro@5.11.0):
     resolution: {integrity: sha512-EXET8TYsQX8dyUNs97pXWAILRWcZJDlU8kt4E0PXBdNtkR4kWXmisj2b/CpJN6dYN2IZH2j82WFZq8nk2raaKQ==}
     peerDependencies:
       '@builder.io/qwik': '>=1.14.1'
     dependencies:
       '@builder.io/qwik': 1.14.1(vite@5.4.19)
-      astro-integration-kit: 0.18.0(astro@5.9.3)
+      astro-integration-kit: 0.18.0(astro@5.11.0)
     transitivePeerDependencies:
       - astro
     dev: false
@@ -4716,7 +4716,7 @@ packages:
       '@playform/pipe': 0.1.3
       '@types/csso': 5.0.4
       '@types/html-minifier-terser': 7.0.2
-      astro: 5.9.3(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
+      astro: 5.11.0(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
       commander: 13.1.0
       csso: 5.0.5
       deepmerge-ts: 7.1.5
@@ -4765,7 +4765,7 @@ packages:
     resolution: {integrity: sha512-C9wYbSWEqvBZ65/tarpR56GjuxH7psILuzwtV3MCHWfT5rfI3ESo8DfxQab1bTAjinBDla0ohAtM7GdXo/OJKQ==}
     dependencies:
       '@playform/pipe': 0.1.2
-      astro: 5.9.3(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
+      astro: 5.11.0(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
       critters: 0.0.25
       deepmerge-ts: 7.1.3
     transitivePeerDependencies:
@@ -4824,23 +4824,23 @@ packages:
       - supports-color
     dev: true
 
-  /astro-integration-kit@0.18.0(astro@5.9.3):
+  /astro-integration-kit@0.18.0(astro@5.11.0):
     resolution: {integrity: sha512-Z0QW5IQjosuKQDEGYYkvUX6EhEtrmE4/oViqWz23QveV8U7AuyFsTdg00WRNPevWZl/5a4lLUeDpv4bCRynRRg==}
     peerDependencies:
       astro: ^4.12.0 || ^5.0.0
     dependencies:
-      astro: 5.9.3(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
+      astro: 5.11.0(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
       pathe: 1.1.2
       recast: 0.23.11
     dev: false
 
-  /astro-purgecss@5.2.3(astro@5.9.3)(purgecss@7.0.2):
-    resolution: {integrity: sha512-JrGQs37gQRn86X6rUJBg4ujqR++5J6uXFK0HF+W2Yaja+ZvGtIHFdw6JsgoAnzn+XtKB/hsiPzSIqO5FZfU0jQ==}
+  /astro-purgecss@5.3.0(astro@5.11.0)(purgecss@7.0.2):
+    resolution: {integrity: sha512-BFHibkGbhdiNPrDjgV+wKbPITzgr/ZAE6T6396v82FX1DExwXqGa28kIhFOZf/A68RZLJsbQCAZTtJ8lobMxlQ==}
     peerDependencies:
       astro: ^5.0.0
       purgecss: ^7.0.0
     dependencies:
-      astro: 5.9.3(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
+      astro: 5.11.0(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3)
       purgecss: 7.0.2
     dev: true
 
@@ -4856,8 +4856,8 @@ packages:
       uglify-js: 3.19.3
     dev: false
 
-  /astro@5.9.3(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3):
-    resolution: {integrity: sha512-VReZrpUa/3rfeiVvsQ1A2M3ujDPI+pDGIYOMtXPEZwut8tZoEyealXXLjitgCsJ+3dunKGZbg4Eak6i+r0vniw==}
+  /astro@5.11.0(@types/node@22.15.19)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.8.3):
+    resolution: {integrity: sha512-MEICntERthUxJPSSDsDiZuwiCMrsaYy3fnDhp4c6ScUfldCB8RBnB/myYdpTFXpwYBy6SgVsHQ1H4MuuA7ro/Q==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
     dependencies:
@@ -12657,11 +12657,11 @@ packages:
   /smol-toml@1.3.4:
     resolution: {integrity: sha512-UOPtVuYkzYGee0Bd2Szz8d2G3RfMfJ2t3qVdZUAozZyAk+a0Sxa+QKix0YCwjL/A1RR0ar44nCxaoN9FxdJGwA==}
     engines: {node: '>= 18'}
+    dev: true
 
   /smol-toml@1.4.1:
     resolution: {integrity: sha512-CxdwHXyYTONGHThDbq5XdwbFsuY4wlClRGejfE2NtwUtiHYsP1QtNsHb/hnj31jKYSchztJsaA8pSQoVzkfCFg==}
     engines: {node: '>= 18'}
-    dev: true
 
   /socks-proxy-agent@8.0.5:
     resolution: {integrity: sha512-HehCEsotFqbPW9sJ8WVYB6UbmIMv7kUUORIF2Nncq4VQvBfNBLibW9YZR5dlYCSUhwcD628pRllm7n+E+YTzJw==}
