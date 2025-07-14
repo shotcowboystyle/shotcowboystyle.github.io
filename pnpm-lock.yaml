@@ -173,8 +173,8 @@ devDependencies:
     specifier: ^9.0.0
     version: 9.0.0(typescript@5.8.3)
   npm-package-json-lint-config-default:
-    specifier: ^7.0.1
-    version: 7.0.1(npm-package-json-lint@9.0.0)
+    specifier: ^8.0.1
+    version: 8.0.1(npm-package-json-lint@9.0.0)
   npm-run-all2:
     specifier: ^8.0.4
     version: 8.0.4
@@ -10091,11 +10091,11 @@ packages:
     engines: {node: ^18.17.0 || >=20.5.0}
     dev: true
 
-  /npm-package-json-lint-config-default@7.0.1(npm-package-json-lint@9.0.0):
-    resolution: {integrity: sha512-UMdVX/iowvA5qGeEgHsTHXMGgamdGR1pOSuzMDzQntZ/+mq8z9S9t1qr7rRdxKH3kNx6I3fuct1ECbmCz8u2ow==}
-    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
+  /npm-package-json-lint-config-default@8.0.1(npm-package-json-lint@9.0.0):
+    resolution: {integrity: sha512-bJt3QxmisODFvlvD/fqaS1/zsxgJETA1mF2H7Lm2LJDXYh9TpQqYg3opCI9singOq9FJjSQNnEpFm+dUjlUMqw==}
+    engines: {node: '>=20.0.0', npm: '>=10.0.0'}
     peerDependencies:
-      npm-package-json-lint: ^8.0.0
+      npm-package-json-lint: ^9.0.0
     dependencies:
       npm-package-json-lint: 9.0.0(typescript@5.8.3)
     dev: true
