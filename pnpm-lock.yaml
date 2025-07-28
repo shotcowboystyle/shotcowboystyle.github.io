@@ -12,7 +12,7 @@ dependencies:
     specifier: ^6.0.2
     version: 6.0.2(astro@5.12.1)(tailwindcss@4.1.11)
   '@builder.io/qwik':
-    specifier: ^1.14.1
+    specifier: ^1.15.0
     version: 1.15.0(vite@7.0.5)
   '@qwikdev/astro':
     specifier: ^0.8.0
@@ -101,10 +101,10 @@ devDependencies:
     specifier: ^0.178.1
     version: 0.178.1
   '@typescript-eslint/eslint-plugin':
-    specifier: ^8.37.0
+    specifier: ^8.38.0
     version: 8.38.0(@typescript-eslint/parser@8.38.0)(eslint@9.31.0)(typescript@5.8.3)
   '@typescript-eslint/parser':
-    specifier: ^8.37.0
+    specifier: ^8.38.0
     version: 8.38.0(eslint@9.31.0)(typescript@5.8.3)
   astro-compress:
     specifier: 2.3.8
@@ -140,8 +140,8 @@ devDependencies:
     specifier: ^3.3.0
     version: 3.3.0(@types/node@24.0.15)(typescript@5.8.3)
   daisyui:
-    specifier: ^5.0.46
-    version: 5.0.46
+    specifier: ^5.0.48
+    version: 5.0.48
   eslint:
     specifier: ^9.31.0
     version: 9.31.0
@@ -541,6 +541,7 @@ packages:
   /@commitlint/config-validator@19.8.1:
     resolution: {integrity: sha512-0jvJ4u+eqGPBIzzSdqKNX1rvdbSU1lPNYlfQQRIFnBgLy26BtC0cFnr7c/AyuzExMxWsMOte6MkTi9I3SQ3iGQ==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': 19.8.1
       ajv: 8.17.1
@@ -561,6 +562,7 @@ packages:
   /@commitlint/execute-rule@19.8.1:
     resolution: {integrity: sha512-YfJyIqIKWI64Mgvn/sE7FXvVMQER/Cd+s3hZke6cI1xgNT/f6ZAz5heND0QtffH+KbcqAwXDEE1/5niYayYaQA==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
 
   /@commitlint/format@19.8.1:
@@ -636,6 +638,7 @@ packages:
   /@commitlint/resolve-extends@19.8.1:
     resolution: {integrity: sha512-GM0mAhFk49I+T/5UCYns5ayGStkTt4XFFrjjf0L4S26xoMTSkdCf9ZRO8en1kuopC4isDFuEm7ZOm/WRVeElVg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 19.8.1
       '@commitlint/types': 19.8.1
@@ -5584,6 +5587,7 @@ packages:
   /cosmiconfig-typescript-loader@6.1.0(@types/node@24.0.15)(cosmiconfig@9.0.0)(typescript@5.8.3):
     resolution: {integrity: sha512-tJ1w35ZRUiM5FeTzT7DtYWAFFv37ZLqSRkGi2oeCK1gPhvaWjkAtfXvLmvE1pRfxxp9aQo6ba/Pvg1dKj05D4g==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=9'
@@ -5974,8 +5978,8 @@ packages:
       - typescript
     dev: true
 
-  /daisyui@5.0.46:
-    resolution: {integrity: sha512-vMDZK1tI/bOb2Mc3Mk5WpquBG3ZqBz1YKZ0xDlvpOvey60dOS4/5Qhdowq1HndbQl7PgDLDYysxAjjUjwR7/eQ==}
+  /daisyui@5.0.48:
+    resolution: {integrity: sha512-t2nvzKENuhbjkKmxhIoDgV/nzAnNLbswK9MBlOMnEO6hxfgNLlt7jVrHYWw6ts492JdQ0Mmf6iX3aO/u+1zXAw==}
     dev: true
 
   /damerau-levenshtein@1.0.8:
@@ -6947,6 +6951,7 @@ packages:
 
   /fast-uri@3.0.6:
     resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
+    requiresBuild: true
     dev: true
 
   /fastest-levenshtein@1.0.16:
@@ -7915,6 +7920,7 @@ packages:
   /ini@4.1.1:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+    requiresBuild: true
     dev: true
 
   /ini@4.1.3:
@@ -8464,6 +8470,7 @@ packages:
 
   /json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
+    requiresBuild: true
     dev: true
 
   /json-stable-stringify-without-jsonify@1.0.1:
@@ -8940,6 +8947,7 @@ packages:
 
   /lodash.mergewith@4.6.2:
     resolution: {integrity: sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.snakecase@4.1.1:
@@ -11864,6 +11872,7 @@ packages:
   /require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
 
   /require-in-the-middle@7.5.2:
