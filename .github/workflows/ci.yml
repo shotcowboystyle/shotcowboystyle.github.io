@@ -62,7 +62,7 @@ jobs:
           PUBLIC_GOOGLE_SITE_VERIFICATION_ID: ${{ secrets.PUBLIC_GOOGLE_SITE_VERIFICATION_ID }}
 
       - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
