@@ -78,19 +78,19 @@ devDependencies:
     version: 1.55.0
   '@semantic-release/changelog':
     specifier: ^6.0.3
-    version: 6.0.3(semantic-release@24.2.7)
+    version: 6.0.3(semantic-release@24.2.9)
   '@semantic-release/commit-analyzer':
     specifier: ^13.0.1
-    version: 13.0.1(semantic-release@24.2.7)
+    version: 13.0.1(semantic-release@24.2.9)
   '@semantic-release/git':
     specifier: 10.0.1
-    version: 10.0.1(semantic-release@24.2.7)
+    version: 10.0.1(semantic-release@24.2.9)
   '@semantic-release/github':
-    specifier: ^11.0.4
-    version: 11.0.4(semantic-release@24.2.7)
+    specifier: ^11.0.6
+    version: 11.0.6(semantic-release@24.2.9)
   '@semantic-release/release-notes-generator':
-    specifier: ^14.0.3
-    version: 14.0.3(semantic-release@24.2.7)
+    specifier: ^14.1.0
+    version: 14.1.0(semantic-release@24.2.9)
   '@types/cannon':
     specifier: ^0.1.13
     version: 0.1.13
@@ -230,8 +230,8 @@ devDependencies:
     specifier: ^6.0.3
     version: 6.0.3
   semantic-release:
-    specifier: 24.2.7
-    version: 24.2.7(typescript@5.9.2)
+    specifier: 24.2.9
+    version: 24.2.9(typescript@5.9.2)
   stylelint:
     specifier: ^16.23.1
     version: 16.23.1(typescript@5.9.2)
@@ -3474,7 +3474,7 @@ packages:
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
     dev: true
 
-  /@semantic-release/changelog@6.0.3(semantic-release@24.2.7):
+  /@semantic-release/changelog@6.0.3(semantic-release@24.2.9):
     resolution: {integrity: sha512-dZuR5qByyfe3Y03TpmCvAxCyTnp7r5XwtHRf/8vD9EAn4ZWbavUX8adMtXYzE86EVh0gyLA7lm5yW4IV30XUag==}
     engines: {node: '>=14.17'}
     peerDependencies:
@@ -3484,10 +3484,10 @@ packages:
       aggregate-error: 3.1.0
       fs-extra: 11.3.0
       lodash: 4.17.21
-      semantic-release: 24.2.7(typescript@5.9.2)
+      semantic-release: 24.2.9(typescript@5.9.2)
     dev: true
 
-  /@semantic-release/commit-analyzer@13.0.1(semantic-release@24.2.7):
+  /@semantic-release/commit-analyzer@13.0.1(semantic-release@24.2.9):
     resolution: {integrity: sha512-wdnBPHKkr9HhNhXOhZD5a2LNl91+hs8CC2vsAVYxtZH3y0dV3wKn+uZSN61rdJQZ8EGxzWB3inWocBHV9+u/CQ==}
     engines: {node: '>=20.8.1'}
     peerDependencies:
@@ -3501,7 +3501,7 @@ packages:
       import-from-esm: 2.0.0
       lodash-es: 4.17.21
       micromatch: 4.0.8
-      semantic-release: 24.2.7(typescript@5.9.2)
+      semantic-release: 24.2.9(typescript@5.9.2)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3516,7 +3516,7 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /@semantic-release/git@10.0.1(semantic-release@24.2.7):
+  /@semantic-release/git@10.0.1(semantic-release@24.2.9):
     resolution: {integrity: sha512-eWrx5KguUcU2wUPaO6sfvZI0wPafUKAMNC18aXY4EnNcrZL86dEmpNVnC9uMpGZkmZJ9EfCVJBQx4pV4EMGT1w==}
     engines: {node: '>=14.17'}
     peerDependencies:
@@ -3530,13 +3530,13 @@ packages:
       lodash: 4.17.21
       micromatch: 4.0.8
       p-reduce: 2.1.0
-      semantic-release: 24.2.7(typescript@5.9.2)
+      semantic-release: 24.2.9(typescript@5.9.2)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@semantic-release/github@11.0.4(semantic-release@24.2.7):
-    resolution: {integrity: sha512-fU/nLSjkp9DmB0h7FVO5imhhWJMvq2LjD4+3lz3ZAzpDLY9+KYwC+trJ+g7LbZeJv9y3L9fSFSg2DduUpiT6bw==}
+  /@semantic-release/github@11.0.6(semantic-release@24.2.9):
+    resolution: {integrity: sha512-ctDzdSMrT3H+pwKBPdyCPty6Y47X8dSrjd3aPZ5KKIKKWTwZBE9De8GtsH3TyAlw3Uyo2stegMx6rJMXKpJwJA==}
     engines: {node: '>=20.8.1'}
     peerDependencies:
       semantic-release: '>=24.1.0'
@@ -3549,20 +3549,20 @@ packages:
       aggregate-error: 5.0.0
       debug: 4.4.1
       dir-glob: 3.0.1
-      globby: 14.1.0
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       issue-parser: 7.0.1
       lodash-es: 4.17.21
       mime: 4.0.7
       p-filter: 4.1.0
-      semantic-release: 24.2.7(typescript@5.9.2)
+      semantic-release: 24.2.9(typescript@5.9.2)
+      tinyglobby: 0.2.14
       url-join: 5.0.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@semantic-release/npm@12.0.2(semantic-release@24.2.7):
+  /@semantic-release/npm@12.0.2(semantic-release@24.2.9):
     resolution: {integrity: sha512-+M9/Lb35IgnlUO6OSJ40Ie+hUsZLuph2fqXC/qrKn0fMvUU/jiCjpoL6zEm69vzcmaZJ8yNKtMBEKHWN49WBbQ==}
     engines: {node: '>=20.8.1'}
     peerDependencies:
@@ -3579,13 +3579,13 @@ packages:
       rc: 1.2.8
       read-pkg: 9.0.1
       registry-auth-token: 5.1.0
-      semantic-release: 24.2.7(typescript@5.9.2)
+      semantic-release: 24.2.9(typescript@5.9.2)
       semver: 7.7.2
       tempy: 3.1.0
     dev: true
 
-  /@semantic-release/release-notes-generator@14.0.3(semantic-release@24.2.7):
-    resolution: {integrity: sha512-XxAZRPWGwO5JwJtS83bRdoIhCiYIx8Vhr+u231pQAsdFIAbm19rSVJLdnBN+Avvk7CKvNQE/nJ4y7uqKH6WTiw==}
+  /@semantic-release/release-notes-generator@14.1.0(semantic-release@24.2.9):
+    resolution: {integrity: sha512-CcyDRk7xq+ON/20YNR+1I/jP7BYKICr1uKd1HHpROSnnTdGqOTburi4jcRiTYz0cpfhxSloQO3cGhnoot7IEkA==}
     engines: {node: '>=20.8.1'}
     peerDependencies:
       semantic-release: '>=20.1.0'
@@ -3600,7 +3600,7 @@ packages:
       into-stream: 7.0.0
       lodash-es: 4.17.21
       read-package-up: 11.0.0
-      semantic-release: 24.2.7(typescript@5.9.2)
+      semantic-release: 24.2.9(typescript@5.9.2)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3738,11 +3738,6 @@ packages:
   /@sindresorhus/is@4.6.0:
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
-    dev: true
-
-  /@sindresorhus/merge-streams@2.3.0:
-    resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
-    engines: {node: '>=18'}
     dev: true
 
   /@sindresorhus/merge-streams@4.0.0:
@@ -7554,18 +7549,6 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /globby@14.1.0:
-    resolution: {integrity: sha512-0Ia46fDOaT7k4og1PDW4YbodWWr3scS2vAr2lTbsplOt2WkKp0vQbkI9wKis/T5LV/dqPjO3bpS/z6GTJB82LA==}
-    engines: {node: '>=18'}
-    dependencies:
-      '@sindresorhus/merge-streams': 2.3.0
-      fast-glob: 3.3.3
-      ignore: 7.0.5
-      path-type: 6.0.0
-      slash: 5.1.0
-      unicorn-magic: 0.3.0
-    dev: true
-
   /globjoin@0.1.4:
     resolution: {integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg==}
     dev: true
@@ -7788,9 +7771,9 @@ packages:
       parse-passwd: 1.0.0
     dev: true
 
-  /hook-std@3.0.0:
-    resolution: {integrity: sha512-jHRQzjSDzMtFy34AGj1DN+vq54WVuhSvKgrHf0OMiFQTwDD4L/qqofVEWjLOBMTn5+lCD3fPg32W9yOfnEJTTw==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+  /hook-std@4.0.0:
+    resolution: {integrity: sha512-IHI4bEVOt3vRUDJ+bFA9VUJlo7SzvFARPNLw75pqSmAOP2HmTWfFJtPvLBrDrlgjEYXY9zs7SFdHPQaJShkSCQ==}
+    engines: {node: '>=20'}
     dev: true
 
   /hookified@1.11.0:
@@ -10535,11 +10518,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /path-type@6.0.0:
-    resolution: {integrity: sha512-Vj7sf++t5pBD637NSfkxpHSMfWaeig5+DKWLhcqIYx6mWQz5hdJTGDVMQiJcw1ZYkhs7AazKDGpRVji1LJCZUQ==}
-    engines: {node: '>=18'}
-    dev: true
-
   /pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
     dev: false
@@ -12162,16 +12140,16 @@ packages:
   /sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
-  /semantic-release@24.2.7(typescript@5.9.2):
-    resolution: {integrity: sha512-g7RssbTAbir1k/S7uSwSVZFfFXwpomUB9Oas0+xi9KStSCmeDXcA7rNhiskjLqvUe/Evhx8fVCT16OSa34eM5g==}
+  /semantic-release@24.2.9(typescript@5.9.2):
+    resolution: {integrity: sha512-phCkJ6pjDi9ANdhuF5ElS10GGdAKY6R1Pvt9lT3SFhOwM4T7QZE7MLpBDbNruUx/Q3gFD92/UOFringGipRqZA==}
     engines: {node: '>=20.8.1'}
     hasBin: true
     dependencies:
-      '@semantic-release/commit-analyzer': 13.0.1(semantic-release@24.2.7)
+      '@semantic-release/commit-analyzer': 13.0.1(semantic-release@24.2.9)
       '@semantic-release/error': 4.0.0
-      '@semantic-release/github': 11.0.4(semantic-release@24.2.7)
-      '@semantic-release/npm': 12.0.2(semantic-release@24.2.7)
-      '@semantic-release/release-notes-generator': 14.0.3(semantic-release@24.2.7)
+      '@semantic-release/github': 11.0.6(semantic-release@24.2.9)
+      '@semantic-release/npm': 12.0.2(semantic-release@24.2.9)
+      '@semantic-release/release-notes-generator': 14.1.0(semantic-release@24.2.9)
       aggregate-error: 5.0.0
       cosmiconfig: 9.0.0(typescript@5.9.2)
       debug: 4.4.1
@@ -12181,7 +12159,7 @@ packages:
       find-versions: 6.0.0
       get-stream: 6.0.1
       git-log-parser: 1.2.1
-      hook-std: 3.0.0
+      hook-std: 4.0.0
       hosted-git-info: 8.1.0
       import-from-esm: 2.0.0
       lodash-es: 4.17.21
@@ -12193,7 +12171,7 @@ packages:
       read-package-up: 11.0.0
       resolve-from: 5.0.0
       semver: 7.7.2
-      semver-diff: 4.0.0
+      semver-diff: 5.0.0
       signale: 1.4.0
       yargs: 17.7.2
     transitivePeerDependencies:
@@ -12201,9 +12179,10 @@ packages:
       - typescript
     dev: true
 
-  /semver-diff@4.0.0:
-    resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
+  /semver-diff@5.0.0:
+    resolution: {integrity: sha512-0HbGtOm+S7T6NGQ/pxJSJipJvc4DK3FcRVMRkhsIwJDJ4Jcz5DQC1cPPzB5GhzyHjwttW878HaWQq46CkL3cqg==}
     engines: {node: '>=12'}
+    deprecated: Deprecated as the semver package now supports this built-in.
     dependencies:
       semver: 7.7.2
     dev: true
@@ -12440,11 +12419,6 @@ packages:
   /slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
-    dev: true
-
-  /slash@5.1.0:
-    resolution: {integrity: sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg==}
-    engines: {node: '>=14.16'}
     dev: true
 
   /slice-ansi@4.0.0:
