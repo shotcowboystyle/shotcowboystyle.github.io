@@ -167,8 +167,8 @@ devDependencies:
     specifier: 1.13.6
     version: 1.13.6
   lighthouse:
-    specifier: ^12.8.2
-    version: 12.8.2
+    specifier: ^13.0.0
+    version: 13.0.0
   npm-package-json-lint:
     specifier: ^9.0.0
     version: 9.0.0(typescript@5.9.3)
@@ -183,7 +183,7 @@ devDependencies:
     version: 1.56.0
   playwright-lighthouse:
     specifier: ^4.0.0
-    version: 4.0.0(lighthouse@12.8.2)(playwright-core@1.56.0)
+    version: 4.0.0(lighthouse@13.0.0)(playwright-core@1.56.0)
   postcss:
     specifier: ^8.5.6
     version: 8.5.6
@@ -556,19 +556,10 @@ packages:
       conventional-changelog-conventionalcommits: 7.0.2
     dev: true
 
-  /@commitlint/config-validator@19.8.1:
-    resolution: {integrity: sha512-0jvJ4u+eqGPBIzzSdqKNX1rvdbSU1lPNYlfQQRIFnBgLy26BtC0cFnr7c/AyuzExMxWsMOte6MkTi9I3SQ3iGQ==}
-    engines: {node: '>=v18'}
-    requiresBuild: true
-    dependencies:
-      '@commitlint/types': 19.8.1
-      ajv: 8.17.1
-    dev: true
-    optional: true
-
   /@commitlint/config-validator@20.0.0:
     resolution: {integrity: sha512-BeyLMaRIJDdroJuYM2EGhDMGwVBMZna9UiIqV9hxj+J551Ctc6yoGuGSmghOy/qPhBSuhA6oMtbEiTmxECafsg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': 20.0.0
       ajv: 8.17.1
@@ -586,16 +577,10 @@ packages:
       lodash.upperfirst: 4.3.1
     dev: true
 
-  /@commitlint/execute-rule@19.8.1:
-    resolution: {integrity: sha512-YfJyIqIKWI64Mgvn/sE7FXvVMQER/Cd+s3hZke6cI1xgNT/f6ZAz5heND0QtffH+KbcqAwXDEE1/5niYayYaQA==}
-    engines: {node: '>=v18'}
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /@commitlint/execute-rule@20.0.0:
     resolution: {integrity: sha512-xyCoOShoPuPL44gVa+5EdZsBVao/pNzpQhkzq3RdtlFdKZtjWcLlUFQHSWBuhk5utKYykeJPSz2i8ABHQA+ZZw==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
 
   /@commitlint/format@20.0.0:
@@ -624,36 +609,16 @@ packages:
       '@commitlint/types': 20.0.0
     dev: true
 
-  /@commitlint/load@19.8.1(@types/node@24.2.0)(typescript@5.9.3):
-    resolution: {integrity: sha512-9V99EKG3u7z+FEoe4ikgq7YGRCSukAcvmKQuTtUyiYPnOd9a2/H9Ak1J9nJA1HChRQp9OA/sIKPugGS+FK/k1A==}
-    engines: {node: '>=v18'}
-    requiresBuild: true
-    dependencies:
-      '@commitlint/config-validator': 19.8.1
-      '@commitlint/execute-rule': 19.8.1
-      '@commitlint/resolve-extends': 19.8.1
-      '@commitlint/types': 19.8.1
-      chalk: 5.5.0
-      cosmiconfig: 9.0.0(typescript@5.9.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.2.0)(cosmiconfig@9.0.0)(typescript@5.9.3)
-      lodash.isplainobject: 4.0.6
-      lodash.merge: 4.6.2
-      lodash.uniq: 4.5.0
-    transitivePeerDependencies:
-      - '@types/node'
-      - typescript
-    dev: true
-    optional: true
-
   /@commitlint/load@20.1.0(@types/node@24.2.0)(typescript@5.9.3):
     resolution: {integrity: sha512-qo9ER0XiAimATQR5QhvvzePfeDfApi/AFlC1G+YN+ZAY8/Ua6IRrDrxRvQAr+YXUKAxUsTDSp9KXeXLBPsNRWg==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 20.0.0
       '@commitlint/execute-rule': 20.0.0
       '@commitlint/resolve-extends': 20.1.0
       '@commitlint/types': 20.0.0
-      chalk: 5.6.2
+      chalk: 5.5.0
       cosmiconfig: 9.0.0(typescript@5.9.3)
       cosmiconfig-typescript-loader: 6.1.0(@types/node@24.2.0)(cosmiconfig@9.0.0)(typescript@5.9.3)
       lodash.isplainobject: 4.0.6
@@ -689,23 +654,10 @@ packages:
       tinyexec: 1.0.1
     dev: true
 
-  /@commitlint/resolve-extends@19.8.1:
-    resolution: {integrity: sha512-GM0mAhFk49I+T/5UCYns5ayGStkTt4XFFrjjf0L4S26xoMTSkdCf9ZRO8en1kuopC4isDFuEm7ZOm/WRVeElVg==}
-    engines: {node: '>=v18'}
-    requiresBuild: true
-    dependencies:
-      '@commitlint/config-validator': 19.8.1
-      '@commitlint/types': 19.8.1
-      global-directory: 4.0.1
-      import-meta-resolve: 4.2.0
-      lodash.mergewith: 4.6.2
-      resolve-from: 5.0.0
-    dev: true
-    optional: true
-
   /@commitlint/resolve-extends@20.1.0:
     resolution: {integrity: sha512-cxKXQrqHjZT3o+XPdqDCwOWVFQiae++uwd9dUBC7f2MdV58ons3uUvASdW7m55eat5sRiQ6xUHyMWMRm6atZWw==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 20.0.0
       '@commitlint/types': 20.0.0
@@ -736,16 +688,6 @@ packages:
     dependencies:
       find-up: 7.0.0
     dev: true
-
-  /@commitlint/types@19.8.1:
-    resolution: {integrity: sha512-/yCrWGCoA1SVKOks25EGadP9Pnj0oAIHGpl2wH2M2Y46dPM2ueb8wyCVOD7O3WCTkaJ0IkKvzhl1JY7+uCT2Dw==}
-    engines: {node: '>=v18'}
-    requiresBuild: true
-    dependencies:
-      '@types/conventional-commits-parser': 5.0.1
-      chalk: 5.6.2
-    dev: true
-    optional: true
 
   /@commitlint/types@20.0.0:
     resolution: {integrity: sha512-bVUNBqG6aznYcYjTjnc3+Cat/iBgbgpflxbIBTnsHTX0YVpnmINPEkSRWymT2Q8aSH3Y7aKnEbunilkYe8TybA==}
@@ -2468,7 +2410,7 @@ packages:
       '@inox-tools/inline-mod': 2.2.0(vite@7.0.6)
       astro: 5.14.4(@types/node@24.2.0)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.9.3)
       astro-integration-kit: 0.18.0(astro@5.14.4)
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
       - vite
@@ -2483,7 +2425,7 @@ packages:
         optional: true
     dependencies:
       '@inox-tools/utils': 0.6.0
-      debug: 4.4.1
+      debug: 4.4.3
       typescript: 5.9.3
       vite: 7.0.6(@types/node@24.2.0)
     transitivePeerDependencies:
@@ -3328,8 +3270,8 @@ packages:
     dev: true
     optional: true
 
-  /@paulirish/trace_engine@0.0.59:
-    resolution: {integrity: sha512-439NUzQGmH+9Y017/xCchBP9571J4bzhpcNhrxorf7r37wcyJZkgUfrUsRL3xl+JDcZ6ORhoFCzCw98c6S3YHw==}
+  /@paulirish/trace_engine@0.0.61:
+    resolution: {integrity: sha512-/O08DwmUqIlJjUSPSZbNF8lWnlxaMsIOV6sS+uDKCxBd5i1psAmjEoG3JAqR6+nHD8X+YY474NW7SxUH/K+/kQ==}
     dependencies:
       legacy-javascript: 0.0.1
       third-party-web: 0.27.0
@@ -5102,6 +5044,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /axe-core@4.11.0:
+    resolution: {integrity: sha512-ilYanEU8vxxBexpJd8cWM4ElSQq4QctCLKih0TSfjIfCQTeyH/6zVrmIJfLPrKTKJRbiG+cfnZbQIjAlJmF1jQ==}
+    engines: {node: '>=4'}
+    dev: true
+
   /axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
     engines: {node: '>= 0.4'}
@@ -5413,7 +5360,6 @@ packages:
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     requiresBuild: true
     dev: true
-    optional: true
 
   /chalk@5.6.2:
     resolution: {integrity: sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==}
@@ -5462,8 +5408,8 @@ packages:
     dependencies:
       readdirp: 4.1.2
 
-  /chrome-launcher@1.2.0:
-    resolution: {integrity: sha512-JbuGuBNss258bvGil7FT4HKdC3SC2K7UAEUqiPy3ACS3Yxo3hAW6bvFpCu2HsIJLgTqxgEX6BkujvzZfLpUD0Q==}
+  /chrome-launcher@1.2.1:
+    resolution: {integrity: sha512-qmFR5PLMzHyuNJHwOloHPAHhbaNglkfeV/xDtt5b7xiFFyU1I+AZZX0PYseMuhenJSSirgxELYIbswcoc+5H4A==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     dependencies:
@@ -6211,7 +6157,7 @@ packages:
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 19.8.1(@types/node@24.2.0)(typescript@5.9.3)
+      '@commitlint/load': 20.1.0(@types/node@24.2.0)(typescript@5.9.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -6283,6 +6229,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.3
+    dev: true
 
   /debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -6417,12 +6364,12 @@ packages:
     dependencies:
       dequal: 2.0.3
 
-  /devtools-protocol@0.0.1507524:
-    resolution: {integrity: sha512-OjaNE7qpk6GRTXtqQjAE5bGx6+c4F1zZH0YXtpZQLM92HNXx4zMAaqlKhP4T52DosG6hDW8gPMNhGOF8xbwk/w==}
-    dev: true
-
   /devtools-protocol@0.0.1508733:
     resolution: {integrity: sha512-QJ1R5gtck6nDcdM+nlsaJXcelPEI7ZxSMw1ujHpO1c4+9l+Nue5qlebi9xO1Z2MGr92bFOQTW7/rrheh5hHxDg==}
+    dev: true
+
+  /devtools-protocol@0.0.1527314:
+    resolution: {integrity: sha512-UohCFOlzpPPD/IcsxM0k4lVZp/GfhPVJ6l2No5XX+LknpGisPWJe17oOHQhZTHf6ThUFIMwHO6bSEZUq/6oP7w==}
     dev: true
 
   /dfa@1.2.0:
@@ -8949,39 +8896,37 @@ packages:
       - supports-color
     dev: true
 
-  /lighthouse-stack-packs@1.12.2:
-    resolution: {integrity: sha512-Ug8feS/A+92TMTCK6yHYLwaFMuelK/hAKRMdldYkMNwv+d9PtWxjXEg6rwKtsUXTADajhdrhXyuNCJ5/sfmPFw==}
+  /lighthouse-stack-packs@1.12.3:
+    resolution: {integrity: sha512-d8IsOpE83kbANgnM+Tp8+x6HcMpX9o2ITBiUERssgzAIFdZCQzs/f4k6D0DLQTE59enml9mbAOU52Wu35exWtg==}
     dev: true
 
-  /lighthouse@12.8.2:
-    resolution: {integrity: sha512-+5SKYzVaTFj22MgoYDPNrP9tlD2/Ay7j3SxPSFD9FpPyVxGr4UtOQGKyrdZ7wCmcnBaFk0mCkPfARU3CsE0nvA==}
-    engines: {node: '>=18.16'}
+  /lighthouse@13.0.0:
+    resolution: {integrity: sha512-s9koINEnVGm4n4oej4G3NET4e8i1XjPYCxEqp+TDlwUUkS5jpeOiFbIRLvPol/kgaeYce7BBqg8m52V7MEW7Lw==}
+    engines: {node: '>=22.19'}
     hasBin: true
     dependencies:
-      '@paulirish/trace_engine': 0.0.59
+      '@paulirish/trace_engine': 0.0.61
       '@sentry/node': 9.44.2
-      axe-core: 4.10.3
-      chrome-launcher: 1.2.0
+      axe-core: 4.11.0
+      chrome-launcher: 1.2.1
       configstore: 7.0.0
       csp_evaluator: 1.1.5
-      devtools-protocol: 0.0.1507524
+      devtools-protocol: 0.0.1527314
       enquirer: 2.4.1
       http-link-header: 1.1.3
       intl-messageformat: 10.7.16
       jpeg-js: 0.4.4
       js-library-detector: 6.7.0
       lighthouse-logger: 2.0.2
-      lighthouse-stack-packs: 1.12.2
+      lighthouse-stack-packs: 1.12.3
       lodash-es: 4.17.21
       lookup-closest-locale: 6.2.0
-      metaviewport-parser: 0.3.0
       open: 8.4.2
-      parse-cache-control: 1.0.1
       puppeteer-core: 24.23.0
       robots-parser: 3.0.1
       speedline-core: 1.4.3
       third-party-web: 0.27.0
-      tldts-icann: 7.0.16
+      tldts-icann: 7.0.17
       ws: 7.5.10
       yargs: 17.7.2
       yargs-parser: 21.1.1
@@ -9562,10 +9507,6 @@ packages:
 
   /meshoptimizer@0.22.0:
     resolution: {integrity: sha512-IebiK79sqIy+E4EgOr+CAw+Ke8hAspXKzBd0JdgEmPHiAwmvEj2S4h1rfvo+o/BnfEYd/jAOg5IeeIjzlzSnDg==}
-    dev: true
-
-  /metaviewport-parser@0.3.0:
-    resolution: {integrity: sha512-EoYJ8xfjQ6kpe9VbVHvZTZHiOl4HL1Z18CrZ+qahvLXT7ZO4YTC2JMyt5FaUp9JJp6J4Ybb/z7IsCXZt86/QkQ==}
     dev: true
 
   /micromark-core-commonmark@2.0.3:
@@ -10548,10 +10489,6 @@ packages:
       callsites: 3.1.0
     dev: true
 
-  /parse-cache-control@1.0.1:
-    resolution: {integrity: sha512-60zvsJReQPX5/QP0Kzfd/VrpjScIQ7SHBW6bFCYfEP+fp0Eppr1SHhIO5nd1PjZtvclzSzES9D/p5nFJurwfWg==}
-    dev: true
-
   /parse-entities@2.0.0:
     resolution: {integrity: sha512-kkywGpCcRYhqQIchaWqZ875wzpS/bMKhz5HnN3p7wveJTkTtyAB/AlnS0f8DFSqYW1T82t6yEAkEcB+A1I3MbQ==}
     dependencies:
@@ -10763,7 +10700,7 @@ packages:
     hasBin: true
     dev: true
 
-  /playwright-lighthouse@4.0.0(lighthouse@12.8.2)(playwright-core@1.56.0):
+  /playwright-lighthouse@4.0.0(lighthouse@13.0.0)(playwright-core@1.56.0):
     resolution: {integrity: sha512-8sLhKLYD9k08UjKMSPzYBCZZ6Ct+wZPUe+K58hZEHIdyyXHg+jniWgd+C2W57B+MDstHiYSbyBiN9S8mzUH82w==}
     engines: {node: '>=16.x'}
     peerDependencies:
@@ -10774,7 +10711,7 @@ packages:
         optional: true
     dependencies:
       chalk: 4.1.2
-      lighthouse: 12.8.2
+      lighthouse: 13.0.0
       playwright-core: 1.56.0
       ua-parser-js: 1.0.40
     dev: true
@@ -13274,14 +13211,14 @@ packages:
     resolution: {integrity: sha512-gRa9gwYU3ECmQYv3lslts5hxuIa90veaEcxDYuu3QGOIAEM2mOZkVHp48ANJuu1CURtRdHKUBY5Lm1tHV+sD4g==}
     dev: false
 
-  /tldts-core@7.0.16:
-    resolution: {integrity: sha512-XHhPmHxphLi+LGbH0G/O7dmUH9V65OY20R7vH8gETHsp5AZCjBk9l8sqmRKLaGOxnETU7XNSDUPtewAy/K6jbA==}
+  /tldts-core@7.0.17:
+    resolution: {integrity: sha512-DieYoGrP78PWKsrXr8MZwtQ7GLCUeLxihtjC1jZsW1DnvSMdKPitJSe8OSYDM2u5H6g3kWJZpePqkp43TfLh0g==}
     dev: true
 
-  /tldts-icann@7.0.16:
-    resolution: {integrity: sha512-WS/pPasPs2cx6orcxCcIz01SlG3dwYlgjLAnQt7vLAusTuTLqdI8zmkqbM8TWYEf3Z0o1S4BzM3oSRFPk/6WnA==}
+  /tldts-icann@7.0.17:
+    resolution: {integrity: sha512-up4oFDoumyz2RscRxoYRxf+2OvIKUHjh7rUvuGWI0PZ/47k35sadoi2JyKR0AIfTw09qcfix8bUxXFQhY1QZIQ==}
     dependencies:
-      tldts-core: 7.0.16
+      tldts-core: 7.0.17
     dev: true
 
   /tmp@0.0.33:
