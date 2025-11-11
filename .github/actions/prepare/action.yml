@@ -9,7 +9,7 @@ runs:
       uses: pnpm/action-setup@v2
       id: pnpm-install
       with:
-        version: 10.20.0
+        version: 10.21.0
         run_install: false
 
     - name: Use Node.js ${{ matrix.node-version }}

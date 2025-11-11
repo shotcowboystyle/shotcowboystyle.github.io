@@ -39,10 +39,10 @@ dependencies:
     specifier: ^5.13.0
     version: 5.13.0
   maplibre-gl:
-    specifier: ^5.11.0
+    specifier: ^5.12.0
     version: 5.12.0
   sharp:
-    specifier: ^0.34.4
+    specifier: ^0.34.5
     version: 0.34.5
   split-type:
     specifier: ^0.3.4
@@ -51,7 +51,7 @@ dependencies:
     specifier: ^12.0.3
     version: 12.0.3
   three:
-    specifier: ^0.181.0
+    specifier: ^0.181.1
     version: 0.181.1
 
 devDependencies:
@@ -101,10 +101,10 @@ devDependencies:
     specifier: ^0.181.0
     version: 0.181.0
   '@typescript-eslint/eslint-plugin':
-    specifier: ^8.46.3
+    specifier: ^8.46.4
     version: 8.46.4(@typescript-eslint/parser@8.46.4)(eslint@9.39.1)(typescript@5.9.3)
   '@typescript-eslint/parser':
-    specifier: ^8.46.3
+    specifier: ^8.46.4
     version: 8.46.4(eslint@9.39.1)(typescript@5.9.3)
   astro-compress:
     specifier: 2.3.8
@@ -119,8 +119,8 @@ devDependencies:
     specifier: ^5.3.0
     version: 5.3.0(astro@5.15.4)(purgecss@7.0.2)
   autoprefixer:
-    specifier: ^10.4.21
-    version: 10.4.21(postcss@8.5.6)
+    specifier: ^10.4.22
+    version: 10.4.22(postcss@8.5.6)
   ci-info:
     specifier: ^4.3.1
     version: 4.3.1
@@ -131,7 +131,7 @@ devDependencies:
     specifier: ^9.1.0
     version: 9.1.0
   cspell:
-    specifier: ^9.2.2
+    specifier: ^9.3.0
     version: 9.3.0
   cssnano:
     specifier: ^7.1.2
@@ -140,8 +140,8 @@ devDependencies:
     specifier: ^3.3.0
     version: 3.3.0(@types/node@24.10.0)(typescript@5.9.3)
   daisyui:
-    specifier: ^5.4.3
-    version: 5.4.7
+    specifier: ^5.5.0
+    version: 5.5.0
   eslint:
     specifier: ^9.39.1
     version: 9.39.1
@@ -161,11 +161,11 @@ devDependencies:
     specifier: ^5.1.0
     version: 5.1.0(eslint@9.39.1)
   knip:
-    specifier: ^5.67.1
-    version: 5.68.0(@types/node@24.10.0)(typescript@5.9.3)
+    specifier: ^5.69.0
+    version: 5.69.0(@types/node@24.10.0)(typescript@5.9.3)
   lefthook:
-    specifier: 2.0.2
-    version: 2.0.2
+    specifier: 2.0.3
+    version: 2.0.3
   lighthouse:
     specifier: ^13.0.1
     version: 13.0.1
@@ -248,7 +248,7 @@ devDependencies:
     specifier: ^1.0.0
     version: 1.0.0(stylelint@16.25.0)(tailwindcss@4.1.17)
   tailwindcss:
-    specifier: ^4.1.16
+    specifier: ^4.1.17
     version: 4.1.17
   tailwindcss-fluid-type:
     specifier: ^2.0.7
@@ -389,7 +389,7 @@ packages:
       tailwindcss: ^3.0.24
     dependencies:
       astro: 5.15.4(@types/node@24.10.0)(lightningcss@1.29.3)(terser@5.39.0)(typescript@5.9.3)
-      autoprefixer: 10.4.21(postcss@8.5.6)
+      autoprefixer: 10.4.22(postcss@8.5.6)
       postcss: 8.5.6
       postcss-load-config: 4.0.2(postcss@8.5.6)
       tailwindcss: 4.1.17
@@ -5040,8 +5040,8 @@ packages:
       when-exit: 2.1.5
     dev: true
 
-  /autoprefixer@10.4.21(postcss@8.5.6):
-    resolution: {integrity: sha512-O+A6LWV5LDHSJD3LjHYoNi4VLsj/Whi7k6zG12xTYaU4cQ8oxQGckXNX8cRHK5yOZ/ppVHe0ZBXGzSV9jXdVbQ==}
+  /autoprefixer@10.4.22(postcss@8.5.6):
+    resolution: {integrity: sha512-ARe0v/t9gO28Bznv6GgqARmVqcWOV3mfgUPn9becPHMiD3o9BwlRgaeccZnwTpZ7Zwqrm+c1sUSsMxIzQzc8Xg==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -5049,7 +5049,7 @@ packages:
     dependencies:
       browserslist: 4.27.0
       caniuse-lite: 1.0.30001754
-      fraction.js: 4.3.7
+      fraction.js: 5.3.4
       normalize-range: 0.1.2
       picocolors: 1.1.1
       postcss: 8.5.6
@@ -6185,8 +6185,8 @@ packages:
       - typescript
     dev: true
 
-  /daisyui@5.4.7:
-    resolution: {integrity: sha512-2wYO61vTPCXk7xEBgnzLZAYoE0xS5IRLu/GSq0vORpB+cTrtubdx69NnA0loc0exvCY1s2fYL4lGZtFHe2ohNQ==}
+  /daisyui@5.5.0:
+    resolution: {integrity: sha512-lfeimNM3U1FzjfBotV3iTrxNfBEncHs7kMP62lTLghmO99v7HVZ/lbcOLr/y0Q3JB6Lx7XEi2yC5RQ8BBxdKPA==}
     dev: true
 
   /damerau-levenshtein@1.0.8:
@@ -7371,8 +7371,8 @@ packages:
     resolution: {integrity: sha512-alTFZZQDKMporBH77856pXgzhEzaUVmLCDk+egLgIgHst3Tpndzz8MnKe+GzRJRfvVdn69HhpW7cmXzvtLvJAw==}
     dev: true
 
-  /fraction.js@4.3.7:
-    resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
+  /fraction.js@5.3.4:
+    resolution: {integrity: sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==}
 
   /from2@2.3.0:
     resolution: {integrity: sha512-OMcX/4IC/uqEPVgGeyfN22LJk6AZrMkRZHxcHBMBvHScDGgwTm2GT2Wkgtocyd3JfZffjj2kYUDXXII0Fk9W0g==}
@@ -8721,8 +8721,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /knip@5.68.0(@types/node@24.10.0)(typescript@5.9.3):
-    resolution: {integrity: sha512-YFTu0uy/0x3UhNhlKGsFSwDXkdw+1ZKobrkPL5rbPJtmHnZrGOFI1yjTAi/emicy06zvLYhmW51jPKvwZETgQA==}
+  /knip@5.69.0(@types/node@24.10.0)(typescript@5.9.3):
+    resolution: {integrity: sha512-aJHQIR+QC3XUnwohqGvyT0VidvKOD8WYk4kfLr5oKnQH/P06jY6rH/HMriwPmvrAWquGV2vKyLv6XgC/GolYtw==}
     engines: {node: '>=18.18.0'}
     hasBin: true
     peerDependencies:
@@ -8767,101 +8767,101 @@ packages:
       shell-quote: 1.8.3
     dev: false
 
-  /lefthook-darwin-arm64@2.0.2:
-    resolution: {integrity: sha512-x/4AOinpMS2abZyA/krDd50cRPZit/6P670Z1mJjfS0+fPZkFw7AXpjxroiN0rgglg78vD7BwcA5331z4YZa5g==}
+  /lefthook-darwin-arm64@2.0.3:
+    resolution: {integrity: sha512-AyPYYDcvcsaIi/YiSFVfgzQY6f6u8AHSD5WBFiKVsvMmGaSq3zJs77bEEDvbq7JqbNpLuBIAPkxnQMQ21xo01g==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-darwin-x64@2.0.2:
-    resolution: {integrity: sha512-MSb8XZBfmlNvCpuLiQqrJS+sPiSEAyuoHOMZOHjlceYqO0leVVw9YfePVcb4Vi/PqOYngTdJk83MmYvqhsSNTQ==}
+  /lefthook-darwin-x64@2.0.3:
+    resolution: {integrity: sha512-yYBs19eSyOKS5/Fg7vyfr3iehOstb/GL6OqkgHfwFF461f11IkTQR6nlWqIwtTX4WCCF3RjR60IPDkMk3OuHyQ==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-freebsd-arm64@2.0.2:
-    resolution: {integrity: sha512-gewPsUPc3J/n2/RrhHLS9jtL3qK4HcTED25vfExhvFRW3eT1SDYaBbXnUUmB8SE0zE8Bl6AfEdT2zzZcPbOFuA==}
+  /lefthook-freebsd-arm64@2.0.3:
+    resolution: {integrity: sha512-C1Zf0lrIKXgYjw36NLKPodOXPrJuc4LEUz0PII9EGUgHPzJGHCUtykfCArPEHYlJ4En0JXMgb5bqY/ajsJu5zw==}
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-freebsd-x64@2.0.2:
-    resolution: {integrity: sha512-fsLlaChiKAWiSavQO2LXPR8Z9OcBnyMDvmkIlXC0lG3SjBb9xbVdBdDVlcrsUyDCs5YstmGYHuzw6DfJYpAE1g==}
+  /lefthook-freebsd-x64@2.0.3:
+    resolution: {integrity: sha512-4aa7iHfjnqQzAU51PGzrXocRrtVegPfTGkSEiBoyZEpbXxMEAgmTVtC9uZZZZCS9zySZUbL2XMSiqUl0OE+P8g==}
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-linux-arm64@2.0.2:
-    resolution: {integrity: sha512-vNl3HiZud9T2nGHMngvLw3hSJgutjlN/Lzf5/5jKt/2IIuyd9L3UYktWC9HLUb03Zukr7jeaxG3+VxdAohQwAw==}
+  /lefthook-linux-arm64@2.0.3:
+    resolution: {integrity: sha512-bPxX6ompQUkvu4QUsJlnqQel2dWKIJDqzPgoGuFm0jqc3uvDK4Pi0xC8Nnzq1bcHUxunURPD7BkjpUMUvR3OsA==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-linux-x64@2.0.2:
-    resolution: {integrity: sha512-0ghHMPu4fixIieS8V2k2yZHvcFd9pP0q+sIAIaWo8x7ce/AOQIXFCPHGPAOc8/wi5uVtfyEvCnhxIDKf+lHA2A==}
+  /lefthook-linux-x64@2.0.3:
+    resolution: {integrity: sha512-XvwBUedhe/u7qZWxd+/ZN7wYv1wPF0Vo2P/8WDhoAIhL4bPEybOBC+ybHeEtaBLCsoB/9fIxa7zlo91FOM9h5g==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-openbsd-arm64@2.0.2:
-    resolution: {integrity: sha512-qfXnDM8jffut9rylvi3T+HOqlNRkFYqIDUXeVXlY7dmwCW4u2K46p0W4M3BmAVUeL/MRxBRnjze//Yy6aCbGQw==}
+  /lefthook-openbsd-arm64@2.0.3:
+    resolution: {integrity: sha512-MYWeWiX5/YFrm7cEwSlhiotxZftwyi87Xn9cZnuRJooHq28NqilohilWLpzi95WMZrMTIsC6g2tCNwO510pzlw==}
     cpu: [arm64]
     os: [openbsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-openbsd-x64@2.0.2:
-    resolution: {integrity: sha512-RXqR0FiDTwsQv1X3QVsuBFneWeNXS+tmPFIX8F6Wz9yDPHF8+vBnkWCju6HdkTVTY71Ba5HbYGKEVDvscJkU7Q==}
+  /lefthook-openbsd-x64@2.0.3:
+    resolution: {integrity: sha512-Vsrud0NP+grbDkidTBBVhHAhDdToXH/WQzj41pl7jkvpqNbuPppNXUYYUB4pZpvD06pTwEuCPv5jR5+KR09TgA==}
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-windows-arm64@2.0.2:
-    resolution: {integrity: sha512-KfLKhiUPHP9Aea+9D7or2hgL9wtKEV+GHpx7LBg82ZhCXkAml6rop7mWsBgL80xPYLqMahKolZGO+8z5H6W4HQ==}
+  /lefthook-windows-arm64@2.0.3:
+    resolution: {integrity: sha512-7824idhQ0AXzo1H6aKwqqJ9IIhR8DHY5t4Dpl2PXrKGxopg2X381STVPBknWXtHmzFGCR/MDiNxhqIJYd3VnnA==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-windows-x64@2.0.2:
-    resolution: {integrity: sha512-TdysWxGRNtuRg5bN6Uj00tZJIsHTrF/7FavoR5rp1sq21QJhJi36M4I3UVlmOKAUCKhibAIAauZWmX7yaW3eHA==}
+  /lefthook-windows-x64@2.0.3:
+    resolution: {integrity: sha512-dI8vXY8Vwh9lQBTwM3fGhwFBk4TaqAkqMkjNcImY7FXIs4cpBdKIvBV0Tv4FmbriA8H4KXmzR8XMbJe9GxFC0w==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook@2.0.2:
-    resolution: {integrity: sha512-2lrSva53G604ZWjK5kHYvDdwb5GzbhciIPWhebv0A8ceveqSsnG2JgVEt+DnhOPZ4VfNcXvt3/ohFBPNpuAlVw==}
+  /lefthook@2.0.3:
+    resolution: {integrity: sha512-VcZP1QvyRXz8JwVFw3PIvaOzLC8udQZuBhj+7J6OojzLDNWY4B9FdizpZtMq5iFM4TOAq1EFQCixIgDeTaBoLQ==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      lefthook-darwin-arm64: 2.0.2
-      lefthook-darwin-x64: 2.0.2
-      lefthook-freebsd-arm64: 2.0.2
-      lefthook-freebsd-x64: 2.0.2
-      lefthook-linux-arm64: 2.0.2
-      lefthook-linux-x64: 2.0.2
-      lefthook-openbsd-arm64: 2.0.2
-      lefthook-openbsd-x64: 2.0.2
-      lefthook-windows-arm64: 2.0.2
-      lefthook-windows-x64: 2.0.2
+      lefthook-darwin-arm64: 2.0.3
+      lefthook-darwin-x64: 2.0.3
+      lefthook-freebsd-arm64: 2.0.3
+      lefthook-freebsd-x64: 2.0.3
+      lefthook-linux-arm64: 2.0.3
+      lefthook-linux-x64: 2.0.3
+      lefthook-openbsd-arm64: 2.0.3
+      lefthook-openbsd-x64: 2.0.3
+      lefthook-windows-arm64: 2.0.3
+      lefthook-windows-x64: 2.0.3
     dev: true
 
   /legacy-javascript@0.0.1:
@@ -11341,7 +11341,7 @@ packages:
       '@csstools/postcss-text-decoration-shorthand': 4.0.3(postcss@8.5.6)
       '@csstools/postcss-trigonometric-functions': 4.0.9(postcss@8.5.6)
       '@csstools/postcss-unset-value': 4.0.0(postcss@8.5.6)
-      autoprefixer: 10.4.21(postcss@8.5.6)
+      autoprefixer: 10.4.22(postcss@8.5.6)
       browserslist: 4.27.0
       css-blank-pseudo: 7.0.1(postcss@8.5.6)
       css-has-pseudo: 7.0.3(postcss@8.5.6)
