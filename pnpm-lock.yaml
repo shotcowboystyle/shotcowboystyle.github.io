@@ -233,20 +233,20 @@ devDependencies:
     specifier: 25.0.2
     version: 25.0.2(typescript@5.9.3)
   stylelint:
-    specifier: ^16.26.0
-    version: 16.26.0(typescript@5.9.3)
+    specifier: ^16.26.1
+    version: 16.26.1(typescript@5.9.3)
   stylelint-config-html:
     specifier: ^1.1.0
-    version: 1.1.0(postcss-html@1.8.0)(stylelint@16.26.0)
+    version: 1.1.0(postcss-html@1.8.0)(stylelint@16.26.1)
   stylelint-config-hudochenkov:
     specifier: ^12.0.0
-    version: 12.0.0(stylelint-order@7.0.0)(stylelint@16.26.0)
+    version: 12.0.0(stylelint-order@7.0.0)(stylelint@16.26.1)
   stylelint-config-standard:
     specifier: ^39.0.1
-    version: 39.0.1(stylelint@16.26.0)
+    version: 39.0.1(stylelint@16.26.1)
   stylelint-config-tailwindcss:
     specifier: ^1.0.0
-    version: 1.0.0(stylelint@16.26.0)(tailwindcss@4.1.17)
+    version: 1.0.0(stylelint@16.26.1)(tailwindcss@4.1.17)
   tailwindcss:
     specifier: ^4.1.17
     version: 4.1.17
@@ -1127,6 +1127,11 @@ packages:
       '@csstools/css-tokenizer': ^3.0.4
     dependencies:
       '@csstools/css-tokenizer': 3.0.4
+    dev: true
+
+  /@csstools/css-syntax-patches-for-csstree@1.0.20:
+    resolution: {integrity: sha512-8BHsjXfSciZxjmHQOuVdW2b8WLUPts9a+mfL13/PzEviufUEW2xnvQuOlKs9dRBHgRqJ53SF/DUoK9+MZk72oQ==}
+    engines: {node: '>=18'}
     dev: true
 
   /@csstools/css-tokenizer@3.0.4:
@@ -3302,7 +3307,7 @@ packages:
     resolution: {integrity: sha512-/O08DwmUqIlJjUSPSZbNF8lWnlxaMsIOV6sS+uDKCxBd5i1psAmjEoG3JAqR6+nHD8X+YY474NW7SxUH/K+/kQ==}
     dependencies:
       legacy-javascript: 0.0.1
-      third-party-web: 0.28.0
+      third-party-web: 0.29.0
     dev: true
 
   /@pkgr/core@0.2.9:
@@ -12892,7 +12897,7 @@ packages:
       postcss-selector-parser: 7.1.0
     dev: true
 
-  /stylelint-config-html@1.1.0(postcss-html@1.8.0)(stylelint@16.26.0):
+  /stylelint-config-html@1.1.0(postcss-html@1.8.0)(stylelint@16.26.1):
     resolution: {integrity: sha512-IZv4IVESjKLumUGi+HWeb7skgO6/g4VMuAYrJdlqQFndgbj6WJAXPhaysvBiXefX79upBdQVumgYcdd17gCpjQ==}
     engines: {node: ^12 || >=14}
     peerDependencies:
@@ -12900,49 +12905,49 @@ packages:
       stylelint: '>=14.0.0'
     dependencies:
       postcss-html: 1.8.0
-      stylelint: 16.26.0(typescript@5.9.3)
+      stylelint: 16.26.1(typescript@5.9.3)
     dev: true
 
-  /stylelint-config-hudochenkov@12.0.0(stylelint-order@7.0.0)(stylelint@16.26.0):
+  /stylelint-config-hudochenkov@12.0.0(stylelint-order@7.0.0)(stylelint@16.26.1):
     resolution: {integrity: sha512-q2h/RrdtaUDAULx1JN8qv5P5Qk5kDrlh1pvLZjEW6lvRZFmeZfPFwdw480449sYPUxvEBEXP8lF46wq28c/Y8A==}
     peerDependencies:
       stylelint: ^16.19.0
       stylelint-order: ^7.0.0
     dependencies:
-      stylelint: 16.26.0(typescript@5.9.3)
-      stylelint-order: 7.0.0(stylelint@16.26.0)
+      stylelint: 16.26.1(typescript@5.9.3)
+      stylelint-order: 7.0.0(stylelint@16.26.1)
     dev: true
 
-  /stylelint-config-recommended@17.0.0(stylelint@16.26.0):
+  /stylelint-config-recommended@17.0.0(stylelint@16.26.1):
     resolution: {integrity: sha512-WaMSdEiPfZTSFVoYmJbxorJfA610O0tlYuU2aEwY33UQhSPgFbClrVJYWvy3jGJx+XW37O+LyNLiZOEXhKhJmA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.23.0
     dependencies:
-      stylelint: 16.26.0(typescript@5.9.3)
+      stylelint: 16.26.1(typescript@5.9.3)
     dev: true
 
-  /stylelint-config-standard@39.0.1(stylelint@16.26.0):
+  /stylelint-config-standard@39.0.1(stylelint@16.26.1):
     resolution: {integrity: sha512-b7Fja59EYHRNOTa3aXiuWnhUWXFU2Nfg6h61bLfAb5GS5fX3LMUD0U5t4S8N/4tpHQg3Acs2UVPR9jy2l1g/3A==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.23.0
     dependencies:
-      stylelint: 16.26.0(typescript@5.9.3)
-      stylelint-config-recommended: 17.0.0(stylelint@16.26.0)
+      stylelint: 16.26.1(typescript@5.9.3)
+      stylelint-config-recommended: 17.0.0(stylelint@16.26.1)
     dev: true
 
-  /stylelint-config-tailwindcss@1.0.0(stylelint@16.26.0)(tailwindcss@4.1.17):
+  /stylelint-config-tailwindcss@1.0.0(stylelint@16.26.1)(tailwindcss@4.1.17):
     resolution: {integrity: sha512-e6WUBJeLdOZ0sy8FZ1jk5Zy9iNGqqJbrMwnnV0Hpaw/yin6QO3gVv/zvyqSty8Yg6nEB5gqcyJbN387TPhEa7Q==}
     peerDependencies:
       stylelint: '>=13.13.1'
       tailwindcss: '>=2.2.16'
     dependencies:
-      stylelint: 16.26.0(typescript@5.9.3)
+      stylelint: 16.26.1(typescript@5.9.3)
       tailwindcss: 4.1.17
     dev: true
 
-  /stylelint-order@7.0.0(stylelint@16.26.0):
+  /stylelint-order@7.0.0(stylelint@16.26.1):
     resolution: {integrity: sha512-rSWxx0KscYfxU02wEskKXES9lkRzuuONMMNkZ7SUc6uiF3tDKm7e+sE0Ax/SBlG4TUf1sp1R6f3/SlsPGmzthg==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
@@ -12950,15 +12955,16 @@ packages:
     dependencies:
       postcss: 8.5.6
       postcss-sorting: 9.1.0(postcss@8.5.6)
-      stylelint: 16.26.0(typescript@5.9.3)
+      stylelint: 16.26.1(typescript@5.9.3)
     dev: true
 
-  /stylelint@16.26.0(typescript@5.9.3):
-    resolution: {integrity: sha512-Y/3AVBefrkqqapVYH3LBF5TSDZ1kw+0XpdKN2KchfuhMK6lQ85S4XOG4lIZLcrcS4PWBmvcY6eS2kCQFz0jukQ==}
+  /stylelint@16.26.1(typescript@5.9.3):
+    resolution: {integrity: sha512-v20V59/crfc8sVTAtge0mdafI3AdnzQ2KsWe6v523L4OA1bJO02S7MO2oyXDCS6iWb9ckIPnqAFVItqSBQr7jw==}
     engines: {node: '>=18.12.0'}
     hasBin: true
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
+      '@csstools/css-syntax-patches-for-csstree': 1.0.20
       '@csstools/css-tokenizer': 3.0.4
       '@csstools/media-query-list-parser': 4.0.3(@csstools/css-parser-algorithms@3.0.5)(@csstools/css-tokenizer@3.0.4)
       '@csstools/selector-specificity': 5.0.0(postcss-selector-parser@7.1.0)
@@ -13214,8 +13220,8 @@ packages:
     resolution: {integrity: sha512-h0JYX+dO2Zr3abCQpS6/uFjujaOjA1DyDzGQ41+oFn9VW/ARiq9g5ln7qEP9+BTzDpOMyIfsfj4OvfgXAsMUSA==}
     dev: true
 
-  /third-party-web@0.28.0:
-    resolution: {integrity: sha512-4P798O67JmIKRJfJ1HSOkIsZrx2+FuaN2jTQX+imHXFPbGp17KSMDabYxrRT011B3gBzaoHFhUkBlEkNZN8vuQ==}
+  /third-party-web@0.29.0:
+    resolution: {integrity: sha512-nBDSJw5B7Sl1YfsATG2XkW5qgUPODbJhXw++BKygi9w6O/NKS98/uY/nR/DxDq2axEjL6halHW1v+jhm/j1DBQ==}
     dev: true
 
   /three@0.181.2:
