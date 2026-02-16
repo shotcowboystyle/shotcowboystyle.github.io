@@ -39,8 +39,8 @@ dependencies:
     specifier: ^5.13.0
     version: 5.13.0
   maplibre-gl:
-    specifier: ^5.17.0
-    version: 5.17.0
+    specifier: ^5.18.0
+    version: 5.18.0
   sharp:
     specifier: ^0.34.5
     version: 0.34.5
@@ -48,8 +48,8 @@ dependencies:
     specifier: ^0.3.4
     version: 0.3.4
   swiper:
-    specifier: ^12.1.0
-    version: 12.1.0
+    specifier: ^12.1.1
+    version: 12.1.1
   three:
     specifier: ^0.182.0
     version: 0.182.0
@@ -164,11 +164,11 @@ devDependencies:
     specifier: ^5.83.1
     version: 5.83.1(@types/node@25.2.0)(typescript@5.9.3)
   lefthook:
-    specifier: 2.1.0
-    version: 2.1.0
+    specifier: 2.1.1
+    version: 2.1.1
   lighthouse:
-    specifier: ^13.0.2
-    version: 13.0.2
+    specifier: ^13.0.3
+    version: 13.0.3
   npm-package-json-lint:
     specifier: ^9.1.0
     version: 9.1.0(typescript@5.9.3)
@@ -183,7 +183,7 @@ devDependencies:
     version: 1.58.2
   playwright-lighthouse:
     specifier: ^4.0.0
-    version: 4.0.0(lighthouse@13.0.2)(playwright-core@1.58.2)
+    version: 4.0.0(lighthouse@13.0.3)(playwright-core@1.58.2)
   postcss:
     specifier: ^8.5.6
     version: 8.5.6
@@ -2707,8 +2707,8 @@ packages:
       tinyqueue: 3.0.0
     dev: false
 
-  /@maplibre/mlt@1.1.4:
-    resolution: {integrity: sha512-ZT45XMOQKXEXzi/GnXu9QaC3Lh0yocXLXZHL+ztJiBzjqZ9qTWUx6G5xXXtSBvNs0VHds8nR0alfndiFVwoOAg==}
+  /@maplibre/mlt@1.1.6:
+    resolution: {integrity: sha512-rgtY3x65lrrfXycLf6/T22ZnjTg5WgIOsptOIoCaMZy4O4UAKTyZlYY0h6v8le721pTptF94U65yMDQkug+URw==}
     dependencies:
       '@mapbox/point-geometry': 1.1.0
     dev: false
@@ -4151,7 +4151,7 @@ packages:
   /@types/sax@1.2.7:
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 25.2.0
     dev: false
 
   /@types/shimmer@1.2.0:
@@ -8987,101 +8987,101 @@ packages:
       shell-quote: 1.8.3
     dev: false
 
-  /lefthook-darwin-arm64@2.1.0:
-    resolution: {integrity: sha512-u2hjHLQXWSFfzO7ln2n/uEydSzfC9sc5cDC7tvKSuOdhvBwaJ0AQ7ZeuqqCQ4YfVIJfYOom1SVE9CBd10FVyig==}
+  /lefthook-darwin-arm64@2.1.1:
+    resolution: {integrity: sha512-O/RS1j03/Fnq5zCzEb2r7UOBsqPeBuf1C5pMkIJcO4TSE6hf3rhLUkcorKc2M5ni/n5zLGtzQUXHV08/fSAT3Q==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-darwin-x64@2.1.0:
-    resolution: {integrity: sha512-zz5rcyrtOZpxon7uE+c0KC/o2ypJeLZql5CL0Y9oaTuECbmhfokm8glsGnyWstW/++PuMpZYYr/qsCJA5elxkQ==}
+  /lefthook-darwin-x64@2.1.1:
+    resolution: {integrity: sha512-mm/kdKl81ROPoYnj9XYk5JDqj+/6Al8w/SSPDfhItkLJyl4pqS+hWUOP6gDGrnuRk8S0DvJ2+hzhnDsQnZohWQ==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-freebsd-arm64@2.1.0:
-    resolution: {integrity: sha512-+mXNCNuFHNGYLrDqYWDeHH7kWCLCJFPpspx5PAAm+PD37PRMZJrTqDbaNK9qCghC1tdmT4/Lvilf/ewXHPlaKw==}
+  /lefthook-freebsd-arm64@2.1.1:
+    resolution: {integrity: sha512-F7JXlKmjxGqGbCWPLND0bVB4DMQezIe48pEwTlUQZbxh450c2gP5Q8FdttMZKOT163kBGGTqJAJSEC6zW+QSxA==}
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-freebsd-x64@2.1.0:
-    resolution: {integrity: sha512-+AU2HD7szuDsUdHue/E3OnF84B2ae/h7CGKpuIUHJntgoJ4kxf89oDvq2/xl8kDCn9cT76UUjgeZUgFYLRj+6Q==}
+  /lefthook-freebsd-x64@2.1.1:
+    resolution: {integrity: sha512-Po8/lJMqNzKSZPuEI46dLuWoBoXtAxCuRpeOh6DAV/M4RhBynaCu8rLMZ9BqF7cVbZEWoplOmYo6HdOuiYpCkQ==}
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-linux-arm64@2.1.0:
-    resolution: {integrity: sha512-KM70eV1tsEib1/tk+3TFxIdH84EaYlIg5KTQWAg+LB1N23nTQ7lL4Dnh1je6f6KW4tf21nmoMUqsh0xvMkQk8Q==}
+  /lefthook-linux-arm64@2.1.1:
+    resolution: {integrity: sha512-mI2ljFgPEqHxI8vrN9nKgnVu63Rz1KisDbPwlvs7BTYNwq3sncdK5ukpGR4zzWdh6saNJ5tCtHEtep5GQI11nw==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-linux-x64@2.1.0:
-    resolution: {integrity: sha512-6Bxmv+l7LiYq9W0IE6v2lmlRtBp6pisnlzhcouMGvH3rDwEGw11NAyRJZA3IPGEMAkIuhnlnVTUwAUzKomfJLg==}
+  /lefthook-linux-x64@2.1.1:
+    resolution: {integrity: sha512-m3G/FaxC+crxeg9XeaUuHfEoL+i9gbkg2Hp2KD2IcVVIxprqlyqf0Hb8zbLV2NMXuo5RSGokJu44oAoTO3Ou2g==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-openbsd-arm64@2.1.0:
-    resolution: {integrity: sha512-ppJNK0bBSPLC8gqksRw5zI/0uLeMA5cK+hmZ4ofcuGNmdrN1dfl2Tx84fdeef0NcQY0ii9Y3j3icIKngIoid/g==}
+  /lefthook-openbsd-arm64@2.1.1:
+    resolution: {integrity: sha512-gz/8FJPvhjOdOFt1GmFvuvDOe+W+BBRjoeAT1/mTgkN7HCXMXgqNjjvakQKQeGz1I1v08wXG1ZNf5y+T9XBCDQ==}
     cpu: [arm64]
     os: [openbsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-openbsd-x64@2.1.0:
-    resolution: {integrity: sha512-8k9lQsMYqQGu4spaQ8RNSOJidxIcOyfaoF2FPZhthtBfRV3cgVFGrsQ0hbIi5pvQRGUlCqYuCN79qauXHmnL3Q==}
+  /lefthook-openbsd-x64@2.1.1:
+    resolution: {integrity: sha512-ch3lyMUtbmtWUufaQVn4IoEs/2hjK51XqaCdY1mh5ca//VctR1peknIwQ5feHu+vATCDviWQ7HsdNDewm3HMPg==}
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-windows-arm64@2.1.0:
-    resolution: {integrity: sha512-0WN+grrxt9zP9NGRcztoPXcz25tteem91rfLWgQFab+50csJ47zldlsB7/eOS/eHG5mUg5g5NPR4XefnXtjOcQ==}
+  /lefthook-windows-arm64@2.1.1:
+    resolution: {integrity: sha512-mm3PZhKDs9FE/jQDimkfWxtoj9xQ2k8uw2MdhtC825bhvIh+MEi0WFj/MOW+ug0RBg0I55tGYzZ5aVuozAWpTQ==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook-windows-x64@2.1.0:
-    resolution: {integrity: sha512-XbO/5nAZQLpUn0tPpgCYfFBFJHnymSglQ73jD6wymNrR1j8I5EcXGlP6YcLhnZ83yzsdLC+gup+N6IqUeiyRdw==}
+  /lefthook-windows-x64@2.1.1:
+    resolution: {integrity: sha512-1L2oGIzmhfOTxfwbe5mpSQ+m3ilpvGNymwIhn4UHq6hwHsUL6HEhODqx02GfBn6OXpVIr56bvdBAusjL/SVYGQ==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /lefthook@2.1.0:
-    resolution: {integrity: sha512-+vS+yywGQW6CN1J1hbGkez//6ixGHIQqfxDN/d3JDm531w9GfGt2lAWTDfZTw/CEl80XsN0raFcnEraR3ldw9g==}
+  /lefthook@2.1.1:
+    resolution: {integrity: sha512-Tl9h9c+sG3ShzTHKuR3LAIblnnh+Mgxnm2Ul7yu9cu260Z27LEbO3V6Zw4YZFP59/2rlD42pt/llYsQCkkCFzw==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      lefthook-darwin-arm64: 2.1.0
-      lefthook-darwin-x64: 2.1.0
-      lefthook-freebsd-arm64: 2.1.0
-      lefthook-freebsd-x64: 2.1.0
-      lefthook-linux-arm64: 2.1.0
-      lefthook-linux-x64: 2.1.0
-      lefthook-openbsd-arm64: 2.1.0
-      lefthook-openbsd-x64: 2.1.0
-      lefthook-windows-arm64: 2.1.0
-      lefthook-windows-x64: 2.1.0
+      lefthook-darwin-arm64: 2.1.1
+      lefthook-darwin-x64: 2.1.1
+      lefthook-freebsd-arm64: 2.1.1
+      lefthook-freebsd-x64: 2.1.1
+      lefthook-linux-arm64: 2.1.1
+      lefthook-linux-x64: 2.1.1
+      lefthook-openbsd-arm64: 2.1.1
+      lefthook-openbsd-x64: 2.1.1
+      lefthook-windows-arm64: 2.1.1
+      lefthook-windows-x64: 2.1.1
     dev: true
 
   /legacy-javascript@0.0.1:
@@ -9121,8 +9121,8 @@ packages:
     resolution: {integrity: sha512-d8IsOpE83kbANgnM+Tp8+x6HcMpX9o2ITBiUERssgzAIFdZCQzs/f4k6D0DLQTE59enml9mbAOU52Wu35exWtg==}
     dev: true
 
-  /lighthouse@13.0.2:
-    resolution: {integrity: sha512-n0gdiopYHdTugNMeysuO/1jAUTDVNk/rfybvbbetzdn1po82a+V1vI7JB0yv3SIJM8yTRb+1EFEHJqQmKK8crA==}
+  /lighthouse@13.0.3:
+    resolution: {integrity: sha512-mEHAQV3nn4fB+3FDapye+KGeeE4V8FERgbCFegKT7HxqDVGWVOM/BoH9Qof71fzVYVMLIiGnDsnWRrH0sQ9o4Q==}
     engines: {node: '>=22.19'}
     hasBin: true
     dependencies:
@@ -9460,8 +9460,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /maplibre-gl@5.17.0:
-    resolution: {integrity: sha512-gwS6NpXBfWD406dtT5YfEpl2hmpMm+wcPqf04UAez/TxY1OBjiMdK2ZoMGcNIlGHelKc4+Uet6zhDdDEnlJVHA==}
+  /maplibre-gl@5.18.0:
+    resolution: {integrity: sha512-UtWxPBpHuFvEkM+5FVfcFG9ZKEWZQI6+PZkvLErr8Zs5ux+O7/KQ3JjSUvAfOlMeMgd/77qlHpOw0yHL7JU5cw==}
     engines: {node: '>=16.14.0', npm: '>=8.1.0'}
     dependencies:
       '@mapbox/geojson-rewind': 0.5.2
@@ -9473,7 +9473,7 @@ packages:
       '@mapbox/whoots-js': 3.1.0
       '@maplibre/geojson-vt': 5.0.4
       '@maplibre/maplibre-gl-style-spec': 24.4.1
-      '@maplibre/mlt': 1.1.4
+      '@maplibre/mlt': 1.1.6
       '@maplibre/vt-pbf': 4.2.1
       '@types/geojson': 7946.0.16
       '@types/supercluster': 7.1.3
@@ -10903,7 +10903,7 @@ packages:
     hasBin: true
     dev: true
 
-  /playwright-lighthouse@4.0.0(lighthouse@13.0.2)(playwright-core@1.58.2):
+  /playwright-lighthouse@4.0.0(lighthouse@13.0.3)(playwright-core@1.58.2):
     resolution: {integrity: sha512-8sLhKLYD9k08UjKMSPzYBCZZ6Ct+wZPUe+K58hZEHIdyyXHg+jniWgd+C2W57B+MDstHiYSbyBiN9S8mzUH82w==}
     engines: {node: '>=16.x'}
     peerDependencies:
@@ -10914,7 +10914,7 @@ packages:
         optional: true
     dependencies:
       chalk: 4.1.2
-      lighthouse: 13.0.2
+      lighthouse: 13.0.3
       playwright-core: 1.58.2
       ua-parser-js: 1.0.41
     dev: true
@@ -13234,8 +13234,8 @@ packages:
       picocolors: 1.1.1
       sax: 1.4.4
 
-  /swiper@12.1.0:
-    resolution: {integrity: sha512-BD4CpAOOyEvZ2f0CDx362ea+vmOwukVcmbsQx+0BhRIaBUz8wvcCd//E7RFmvBZCrfyqXCHUVqmgUwts6ywlxw==}
+  /swiper@12.1.1:
+    resolution: {integrity: sha512-NB8Uvpu6m725Xf68l2hZBHD184v/ZAi6WIvAorDuR3gRuwCWbGSam233/8seeeIrMJ9isHGk/CTKFdpgeT5u2Q==}
     engines: {node: '>= 4.7.0'}
     dev: false
 
