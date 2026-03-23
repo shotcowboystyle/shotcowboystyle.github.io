@@ -100,7 +100,7 @@
 		"eslint-plugin-import": "^2.32.0",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"eslint-plugin-markdown": "^5.1.0",
-		"knip": "^5.88.1",
+		"knip": "^6.0.3",
 		"lefthook": "2.1.4",
 		"lighthouse": "^13.0.3",
 		"npm-package-json-lint": "^9.1.0",
