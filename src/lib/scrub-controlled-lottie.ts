@@ -1,3 +1,4 @@
+import { EventHandlerRegistry } from '@/utils/disposable';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import type { AnimationItem } from 'lottie-web';
@@ -13,6 +14,8 @@ interface AnimationComponent {
 	animationCompleted: boolean;
 	initialState: number;
 	triggerTarget: HTMLElement | null;
+	scrollTrigger?: ScrollTrigger;
+	domLoadedHandler?: () => void;
 }
 
 export default class ScrubControlledAnimation {
@@ -21,6 +24,7 @@ export default class ScrubControlledAnimation {
 	};
 	modules: NodeListOf<HTMLElement>;
 	animations: Map<string, AnimationComponent>;
+	eventRegistry: EventHandlerRegistry;
 
 	constructor() {
 		this.DOM = {
@@ -29,6 +33,7 @@ export default class ScrubControlledAnimation {
 
 		this.modules = document.querySelectorAll(this.DOM.module);
 		this.animations = new Map<string, AnimationComponent>();
+		this.eventRegistry = new EventHandlerRegistry();
 
 		this.init();
 	}
@@ -82,7 +87,7 @@ export default class ScrubControlledAnimation {
 			}
 		}
 
-		const controlledAnimation = {
+		const controlledAnimation: AnimationComponent = {
 			animationItem: animation,
 			initialState,
 			playControl,
@@ -91,9 +96,10 @@ export default class ScrubControlledAnimation {
 		};
 
 		if (playControl !== 'autoplay') {
-			animation.addEventListener('DOMLoaded', () =>
-				this.initEvents(name, controlledAnimation, animation),
-			);
+			// Store handler reference for proper cleanup
+			const domLoadedHandler = () => this.initEvents(name, controlledAnimation, animation);
+			controlledAnimation.domLoadedHandler = domLoadedHandler;
+			animation.addEventListener('DOMLoaded', domLoadedHandler);
 		}
 
 		this.animations.set(name, controlledAnimation);
@@ -104,9 +110,11 @@ export default class ScrubControlledAnimation {
 		animationComponent: AnimationComponent,
 		animationItem: AnimationItem,
 	) {
-		animationItem?.removeEventListener('DOMLoaded', () =>
-			this.initEvents(animationName, animationComponent, animationItem),
-		);
+		// Remove DOMLoaded handler after it fires
+		if (animationComponent.domLoadedHandler) {
+			animationItem.removeEventListener('DOMLoaded', animationComponent.domLoadedHandler);
+			animationComponent.domLoadedHandler = undefined;
+		}
 
 		if (animationComponent.initialState > 0) {
 			const { totalFrames } = animationComponent.animationItem;
@@ -118,11 +126,19 @@ export default class ScrubControlledAnimation {
 
 		if (animationComponent.triggerTarget) {
 			if (animationComponent.playControl === 'hover') {
-				animationComponent.animationItem.addEventListener('complete', () =>
-					this.onComplete(animationName),
+				// Use EventHandlerRegistry for proper cleanup
+				const completeHandler = () => this.onComplete(animationName);
+				const mouseenterHandler = () => this.hoverAnimation(animationName);
+
+				this.eventRegistry.register(
+					animationComponent.animationItem as unknown as EventTarget,
+					'complete',
+					completeHandler as EventListener,
 				);
-				animationComponent.triggerTarget.addEventListener('mouseenter', () =>
-					this.hoverAnimation(animationName),
+				this.eventRegistry.register(
+					animationComponent.triggerTarget,
+					'mouseenter',
+					mouseenterHandler as EventListener,
 				);
 			} else if (animationComponent.playControl === 'scroll') {
 				this.scrubAnimation(animationName);
@@ -133,7 +149,8 @@ export default class ScrubControlledAnimation {
 	scrubAnimation(animationName: string) {
 		const animationComponent = this.animations.get(animationName);
 		if (animationComponent) {
-			ScrollTrigger.create({
+			// Store ScrollTrigger reference for proper cleanup
+			const scrollTrigger = ScrollTrigger.create({
 				trigger: animationComponent.triggerTarget,
 				start: 'top center',
 				end: 'bottom top',
@@ -141,6 +158,9 @@ export default class ScrubControlledAnimation {
 				onEnter: () => animationComponent.animationItem.play(),
 				onLeave: () => animationComponent.animationItem.stop(),
 			});
+
+			animationComponent.scrollTrigger = scrollTrigger;
+			this.animations.set(animationName, animationComponent);
 		}
 	}
 
@@ -163,13 +183,29 @@ export default class ScrubControlledAnimation {
 	}
 
 	destroy() {
-		for (const [componentName, animationComponent] of this.animations) {
-			animationComponent.animationItem.removeEventListener('complete', () =>
-				this.onComplete(componentName),
-			);
-			animationComponent.triggerTarget?.removeEventListener('mouseenter', () =>
-				this.hoverAnimation(componentName),
-			);
+		// Clean up all event listeners using EventHandlerRegistry
+		this.eventRegistry.dispose();
+
+		// Clean up animations and ScrollTriggers
+		for (const [, animationComponent] of this.animations) {
+			// Remove DOMLoaded handler if it hasn't fired yet
+			if (animationComponent.domLoadedHandler) {
+				animationComponent.animationItem.removeEventListener(
+					'DOMLoaded',
+					animationComponent.domLoadedHandler,
+				);
+			}
+
+			// Kill ScrollTrigger instances
+			if (animationComponent.scrollTrigger) {
+				animationComponent.scrollTrigger.kill();
+			}
+
+			// Destroy Lottie animation instances
+			animationComponent.animationItem.destroy();
 		}
+
+		// Clear animations map
+		this.animations.clear();
 	}
 }

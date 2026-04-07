@@ -8,15 +8,34 @@ export const report = (
 ): void => {
 	extra = extra || undefined;
 	timeoutMs = timeoutMs || 2000 + text.length * 40;
-	type =
-		'rep-' +
-		(type == 'info' || type == 'i' ? 'info' : type == 'warn' || type == 'w' ? 'warn' : 'alert');
+	const TYPE_PREFIX = 'rep-';
+	const TYPE_MAP: Record<string, string> = { info: 'info', i: 'info', warn: 'warn', w: 'warn' };
+	type = TYPE_PREFIX + (TYPE_MAP[type] ?? 'alert');
 
 	const id = random();
 	const c = document.createElement('DIV');
 	c.className = `rep-content ${type}`;
 	c.id = id;
-	c.innerHTML = '<span class="material-symbols-outlined">close</span>' + text + '<br />' + extra;
+
+	// Create close icon safely
+	const closeIcon = document.createElement('span');
+	closeIcon.className = 'material-symbols-outlined';
+	closeIcon.textContent = 'close';
+	c.appendChild(closeIcon);
+
+	// Add text content safely using textContent to prevent XSS
+	const textNode = document.createElement('span');
+	textNode.textContent = text;
+	c.appendChild(textNode);
+
+	// Add line break and extra content if present
+	if (extra !== undefined) {
+		c.appendChild(document.createElement('br'));
+		const extraNode = document.createElement('span');
+		extraNode.textContent = String(extra);
+		c.appendChild(extraNode);
+	}
+
 	c.addEventListener('click', function (e: Event): void {
 		const target = e.target as HTMLElement;
 		const x = target?.nodeName == 'I' ? target?.parentElement : target;
@@ -24,7 +43,7 @@ export const report = (
 		setTimeout(() => x?.remove(), 400);
 	});
 
-	document.getElementById('#report')?.append(c);
+	document.getElementById('report')?.append(c);
 
 	setTimeout(function () {
 		document.getElementById(id)?.classList.add('active');
@@ -40,6 +59,6 @@ export const report = (
 
 export function swMessage(e: MessageEvent) {
 	if (e.data.action == 'reset') {
-		report('New version found!<br>Installing...');
+		report('New version found! Installing...');
 	}
 }

@@ -10,7 +10,7 @@ const { data } = Astro.props.testimonial;
 ---
 
 <p
-	class="testimonial-text my-4 !leading-normal text-base sm:text-xl lg:!leading-relaxed lg:!text-sm"
+	class="testimonial-text my-4 text-base !leading-normal sm:text-xl lg:!text-sm lg:!leading-relaxed"
 >
 	{data.testimonial}
 </p>
@@ -31,17 +31,19 @@ const { data } = Astro.props.testimonial;
 
 	<div class="mb-0 flex flex-col justify-end md:order-2">
 		<div
-			class="testimonial-name mb-0 font-sans-serif font-bold uppercase leading-none text-base sm:text-lg"
+			class="testimonial-name font-sans-serif mb-0 text-base leading-none font-bold uppercase sm:text-lg"
 		>
 			{data.name}
 		</div>
-		<div class="testimonial-byline -mt-1 leading-none text-xs sm:text-base lg:text-sm">
+		<div class="testimonial-byline -mt-1 text-xs leading-none sm:text-base lg:text-sm">
 			{data.designation}, {data.companyName}
 		</div>
 	</div>
 </div>
 
 <style>
+	@reference "../../styles/base.css";
+
 	@media screen and (orientation: landscape) and (hover: none) {
 		.testimonial-text {
 			@apply mb-16;

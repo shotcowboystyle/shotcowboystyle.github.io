@@ -11,7 +11,7 @@ const title = `Immature Responsive Design`;
 ---
 
 <BaseLayout meta={{ title }}>
-	<div class="immature-page-content relative h-full w-full px-0.5 pb-0 pt-8 lg:px-24 lg:pt-24">
+	<div class="immature-page-content relative h-full w-full px-0.5 pt-8 pb-0 lg:px-24 lg:pt-24">
 		<div class="mx-auto flex w-full items-center px-16">
 			<BackToHomeButton />
 
@@ -21,40 +21,40 @@ const title = `Immature Responsive Design`;
 		</div>
 
 		<ResizerContainer class="relative mx-auto w-full">
-			<div class="relative h-[60vh] min-h-[60vh] w-full select-none overflow-hidden">
+			<div class="relative h-[60vh] min-h-[60vh] w-full overflow-hidden select-none">
 				<div
 					id="bottom"
-					class="absolute left-0 top-1/2 w-full"
+					class="absolute top-1/2 left-0 w-full"
 				>
 					<Image
 						src={leftHandBottom}
 						alt="outer stacked image of a left hand"
-						class="absolute left-0 top-1/2 -mt-[86px] h-auto max-w-[256px] lg:-mt-[116px] lg:h-[232px] lg:min-w-[511px]"
+						class="absolute top-1/2 left-0 -mt-[86px] h-auto max-w-[256px] lg:-mt-[116px] lg:h-[232px] lg:min-w-[511px]"
 					/>
 				</div>
 				<div
 					id="middle"
-					class="absolute right-0 top-[57%] w-full"
+					class="absolute top-[57%] right-0 w-full"
 				>
 					<Image
 						src={rightHand}
 						alt="image of a right hand"
-						class="absolute right-0 top-1/2 -mt-[52px] h-auto max-w-[248px] lg:-mt-[95px] lg:h-[190px] lg:min-w-[496px]"
+						class="absolute top-1/2 right-0 -mt-[52px] h-auto max-w-[248px] lg:-mt-[95px] lg:h-[190px] lg:min-w-[496px]"
 					/>
 				</div>
 				<div
 					id="top"
-					class="absolute left-0 top-1/2 w-full"
+					class="absolute top-1/2 left-0 w-full"
 				>
 					<Image
 						src={leftHandTop}
 						alt="inner stacked image of a left hand"
-						class="absolute -left-[1px] top-1/2 -mt-[41px] h-auto max-w-[159px] lg:-mt-[27px] lg:h-[136px] lg:min-w-[317px]"
+						class="absolute top-1/2 -left-[1px] -mt-[41px] h-auto max-w-[159px] lg:-mt-[27px] lg:h-[136px] lg:min-w-[317px]"
 					/>
 				</div>
 
 				<div
-					class="absolute bottom-0 right-0 p-2 text-white"
+					class="absolute right-0 bottom-0 p-2 text-white"
 					id="resize"
 				>
 					Resize me &gt;
@@ -65,6 +65,8 @@ const title = `Immature Responsive Design`;
 </BaseLayout>
 
 <style is:inline>
+	@reference "../styles/base.css";
+
 	@media screen and (width >= 320px) and (width <= 767px) and (orientation: portrait) {
 		main {
 			position: absolute;

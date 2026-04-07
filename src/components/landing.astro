@@ -48,21 +48,12 @@ const projects = await getCollection('project');
 </footer>
 
 <script>
-	import { eventBus } from '@/utils/event-bus';
+	import { registerPageModule } from '@/utils/module-loader';
 
-	async function loadModules() {
+	registerPageModule(async () => {
 		await import('../lib/section-card-scroll-animation.ts').then((module) => new module.default());
-		await import('../lib/split-text.ts').then((module) => new module.default());
+		await import('../lib/text-split/index.ts').then((module) => new module.default());
 		const textReveal = await import('../lib/text-reveal.ts').then((module) => new module.default());
 		textReveal.animate();
-	}
-
-	document.addEventListener(
-		'astro:page-load',
-		() => {
-			loadModules();
-			eventBus.on('landingLoaded', loadModules);
-		},
-		{ once: true },
-	);
+	});
 </script>

@@ -6,7 +6,7 @@ const title = `Tower Blocks Game`;
 ---
 
 <GameLayout meta={{ title }}>
-	<div class="absolute left-2 top-2">
+	<div class="absolute top-2 left-2">
 		<BackToHomeButton variant="dark" />
 	</div>
 
@@ -22,7 +22,7 @@ const title = `Tower Blocks Game`;
 
 		<div class="game-ready">
 			<div>
-				<h1 id="start-message">Incase you were bored</h1>
+				<h1 id="start-message">In case you were bored</h1>
 				<button
 					type="button"
 					id="start-button"
@@ -140,6 +140,18 @@ const title = `Tower Blocks Game`;
 			topLayer.depth,
 		);
 		world.remove(topLayer.cannonjs);
+
+		// Properly dispose of Three.js resources
+		if (topLayer.threejs.geometry) {
+			topLayer.threejs.geometry.dispose();
+		}
+		if (topLayer.threejs.material) {
+			if (Array.isArray(topLayer.threejs.material)) {
+				topLayer.threejs.material.forEach((material) => material.dispose());
+			} else {
+				topLayer.threejs.material.dispose();
+			}
+		}
 		scene.remove(topLayer.threejs);
 
 		updateState(GAME_STATES.ENDED);
@@ -294,10 +306,24 @@ const title = `Tower Blocks Game`;
 		}
 
 		if (scene) {
-			// Remove every Mesh from the scene
+			// Remove every Mesh from the scene and dispose of resources
 			while (scene.children.find((c) => c.type === 'Mesh')) {
-				const mesh = scene.children.find((c) => c.type === 'Mesh');
-				scene.remove(mesh!);
+				const mesh = scene.children.find((c) => c.type === 'Mesh') as THREE.Mesh | undefined;
+				if (mesh) {
+					// Dispose of geometry
+					if (mesh.geometry) {
+						mesh.geometry.dispose();
+					}
+					// Dispose of material(s)
+					if (mesh.material) {
+						if (Array.isArray(mesh.material)) {
+							mesh.material.forEach((material) => material.dispose());
+						} else {
+							mesh.material.dispose();
+						}
+					}
+					scene.remove(mesh);
+				}
 			}
 
 			// Foundation
@@ -419,17 +445,52 @@ const title = `Tower Blocks Game`;
 			if (controller) {
 				controller.abort();
 			}
+
+			// Clean up Three.js resources to prevent memory leaks
+			if (renderer) {
+				renderer.setAnimationLoop(null);
+				renderer.dispose();
+			}
+
+			if (scene) {
+				// Dispose of all meshes in the scene
+				scene.children.forEach((child) => {
+					if (child instanceof THREE.Mesh) {
+						if (child.geometry) {
+							child.geometry.dispose();
+						}
+						if (child.material) {
+							if (Array.isArray(child.material)) {
+								child.material.forEach((material) => material.dispose());
+							} else {
+								child.material.dispose();
+							}
+						}
+					}
+				});
+				// Clear the scene
+				scene.clear();
+			}
+
+			// Clean up Cannon.js world
+			if (world) {
+				while (world.bodies.length > 0) {
+					world.remove(world.bodies[0]);
+				}
+			}
 		});
 	});
 </script>
 
 <style>
+	@reference "../styles/base.css";
+
 	#container {
 		@apply h-full w-full;
 	}
 
 	#container #score {
-		@apply absolute mb-4 w-full text-center font-sans-serif text-base-content;
+		@apply font-sans-serif text-base-content absolute mb-4 w-full text-center;
 
 		font-size: 10vh;
 		transform: scale(0);
@@ -444,7 +505,7 @@ const title = `Tower Blocks Game`;
 	}
 
 	#container .game-over * {
-		@apply font-sans text-base-content opacity-0;
+		@apply text-base-content font-sans opacity-0;
 
 		transition:
 			opacity 0.5s ease,
@@ -453,16 +514,16 @@ const title = `Tower Blocks Game`;
 	}
 
 	#container .game-over h2 {
-		@apply m-0 p-0 font-sans-serif text-6xl;
+		@apply font-sans-serif m-0 p-0 text-6xl;
 	}
 
 	#container .game-ready {
-		@apply absolute left-0 top-0 flex h-full w-full flex-col items-center justify-around;
+		@apply absolute top-0 left-0 flex h-full w-full flex-col items-center justify-around;
 	}
 
 	#container .game-ready #start-message,
 	#container .game-ready #start-button {
-		@apply mx-auto mb-1 w-full text-center text-base-content opacity-0 text-3xl;
+		@apply text-base-content mx-auto mb-1 w-full text-center text-3xl opacity-0;
 
 		transition:
 			opacity 0.5s ease,
@@ -471,11 +532,11 @@ const title = `Tower Blocks Game`;
 	}
 
 	#container .game-ready #start-button {
-		@apply border-4 border-base-content bg-transparent px-4 py-2;
+		@apply border-base-content border-4 bg-transparent px-4 py-2;
 	}
 
 	#container #instructions {
-		@apply absolute left-0 top-1/4 w-full text-center opacity-0;
+		@apply absolute top-1/4 left-0 w-full text-center opacity-0;
 
 		transition:
 			opacity 0.5s ease,

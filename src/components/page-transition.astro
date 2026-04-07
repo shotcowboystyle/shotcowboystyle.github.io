@@ -11,11 +11,13 @@ const items = [...Array(7)];
 </ul>
 
 <style>
+	@reference "../styles/base.css";
+
 	.transition-container {
-		@apply pointer-events-none fixed left-0 top-[-71vh] z-50 m-0 flex h-[200vh] rotate-45 overflow-x-hidden p-0 md:top-[-105vh] md:h-[300vh];
+		@apply pointer-events-none fixed top-[-71vh] left-0 z-50 m-0 flex h-[200vh] rotate-45 overflow-x-hidden p-0 md:top-[-105vh] md:h-[300vh];
 	}
 
 	.transition-container-list-item {
-		@apply w-[20vh] rounded-[200px] opacity-0 before:content-none odd:bg-primary even:bg-secondary md:w-[32vh];
+		@apply odd:bg-primary even:bg-secondary w-[20vh] rounded-[200px] opacity-0 before:content-none md:w-[32vh];
 	}
 </style>

@@ -1,11 +1,13 @@
+@reference "./base.css";
+
 #page-wrapper {
-	@apply h-screen min-h-0 w-screen overflow-hidden font-sans tracking-tighter text-white text-sm;
+	@apply h-screen min-h-0 w-screen overflow-hidden font-sans text-sm tracking-tighter text-white;
 
 	background-image: linear-gradient(to right bottom, rgb(169 52 126), rgb(75 50 167));
 }
 
 .center {
-	@apply relative left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-transform;
+	@apply relative top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-transform;
 
 	transition-duration: 0.5s;
 	transform: translate(-50%, -50%) scale(0.6);
@@ -24,37 +26,31 @@
 }
 
 .star {
-	--size: calc(1px * random(0, 4, {round: true, noSeed: true}));
-
 	@apply absolute z-10;
-}
 
-@for $i from 1 to 81 {
-	.star:nth-child($(i)) {
-		top: calc(1vh * random(0, 99, {round: true, noSeed: true}));
-		left: calc(1vw * random(0, 99, {round: true, noSeed: true}));
+	top: var(--star-top);
+	left: var(--star-left);
 
-		&::before,
-		&::after {
-			@apply absolute animate-blink rounded-xl bg-white;
+	&::before,
+	&::after {
+		@apply animate-blink absolute rounded-xl bg-white;
 
-			content: '';
-			animation-delay: calc(-1s * $(i));
-		}
+		content: '';
+		animation-delay: var(--star-delay);
+	}
 
-		&::before {
-			top: calc(var(--size) / 2);
-			left: calc(calc(var(--size) / 2) * -1);
-			width: calc(var(--size) * 3);
-			height: var(--size);
-		}
+	&::before {
+		top: calc(var(--star-size) / 2);
+		left: calc(var(--star-size) / -2);
+		width: calc(var(--star-size) * 3);
+		height: var(--star-size);
+	}
 
-		&::after {
-			top: calc(calc(var(--size) / 2) * -1);
-			left: calc(var(--size) / 2);
-			width: var(--size);
-			height: calc(var(--size) * 3);
-		}
+	&::after {
+		top: calc(var(--star-size) / -2);
+		left: calc(var(--star-size) / 2);
+		width: var(--star-size);
+		height: calc(var(--star-size) * 3);
 	}
 }
 
@@ -73,7 +69,7 @@
 		height: var(--circle-outer-size);
 
 		&::before {
-			@apply absolute inset-0 h-full w-full scale-0 animate-pulse-scale rounded-full opacity-0;
+			@apply animate-pulse-scale absolute inset-0 h-full w-full scale-0 rounded-full opacity-0;
 
 			content: '';
 			background-image: linear-gradient(to right bottom, rgb(128 43 137), rgb(86 49 161));
@@ -88,7 +84,7 @@
 		height: var(--circle-inner-size);
 
 		&::before {
-			@apply absolute inset-0 h-full w-full scale-0 animate-pulse-scale rounded-full opacity-0;
+			@apply animate-pulse-scale absolute inset-0 h-full w-full scale-0 rounded-full opacity-0;
 
 			content: '';
 			background-image: linear-gradient(to right bottom, rgb(117 39 139), rgb(85 48 162));
@@ -100,7 +96,7 @@
 .four {
 	--four-top: 100px;
 
-	@apply absolute select-none font-black;
+	@apply absolute font-black select-none;
 
 	font-size: 150px;
 	text-shadow: 0 2px 10px rgb(0 0 0 / 50%);
@@ -300,7 +296,7 @@
 }
 
 .oh {
-	@apply z-20 animate-floating;
+	@apply animate-floating z-20;
 
 	transition: all 0.1s linear;
 }

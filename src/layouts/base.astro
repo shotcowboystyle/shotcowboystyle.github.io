@@ -5,7 +5,7 @@ import OpenGraph from '@/components/open-graph.astro';
 import PageTransition from '@/components/page-transition.astro';
 import Seo from '@/components/seo.astro';
 import type { PageMetaData } from '@/types';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '@/styles/base.css';
 
 export type Props = {
@@ -28,7 +28,7 @@ const {
 	transition:animate="none"
 >
 	<head>
-		<ViewTransitions />
+		<ClientRouter />
 
 		<Seo />
 		<Favicons />
@@ -40,7 +40,7 @@ const {
 	</head>
 
 	<body
-		class="selection:text-base-neutral m-0 min-h-full bg-black font-sans font-medium leading-normal text-base-content selection:bg-rose-200"
+		class="selection:text-base-neutral text-base-content m-0 min-h-full bg-black font-sans leading-normal font-medium selection:bg-rose-200"
 	>
 		<PageTransition />
 

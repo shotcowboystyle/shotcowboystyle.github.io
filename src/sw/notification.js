@@ -1,12 +1,6 @@
 this.addEventListener('notificationclick', (event) => {
 	event.waitUntil(
 		this.clients.matchAll().then((clientList) => {
-			console.log(
-				'[SERVICE WORKER notification] Notification click Received.',
-				clientList,
-				event.notification.data,
-			);
-
 			const data = 'undefined' !== typeof event.notification['data'] ? event.notification.data : {};
 
 			event.notification.close();
@@ -21,7 +15,6 @@ this.addEventListener('notificationclick', (event) => {
 				this.clients
 					.openWindow('/profile')
 					.then((c) => {
-						console.log('[SERVICE WORKER client] OpenWindow: ', c);
 						return c;
 					})
 					.then((a) => {

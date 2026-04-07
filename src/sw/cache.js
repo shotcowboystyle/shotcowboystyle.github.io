@@ -4,7 +4,6 @@ this.addEventListener('install', (e) =>
 		caches
 			.open(CACHE)
 			.then((cache) => {
-				console.log(`[SERVICE WORKER install] caching "${CACHE}"`);
 				cache.addAll(ASSETS);
 			})
 			.then(() => {
@@ -19,7 +18,6 @@ self.addEventListener('activate', (e) =>
 		caches.keys().then(async (ks) => {
 			for (const k of ks) {
 				if (k !== CACHE) {
-					console.log(`[SERVICE WORKER removing] cache "${k}"`);
 					await caches.delete(k);
 				}
 			}

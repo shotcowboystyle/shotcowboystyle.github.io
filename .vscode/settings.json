@@ -1,7 +1,7 @@
 {
 	"css.validate": false,
 	"editor.codeActionsOnSave": {
-		"source.fixAll": true
+		"source.fixAll": "explicit"
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
@@ -91,7 +91,7 @@
 	"[markdown]": {
 		"editor.wordWrap": "on",
 		"editor.codeActionsOnSave": {
-			"source.fixAll.markdownlint": true
+			"source.fixAll.markdownlint": "explicit"
 		}
 	},
 	"[properties]": {

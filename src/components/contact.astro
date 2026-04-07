@@ -11,7 +11,7 @@
 >
 	<div
 		id="contact-button-animation"
-		class="js-lottie-animation relative z-10 -ml-10 mt-0 w-[110%] max-sm:mb-10"
+		class="js-lottie-animation relative z-10 mt-0 -ml-10 w-[110%] max-sm:mb-10"
 		data-animation-name="contact-button-animation"
 		data-animation-source="/animation/lottie-contact-button-animation.json"
 		data-animation-play-control="hover"
@@ -21,25 +21,27 @@
 	</div>
 
 	<div>
-		<h3 class="contact-button-title mb-4 !leading-none text-white !text-6xl lg:!text-5xl">
+		<h3 class="contact-button-title mb-4 !text-6xl !leading-none text-white lg:!text-5xl">
 			Wanna talk? Send me a message.
 		</h3>
 		<p
 			id="email-text"
-			class="js-inject-email-text mb-0 text-white text-base"
+			class="js-inject-email-text mb-0 text-base text-white"
 		>
 		</p>
 	</div>
 </a>
 
 <style>
+	@reference "../styles/base.css";
+
 	@media screen and (orientation: landscape) and (hover: none) {
 		#contact-button {
 			@apply p-4;
 		}
 
 		.contact-button-title {
-			@apply font-semibold !text-5xl;
+			@apply !text-5xl font-semibold;
 		}
 	}
 </style>
