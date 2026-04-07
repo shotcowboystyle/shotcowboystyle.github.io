@@ -22,11 +22,9 @@
 		// "isolatedModules": true,
 
 		"jsx": "react-jsx",
-		"jsxImportSource": "@builder.io/qwik",
 		// "skipLibCheck": true,
-		"baseUrl": ".",
 		"paths": {
-			"@/*": ["src/*"]
+			"@/*": ["./src/*"]
 		},
 		"plugins": [
 			{

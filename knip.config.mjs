@@ -3,27 +3,22 @@ export default {
 	rules: {
 		binaries: 'off',
 	},
-	entry: [
-		'src/**/*.{ts,tsx,astro,css}!',
-		'astro.config.mjs',
-		'postcss.config.cjs',
-		'public/js/*.js',
-	],
-	project: ['src/**/*.{ts,tsx,js,jsx,astro,css}', 'public/js/*.js'],
+	entry: ['src/**/*.{ts,tsx,astro,css}!'],
+	project: ['src/**/*.{ts,tsx,js,jsx,astro,css}'],
 	compilers: {
 		astro: (text) => [...text.matchAll(/import[^;]+/g)].join('\n'),
 		css: (text) => [...text.matchAll(/(?<=@)import[^;]+/g)].join('\n'),
 	},
 	ignoreDependencies: [
-		'sharp',
-		'@astrojs/check',
 		'@commitlint/cli',
+		'@types/eslint',
 		'conventional-changelog-conventionalcommits',
-		'lighthouse',
-		'eslint-import-resolver-typescript',
-		'eslint-plugin-import',
+		'@semantic-release/commit-analyzer',
+		'@semantic-release/github',
+		'@semantic-release/release-notes-generator',
+		'astro-eslint-parser',
+		'daisyui',
 		'eslint-plugin-jsx-a11y',
-		'postcss-nesting',
 	],
 	ignore: ['src/sw/**/*'],
 	paths: {
@@ -31,9 +26,6 @@ export default {
 	},
 	postcss: {
 		config: ['postcss.config.cjs'],
-	},
-	tailwind: {
-		config: ['tailwind.config.{js,cjs,mjs,ts}'],
 	},
 	'semantic-release': {
 		config: ['release.config.cjs', 'release.main.config.cjs'],

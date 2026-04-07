@@ -1,7 +1,8 @@
 import { isMacOS } from '@/utils/detect';
-import Lenis from '@studio-freight/lenis';
+import { EventHandlerRegistry, RAFManager } from '@/utils/disposable';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
+import Lenis from 'lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,9 @@ export default class SmoothScroll extends Lenis {
 	isActive: boolean;
 	callbacks: (() => void)[];
 	scrollLinks: NodeListOf<HTMLAnchorElement>;
+	private eventRegistry: EventHandlerRegistry;
+	private rafManager: RAFManager;
+	private gsapTickerCallback: ((time: number) => void) | null = null;
 
 	constructor() {
 		super({
@@ -20,7 +24,6 @@ export default class SmoothScroll extends Lenis {
 			// https://www.desmos.com/calculator/brs54l4xou
 			easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
 			orientation: 'vertical',
-			smoothTouch: false,
 			touchMultiplier: 2,
 			lerp: isMacOS ? 0.4 : 0.1,
 		});
@@ -35,24 +38,28 @@ export default class SmoothScroll extends Lenis {
 		this.callbacks = [];
 		this.scrollLinks = document.querySelectorAll<HTMLAnchorElement>(this.DOM.scrollLink);
 
+		this.eventRegistry = new EventHandlerRegistry();
+		this.rafManager = new RAFManager();
+
 		this.init();
 	}
 
 	init() {
 		const raf = (time: number) => {
 			this.raf(time);
-			requestAnimationFrame(raf);
+			this.rafManager.register(raf);
 		};
-		requestAnimationFrame(raf);
+		this.rafManager.register(raf);
 
 		this.on('scroll', () => {
 			ScrollTrigger.update();
 			this.callbackRaf();
 		});
 
-		gsap.ticker.add((time: number) => {
+		this.gsapTickerCallback = (time: number) => {
 			this.raf(1e3 * time);
-		});
+		};
+		gsap.ticker.add(this.gsapTickerCallback);
 
 		gsap.ticker.lagSmoothing(0);
 
@@ -62,17 +69,14 @@ export default class SmoothScroll extends Lenis {
 	initEvents() {
 		if (this.scrollLinks?.length) {
 			this.scrollLinks.forEach(($link) => {
-				$link.addEventListener('click', (event) => this.onLinkClick(event));
+				const handler = (event: Event) => this.onLinkClick(event);
+				this.eventRegistry.register($link, 'click', handler);
 			});
 		}
 	}
 
 	removeEvents() {
-		if (this.scrollLinks?.length) {
-			this.scrollLinks.forEach(($link) => {
-				$link.removeEventListener('click', (event) => this.onLinkClick(event));
-			});
-		}
+		this.eventRegistry.dispose();
 	}
 
 	onLinkClick(event: Event) {
@@ -99,7 +103,22 @@ export default class SmoothScroll extends Lenis {
 	}
 
 	kill() {
+		// Stop Lenis scrolling before cleanup
+		this.stop();
+
+		// Remove GSAP ticker callback
+		if (this.gsapTickerCallback) {
+			gsap.ticker.remove(this.gsapTickerCallback);
+			this.gsapTickerCallback = null;
+		}
+
+		// Cancel all RAF loops
+		this.rafManager.dispose();
+
+		// Remove all event listeners
 		this.removeEvents();
+
+		// Destroy Lenis instance
 		this.destroy();
 	}
 
@@ -114,6 +133,7 @@ export default class SmoothScroll extends Lenis {
 	}
 
 	scrollZero() {
+		// Allow microtask/DOM update to complete before forcing immediate scroll to top
 		setTimeout(() => this.scrollTo(0, { immediate: true }), 5);
 	}
 
@@ -124,7 +144,7 @@ export default class SmoothScroll extends Lenis {
 			return;
 		}
 
-		this.raf(time);
+		this.raf(time ?? 0);
 	}
 
 	set active(value: boolean) {

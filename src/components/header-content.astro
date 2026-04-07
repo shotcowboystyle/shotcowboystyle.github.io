@@ -17,7 +17,7 @@ const socials = await getCollection('social');
 		<a
 			href="/"
 			aria-current="page"
-			class="c-animated-text js-split-lines js-animation-reveal-text-wrapper font-sans-serif font-semibold uppercase leading-none text-3xl sm:font-extrabold"
+			class="c-animated-text js-split-lines js-animation-reveal-text-wrapper font-sans-serif text-3xl leading-none font-semibold uppercase sm:font-extrabold"
 		>
 			shotcowboystyle.
 		</a>
@@ -34,11 +34,11 @@ const socials = await getCollection('social');
 				href="nowayjose"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="js-inject-email-link group btn btn-circle btn-neutral relative flex h-20 w-20 items-center justify-center bg-black text-center font-medium !leading-none text-white text-base sm:h-32 sm:w-32 lg:h-24 lg:w-24"
+				class="js-inject-email-link group btn btn-circle btn-neutral relative flex h-20 w-20 items-center justify-center bg-black text-center text-base !leading-none font-medium text-white sm:h-32 sm:w-32 lg:h-24 lg:w-24"
 			>
 				<span
 					id="lets-talk-label"
-					class="relative z-[1] normal-case text-white max-sm:!leading-4 max-sm:text-xs sm:!leading-none sm:text-lg"
+					class="relative z-[1] text-white normal-case max-sm:text-xs max-sm:!leading-4 sm:text-lg sm:!leading-none"
 				>
 					Let's<br />Talk
 				</span>
@@ -58,7 +58,7 @@ const socials = await getCollection('social');
 				<div class="anim-h1-wrapper">
 					<h1
 						id="header-headline"
-						class="c-animated-text js-split-lines js-animation-reveal-text-wrapper mb-2 max-w-[8ch] uppercase !leading-[.9] max-sm:text-9xl sm:mb-0 sm:max-w-[18ch]"
+						class="c-animated-text js-split-lines js-animation-reveal-text-wrapper mb-2 max-w-[8ch] !leading-[.9] uppercase max-sm:text-9xl sm:mb-0 sm:max-w-[18ch]"
 					>
 						Full Stack<br />Senior Developer.
 					</h1>
@@ -66,13 +66,13 @@ const socials = await getCollection('social');
 
 				<div
 					id="header-badge"
-					class="absolute -top-[20%] right-[-15%] h-24 w-24 scale-0 opacity-0 sm:-right-[15%] sm:-top-[20%] md:h-48 md:w-48 lg:-right-[20%] lg:h-40 lg:w-40"
+					class="absolute -top-[20%] right-[-15%] h-24 w-24 scale-0 opacity-0 sm:-top-[20%] sm:-right-[15%] md:h-48 md:w-48 lg:-right-[20%] lg:h-40 lg:w-40"
 				>
 					<Image
 						src={openProjectsBadge}
 						alt="Open for new projects"
 						widths={[108, 216, openProjectsBadge.width]}
-						class="inline-block max-w-full align-middle motion-safe:animate-spin-circle"
+						class="motion-safe:animate-spin-circle inline-block max-w-full align-middle"
 					/>
 				</div>
 			</div>
@@ -83,7 +83,7 @@ const socials = await getCollection('social');
 
 			<p
 				id="header-intro"
-				class="c-animated-text js-split-words js-animation-reveal-text-wrapper mb-0 mt-4 max-w-[25ch] !leading-5 sm:mb-16 sm:!leading-tight lg:mb-4 lg:ml-auto"
+				class="c-animated-text js-split-words js-animation-reveal-text-wrapper mt-4 mb-0 max-w-[25ch] !leading-5 sm:mb-16 sm:!leading-tight lg:mb-4 lg:ml-auto"
 			>
 				I help companies build robust, scalable and engaging experiences through motion and space.
 			</p>
@@ -122,7 +122,7 @@ const socials = await getCollection('social');
 
 				<div class="flex gap-2 sm:gap-3">
 					<a
-						class="scroll-link btn btn-neutral btn-sm justify-self-start rounded-full bg-black font-medium uppercase text-white hover:scale-110 sm:!min-h-[3rem] sm:justify-self-auto sm:!px-4 lg:!min-h-[2.25rem] lg:!px-4"
+						class="scroll-link btn btn-neutral btn-sm justify-self-start rounded-full bg-black font-medium text-white uppercase hover:scale-110 sm:!min-h-[3rem] sm:justify-self-auto sm:!px-4 lg:!min-h-[2.25rem] lg:!px-4"
 						href="#about"
 						role="button"
 						id="about-button"
@@ -136,7 +136,7 @@ const socials = await getCollection('social');
 
 			<div
 				id="scroll-animation"
-				class="js-lottie-animation absolute bottom-0 right-0 w-12 sm:w-16"
+				class="js-lottie-animation absolute right-0 bottom-0 w-12 sm:w-16"
 				data-animation-name="scroll-animation"
 				data-animation-source="/animation/lottie-scroll.json"
 				data-animation-play-control="autoplay"
@@ -148,6 +148,8 @@ const socials = await getCollection('social');
 </div>
 
 <style>
+	@reference "../styles/base.css";
+
 	@media screen and (orientation: portrait) and (hover: none) {
 		.header-content-content-wrapper {
 			@apply mb-4;

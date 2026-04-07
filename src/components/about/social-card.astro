@@ -73,6 +73,8 @@ const socials = await getCollection('social');
 <div class="extra link"></div>
 
 <style>
+	@reference "../../styles/base.css";
+
 	.social-card {
 		@apply relative overflow-hidden transition-all duration-[1s] ease-[ease-in-out] max-sm:min-h-[6rem];
 
@@ -103,76 +105,75 @@ const socials = await getCollection('social');
 		}
 
 		.facebook {
-			@apply bottom-[-80%] left-[-80%] h-[80%] w-[80%] hover:before:opacity-100;
-
-			&::before {
-				background: radial-gradient(circle at 30% 107%, rgb(189 189 189) 0%, rgb(64 119 191) 90%);
-			}
+			--size: 80%;
+			--delay: 0s;
+			--gradient-start: rgb(189 189 189);
+			--gradient-end: rgb(64 119 191);
 		}
 
 		.github {
-			@apply bottom-[-68%] left-[-68%] h-[68%] w-[68%] delay-[0.2s] hover:before:opacity-100;
-
-			&::before {
-				background: radial-gradient(
-					circle at 30% 107%,
-					rgb(250 250 250) 0%,
-					rgb(245 245 245) 5%,
-					rgb(110 84 148) 60%,
-					rgb(64 119 191) 90%
-				);
-			}
+			--size: 68%;
+			--delay: 0.2s;
+			--gradient-start: rgb(250 250 250);
+			--gradient-mid-1: rgb(245 245 245);
+			--gradient-mid-2: rgb(110 84 148);
+			--gradient-end: rgb(64 119 191);
 		}
 
 		.instagram {
-			@apply bottom-[-56%] left-[-56%] h-[56%] w-[56%] delay-[0.4s] hover:before:opacity-100;
-
-			&::before {
-				background: radial-gradient(
-					circle at 30% 107%,
-					rgb(253 244 151) 0%,
-					rgb(253 244 151) 5%,
-					rgb(255 83 212) 60%,
-					rgb(98 194 254) 90%
-				);
-			}
+			--size: 56%;
+			--delay: 0.4s;
+			--gradient-start: rgb(253 244 151);
+			--gradient-mid-1: rgb(253 244 151);
+			--gradient-mid-2: rgb(255 83 212);
+			--gradient-end: rgb(98 194 254);
 		}
 
 		.linkedin {
-			@apply bottom-[-44%] left-[-44%] h-[44%] w-[44%] delay-[0.6s] hover:before:opacity-100;
-
-			&::before {
-				background: radial-gradient(circle at 30% 107%, rgb(189 189 189) 0%, rgb(0 161 219) 90%);
-			}
+			--size: 44%;
+			--delay: 0.6s;
+			--gradient-start: rgb(189 189 189);
+			--gradient-end: rgb(0 161 219);
 		}
 
 		.twitter {
-			@apply bottom-[-32%] left-[-32%] h-[32%] w-[32%] delay-[0.8s] hover:before:opacity-100;
-
-			&::before {
-				background: radial-gradient(
-					circle at 30% 107%,
-					rgb(245 248 250) 0%,
-					rgb(102 117 128) 5%,
-					rgb(54 215 255) 60%,
-					rgb(0 170 237) 90%
-				);
-			}
+			--size: 32%;
+			--delay: 0.8s;
+			--gradient-start: rgb(245 248 250);
+			--gradient-mid-1: rgb(102 117 128);
+			--gradient-mid-2: rgb(54 215 255);
+			--gradient-end: rgb(0 170 237);
 		}
 
 		.extra {
-			@apply bottom-[-20%] left-[-20%] h-[20%] w-[20%] delay-[0.6s];
+			--size: 20%;
+			--delay: 0.6s;
 		}
 	}
 
 	.social-icon-wrapper {
-		@apply absolute bottom-5 right-5;
+		@apply absolute right-5 bottom-5;
 	}
 
 	.social-card .link {
-		@apply absolute rounded-[10%_13%_42%_0%/10%_12%_75%_0%] border-r border-t-2 border-solid border-r-[white] border-t-white p-2.5 text-right shadow-[rgba(100,100,111,0.364)_-7px_7px_29px_0px] before:absolute before:inset-0 before:rounded-[inherit] before:content-[""];
+		@apply absolute rounded-[10%_13%_42%_0%/10%_12%_75%_0%] border-t-2 border-r border-solid border-t-white border-r-[white] p-2.5 text-right shadow-[rgba(100,100,111,0.364)_-7px_7px_29px_0px] before:absolute before:inset-0 before:rounded-[inherit] before:content-[""] hover:before:opacity-100;
 
+		bottom: calc(-1 * var(--size));
+		left: calc(-1 * var(--size));
+		width: var(--size);
+		height: var(--size);
 		background: rgb(255 255 255 / 38.9%);
+		transition-delay: var(--delay);
+
+		&::before {
+			background: radial-gradient(
+				circle at 30% 107%,
+				var(--gradient-start) 0%,
+				var(--gradient-mid-1, var(--gradient-start)) 5%,
+				var(--gradient-mid-2, var(--gradient-end)) 60%,
+				var(--gradient-end) 90%
+			);
+		}
 	}
 
 	@media screen and (hover: hover) and (pointer: fine) {
@@ -187,7 +188,7 @@ const socials = await getCollection('social');
 		}
 
 		.social-icon-wrapper {
-			@apply bottom-2/4 right-2/4 translate-x-2/4 translate-y-2/4 transform-gpu transition-all duration-[0.6s] ease-[ease-in-out];
+			@apply right-2/4 bottom-2/4 translate-x-2/4 translate-y-2/4 transform-gpu transition-all duration-[0.6s] ease-[ease-in-out];
 		}
 
 		.social-card:hover .link {
@@ -195,7 +196,7 @@ const socials = await getCollection('social');
 		}
 
 		.social-card:hover .social-icon-wrapper {
-			@apply bottom-5 right-5 translate-x-0 translate-y-0;
+			@apply right-5 bottom-5 translate-x-0 translate-y-0;
 		}
 	}
 
@@ -213,7 +214,7 @@ const socials = await getCollection('social');
 			}
 
 			.social-icon-wrapper {
-				@apply bottom-5 right-5 translate-x-0 translate-y-0;
+				@apply right-5 bottom-5 translate-x-0 translate-y-0;
 			}
 		}
 	}

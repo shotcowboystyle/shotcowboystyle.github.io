@@ -1,6 +1,229 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin 'daisyui' {
+	themes: light;
+}
+
+@plugin 'daisyui/theme' {
+	--color-primary: #20d489;
+	--color-secondary: #377cfb;
+	--color-accent: #abaddd;
+	--color-neutral: #333c4d;
+	--color-base-100: #e2e2e2;
+	--color-info: #2a27e2;
+	--color-success: #36d399;
+	--color-warning: #ffc700;
+	--color-error: #f1416c;
+
+	color-scheme: light;
+	name: 'light';
+	default: true;
+}
+
+@theme {
+	/* Font families */
+	--font-sans:
+		'General Sans', Arial, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-sans-serif:
+		'Thunder', system-ui, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+
+	/* Fluid type scale (replaces tailwindcss-fluid-type) */
+	--text-xs: clamp(0.8681rem, calc(0.8626rem + 0.03vw), 0.8889rem);
+	--text-xs--line-height: 1.6;
+	--text-sm: clamp(1rem, calc(0.989rem + 0.05vw), 1.0417rem);
+	--text-sm--line-height: 1.6;
+	--text-base: clamp(1.125rem, calc(1.0921rem + 0.16vw), 1.25rem);
+	--text-base--line-height: 1.6;
+	--text-lg: clamp(1.2656rem, calc(1.2039rem + 0.31vw), 1.5rem);
+	--text-lg--line-height: 1.6;
+	--text-xl: clamp(1.4238rem, calc(1.3248rem + 0.49vw), 1.8rem);
+	--text-xl--line-height: 1.2;
+	--text-2xl: clamp(1.6018rem, calc(1.4549rem + 0.73vw), 2.16rem);
+	--text-2xl--line-height: 1.2;
+	--text-3xl: clamp(1.802rem, calc(1.5941rem + 1.04vw), 2.592rem);
+	--text-3xl--line-height: 1.2;
+	--text-4xl: clamp(2.0273rem, calc(1.7423rem + 1.43vw), 3.1104rem);
+	--text-4xl--line-height: 1.1;
+	--text-5xl: clamp(2.2807rem, calc(1.8986rem + 1.91vw), 3.7325rem);
+	--text-5xl--line-height: 1.1;
+	--text-6xl: clamp(2.5658rem, calc(2.0623rem + 2.52vw), 4.479rem);
+	--text-6xl--line-height: 1.1;
+	--text-7xl: clamp(2.8865rem, calc(2.2317rem + 3.27vw), 5.3748rem);
+	--text-7xl--line-height: 1;
+	--text-8xl: clamp(3.2473rem, calc(2.4046rem + 4.21vw), 6.4497rem);
+	--text-8xl--line-height: 1;
+	--text-9xl: clamp(3.6532rem, calc(2.5779rem + 5.38vw), 7.7397rem);
+	--text-9xl--line-height: 1;
+
+	/* Custom animations */
+	--animate-resume-button-bottom-bubbles: resumeButtonBottomBubbles 0.6s linear;
+	--animate-resume-button-top-bubbles: resumeButtonTopBubbles 0.6s linear;
+	--animate-pulse-scale: pulseScale 1.5s linear infinite;
+	--animate-spin-circle: spinCircle 8s linear infinite;
+	--animate-blink: blink 1.5s infinite;
+	--animate-floating: floating 4s linear infinite;
+	--animate-fade-in: fadeIn;
+	--animate-fade-out: fadeOut;
+}
+
+@keyframes resumeButtonBottomBubbles {
+	0% {
+		background-position:
+			10% -10%,
+			30% 10%,
+			55% -10%,
+			70% -10%,
+			85% -10%,
+			70% -10%,
+			70% 0%;
+	}
+	50% {
+		background-position:
+			0% 80%,
+			20% 80%,
+			45% 60%,
+			60% 100%,
+			75% 70%,
+			95% 60%,
+			105% 0%;
+	}
+	100% {
+		background-position:
+			0% 90%,
+			20% 90%,
+			45% 70%,
+			60% 110%,
+			75% 80%,
+			95% 70%,
+			110% 10%;
+		background-size:
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%;
+	}
+}
+
+@keyframes resumeButtonTopBubbles {
+	0% {
+		background-position:
+			5% 90%,
+			10% 90%,
+			10% 90%,
+			15% 90%,
+			25% 90%,
+			25% 90%,
+			40% 90%,
+			55% 90%,
+			70% 90%;
+	}
+	50% {
+		background-position:
+			0% 80%,
+			0% 20%,
+			10% 40%,
+			20% 0%,
+			30% 30%,
+			22% 50%,
+			50% 50%,
+			65% 20%,
+			90% 30%;
+	}
+	100% {
+		background-position:
+			0% 70%,
+			0% 10%,
+			10% 30%,
+			20% -10%,
+			30% 20%,
+			22% 40%,
+			50% 40%,
+			65% 10%,
+			90% 20%;
+		background-size:
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%,
+			0% 0%;
+	}
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 100%;
+	}
+}
+
+@keyframes fadeOut {
+	to {
+		opacity: 0%;
+	}
+}
+
+@keyframes pulseScale {
+	from {
+		opacity: 100%;
+		transform: scale(0);
+	}
+	to {
+		opacity: 0%;
+		transform: scale(1);
+	}
+}
+
+@keyframes spinCircle {
+	from {
+		transform: rotateZ(0deg);
+	}
+	to {
+		transform: rotateZ(360deg);
+	}
+}
+
+@keyframes blink {
+	from {
+		opacity: 100%;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 50%;
+		transform: scale(0.4);
+	}
+	to {
+		opacity: 100%;
+		transform: scale(1);
+	}
+}
+
+@keyframes floating {
+	from {
+		transform: translate(2px, 3px) rotate(1deg);
+	}
+	20% {
+		transform: translate(3px, -2px) rotate(-2deg);
+	}
+	40% {
+		transform: translate(-1px, -3px) rotate(1deg);
+	}
+	60% {
+		transform: translate(-2px, 0) rotate(1deg);
+	}
+	80% {
+		transform: translate(-1px, 3px) rotate(2deg);
+	}
+	to {
+		transform: translate(2px, 3px) rotate(1deg);
+	}
+}
 
 @layer base {
 	@font-face {
@@ -38,7 +261,7 @@ h3,
 h4,
 h5,
 h6 {
-	@apply my-0 font-sans-serif font-bold uppercase;
+	@apply font-sans-serif my-0 font-bold uppercase;
 
 	@media screen(sm) {
 		@apply font-extrabold;
@@ -140,8 +363,8 @@ img {
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-	animation: none;
 	mix-blend-mode: normal;
+	animation: none;
 }
 
 ::view-transition-old(main),

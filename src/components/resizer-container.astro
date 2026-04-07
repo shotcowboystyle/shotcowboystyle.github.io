@@ -94,6 +94,8 @@ const { class: className } = Astro.props;
 </script>
 
 <style>
+	@reference "../styles/base.css";
+
 	.resizable {
 		@apply relative w-full items-center justify-center border border-gray-300;
 	}
@@ -104,7 +106,7 @@ const { class: className } = Astro.props;
 
 	/* Placed at the right side */
 	.resizer-r {
-		@apply right-0 top-0 h-full w-1 cursor-col-resize;
+		@apply top-0 right-0 h-full w-1 cursor-col-resize;
 	}
 
 	/* Placed at the bottom side */

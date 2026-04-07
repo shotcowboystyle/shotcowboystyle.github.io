@@ -1,6 +1,5 @@
 ---
 import SvgSprite from '@/components/SvgSprite.astro';
-import { CurrentSessionStats } from './current-session-stats';
 
 const SMALL_DOTS_TOTAL = 43;
 const MEDIUM_DOTS_TOTAL = 12;
@@ -101,13 +100,14 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 				/>
 			</div>
 		</button>
+
 		<dialog
 			id="viewing_time"
 			class="modal modal-bottom sm:modal-middle"
 		>
-			<div class="modal-box !min-w-[18rem] !max-w-md items-center justify-center">
-				<h3 class="text-center font-bold text-lg">Hot diggity!</h3>
-				<CurrentSessionStats />
+			<div class="modal-box !max-w-md !min-w-[18rem] items-center justify-center">
+				<h3 class="text-center text-lg font-bold">Hot diggity!</h3>
+				<p>This is a work in progress. Please check back later.</p>
 				<div class="modal-action">
 					<form method="dialog">
 						<button class="btn">Close</button>
@@ -154,10 +154,13 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 </div>
 
 <style>
+	@reference "../../styles/base.css";
+
 	.mystery-box-card {
 		@apply relative grid w-full place-content-center overflow-hidden rounded-2xl;
 
-		background-image: linear-gradient(
+		background-image:
+			linear-gradient(
 				230deg,
 				rgb(93 93 93 / 3%) 0%,
 				rgb(93 93 93 / 3%) 50%,
@@ -228,10 +231,10 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 		}
 
 		.mystery-box-container {
+			container-type: inline-size;
 			position: relative;
 			width: 100%;
 			height: 100%;
-			container-type: inline-size;
 
 			.size-5 {
 				--size: 1cqb;
@@ -328,11 +331,11 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 
 			.dot {
 				position: absolute;
+				aspect-ratio: 1;
 				border-top: 1px solid rgb(255 255 255);
 				border-right: 1px solid rgb(255 255 255);
 				background: linear-gradient(45deg, rgb(255 255 255) 0%, rgb(255 255 255 / 34%) 100%);
 				transition: transform 1s ease-in-out;
-				aspect-ratio: 1;
 			}
 
 			.dot1 {

@@ -2,7 +2,7 @@ import InjectContactInfo from '@/lib/inject-contact-info';
 import ScrubControlledAnimation from '@/lib/scrub-controlled-lottie';
 import SmoothScroll from '@/lib/smooth-scroll';
 // import { Viewport } from '@/lib/viewport';
-import { eventBus } from '@/utils/event-bus';
+import { typedEventBus as eventBus } from '@/utils/typed-event-bus';
 import { TRANSITION_AFTER_PREPARATION, TRANSITION_AFTER_SWAP } from 'astro:transitions/client';
 
 export default class Landing {

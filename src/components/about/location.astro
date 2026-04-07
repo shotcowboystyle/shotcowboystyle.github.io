@@ -12,7 +12,7 @@ import '@/components/about/location.css';
 >
 	<div
 		id="location-map"
-		class="min-h-16 h-full w-full"
+		class="h-full min-h-16 w-full"
 	>
 		<div class="flex h-full w-full flex-col items-center justify-center">
 			<div class="loading loading-dots loading-md"></div>
@@ -33,22 +33,12 @@ import '@/components/about/location.css';
 </div>
 
 <script>
-	import { eventBus } from '@/utils/event-bus';
-	import { TRANSITION_AFTER_PREPARATION } from 'astro:transitions/client';
+	import { registerTransitionModule } from '@/utils/module-loader';
 
-	async function loadModules() {
-		const locationMap = await import('../../lib/location-map.ts').then(
+	registerTransitionModule(async () => {
+		const locationMap = await import('../../lib/map/index.ts').then(
 			(module) => new module.default(),
 		);
-		document.addEventListener(TRANSITION_AFTER_PREPARATION, () => locationMap?.destroy());
-	}
-
-	document.addEventListener(
-		'astro:page-load',
-		() => {
-			loadModules();
-			eventBus.on('landingLoaded', loadModules);
-		},
-		{ once: true },
-	);
+		return () => locationMap?.destroy();
+	});
 </script>

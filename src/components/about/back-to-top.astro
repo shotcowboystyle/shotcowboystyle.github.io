@@ -5,15 +5,15 @@
 <a
 	href="#header"
 	id="back-to-top-button"
-	class="scroll-link relative grid h-full w-full auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 text-warning-content no-underline sm:p-8 lg:gap-4 lg:p-10"
+	class="scroll-link text-warning-content relative grid h-full w-full auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 no-underline sm:p-8 lg:gap-4 lg:p-10"
 	role="button"
 >
-	<h3 class="pointer-events-none mb-0 self-end !leading-none !text-6xl sm:!text-7xl lg:!text-5xl">
+	<h3 class="pointer-events-none mb-0 self-end !text-6xl !leading-none sm:!text-7xl lg:!text-5xl">
 		Back to the top
 	</h3>
 	<div
 		id="back-to-top-button-animation"
-		class="js-lottie-animation arrow-wrapper pointer-events-none relative z-10 select-none self-end"
+		class="js-lottie-animation arrow-wrapper pointer-events-none relative z-10 self-end select-none"
 		data-animation-name="back-to-top-button-animation"
 		data-animation-source="/animation/lottie-back-to-top.json"
 		data-animation-play-control="hover"
@@ -24,9 +24,11 @@
 </a>
 
 <style>
+	@reference "../../styles/base.css";
+
 	@media screen and (orientation: landscape) and (hover: none) {
 		#back-to-top-button h3 {
-			@apply font-semibold !text-5xl;
+			@apply !text-5xl font-semibold;
 		}
 	}
 

@@ -28,7 +28,7 @@ const { data } = Astro.props.project;
 	class="pointer-events-auto relative z-[2] flex items-end justify-between text-white max-sm:flex-col"
 >
 	<div class="max-sm:-mb-16">
-		<h2 class="mb-4 font-bold text-6xl sm:text-9xl lg:text-8xl">
+		<h2 class="mb-4 text-6xl font-bold sm:text-9xl lg:text-8xl">
 			{data.title}
 		</h2>
 
@@ -40,7 +40,7 @@ const { data } = Astro.props.project;
 			>
 				{
 					data.tags.map((tag: string) => (
-						<li class="relative rounded-full border border-base-100 px-3 pb-1 font-medium uppercase sm:px-5 sm:py-2 sm:font-semibold">
+						<li class="border-base-100 relative rounded-full border px-3 pb-1 font-medium uppercase sm:px-5 sm:py-2 sm:font-semibold">
 							<small class="whitespace-nowrap">{tag}</small>
 						</li>
 					))
@@ -48,7 +48,7 @@ const { data } = Astro.props.project;
 			</ul>
 		</div>
 
-		<p class="!mb-0 max-w-[39ch] max-sm:mr-24 sm:!leading-snug sm:text-2xl lg:text-lg">
+		<p class="!mb-0 max-w-[39ch] max-sm:mr-24 sm:text-2xl sm:!leading-snug lg:text-lg">
 			{data.description}
 		</p>
 	</div>
@@ -73,8 +73,10 @@ const { data } = Astro.props.project;
 </div>
 
 <style>
+	@reference "../styles/base.css";
+
 	.project-screenshot {
-		@apply pointer-events-none absolute right-0 top-0 z-[2] inline-block w-[130%] max-w-none translate-y-[5%] align-middle max-sm:left-0 sm:-top-[5%] sm:right-auto sm:w-11/12 sm:max-w-full lg:-top-[25%] lg:right-0 lg:w-[60%];
+		@apply pointer-events-none absolute top-0 right-0 z-[2] inline-block w-[130%] max-w-none translate-y-[5%] align-middle max-sm:left-0 sm:-top-[5%] sm:right-auto sm:w-11/12 sm:max-w-full lg:-top-[25%] lg:right-0 lg:w-[60%];
 
 		@media screen and (orientation: landscape) and (hover: none) {
 			@apply -top-[25%] right-0 w-[60%];
@@ -82,7 +84,7 @@ const { data } = Astro.props.project;
 	}
 
 	.project-bg {
-		@apply pointer-events-none absolute left-0 top-0 h-full w-full max-w-none object-cover;
+		@apply pointer-events-none absolute top-0 left-0 h-full w-full max-w-none object-cover;
 	}
 
 	@media screen and (orientation: landscape) and (hover: none) {
@@ -92,7 +94,7 @@ const { data } = Astro.props.project;
 	}
 
 	.project-card-button-label {
-		@apply relative z-10 px-8 leading-tight text-base-content;
+		@apply text-base-content relative z-10 px-8 leading-tight;
 
 		font-size: 0.8rem;
 

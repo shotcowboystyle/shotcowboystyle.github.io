@@ -23,17 +23,19 @@ const config = {
 		'font-weight-notation': 'numeric',
 		'hue-degree-notation': 'angle',
 
-		/** Allow `tailwind` directive. */
+		/** Allow Tailwind CSS v4 directives. */
 		'at-rule-no-unknown': [
 			true,
-			{ ignoreAtRules: ['tailwind', 'apply', 'layer', 'config', 'for'] },
+			{
+				ignoreAtRules: ['tailwind', 'apply', 'layer', 'config', 'reference', 'plugin', 'theme'],
+			},
 		],
 		/** Allow `tailwind` media query functions. */
 		'media-query-no-invalid': null,
 
-		/** Allow underscore prefix on custom properties. */
+		/** Allow underscore prefix and double-dash separators on custom properties (e.g. --text-xs--line-height). */
 		'custom-property-pattern': [
-			'^_?([a-z][a-z0-9]*)(-[a-z0-9]+)*$',
+			'^_?([a-z][a-z0-9]*)(-{1,2}[a-z0-9]+)*$',
 			{
 				message: (name) => `Expected custom property name "${name}" to be kebab-case`,
 			},
@@ -52,7 +54,35 @@ const config = {
 		],
 
 		/** Don't error on `text-rendering` camel case values, use `currentColor`. */
-		'value-keyword-case': ['lower', { camelCaseSvgKeywords: true, ignoreFunctions: ['theme'] }],
+		'value-keyword-case': [
+			'lower',
+			{
+				camelCaseSvgKeywords: true,
+				ignoreFunctions: ['theme'],
+				ignoreProperties: [/^animation/, /^--animate-/, /^--font-/],
+			},
+		],
+
+		/** Allow camelCase keyframe names (used by Tailwind theme animations). */
+		'keyframes-name-pattern': null,
+
+		/** Allow `from`/`to` in keyframes. */
+		'keyframe-selector-notation': null,
+
+		/** Disable empty line requirement inside keyframes blocks. */
+		'rule-empty-line-before': [
+			'always',
+			{
+				except: ['first-nested'],
+				ignore: ['after-comment', 'inside-block'],
+			},
+		],
+
+		/** Allow font family names in their original case. */
+		'font-family-name-quotes': 'always-where-recommended',
+
+		/** Disable empty line before custom properties in @plugin blocks. */
+		'custom-property-empty-line-before': null,
 	},
 	overrides: [
 		{

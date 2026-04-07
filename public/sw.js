@@ -1,9 +1,9 @@
-const CACHE='cache-1702151637381-dev';
+const CACHE='cache-1775599089452-dev';
 const ASSETS=[];
 
 /*
 	Astro-sw
-	File: /Users/shotcowboystyle/www/shotcowboystyle.github.io/src/sw/cache.js
+	File: /Users/shotcowboystyle/www/shotcowboystyle/shotcowboystyle.github.io/src/sw/cache.js
 */
 /* eslint-disable no-undef */
 this.addEventListener('install', (e) =>
@@ -11,7 +11,6 @@ this.addEventListener('install', (e) =>
 		caches
 			.open(CACHE)
 			.then((cache) => {
-				console.log(`[SERVICE WORKER install] caching "${CACHE}"`);
 				cache.addAll(ASSETS);
 			})
 			.then(() => {
@@ -26,7 +25,6 @@ self.addEventListener('activate', (e) =>
 		caches.keys().then(async (ks) => {
 			for (const k of ks) {
 				if (k !== CACHE) {
-					console.log(`[SERVICE WORKER removing] cache "${k}"`);
 					await caches.delete(k);
 				}
 			}
@@ -40,7 +38,7 @@ self.addEventListener('activate', (e) =>
 
 /*
 	Astro-sw
-	File: /Users/shotcowboystyle/www/shotcowboystyle.github.io/src/sw/fetch.js
+	File: /Users/shotcowboystyle/www/shotcowboystyle/shotcowboystyle.github.io/src/sw/fetch.js
 */
 /* eslint-disable no-undef */
 const CONFIG = '/config';
@@ -116,7 +114,7 @@ this.addEventListener('fetch', (event) => {
 
 /*
 	Astro-sw
-	File: /Users/shotcowboystyle/www/shotcowboystyle.github.io/src/sw/message.js
+	File: /Users/shotcowboystyle/www/shotcowboystyle/shotcowboystyle.github.io/src/sw/message.js
 */
 // Receive messages from the main script.
 this.onmessage = function (e) {
@@ -151,17 +149,11 @@ function sendMessage(message) {
 
 /*
 	Astro-sw
-	File: /Users/shotcowboystyle/www/shotcowboystyle.github.io/src/sw/notification.js
+	File: /Users/shotcowboystyle/www/shotcowboystyle/shotcowboystyle.github.io/src/sw/notification.js
 */
 this.addEventListener('notificationclick', (event) => {
 	event.waitUntil(
 		this.clients.matchAll().then((clientList) => {
-			console.log(
-				'[SERVICE WORKER notification] Notification click Received.',
-				clientList,
-				event.notification.data,
-			);
-
 			const data = 'undefined' !== typeof event.notification['data'] ? event.notification.data : {};
 
 			event.notification.close();
@@ -176,7 +168,6 @@ this.addEventListener('notificationclick', (event) => {
 				this.clients
 					.openWindow('/profile')
 					.then((c) => {
-						console.log('[SERVICE WORKER client] OpenWindow: ', c);
 						return c;
 					})
 					.then((a) => {
@@ -193,13 +184,11 @@ this.addEventListener('notificationclick', (event) => {
 
 /*
 	Astro-sw
-	File: /Users/shotcowboystyle/www/shotcowboystyle.github.io/src/sw/push.js
+	File: /Users/shotcowboystyle/www/shotcowboystyle/shotcowboystyle.github.io/src/sw/push.js
 */
 this.addEventListener('push', (event) => {
 	event.waitUntil(
 		this.clients.matchAll().then((clientList) => {
-			console.log(`[SERVICE WORKER push] Push had this data: "${event.data.text()}"`);
-
 			const data = event.data.json();
 
 			const title = data.title ?? 'Error';

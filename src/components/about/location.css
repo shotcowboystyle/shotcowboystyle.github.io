@@ -1,6 +1,8 @@
+@reference "../../styles/base.css";
+
 #location-map {
 	#map-marker {
-		@apply flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-gray-500 bg-opacity-50;
+		@apply flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-gray-500/50;
 
 		@media screen(sm) {
 			@apply h-64 w-64;

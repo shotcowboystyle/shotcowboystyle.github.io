@@ -8,7 +8,14 @@ const title = `Error 404`;
 <BaseLayout meta={{ title }}>
 	<div id="page-wrapper">
 		<div id="stars">
-			{Array.from({ length: 80 }).map(() => <div class="star" />)}
+			{
+				Array.from({ length: 80 }).map((_, i) => (
+					<div
+						class="star"
+						style={`--star-top: ${Math.floor(Math.random() * 100)}vh; --star-left: ${Math.floor(Math.random() * 100)}vw; --star-size: ${Math.floor(Math.random() * 5)}px; --star-delay: ${-(i + 1)}s;`}
+					/>
+				))
+			}
 		</div>
 
 		<div class="center">

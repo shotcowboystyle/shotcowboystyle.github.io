@@ -1,8 +1,6 @@
 this.addEventListener('push', (event) => {
 	event.waitUntil(
 		this.clients.matchAll().then((clientList) => {
-			console.log(`[SERVICE WORKER push] Push had this data: "${event.data.text()}"`);
-
 			const data = event.data.json();
 
 			const title = data.title ?? 'Error';

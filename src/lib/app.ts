@@ -1,5 +1,5 @@
 import LoaderAnimation from '@/lib/loader.animation';
-import { eventBus } from '@/utils/event-bus';
+import { typedEventBus as eventBus } from '@/utils/typed-event-bus';
 import {
 	isTransitionBeforePreparationEvent,
 	TRANSITION_AFTER_SWAP,
