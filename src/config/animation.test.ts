@@ -8,18 +8,13 @@ import {
 	ANIMATION_EASING,
 	ANIMATION_STAGGER,
 	CSS_CLASSES,
-	CSS_TRANSITION_DURATION,
-	DATA_ATTRIBUTES,
 	DOM_SELECTORS,
-	LOADER_CONFIG,
 	LOTTIE_CONFIG,
 	OPACITY,
 	SCALE,
 	SCROLL_CONFIG,
-	SMOOTH_SCROLL_CONFIG,
 	TRANSFORM_ORIGIN,
 	type AnimationDuration,
-	type AnimationEasing,
 	type AnimationStagger,
 	type LottiePlayControl,
 	type ScrollEndPosition,
@@ -29,14 +24,14 @@ import {
 } from './animation';
 
 // Type validation tests
-const duration: AnimationDuration = ANIMATION_DURATION.DEFAULT;
-const easing: string = ANIMATION_EASING.EASE_OUT;
-const stagger: AnimationStagger = ANIMATION_STAGGER.TEXT;
-const scrollStart: ScrollStartPosition = SCROLL_CONFIG.START.TOP_CENTER;
-const scrollEnd: ScrollEndPosition = SCROLL_CONFIG.END.BOTTOM_TOP;
-const toggleAction: ScrollToggleAction = SCROLL_CONFIG.TOGGLE_ACTIONS.PLAY_RESET;
-const playControl: LottiePlayControl = LOTTIE_CONFIG.PLAY_CONTROL.HOVER;
-const origin: TransformOrigin = TRANSFORM_ORIGIN.CENTER;
+void (ANIMATION_DURATION.DEFAULT satisfies AnimationDuration);
+void (ANIMATION_EASING.EASE_OUT satisfies string);
+void (ANIMATION_STAGGER.TEXT satisfies AnimationStagger);
+void (SCROLL_CONFIG.START.TOP_CENTER satisfies ScrollStartPosition);
+void (SCROLL_CONFIG.END.BOTTOM_TOP satisfies ScrollEndPosition);
+void (SCROLL_CONFIG.TOGGLE_ACTIONS.PLAY_RESET satisfies ScrollToggleAction);
+void (LOTTIE_CONFIG.PLAY_CONTROL.HOVER satisfies LottiePlayControl);
+void (TRANSFORM_ORIGIN.CENTER satisfies TransformOrigin);
 
 // Runtime validation tests
 console.assert(typeof ANIMATION_DURATION.DEFAULT === 'number', 'Duration should be a number');

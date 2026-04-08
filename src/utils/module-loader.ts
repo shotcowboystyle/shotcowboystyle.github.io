@@ -1,5 +1,4 @@
 import { typedEventBus as eventBus } from '@/utils/typed-event-bus';
-import { TRANSITION_AFTER_PREPARATION } from 'astro:transitions/client';
 
 /**
  * Callback function type for module loaders.
@@ -66,7 +65,7 @@ export function registerTransitionModule(loader: ModuleLoader): void {
 			wrappedLoader();
 			eventBus.on('landingLoaded', wrappedLoader);
 
-			document.addEventListener(TRANSITION_AFTER_PREPARATION, () => {
+			document.addEventListener('astro:after-preparation', () => {
 				if (cleanup) {
 					cleanup();
 					cleanup = undefined;

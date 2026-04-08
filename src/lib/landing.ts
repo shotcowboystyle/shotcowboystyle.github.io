@@ -3,7 +3,6 @@ import ScrubControlledAnimation from '@/lib/scrub-controlled-lottie';
 import SmoothScroll from '@/lib/smooth-scroll';
 // import { Viewport } from '@/lib/viewport';
 import { typedEventBus as eventBus } from '@/utils/typed-event-bus';
-import { TRANSITION_AFTER_PREPARATION, TRANSITION_AFTER_SWAP } from 'astro:transitions/client';
 
 export default class Landing {
 	// viewport: Viewport;
@@ -34,8 +33,8 @@ export default class Landing {
 
 	initEvents() {
 		// new ResizeObserver((entry) => this.resize(entry[0])).observe(this.body!);
-		document.addEventListener(TRANSITION_AFTER_PREPARATION, () => this.handleOnPreparationEnd());
-		document.addEventListener(TRANSITION_AFTER_SWAP, () => this.handleOnSwapEnd());
+		document.addEventListener('astro:after-preparation', () => this.handleOnPreparationEnd());
+		document.addEventListener('astro:after-swap', () => this.handleOnSwapEnd());
 		eventBus.on('loaderFinished', () => {
 			eventBus.dispatch('landingLoaded', {});
 		});

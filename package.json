@@ -18,7 +18,7 @@
 		"astro": "astro",
 		"build": "astro build",
 		"clean": "rm -rf .astro dist lighthouse node_modules pnpm-lock.yaml",
-		"cz": "git-cz",
+		"commit": "git-cz",
 		"dev": "astro dev",
 		"format:check": "prettier '**/*.{tsx,ts,mjs,cjs,js,json,css,yml,yaml,md,astro}' --check",
 		"format:fix": "pnpm run format:check -w",
@@ -125,6 +125,11 @@
 	"pnpm": {
 		"overrides": {
 			"lodash": ">=4.17.22"
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
 		}
 	}
 }

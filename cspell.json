@@ -18,7 +18,8 @@
     ".astro/**",
     "*.svg",
     "stats.html",
-    ".stylelintcache"
+    ".stylelintcache",
+    ".claude"
   ],
   "words": [
     "allcontributors",
