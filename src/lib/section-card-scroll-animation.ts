@@ -36,13 +36,15 @@ export default class SectionCardScrollAnimation {
 			gsap.to($card, {
 				scale: 0.5,
 				autoAlpha: 0,
-				filter: 'blur(20px)',
 				scrollTrigger: {
 					trigger: $el,
 					start: `bottom bottom+=${$card?.offsetHeight}`,
 					end: `+=${window.innerHeight}`,
 					scrub: true,
 					invalidateOnRefresh: true,
+					onToggle: (self) => {
+						$card.style.willChange = self.isActive ? 'transform, opacity' : 'auto';
+					},
 				},
 			});
 		}

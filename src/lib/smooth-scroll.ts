@@ -1,5 +1,5 @@
 import { isMacOS } from '@/utils/detect';
-import { EventHandlerRegistry, RAFManager } from '@/utils/disposable';
+import { EventHandlerRegistry } from '@/utils/disposable';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import Lenis from 'lenis';
@@ -14,7 +14,6 @@ export default class SmoothScroll extends Lenis {
 	callbacks: (() => void)[];
 	scrollLinks: NodeListOf<HTMLAnchorElement>;
 	private eventRegistry: EventHandlerRegistry;
-	private rafManager: RAFManager;
 	private gsapTickerCallback: ((time: number) => void) | null = null;
 
 	constructor() {
@@ -39,29 +38,22 @@ export default class SmoothScroll extends Lenis {
 		this.scrollLinks = document.querySelectorAll<HTMLAnchorElement>(this.DOM.scrollLink);
 
 		this.eventRegistry = new EventHandlerRegistry();
-		this.rafManager = new RAFManager();
 
 		this.init();
 	}
 
 	init() {
-		const raf = (time: number) => {
-			this.raf(time);
-			this.rafManager.register(raf);
+		// Single driver: GSAP ticker drives Lenis (removes redundant manual RAF loop)
+		this.gsapTickerCallback = (time: number) => {
+			this.raf(1e3 * time);
 		};
-		this.rafManager.register(raf);
+		gsap.ticker.add(this.gsapTickerCallback);
+		gsap.ticker.lagSmoothing(0);
 
 		this.on('scroll', () => {
 			ScrollTrigger.update();
 			this.callbackRaf();
 		});
-
-		this.gsapTickerCallback = (time: number) => {
-			this.raf(1e3 * time);
-		};
-		gsap.ticker.add(this.gsapTickerCallback);
-
-		gsap.ticker.lagSmoothing(0);
 
 		this.initEvents();
 	}
@@ -111,9 +103,6 @@ export default class SmoothScroll extends Lenis {
 			gsap.ticker.remove(this.gsapTickerCallback);
 			this.gsapTickerCallback = null;
 		}
-
-		// Cancel all RAF loops
-		this.rafManager.dispose();
 
 		// Remove all event listeners
 		this.removeEvents();
