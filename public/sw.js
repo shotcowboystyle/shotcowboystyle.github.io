@@ -1,4 +1,4 @@
-const CACHE='cache-1775662352450-dev';
+const CACHE='cache-1775663656821-dev';
 const ASSETS=[];
 
 /*
