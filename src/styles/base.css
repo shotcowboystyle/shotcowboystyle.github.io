@@ -5,15 +5,15 @@
 }
 
 @plugin 'daisyui/theme' {
-	--color-primary: #20d489;
-	--color-secondary: #377cfb;
-	--color-accent: #abaddd;
-	--color-neutral: #333c4d;
-	--color-base-100: #e2e2e2;
-	--color-info: #2a27e2;
-	--color-success: #36d399;
-	--color-warning: #ffc700;
-	--color-error: #f1416c;
+	--color-primary: oklch(77% 0.17 159.37deg);
+	--color-secondary: oklch(61% 0.2 261.29deg);
+	--color-accent: oklch(76% 0.07 282.78deg);
+	--color-neutral: oklch(36% 0.03 262.99deg);
+	--color-base-100: oklch(91% 0 0deg);
+	--color-info: oklch(45% 0.26 269.6deg);
+	--color-success: oklch(77% 0.15 163.1deg);
+	--color-warning: oklch(86% 0.17 88.01deg);
+	--color-error: oklch(64% 0.21 11.45deg);
 
 	color-scheme: light;
 	name: 'light';

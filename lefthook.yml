@@ -15,13 +15,16 @@ prepare-commit-msg:
   commands:
     commitzen:
       interactive: true
-      run: LEFTHOOK=0 pnpm cz
+      use_stdin: true
+      run: pnpm cz --hook
+      env:
+        LEFTHOOK: "0"
 
 # Use this to validate commit messages
-# commit-msg:
-#   commands:
-#     'lint commit message':
-#       run: pnpm commitlint --edit {1}
+commit-msg:
+  commands:
+    'lint commit message':
+      run: pnpm commitlint --edit {1}
 
 # pre-push:
 #   parallel: true
@@ -59,7 +62,7 @@ pre-commit:
       run: pnpm exec stylelint {staged_files} --cache --fix
       stage_fixed: true
     lint-spelling:
-      run: 'pnpm exec cspell {staged_files}'
+      run: 'pnpm exec cspell {staged_files} --gitignore'
     lint-package:
       glob: 'package.json'
       run: 'pnpm run lint:package:check'

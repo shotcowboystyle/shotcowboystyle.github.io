@@ -1,11 +1,6 @@
 import LoaderAnimation from '@/lib/loader.animation';
 import { typedEventBus as eventBus } from '@/utils/typed-event-bus';
-import {
-	isTransitionBeforePreparationEvent,
-	TRANSITION_AFTER_SWAP,
-	TRANSITION_BEFORE_PREPARATION,
-	type TransitionBeforePreparationEvent,
-} from 'astro:transitions/client';
+import { type TransitionBeforePreparationEvent } from 'astro:transitions/client';
 
 export default class App {
 	loaderAnimation: LoaderAnimation | null;
@@ -21,10 +16,10 @@ export default class App {
 	}
 
 	initEvents() {
-		document.addEventListener(TRANSITION_BEFORE_PREPARATION, (event: Event) =>
+		document.addEventListener('astro:before-preparation', (event: Event) =>
 			this.handlePreparationEvent(event),
 		);
-		document.addEventListener(TRANSITION_AFTER_SWAP, () => this.handleOnSwapEnd());
+		document.addEventListener('astro:after-swap', () => this.handleOnSwapEnd());
 	}
 
 	handleOnTransitionStart(ev: TransitionBeforePreparationEvent) {
@@ -44,8 +39,8 @@ export default class App {
 	}
 
 	handlePreparationEvent(preparationEvent: Event) {
-		if (isTransitionBeforePreparationEvent(preparationEvent)) {
-			this.handleOnTransitionStart(preparationEvent);
+		if (preparationEvent.type === 'astro:before-preparation') {
+			this.handleOnTransitionStart(preparationEvent as TransitionBeforePreparationEvent);
 		}
 	}
 }
