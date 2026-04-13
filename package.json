@@ -108,7 +108,7 @@
 		"playwright-lighthouse": "^4.0.0",
 		"postcss": "^8.5.9",
 		"postcss-html": "^1.8.1",
-		"prettier": "^3.8.1",
+		"prettier": "^3.8.2",
 		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"rollup-plugin-analyzer": "^4.0.0",
