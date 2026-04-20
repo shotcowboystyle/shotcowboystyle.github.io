@@ -48,7 +48,7 @@
 	},
 	"dependencies": {
 		"@astrojs/sitemap": "^3.7.2",
-		"astro": "^6.1.6",
+		"astro": "^6.1.8",
 		"astro-svgs": "^1.2.2",
 		"astro-sw": "^1.0.5",
 		"cannon": "^0.6.2",
