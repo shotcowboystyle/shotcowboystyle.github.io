@@ -106,7 +106,7 @@
 		"npm-run-all2": "^8.0.4",
 		"playwright": "^1.59.1",
 		"playwright-lighthouse": "^4.0.0",
-		"postcss": "^8.5.9",
+		"postcss": "^8.5.10",
 		"postcss-html": "^1.8.1",
 		"prettier": "^3.8.2",
 		"prettier-plugin-astro": "^0.14.1",
