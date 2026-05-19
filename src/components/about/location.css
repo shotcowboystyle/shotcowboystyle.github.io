@@ -4,11 +4,11 @@
 	#map-marker {
 		@apply flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-gray-500/50;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			@apply h-64 w-64;
 		}
 
-		@media screen(lg) {
+		@media (width >= theme(--breakpoint-lg)) {
 			@apply h-32 w-32;
 		}
 

@@ -226,7 +226,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			linear-gradient(135deg, rgb(1 132 255), rgb(198 5 91));
 		transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			@apply rounded-3xl;
 		}
 
@@ -243,7 +243,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 
 				width: var(--size);
 
-				@media screen(md) {
+				@media (width >= theme(--breakpoint-md)) {
 					--size: 0.5cqb;
 				}
 			}
@@ -255,7 +255,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 
 				width: var(--size);
 
-				@media screen(md) {
+				@media (width >= theme(--breakpoint-md)) {
 					--size: 1cqb;
 				}
 			}
@@ -267,7 +267,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 
 				width: var(--size);
 
-				@media screen(md) {
+				@media (width >= theme(--breakpoint-md)) {
 					--size: 1.5cqb;
 				}
 			}
@@ -282,7 +282,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 				width: var(--size);
 				border: 1px solid rgb(255 255 255);
 
-				@media screen(md) {
+				@media (width >= theme(--breakpoint-md)) {
 					--size: 2cqb;
 				}
 

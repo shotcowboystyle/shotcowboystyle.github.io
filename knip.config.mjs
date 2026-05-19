@@ -10,7 +10,6 @@ export default {
 		css: (text) => [...text.matchAll(/(?<=@)import[^;]+/g)].join('\n'),
 	},
 	ignoreDependencies: [
-		'@commitlint/cli',
 		'@types/eslint',
 		'conventional-changelog-conventionalcommits',
 		'@semantic-release/commit-analyzer',

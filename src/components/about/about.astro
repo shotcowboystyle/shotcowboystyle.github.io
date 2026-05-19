@@ -76,7 +76,7 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 
 		grid-area: span 1 / span 1 / span 1 / span 1;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			grid-area: 1 / 1 / 3 / 3;
 		}
 
@@ -88,7 +88,7 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	#about-box-2 {
 		grid-area: span 1 / span 1 / span 1 / span 1;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			grid-area: 1 / 3 / 3 / 4;
 		}
 
@@ -100,7 +100,7 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	#about-box-3 {
 		grid-area: span 1 / span 1 / span 1 / span 1;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			grid-area: 3 / 1 / 4 / 2;
 		}
 
@@ -114,7 +114,7 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	#about-box-4 {
 		grid-area: span 1 / span 1 / span 1 / span 1;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			grid-area: 3 / 2 / 4 / 3;
 		}
 
@@ -128,11 +128,11 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	#about-box-5 {
 		grid-area: span 1 / span 1 / span 1 / span 1;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			grid-area: 4 / 1 / 5 / 2;
 		}
 
-		@media screen(lg) {
+		@media (width >= theme(--breakpoint-lg)) {
 			grid-area: 3 / 3 / 4 / 3;
 		}
 
@@ -146,11 +146,11 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	#back-to-top {
 		grid-area: 7 / 1 / 9 / 2;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			grid-area: 4 / 2 / 5 / 3;
 		}
 
-		@media screen(lg) {
+		@media (width >= theme(--breakpoint-lg)) {
 			grid-area: auto;
 		}
 
@@ -162,11 +162,11 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	#about-box-6 {
 		grid-area: 6 / 1 / 7 / 2;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			grid-area: 3 / 3 / 5 / 4;
 		}
 
-		@media screen(lg) {
+		@media (width >= theme(--breakpoint-lg)) {
 			grid-area: span 2 / span 1 / span 2 / span 1;
 		}
 
@@ -178,7 +178,7 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	.grid-about-box {
 		@apply text-base-content relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white p-10 text-sm;
 
-		@media screen(sm) {
+		@media (width >= theme(--breakpoint-sm)) {
 			@apply rounded-3xl;
 		}
 	}

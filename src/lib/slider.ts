@@ -1,6 +1,5 @@
 import { Swiper } from 'swiper';
 import { Navigation } from 'swiper/modules';
-// @ts-expect-error swiper/css has no type declarations
 import 'swiper/css';
 
 export default class Slider {
