@@ -243,13 +243,13 @@ html {
 	@apply h-full !bg-black text-base;
 }
 
-@media screen(sm) {
+@media (width >= theme(--breakpoint-sm)) {
 	html {
 		font-size: 1.1vw;
 	}
 }
 
-@media screen(md) {
+@media (width >= theme(--breakpoint-md)) {
 	html {
 		font-size: 0.9vw;
 	}
@@ -263,7 +263,7 @@ h5,
 h6 {
 	@apply font-sans-serif my-0 font-bold uppercase;
 
-	@media screen(sm) {
+	@media (width >= theme(--breakpoint-sm)) {
 		@apply font-extrabold;
 	}
 }
@@ -276,7 +276,7 @@ h2 {
 h1 {
 	font-size: 10rem;
 
-	@media screen(lg) {
+	@media (width >= theme(--breakpoint-lg)) {
 		font-size: 8rem;
 	}
 
@@ -288,11 +288,11 @@ h1 {
 h2 {
 	@apply mb-4 text-7xl;
 
-	@media screen(sm) {
+	@media (width >= theme(--breakpoint-sm)) {
 		font-size: 6rem;
 	}
 
-	@media screen(xl) {
+	@media (width >= theme(--breakpoint-xl)) {
 		font-size: 4.5rem;
 	}
 }
@@ -310,11 +310,11 @@ p {
 	font-size: 0.9rem;
 	line-height: 1.5;
 
-	@media screen(sm) {
+	@media (width >= theme(--breakpoint-sm)) {
 		font-size: 2.5rem;
 	}
 
-	@media screen(lg) {
+	@media (width >= theme(--breakpoint-lg)) {
 		font-size: 2rem;
 	}
 
