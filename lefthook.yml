@@ -54,8 +54,7 @@ pre-commit:
       run: pnpm exec prettier --ignore-unknown --cache --write --no-error-on-unmatched-pattern --log-level error {staged_files}
       stage_fixed: true
     eslint:
-      glob: '*.{js,cjs,mjs,jsx,ts,tsx,astro}'
-      run: pnpm exec eslint --fix {staged_files}
+      run: pnpm lint:fix
       stage_fixed: true
     stylelint:
       glob: '*.{astro,css}'
