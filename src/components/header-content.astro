@@ -3,6 +3,7 @@ import openProjectsBadge from '@/assets/open-projects-badge.svg';
 import Availability from '@/components/availability.astro';
 import ResumeButton from '@/components/resume-button.astro';
 import SvgSprite from '@/components/SvgSprite.astro';
+import { CONTACT_MAILTO_HREF } from '@/utils/email.server';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
@@ -31,9 +32,7 @@ const socials = await getCollection('social');
 
 			<a
 				id="lets-talk-button"
-				href="nowayjose"
-				target="_blank"
-				rel="noopener noreferrer"
+				href={CONTACT_MAILTO_HREF}
 				class="js-inject-email-link group btn btn-circle btn-neutral relative flex h-20 w-20 items-center justify-center bg-black text-center text-base !leading-none font-medium text-white sm:h-32 sm:w-32 lg:h-24 lg:w-24"
 			>
 				<span
@@ -120,11 +119,10 @@ const socials = await getCollection('social');
 					}
 				</div>
 
-				<div class="flex gap-2 sm:gap-3">
+				<div class="flex items-center gap-4 sm:gap-5">
 					<a
-						class="scroll-link btn btn-neutral btn-sm justify-self-start rounded-full bg-black font-medium text-white uppercase hover:scale-110 sm:!min-h-[3rem] sm:justify-self-auto sm:!px-4 lg:!min-h-[2.25rem] lg:!px-4"
+						class="scroll-link text-sm font-medium uppercase underline-offset-4 hover:underline"
 						href="#about"
-						role="button"
 						id="about-button"
 					>
 						About Me

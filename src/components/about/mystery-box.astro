@@ -82,46 +82,6 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			</div>
 		</a>
 
-		<button
-			onclick="
-			viewing_time.showModal()
-			"
-			title="Visit mystery link four"
-			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 4} size-20`}
-			id="viewing-time-dialog-link"
-		>
-			<div
-				class="lg:tooltip"
-				data-tip="Simple Stats"
-			>
-				<SvgSprite
-					name="clock"
-					class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3"
-				/>
-			</div>
-		</button>
-
-		<dialog
-			id="viewing_time"
-			class="modal modal-bottom sm:modal-middle"
-		>
-			<div class="modal-box !max-w-md !min-w-[18rem] items-center justify-center">
-				<h3 class="text-center text-lg font-bold">Hot diggity!</h3>
-				<p>This is a work in progress. Please check back later.</p>
-				<div class="modal-action">
-					<form method="dialog">
-						<button class="btn">Close</button>
-					</form>
-				</div>
-			</div>
-			<form
-				method="dialog"
-				class="modal-backdrop"
-			>
-				<button>close</button>
-			</form>
-		</dialog>
-
 		<a
 			href="https://ecograder.com/report/7zE0m82a4iDVB61tj0srYvLY"
 			title="Visit this site's Ecograder"
@@ -897,15 +857,6 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 
 				@media (hover: hover) and (pointer: fine) {
 					transform: translate3d(calc(calc(3cqh - 55px) * 2), calc(calc(2cqb - 100px) * 2.7), 0);
-				}
-			}
-
-			.dot63 {
-				top: calc(100cqi + calc(0.1 * 787px - 60px) * 2);
-				left: calc(100cqi + calc(0.1 * 319px - 50px) * 2);
-
-				@media (hover: hover) and (pointer: fine) {
-					transform: translate3d(calc(calc(3cqh - 55px) * 2), calc(calc(2cqb - -30px) * 2.7), 0);
 				}
 			}
 

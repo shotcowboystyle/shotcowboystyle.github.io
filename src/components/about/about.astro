@@ -1,5 +1,4 @@
 ---
-import BackToTop from '@/components/about/back-to-top.astro';
 import Bio from '@/components/about/bio.astro';
 import Location from '@/components/about/location.astro';
 import MysteryBox from '@/components/about/mystery-box.astro';
@@ -48,15 +47,8 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 	</div>
 
 	<div
-		id="back-to-top"
-		class="grid-about-box !bg-warning !text-warning-content pointer-events-auto !grid !auto-cols-[1fr] !grid-flow-col !grid-cols-[auto_auto] !grid-rows-[auto] !gap-4 overflow-hidden !p-0 transition-transform hover:scale-105 sm:!p-4 lg:min-h-[25vh] lg:!p-0"
-	>
-		<BackToTop />
-	</div>
-
-	<div
 		id="about-box-6"
-		class="grid-about-box !bg-info !text-info-content pointer-events-auto !p-0 transition-transform hover:scale-105 sm:!p-4 lg:!p-0"
+		class="grid-about-box pointer-events-auto !p-0 transition-transform hover:scale-105 sm:!p-4 lg:!p-0"
 	>
 		<Contact />
 	</div>
@@ -143,22 +135,6 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 		}
 	}
 
-	#back-to-top {
-		grid-area: 7 / 1 / 9 / 2;
-
-		@media (width >= theme(--breakpoint-sm)) {
-			grid-area: 4 / 2 / 5 / 3;
-		}
-
-		@media (width >= theme(--breakpoint-lg)) {
-			grid-area: auto;
-		}
-
-		@media screen and (orientation: landscape) and (hover: none) {
-			grid-area: 5 / 3 / 6 / 3;
-		}
-	}
-
 	#about-box-6 {
 		grid-area: 6 / 1 / 7 / 2;
 
@@ -167,11 +143,11 @@ import Testimonials from '@/components/testimonials/testimonials.astro';
 		}
 
 		@media (width >= theme(--breakpoint-lg)) {
-			grid-area: span 2 / span 1 / span 2 / span 1;
+			grid-area: 1 / 4 / 4 / 5;
 		}
 
 		@media screen and (orientation: landscape) and (hover: none) {
-			grid-area: 5 / span 2 / 6 / span 2;
+			grid-area: 5 / span 3 / 6 / span 3;
 		}
 	}
 

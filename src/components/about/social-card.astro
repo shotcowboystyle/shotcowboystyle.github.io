@@ -83,17 +83,11 @@ const socials = await getCollection('social');
 		.background {
 			@apply absolute inset-0;
 
-			background: radial-gradient(
-				circle at 100% 107%,
-				rgb(255 138 204) 0%,
-				rgb(156 184 237) 30%,
-				rgb(0 255 238) 60%,
-				rgb(97 194 255) 100%
-			);
+			background: oklch(91% 0 0deg);
 		}
 
 		.social-icon {
-			@apply h-10 w-10 stroke-[white];
+			@apply h-10 w-10 stroke-black;
 		}
 
 		.link-icon-wrapper {
@@ -156,7 +150,7 @@ const socials = await getCollection('social');
 	}
 
 	.social-card .link {
-		@apply absolute rounded-[10%_13%_42%_0%/10%_12%_75%_0%] border-t-2 border-r border-solid border-t-white border-r-[white] p-2.5 text-right shadow-[rgba(100,100,111,0.364)_-7px_7px_29px_0px] before:absolute before:inset-0 before:rounded-[inherit] before:content-[""] hover:before:opacity-100;
+		@apply absolute rounded-[10%_13%_42%_0%/10%_12%_75%_0%] p-2.5 text-right shadow-[rgba(100,100,111,0.364)_-7px_7px_29px_0px] before:absolute before:inset-0 before:rounded-[inherit] before:content-[""] hover:before:opacity-100;
 
 		bottom: calc(-1 * var(--size));
 		left: calc(-1 * var(--size));
