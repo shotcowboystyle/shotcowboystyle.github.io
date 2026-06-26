@@ -1,13 +1,11 @@
 ---
-
+import { CONTACT_EMAIL, CONTACT_MAILTO_HREF } from '@/utils/email.server';
 ---
 
 <a
-	href="nowayjose"
+	href={CONTACT_MAILTO_HREF}
 	class="js-inject-email-link group/contact-button group pointer-events-auto relative flex h-full flex-col justify-between overflow-hidden p-6 no-underline md:p-10"
 	id="contact-button"
-	target="_blank"
-	rel="noopener noreferrer"
 >
 	<div
 		id="contact-button-animation"
@@ -21,13 +19,14 @@
 	</div>
 
 	<div>
-		<h3 class="contact-button-title mb-4 !text-6xl !leading-none text-white lg:!text-5xl">
+		<h3 class="contact-button-title mb-4 !text-6xl !leading-none text-black lg:!text-5xl">
 			Wanna talk? Send me a message.
 		</h3>
 		<p
 			id="email-text"
-			class="js-inject-email-text mb-0 text-base text-white"
+			class="js-inject-email-text mb-0 text-base text-black"
 		>
+			{CONTACT_EMAIL}
 		</p>
 	</div>
 </a>

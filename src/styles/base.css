@@ -301,7 +301,7 @@ h3 {
 	@apply mb-4;
 
 	font-size: 4rem;
-	line-height: 30px;
+	line-height: 1;
 }
 
 p {

@@ -61,7 +61,7 @@ pre-commit:
       run: pnpm exec stylelint {staged_files} --cache --fix
       stage_fixed: true
     lint-spelling:
-      run: 'pnpm exec cspell {staged_files} --gitignore'
+      run: 'pnpm lint:spelling:check'
     lint-package:
       glob: 'package.json'
       run: 'pnpm run lint:package:check'
