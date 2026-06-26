@@ -1,16 +1,5 @@
-# EXAMPLE USAGE
-# Refer for explanation to following link:
 # https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
 
-# post-checkout:
-#   commands:
-#     conditional-pnpm-install:
-#       # Run pnpm install if pnpm-lock changed between the commits we checked out.
-#       # {1} is old-hash, {2} is current-head, {3} is 1 for a branch checkout, 0 for a file checkout
-#       # See https://git-scm.com/docs/githooks#_post_checkout
-#       run: 'if [ ! -z "$(git diff {1}..{2} --name-only pnpm-lock.yaml)" ]; then pnpm install -r; fi'
-
-# Use this to build commit messages
 prepare-commit-msg:
   commands:
     commitzen:
@@ -20,31 +9,10 @@ prepare-commit-msg:
       env:
         LEFTHOOK: "0"
 
-# Use this to validate commit messages
 commit-msg:
   commands:
     'lint commit message':
       run: pnpm commitlint --edit {1}
-
-# pre-push:
-#   parallel: true
-#   commands:
-#     stylelint:
-#       tags: frontend style
-#       files: git diff --name-only master
-#       glob: "*.js"
-#       run: yarn stylelint {files}
-#   scripts:
-#     "verify":
-#       runner: sh
-
-#   commands:
-#     packages-audit:
-#       tags: frontend security
-#       run: yarn audit
-#     gems-audit:
-#       tags: backend security
-#       run: bundle audit
 
 pre-commit:
   parallel: true
@@ -54,22 +22,28 @@ pre-commit:
       run: pnpm exec prettier --ignore-unknown --cache --write --no-error-on-unmatched-pattern --log-level error {staged_files}
       stage_fixed: true
     eslint:
-      run: pnpm lint:fix
+      glob: '*.{js,cjs,mjs,ts,jsx,tsx,astro}'
+      run: pnpm exec eslint --fix --cache --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     stylelint:
       glob: '*.{astro,css}'
-      run: pnpm exec stylelint {staged_files} --cache --fix
+      run: pnpm exec stylelint --fix --cache {staged_files}
       stage_fixed: true
-    lint-spelling:
-      run: 'pnpm lint:spelling:check'
+    spelling:
+      glob: '*.{js,cjs,mjs,ts,jsx,tsx,md,json,css,yml,yaml,astro}'
+      run: pnpm exec cspell lint --cache --no-must-find-files {staged_files}
     lint-package:
       glob: 'package.json'
-      run: 'pnpm run lint:package:check'
-    lint-packages:
-      glob: 'package.json'
-      run: 'pnpm run lint:packages:check'
-    dead-code:
-      run: 'pnpm run lint:knip:check'
+      run: pnpm run lint:package:check
+
+pre-push:
+  parallel: true
+  commands:
     typecheck:
-      run: 'pnpm run types:check'
-      stage_fixed: true
+      run: pnpm run types:check
+    dead-code:
+      run: pnpm run lint:knip:check
+    spelling-full:
+      run: pnpm run lint:spelling:check
+    dedupe:
+      run: pnpm run lint:packages:check
