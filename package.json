@@ -34,7 +34,7 @@
 		"lint:styles:fix": "pnpm run lint:styles:check --fix",
 		"preview": "astro preview",
 		"tsc": "tsc",
-		"test": "playwright test e2e/tests/",
+		"test": "run-s test:e2e:*",
 		"test:e2e": "run-s test:e2e:*",
 		"test:e2e:accessibility": "playwright test e2e/tests/accessibility",
 		"test:e2e:pages": "playwright test e2e/tests/pages",

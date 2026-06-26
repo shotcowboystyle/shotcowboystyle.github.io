@@ -38,8 +38,8 @@ export default class SectionCardScrollAnimation {
 				autoAlpha: 0,
 				scrollTrigger: {
 					trigger: $el,
-					start: `bottom bottom+=${$card?.offsetHeight}`,
-					end: `+=${window.innerHeight}`,
+					start: () => `bottom bottom+=${window.innerHeight}`,
+					end: () => `+=${window.innerHeight}`,
 					scrub: true,
 					invalidateOnRefresh: true,
 					onToggle: (self) => {
