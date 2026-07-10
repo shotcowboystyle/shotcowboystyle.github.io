@@ -14,9 +14,9 @@ export type Props = {
 
 const {
 	meta = {
-		title: 'Curtis Blanton Portfolio',
+		title: 'Curtis Blanton — Full Stack Senior Developer',
 		description:
-			"I'm a software engineer that specializes in building fun and useful applications.",
+			'Motion is the language. Fifteen years of shipping considered work for teams that treat craft as evidence.',
 	},
 } = Astro.props;
 ---
@@ -30,6 +30,27 @@ const {
 	<head>
 		<ClientRouter />
 
+		<script is:inline>
+			if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				document.documentElement.classList.add('has-motion');
+			}
+		</script>
+
+		<link
+			rel="preload"
+			href="/fonts/Thunder-VF.ttf"
+			as="font"
+			type="font/ttf"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			href="/fonts/GeneralSans-Variable.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin="anonymous"
+		/>
+
 		<Seo />
 		<Favicons />
 		<title>{meta.title}</title>
@@ -42,12 +63,20 @@ const {
 	<body
 		class="selection:text-base-neutral text-base-content m-0 min-h-full bg-black font-sans leading-normal font-medium selection:bg-rose-200"
 	>
+		<a
+			href="#main"
+			class="skip-to-content"
+		>
+			Skip to main content
+		</a>
+
 		<PageTransition />
 
 		<main
 			id="main"
 			transition:name="main"
 			transition:animate="initial"
+			tabindex="-1"
 		>
 			<slot />
 		</main>

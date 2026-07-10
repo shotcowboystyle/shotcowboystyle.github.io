@@ -18,6 +18,8 @@ export default class TextReveal {
 		stagger: 0.08,
 	};
 
+	private tweens: gsap.core.Tween[] = [];
+
 	constructor() {
 		this.DOM = {
 			revealTextWrapper: '.js-animation-reveal-text-wrapper',
@@ -26,15 +28,25 @@ export default class TextReveal {
 	}
 
 	animate() {
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		gsap.set(this.DOM.revealTextWrapper, { opacity: '100%' });
+
+		if (prefersReducedMotion) {
+			gsap.set(this.DOM.revealText, { y: 0, clearProps: 'transform' });
+			return;
+		}
+
 		const revealTextEls: HTMLElement[] = gsap.utils.toArray(this.DOM.revealText);
 		if (revealTextEls?.length) {
-			gsap.set(this.DOM.revealTextWrapper, {
-				opacity: '100%',
-			});
-
 			revealTextEls.forEach(($textEl) => {
-				gsap.to($textEl, this.animationDefaults);
+				this.tweens.push(gsap.to($textEl, this.animationDefaults));
 			});
 		}
+	}
+
+	destroy() {
+		this.tweens.forEach((tween) => tween.kill());
+		this.tweens = [];
 	}
 }

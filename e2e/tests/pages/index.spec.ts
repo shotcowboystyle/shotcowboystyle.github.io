@@ -6,7 +6,7 @@ test.describe('Landing', () => {
 	});
 
 	test('has the correct title tag', async ({ page }) => {
-		await expect(page).toHaveTitle('Curtis Blanton Portfolio');
+		await expect(page).toHaveTitle('Curtis Blanton — Full Stack Senior Developer');
 	});
 
 	test('has the correct meta tags', async ({ page }) => {
@@ -16,11 +16,14 @@ test.describe('Landing', () => {
 		const description = page.locator('meta[name="description"]');
 		await expect(description).toHaveAttribute(
 			'content',
-			"I'm a software engineer that specializes in building fun and useful applications.",
+			'Motion is the language. Fifteen years of shipping considered work for teams that treat craft as evidence.',
 		);
 
 		const ogSiteName = page.locator('meta[property="og:title"]');
-		await expect(ogSiteName).toHaveAttribute('content', 'Curtis Blanton Portfolio');
+		await expect(ogSiteName).toHaveAttribute(
+			'content',
+			'Curtis Blanton — Full Stack Senior Developer',
+		);
 	});
 
 	// test("scrolls to the #about section after clicking the about button", async ({ page }) => {

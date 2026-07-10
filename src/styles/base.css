@@ -6,6 +6,7 @@
 
 @plugin 'daisyui/theme' {
 	--color-primary: oklch(77% 0.17 159.37deg);
+	--color-primary-content: oklch(25% 0.08 160deg);
 	--color-secondary: oklch(61% 0.2 261.29deg);
 	--color-accent: oklch(76% 0.07 282.78deg);
 	--color-neutral: oklch(36% 0.03 262.99deg);
@@ -241,18 +242,33 @@
 
 html {
 	@apply h-full !bg-black text-base;
+
+	color-scheme: dark;
 }
 
-@media (width >= theme(--breakpoint-sm)) {
-	html {
-		font-size: 1.1vw;
-	}
+:focus-visible {
+	border-radius: inherit;
+	outline: 2px solid var(--color-primary);
+	outline-offset: 3px;
 }
 
-@media (width >= theme(--breakpoint-md)) {
-	html {
-		font-size: 0.9vw;
-	}
+.skip-to-content {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	padding: 0.75rem 1rem;
+	background: var(--color-primary);
+	color: var(--color-primary-content, oklch(25% 0.08 160deg));
+	font-weight: 600;
+	transition: transform 0.15s ease-out;
+	transform: translateY(-150%);
+}
+
+.skip-to-content:focus-visible {
+	outline: 2px solid oklch(0% 0 0deg);
+	outline-offset: 2px;
+	transform: translateY(0);
 }
 
 h1,
@@ -274,33 +290,23 @@ h2 {
 }
 
 h1 {
-	font-size: 10rem;
-
-	@media (width >= theme(--breakpoint-lg)) {
-		font-size: 8rem;
-	}
-
-	@media screen and (orientation: landscape) and (hover: none) {
-		font-size: 8rem;
-	}
+	/* Fluid range: ~70px at 640px viewport → ~104px at 1440px. Preserves the
+	   original scale that was tuned around the (now-removed) vw root shrink. */
+	font-size: clamp(4.375rem, 2.68rem + 4.25vw, 6.5rem);
 }
 
 h2 {
-	@apply mb-4 text-7xl;
+	@apply mb-4;
 
-	@media (width >= theme(--breakpoint-sm)) {
-		font-size: 6rem;
-	}
-
-	@media (width >= theme(--breakpoint-xl)) {
-		font-size: 4.5rem;
-	}
+	/* Fluid range: ~42px at 640px → ~58px at 1440px. */
+	font-size: clamp(2.625rem, 1.83rem + 2vw, 3.625rem);
 }
 
 h3 {
 	@apply mb-4;
 
-	font-size: 4rem;
+	/* Fluid range: ~28px at 640px → ~52px at 1440px. */
+	font-size: clamp(1.75rem, 0.55rem + 3vw, 3.25rem);
 	line-height: 1;
 }
 
@@ -311,15 +317,8 @@ p {
 	line-height: 1.5;
 
 	@media (width >= theme(--breakpoint-sm)) {
-		font-size: 2.5rem;
-	}
-
-	@media (width >= theme(--breakpoint-lg)) {
-		font-size: 2rem;
-	}
-
-	@media screen and (orientation: landscape) and (hover: none) {
-		font-size: 2rem;
+		/* Fluid range: ~17.6px at 640px → ~26px at 1440px. */
+		font-size: clamp(1.1rem, 0.685rem + 1.04vw, 1.625rem);
 	}
 }
 
@@ -330,8 +329,11 @@ img {
 	content-visibility: auto;
 }
 
+/* Reveal defaults are visible; the reveal only hides content once JS motion is
+   confirmed via html.has-motion (set inline in base.astro before first paint).
+   This keeps no-JS, reduced-motion, and headless renders from shipping blank. */
 .c-animated-text {
-	opacity: 0%;
+	opacity: 100%;
 }
 
 .split-word-parent,
@@ -350,7 +352,27 @@ img {
 
 .split-word-child,
 .split-line-child {
+	transform: none;
+}
+
+html.has-motion .c-animated-text {
+	opacity: 0%;
+}
+
+html.has-motion .split-word-child,
+html.has-motion .split-line-child {
 	transform: translateY(100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.has-motion .c-animated-text {
+		opacity: 100%;
+	}
+
+	html.has-motion .split-word-child,
+	html.has-motion .split-line-child {
+		transform: none;
+	}
 }
 
 .is-loading #main > * {

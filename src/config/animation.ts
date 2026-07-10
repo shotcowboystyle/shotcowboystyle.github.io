@@ -190,10 +190,6 @@ export const DOM_SELECTORS = {
 	LOTTIE: {
 		MODULE: '.js-lottie-animation',
 	},
-	/** Swiper/Slider elements */
-	SWIPER: {
-		CONTAINER: '.js-animation-swiper',
-	},
 	/** Contact info injection elements */
 	CONTACT: {
 		EMAIL_LINK: '.js-inject-email-link',

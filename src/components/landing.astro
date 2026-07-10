@@ -1,5 +1,6 @@
 ---
 import About from '@/components/about/about.astro';
+import MysteryBox from '@/components/about/mystery-box.astro';
 import HeaderContent from '@/components/header-content.astro';
 import ProjectCard from '@/components/project-card.astro';
 import { getCollection } from 'astro:content';
@@ -7,53 +8,77 @@ import { getCollection } from 'astro:content';
 const projects = await getCollection('project');
 ---
 
-<header
+<section
 	id="header"
-	class="js-section-card-wrapper relative -mb-[100vh] h-[200vh]"
+	aria-labelledby="header-headline"
+	class="js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
 >
 	<div
 		class="js-section-card h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
 	>
 		<HeaderContent />
 	</div>
-</header>
+</section>
 
-<div>
-	<section
-		id="project-cards"
-		class="relative h-full w-full"
-	>
-		{
-			projects.map((project, idx) => (
-				<div
-					id={`project-card_${idx + 1}`}
-					class="project-card js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
-				>
-					<div class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
-						<div class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
-							<ProjectCard project={project} />
-						</div>
+<section
+	id="project-cards"
+	aria-label="Selected projects"
+	class="relative h-full w-full"
+>
+	{
+		projects.map((project, idx) => (
+			<article
+				id={`project-card_${idx + 1}`}
+				class="project-card js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
+			>
+				<div class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
+					<div class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
+						<ProjectCard project={project} />
 					</div>
 				</div>
-			))
-		}
-	</section>
-</div>
+			</article>
+		))
+	}
+</section>
 
-<footer
+<section
 	id="about"
+	aria-label="About Curtis"
 	class="relative"
 >
 	<About />
+</section>
+
+<footer
+	aria-label="Extras"
+	class="relative px-5 pb-5 sm:px-8 sm:pb-8 lg:px-6 lg:pb-6"
+>
+	<h2 class="sr-only">Miscellany</h2>
+	<div
+		class="relative overflow-hidden rounded-2xl sm:rounded-3xl"
+		style="min-height: 200px;"
+	>
+		<MysteryBox />
+	</div>
 </footer>
 
 <script>
-	import { registerPageModule } from '@/utils/module-loader';
+	import { registerTransitionModule } from '@/utils/module-loader';
 
-	registerPageModule(async () => {
-		await import('../lib/section-card-scroll-animation.ts').then((module) => new module.default());
-		await import('../lib/text-split/index.ts').then((module) => new module.default());
+	registerTransitionModule(async () => {
+		const sectionCardScroll = await import('../lib/section-card-scroll-animation.ts').then(
+			(module) => new module.default(),
+		);
+		const textSplit = await import('../lib/text-split/index.ts').then(
+			(module) => new module.default(),
+		);
 		const textReveal = await import('../lib/text-reveal.ts').then((module) => new module.default());
 		textReveal.animate();
+
+		return () => {
+			sectionCardScroll.destroy();
+			textReveal.destroy();
+			textSplit.destroy();
+		};
 	});
 </script>

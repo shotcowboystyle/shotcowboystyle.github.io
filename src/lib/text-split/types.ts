@@ -30,4 +30,9 @@ export interface TextSplitter {
 	 * Setup splitting for a specific element
 	 */
 	setup(element: HTMLElement): void;
+
+	/**
+	 * Revert DOM mutations and release tracked instances
+	 */
+	destroy(): void;
 }

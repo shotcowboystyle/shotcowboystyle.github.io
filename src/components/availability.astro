@@ -1,14 +1,22 @@
 ---
 import { formatDateMonthYear } from '@/utils/date';
+
+// SSG build-time month. Rebuild the site monthly to keep this current, or
+// override by exporting AVAILABILITY_MONTH_LABEL from a config module.
+const BUILD_TIME_MONTH = formatDateMonthYear(new Date());
 ---
 
 <div
+	role="status"
+	aria-label={`Currently available for ${BUILD_TIME_MONTH}`}
 	class="availability-wrapper badge badge-lg grid !h-auto !w-auto auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] content-center items-center justify-center justify-items-center gap-3 border-none bg-white !px-3 !py-1 font-sans leading-tight max-sm:text-xs sm:gap-3 sm:!py-0 sm:!pr-3 sm:!pl-4 sm:!text-base"
 >
-	<span>
-		Available for <strong>{formatDateMonthYear(new Date())}</strong>
+	<span aria-hidden="true">
+		Available for <strong>{BUILD_TIME_MONTH}</strong>
 	</span>
-	<span class="badge indicator-item badge-primary indicator-middle !h-3 !w-3 animate-pulse !p-0"
+	<span
+		class="badge indicator-item badge-primary indicator-middle !h-3 !w-3 animate-pulse !p-0"
+		aria-hidden="true"
 	></span>
 </div>
 

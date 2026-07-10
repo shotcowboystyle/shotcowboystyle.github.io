@@ -9,4 +9,5 @@ tags:
   - Typescript
   - Vue
   - Browser Extension
+variant: split
 ---

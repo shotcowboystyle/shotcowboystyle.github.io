@@ -334,3 +334,13 @@ pnpm lint:packages:check  # Verify no duplicate versions
 - **Performance aware**: Consider bundle size and runtime performance
 - **Accessibility**: WCAG 2.1 AA compliance is required, not optional
 - **Animation performance**: Use `will-change`, clean up resources, respect `prefers-reduced-motion`
+
+## Design Context
+
+Strategy and visual system live in root-level docs — read these before any design or UI work.
+
+- **[`PRODUCT.md`](./PRODUCT.md)** — register (brand), users, brand personality, anti-references, 5 design principles, accessibility (WCAG 2.1 AA + reduced-motion first-class).
+- **[`DESIGN.md`](./DESIGN.md)** — visual spec (DESIGN.md format). Creative North Star: _"The Kinetic Monograph"_. Palette (Signal Mint / Cobalt Draft / Lavender Wash on Canvas Black + Card Off-White) is documented but marked **pre-decision**.
+- **`.impeccable/design.json`** — sidecar with tonal ramps, motion tokens, and canonical component snippets consumed by the impeccable live panel.
+
+The `impeccable` skill (`.claude/skills/impeccable/`) reads these on every invocation. Use `/impeccable` sub-commands (`critique`, `audit`, `polish`, `colorize`, `live`, etc.) for design-facing work.

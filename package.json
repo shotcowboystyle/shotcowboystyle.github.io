@@ -58,7 +58,6 @@
 		"maplibre-gl": "^5.24.0",
 		"sharp": "^0.35.2",
 		"split-type": "^0.3.4",
-		"swiper": "^12.2.0",
 		"three": "^0.184.0"
 	},
 	"devDependencies": {

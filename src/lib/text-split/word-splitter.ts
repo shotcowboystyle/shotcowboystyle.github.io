@@ -8,6 +8,7 @@ import type { SplitConfig, TextSplitter } from './types';
 export class WordSplitter implements TextSplitter {
 	private readonly config: SplitConfig;
 	private elements: NodeListOf<HTMLElement> | null;
+	private instances: SplitType[] = [];
 
 	constructor(config: SplitConfig) {
 		this.config = config;
@@ -36,12 +37,19 @@ export class WordSplitter implements TextSplitter {
 			types: 'words',
 			wordClass: this.config.classes.parent,
 		});
+		this.instances.push(splitInstance);
 
 		if (splitInstance.words?.length) {
-			new SplitType(splitInstance.words, {
+			const nested = new SplitType(splitInstance.words, {
 				types: 'words',
 				wordClass: this.config.classes.child,
 			});
+			this.instances.push(nested);
 		}
+	}
+
+	destroy(): void {
+		this.instances.forEach((instance) => instance.revert());
+		this.instances = [];
 	}
 }

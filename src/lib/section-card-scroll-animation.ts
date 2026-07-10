@@ -11,6 +11,8 @@ export default class SectionCardScrollAnimation {
 
 	modules: NodeListOf<HTMLElement>;
 
+	private tweens: gsap.core.Tween[] = [];
+
 	constructor() {
 		this.DOM = {
 			sectionCardWrapper: '.js-section-card-wrapper',
@@ -33,7 +35,7 @@ export default class SectionCardScrollAnimation {
 	setup($el: HTMLElement) {
 		const $card = $el.querySelector<HTMLElement>(this.DOM.sectionCard);
 		if ($card) {
-			gsap.to($card, {
+			const tween = gsap.to($card, {
 				scale: 0.5,
 				autoAlpha: 0,
 				scrollTrigger: {
@@ -47,6 +49,15 @@ export default class SectionCardScrollAnimation {
 					},
 				},
 			});
+			this.tweens.push(tween);
 		}
+	}
+
+	destroy() {
+		this.tweens.forEach((tween) => {
+			tween.scrollTrigger?.kill();
+			tween.kill();
+		});
+		this.tweens = [];
 	}
 }
