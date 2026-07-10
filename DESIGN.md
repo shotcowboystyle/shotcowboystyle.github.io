@@ -168,7 +168,7 @@ A handful of RGB literals live inside signature-motion components and are outsid
 
 **The Gallery-Wall Rule.** The black canvas is never a text surface. Every piece of body copy sits on a card. If you find yourself setting readable text directly on black, you are decorating the wall — stop.
 
-**The One-Voice-Per-Section Rule.** Each card commits to one accent. Signal Mint OR Cobalt Draft OR off-white — never two competing on the same surface. The About section commits to Signal Mint end-to-end (Bio identity + Contact action); the section itself is one voice, and the map plate is neutral by nature. Lavender Wash is now unused after the testimonials tile was folded into Bio — leave it in the token file for future use rather than the current site.
+**The One-Voice-Per-Section Rule.** Each card commits to one accent. Signal Mint OR Cobalt Draft OR off-white — never two competing on the same surface. The hero fold and the About section both commit to Signal Mint — hero as a drenched field with an off-white card floating on it (see Cards / Containers → Field vs. plate below), About as mint plates (Bio + Contact) with a neutral map. The mint field bookends the page; projects and the mystery-box footer sit on the black canvas between. Lavender Wash is now unused after the testimonials tile was folded into Bio — leave it in the token file for future use rather than the current site.
 
 **The Signature-Motion Isolation Rule.** The signature-motion palette (Mystery-Box gradient, Resume-button hover bubbles) is component-scoped. Do not pull those RGB literals into new components. If you need a new signature moment, propose a new named literal for it and add it here.
 
@@ -232,6 +232,7 @@ Five tiers, ordered by weight. Every clickable element on the site belongs to ex
 
 - **Corner Style:** `16px` on the card baseline, `24px` on the About-grid plates (larger surfaces earn a larger radius).
 - **Background:** Signal Mint (Bio identity + Contact panel), Card Off-White (hero card, Location plate, default). Never on black. See the One-Voice-Per-Section rule above; About section commits to Signal Mint end-to-end.
+- **Field vs. plate:** The hero section is _drenched_ — its section wrapper is Signal Mint so the fold opens on brand color, and the off-white hero card floats on the mint field. Card-on-mint framing lets the palette land in second 0 without abandoning the light-plate reading model. Only the hero fold uses this layering; project slabs and About tiles remain flat.
 - **Shadow Strategy:** None at rest. See Elevation.
 - **Border:** None. Contrast carries the edge.
 - **Internal Padding:** `1rem` → `3rem` fluid; the plate breathes.
