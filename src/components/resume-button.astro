@@ -4,11 +4,15 @@
 
 <button
 	id="download-resume-button"
+	type="button"
 	class="resume-button"
-	title="Download resume"
+	aria-label="Download resume"
 >
-	RESU<span id="me">ME</span>
-	<span id="bubbles"></span>
+	<span aria-hidden="true">RESU<span id="me">ME</span></span>
+	<span
+		id="bubbles"
+		aria-hidden="true"
+	></span>
 </button>
 
 <script>

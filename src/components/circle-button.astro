@@ -18,10 +18,15 @@ const { link, label } = Astro.props;
 		target="_blank"
 		rel="noopener noreferrer"
 	>
-		<span class="absolute inset-0 overflow-hidden rounded-full">
+		<span
+			class="absolute inset-0 overflow-hidden rounded-full"
+			aria-hidden="true"
+		>
 			<svg
 				width="100%"
 				viewBox="0 0 50 50"
+				aria-hidden="true"
+				focusable="false"
 			>
 				<g class="notify-button-space">
 					<g transform="translate(0,0)">
@@ -100,7 +105,10 @@ const { link, label } = Astro.props;
 			</svg>
 		</span>
 
-		<span class="notify-button-plane block">
+		<span
+			class="notify-button-plane block"
+			aria-hidden="true"
+		>
 			<svg
 				width="80"
 				height="80"
@@ -111,6 +119,8 @@ const { link, label } = Astro.props;
 				stroke-linejoin="round"
 				stroke-width="1"
 				class="fill-background translate-x-[5px] -translate-y-[5px] rotate-45"
+				aria-hidden="true"
+				focusable="false"
 			>
 				<path d="M4.75 19.25L12 4.75L19.25 19.25L12 15.75L4.75 19.25Z"></path>
 				<path d="M12 15.5V12.75"></path>
@@ -119,10 +129,15 @@ const { link, label } = Astro.props;
 		<span class="sr-only">{label}</span>
 	</a>
 
-	<div class="animate-spin-slow pointer-events-none absolute inset-2">
+	<div
+		class="animate-spin-slow pointer-events-none absolute inset-2"
+		aria-hidden="true"
+	>
 		<svg
 			width="100%"
 			viewBox="0 0 100 100"
+			aria-hidden="true"
+			focusable="false"
 		>
 			<text
 				class="fill-current font-medium"
@@ -154,21 +169,32 @@ const { link, label } = Astro.props;
 
 	.notify-button-space {
 		transition: opacity 0.2s ease-in-out;
-		animation: notify-button-space 3s linear infinite;
 	}
 
 	.notify-button-star {
 		transition: opacity 0.2s ease-in-out;
-		animation: notify-button-star 2s ease-in-out infinite var(--delay);
 	}
 
 	.notify-button-stream {
 		transition: opacity 0.2s ease-in-out;
-		animation: notify-button-stream 2s ease-in-out infinite;
 	}
 
-	.notify-button-plane {
-		animation: notify-button-plane 2s ease-in-out infinite;
+	@media (prefers-reduced-motion: no-preference) {
+		.notify-button-space {
+			animation: notify-button-space 3s linear infinite;
+		}
+
+		.notify-button-star {
+			animation: notify-button-star 2s ease-in-out infinite var(--delay);
+		}
+
+		.notify-button-stream {
+			animation: notify-button-stream 2s ease-in-out infinite;
+		}
+
+		.notify-button-plane {
+			animation: notify-button-plane 2s ease-in-out infinite;
+		}
 	}
 
 	.notify-button-button:hover {
@@ -270,6 +296,17 @@ const { link, label } = Astro.props;
 	@keyframes spin {
 		100% {
 			transform: rotate(1turn);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.notify-button-space,
+		.notify-button-star,
+		.notify-button-stream,
+		.notify-button-plane,
+		.animate-spin-slow,
+		.notify-button-wrapper:hover .animate-spin-slow {
+			animation: none !important;
 		}
 	}
 </style>

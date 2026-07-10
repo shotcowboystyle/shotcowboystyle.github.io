@@ -31,74 +31,78 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 
 		<a
 			href="http://programming-motherfucker.com/"
-			title="Visit programming motherfucker"
+			aria-label="Programming Motherfucker"
 			target="_blank"
 			rel="noopener noreferrer"
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 1} size-20`}
 			id="programming-motherfucker-site-link"
 		>
-			<div
+			<span
 				class="lg:tooltip"
 				data-tip="Programming Motherfucker"
+				aria-hidden="true"
 			>
 				<SvgSprite
 					name="crosshair"
 					class="svg stroke h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3"
 				/>
-			</div>
+			</span>
 		</a>
 
 		<a
 			href="/immature/"
-			title="Visit immature responsive design"
+			aria-label="Immature Responsive Design"
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 2} size-20`}
 			id="immature-page-link"
 		>
-			<div
+			<span
 				class="lg:tooltip"
 				data-tip="Immature Responsive Design"
+				aria-hidden="true"
 			>
 				<SvgSprite
 					name="ok-hand"
 					class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3"
 				/>
-			</div>
+			</span>
 		</a>
 
 		<a
 			href="/tower-blocks/"
-			title="Visit tower blocks game"
+			aria-label="Tower Blocks"
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 3} size-20`}
 			id="tower-blocks-page-link"
 		>
-			<div
+			<span
 				class="lg:tooltip"
 				data-tip="Tower Blocks"
+				aria-hidden="true"
 			>
 				<SvgSprite
 					name="blocks"
 					class="svg stroke h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3"
 				/>
-			</div>
+			</span>
 		</a>
 
 		<a
 			href="https://ecograder.com/report/7zE0m82a4iDVB61tj0srYvLY"
-			title="Visit this site's Ecograder"
+			aria-label="Ecograder report for this site"
 			target="_blank"
 			rel="noopener noreferrer"
 			class={`dot dot${LINK_DOTS_STARTING_NUMBER + 5} size-20`}
 			id="ecograder-site-link"
 		>
-			<div
+			<span
 				class="lg:tooltip"
 				data-tip="Ecograder"
+				aria-hidden="true"
 			>
 				<SvgSprite
 					name="leaf"
 					class="svg fill h-3 w-3 sm:h-8 sm:w-8 lg:h-3 lg:w-3"
 				/>
-			</div>
+			</span>
 		</a>
 
 		<span class={`dot dot${LINK_DOTS_STARTING_NUMBER + LINK_DOTS_TOTAL + 1} size-15`}></span>

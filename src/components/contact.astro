@@ -4,27 +4,30 @@ import { CONTACT_EMAIL, CONTACT_MAILTO_HREF } from '@/utils/email.server';
 
 <a
 	href={CONTACT_MAILTO_HREF}
-	class="js-inject-email-link group/contact-button group pointer-events-auto relative flex h-full flex-col justify-between overflow-hidden p-6 no-underline md:p-10"
+	class="js-inject-email-link contact-button group pointer-events-auto relative flex h-full flex-col justify-between overflow-hidden p-8 no-underline sm:p-10 lg:p-12"
 	id="contact-button"
 >
 	<div
 		id="contact-button-animation"
-		class="js-lottie-animation relative z-10 mt-0 -ml-10 w-[110%] max-sm:mb-10"
+		class="js-lottie-animation relative z-10 mt-0 -ml-6 w-[110%] max-sm:mb-8 sm:-ml-10"
 		data-animation-name="contact-button-animation"
 		data-animation-source="/animation/lottie-contact-button-animation.json"
 		data-animation-play-control="hover"
 		data-animation-target="1"
 		data-animation-initial-state="99"
+		aria-hidden="true"
 	>
 	</div>
 
-	<div>
-		<h3 class="contact-button-title mb-4 !text-6xl !leading-none text-black lg:!text-5xl">
-			Wanna talk? Send me a message.
+	<div class="relative z-10">
+		<h3
+			class="contact-button-title mb-6 !font-extrabold !leading-[0.9] uppercase !text-6xl sm:!text-7xl lg:!text-6xl xl:!text-7xl"
+		>
+			Let’s build<br />something.
 		</h3>
 		<p
 			id="email-text"
-			class="js-inject-email-text mb-0 text-base text-black"
+			class="js-inject-email-text contact-button-email mb-0 font-sans text-lg font-medium !leading-tight sm:text-xl lg:text-lg"
 		>
 			{CONTACT_EMAIL}
 		</p>
@@ -34,13 +37,27 @@ import { CONTACT_EMAIL, CONTACT_MAILTO_HREF } from '@/utils/email.server';
 <style>
 	@reference "../styles/base.css";
 
+	.contact-button {
+		color: var(--color-primary-content, oklch(25% 0.08 160deg));
+	}
+
+	.contact-button-email {
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.2em;
+	}
+
+	.contact-button-email:hover {
+		text-decoration-thickness: 2px;
+	}
+
 	@media screen and (orientation: landscape) and (hover: none) {
 		#contact-button {
-			@apply p-4;
+			@apply p-6;
 		}
 
 		.contact-button-title {
-			@apply !text-5xl font-semibold;
+			@apply !text-5xl;
 		}
 	}
 </style>

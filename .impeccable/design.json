@@ -1,0 +1,307 @@
+{
+	"schemaVersion": 2,
+	"generatedAt": "2026-07-02T19-45-00Z",
+	"title": "Design System: shotcowboystyle",
+	"extensions": {
+		"colorMeta": {
+			"canvas-black": {
+				"role": "neutral",
+				"displayName": "Canvas Black",
+				"canonical": "oklch(0% 0 0deg)",
+				"tonalRamp": [
+					"oklch(0% 0 0deg)",
+					"oklch(12% 0 0deg)",
+					"oklch(22% 0 0deg)",
+					"oklch(34% 0 0deg)",
+					"oklch(48% 0 0deg)",
+					"oklch(62% 0 0deg)",
+					"oklch(76% 0 0deg)",
+					"oklch(91% 0 0deg)"
+				]
+			},
+			"card-off-white": {
+				"role": "neutral",
+				"displayName": "Card Off-White",
+				"canonical": "oklch(91% 0 0deg)",
+				"tonalRamp": [
+					"oklch(20% 0 0deg)",
+					"oklch(32% 0 0deg)",
+					"oklch(44% 0 0deg)",
+					"oklch(56% 0 0deg)",
+					"oklch(68% 0 0deg)",
+					"oklch(80% 0 0deg)",
+					"oklch(91% 0 0deg)",
+					"oklch(97% 0 0deg)"
+				]
+			},
+			"signal-mint": {
+				"role": "primary",
+				"displayName": "Signal Mint",
+				"canonical": "oklch(77% 0.17 159.37deg)",
+				"tonalRamp": [
+					"oklch(20% 0.06 159.37deg)",
+					"oklch(30% 0.09 159.37deg)",
+					"oklch(40% 0.12 159.37deg)",
+					"oklch(50% 0.14 159.37deg)",
+					"oklch(60% 0.16 159.37deg)",
+					"oklch(70% 0.17 159.37deg)",
+					"oklch(77% 0.17 159.37deg)",
+					"oklch(90% 0.08 159.37deg)"
+				]
+			},
+			"signal-mint-deep": {
+				"role": "primary",
+				"displayName": "Signal Mint (Deep)",
+				"canonical": "oklch(48% 0.13 159.37deg)",
+				"tonalRamp": [
+					"oklch(18% 0.05 159.37deg)",
+					"oklch(28% 0.08 159.37deg)",
+					"oklch(38% 0.11 159.37deg)",
+					"oklch(48% 0.13 159.37deg)",
+					"oklch(58% 0.14 159.37deg)",
+					"oklch(68% 0.15 159.37deg)",
+					"oklch(78% 0.14 159.37deg)",
+					"oklch(90% 0.07 159.37deg)"
+				]
+			},
+			"cobalt-draft": {
+				"role": "secondary",
+				"displayName": "Cobalt Draft",
+				"canonical": "oklch(61% 0.2 261.29deg)",
+				"tonalRamp": [
+					"oklch(18% 0.08 261.29deg)",
+					"oklch(28% 0.12 261.29deg)",
+					"oklch(38% 0.16 261.29deg)",
+					"oklch(48% 0.19 261.29deg)",
+					"oklch(58% 0.2 261.29deg)",
+					"oklch(68% 0.19 261.29deg)",
+					"oklch(80% 0.13 261.29deg)",
+					"oklch(93% 0.05 261.29deg)"
+				]
+			},
+			"lavender-wash": {
+				"role": "tertiary",
+				"displayName": "Lavender Wash",
+				"canonical": "oklch(76% 0.07 282.78deg)",
+				"tonalRamp": [
+					"oklch(20% 0.03 282.78deg)",
+					"oklch(32% 0.05 282.78deg)",
+					"oklch(44% 0.06 282.78deg)",
+					"oklch(56% 0.07 282.78deg)",
+					"oklch(66% 0.07 282.78deg)",
+					"oklch(76% 0.07 282.78deg)",
+					"oklch(86% 0.05 282.78deg)",
+					"oklch(95% 0.02 282.78deg)"
+				]
+			},
+			"slate-ink": {
+				"role": "neutral",
+				"displayName": "Slate Ink",
+				"canonical": "oklch(36% 0.03 262.99deg)",
+				"tonalRamp": [
+					"oklch(15% 0.02 262.99deg)",
+					"oklch(25% 0.03 262.99deg)",
+					"oklch(36% 0.03 262.99deg)",
+					"oklch(48% 0.03 262.99deg)",
+					"oklch(60% 0.03 262.99deg)",
+					"oklch(72% 0.02 262.99deg)",
+					"oklch(84% 0.02 262.99deg)",
+					"oklch(95% 0.01 262.99deg)"
+				]
+			},
+			"primary-ink": {
+				"role": "neutral",
+				"displayName": "Primary Ink (mint-tinted)",
+				"canonical": "oklch(25% 0.08 160deg)",
+				"tonalRamp": [
+					"oklch(10% 0.04 160deg)",
+					"oklch(18% 0.06 160deg)",
+					"oklch(25% 0.08 160deg)",
+					"oklch(35% 0.09 160deg)",
+					"oklch(48% 0.1 160deg)",
+					"oklch(62% 0.09 160deg)",
+					"oklch(78% 0.07 160deg)",
+					"oklch(93% 0.03 160deg)"
+				]
+			}
+		},
+		"typographyMeta": {
+			"display": {
+				"displayName": "Display (Thunder)",
+				"purpose": "Hero H1s only. Uppercase, extra-bold, tight tracking. The masthead voice."
+			},
+			"headline": {
+				"displayName": "Headline (Thunder)",
+				"purpose": "Section titles inside project sections and the About grid."
+			},
+			"title": {
+				"displayName": "Title (Thunder)",
+				"purpose": "H3s and card titles."
+			},
+			"body": {
+				"displayName": "Body (General Sans)",
+				"purpose": "All prose. Medium weight minimum. Line length ~65–75ch on cards."
+			},
+			"label": {
+				"displayName": "Label (General Sans)",
+				"purpose": "Metadata and micro-copy. Never used as an uppercase tracked eyebrow above section titles."
+			}
+		},
+		"shadows": [
+			{
+				"name": "none-at-rest",
+				"value": "none",
+				"purpose": "Default. Cards do not have drop shadows at rest. Elevation is contrast, not blur."
+			}
+		],
+		"motion": [
+			{
+				"name": "spin-badge",
+				"value": "spinCircle 8s linear infinite",
+				"purpose": "The rotating availability badge ring. Communicates state (open for projects), not decoration."
+			},
+			{
+				"name": "pulse-scale",
+				"value": "pulseScale 1.5s linear infinite",
+				"purpose": "Attention pulse on live indicators."
+			},
+			{
+				"name": "blink",
+				"value": "blink 1.5s infinite",
+				"purpose": "Presence signal on interactive affordances."
+			},
+			{
+				"name": "floating",
+				"value": "floating 4s linear infinite",
+				"purpose": "Idle micro-motion on mystery/playful elements."
+			},
+			{
+				"name": "resume-bubbles",
+				"value": "resumeButtonTopBubbles 0.6s linear, resumeButtonBottomBubbles 0.6s linear",
+				"purpose": "Signature hover motion on the resume button — particle bubbles from stacked radial gradients."
+			},
+			{
+				"name": "ease-standard",
+				"value": "cubic-bezier(0.22, 1, 0.36, 1)",
+				"purpose": "Default ease-out-quart for state transitions. No bounce, no elastic."
+			},
+			{
+				"name": "reveal-lift",
+				"value": "transform 240ms cubic-bezier(0.22, 1, 0.36, 1)",
+				"purpose": "Card lift on hover: translateY(-2px). Motion-as-depth, not shadow."
+			}
+		],
+		"breakpoints": [
+			{ "name": "sm", "value": "640px" },
+			{ "name": "md", "value": "768px" },
+			{ "name": "lg", "value": "1024px" },
+			{ "name": "xl", "value": "1280px" }
+		]
+	},
+	"components": [
+		{
+			"name": "Resume Pill Button",
+			"kind": "button",
+			"refersTo": "button-pill",
+			"description": "Signature transparent pill with a deep-mint underlined ME. On hover triggers a bubble-particle keyframe.",
+			"html": "<button class=\"ds-btn-resume\">RESU<span class=\"ds-btn-resume__me\">ME</span></button>",
+			"css": ".ds-btn-resume { position: relative; display: inline-flex; align-items: center; height: 2rem; padding: 0 0.75rem; border: 1px solid oklch(0% 0 0deg); border-radius: 9999px; background: transparent; color: oklch(0% 0 0deg); font-family: 'General Sans', system-ui, sans-serif; font-weight: 500; font-size: 0.875rem; letter-spacing: 0.02em; text-transform: uppercase; cursor: pointer; transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1), background 240ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-btn-resume__me { position: relative; top: 1.5px; display: inline; border-bottom: 2px solid oklch(48% 0.13 159.37deg); color: oklch(48% 0.13 159.37deg); } .ds-btn-resume:hover { transform: translateY(-2px); background: oklch(97% 0 0deg); } .ds-btn-resume:focus-visible { outline: 2px solid oklch(48% 0.13 159.37deg); outline-offset: 3px; }"
+		},
+		{
+			"name": "Rotating Availability Badge",
+			"kind": "custom",
+			"refersTo": "button-pill",
+			"description": "Signature circular badge with rotating text ring. Communicates open-for-projects state.",
+			"html": "<div class=\"ds-badge-availability\" role=\"status\" aria-label=\"Open for projects\"><span class=\"ds-badge-availability__ring\">OPEN FOR PROJECTS • OPEN FOR PROJECTS • </span><span class=\"ds-badge-availability__dot\" aria-hidden=\"true\"></span></div>",
+			"css": ".ds-badge-availability { position: relative; display: inline-grid; place-items: center; width: 128px; height: 128px; border-radius: 50%; background: oklch(0% 0 0deg); color: oklch(91% 0 0deg); font-family: 'General Sans', system-ui, sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; } .ds-badge-availability__ring { position: absolute; inset: 0; display: grid; place-items: center; animation: ds-spin-circle 8s linear infinite; } .ds-badge-availability__dot { width: 8px; height: 8px; border-radius: 50%; background: oklch(77% 0.17 159.37deg); animation: ds-pulse-scale 1.5s ease-out infinite; } @keyframes ds-spin-circle { to { transform: rotate(360deg); } } @keyframes ds-pulse-scale { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(0.4); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } } @media (prefers-reduced-motion: reduce) { .ds-badge-availability__ring { animation: none; } .ds-badge-availability__dot { animation: none; } }"
+		},
+		{
+			"name": "Primary Plate (Bio Card)",
+			"kind": "card",
+			"refersTo": "card-primary",
+			"description": "The Signal Mint bio plate anchoring the About grid. Mint-tinted primary ink so text feels of-a-piece.",
+			"html": "<article class=\"ds-plate-primary\"><h2 class=\"ds-plate-primary__title\">Curtis Blanton</h2><p class=\"ds-plate-primary__body\">Full-stack senior developer. Motion-forward interfaces, considered craft.</p></article>",
+			"css": ".ds-plate-primary { display: grid; gap: 1.5rem; padding: 3rem; border-radius: 24px; background: oklch(77% 0.17 159.37deg); color: oklch(25% 0.08 160deg); } .ds-plate-primary__title { margin: 0; font-family: Thunder, system-ui, serif; font-weight: 800; font-size: clamp(2.57rem, 5vw, 4.48rem); line-height: 0.9; letter-spacing: -0.01em; text-transform: uppercase; } .ds-plate-primary__body { margin: 0; font-family: 'General Sans', system-ui, sans-serif; font-weight: 500; font-size: clamp(1.125rem, 1vw + 0.9rem, 1.25rem); line-height: 1.6; max-width: 65ch; }"
+		},
+		{
+			"name": "Accent Plate (Testimonials Card)",
+			"kind": "card",
+			"refersTo": "card-accent",
+			"description": "The Lavender Wash plate for quoted voices. Low-chroma so testimonials don't compete with the mint.",
+			"html": "<article class=\"ds-plate-accent\"><blockquote class=\"ds-plate-accent__quote\">“Shipped, considered, and on time.”</blockquote><cite class=\"ds-plate-accent__cite\">— Studio Lead</cite></article>",
+			"css": ".ds-plate-accent { display: grid; gap: 1rem; padding: 2rem; border-radius: 24px; background: oklch(76% 0.07 282.78deg); color: oklch(0% 0 0deg); } .ds-plate-accent__quote { margin: 0; font-family: Thunder, system-ui, serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; } .ds-plate-accent__cite { font-family: 'General Sans', system-ui, sans-serif; font-weight: 500; font-size: 0.875rem; letter-spacing: 0.02em; font-style: normal; opacity: 0.7; }"
+		},
+		{
+			"name": "Neutral Plate (Default Card)",
+			"kind": "card",
+			"refersTo": "card-neutral",
+			"description": "The Card Off-White surface. Default plate for prose and project content on the black canvas.",
+			"html": "<article class=\"ds-plate-neutral\"><h3 class=\"ds-plate-neutral__title\">Project Title</h3><p class=\"ds-plate-neutral__body\">One-line project description with a considered point of view.</p></article>",
+			"css": ".ds-plate-neutral { display: grid; gap: 1.25rem; padding: 3rem; border-radius: 24px; background: oklch(91% 0 0deg); color: oklch(0% 0 0deg); transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-plate-neutral:hover { transform: translateY(-2px); } .ds-plate-neutral__title { margin: 0; font-family: Thunder, system-ui, serif; font-weight: 700; font-size: clamp(2rem, 3vw, 3.11rem); line-height: 1; text-transform: uppercase; } .ds-plate-neutral__body { margin: 0; font-family: 'General Sans', system-ui, sans-serif; font-weight: 500; font-size: 1.125rem; line-height: 1.6; max-width: 65ch; } @media (prefers-reduced-motion: reduce) { .ds-plate-neutral { transition: none; } .ds-plate-neutral:hover { transform: none; } }"
+		}
+	],
+	"narrative": {
+		"northStar": "The Kinetic Monograph",
+		"overview": "A portfolio built as an editorial art book, but every page moves. The black canvas is the gallery wall — negative space with authority. Light cards sit on that wall like plates in a monograph, each carrying one idea. Scroll is the page-turn; GSAP + Lenis choreograph the reveal, and every animation must earn its place by conveying state, hierarchy, or progression. The pairing of Thunder (condensed variable display) with General Sans (humanist body) is the type signature — contrast-axis, not similar-but-not-identical. This system explicitly rejects SaaS-templated hero layouts, dated portfolio tropes, and current AI-slop marketing lanes.",
+		"keyCharacteristics": [
+			"Dark canvas, light plates. Black is the gallery wall; cards are the work.",
+			"Motion is the language. Every animation has a job.",
+			"Editorial pacing. Density is calibrated; each section lands before the next arrives.",
+			"Asymmetry over symmetry. Nothing that could appear on any other portfolio in 2025.",
+			"Reduced-motion is a first-class mode, not a fallback."
+		],
+		"rules": [
+			{
+				"name": "The Gallery-Wall Rule",
+				"body": "The black canvas is never a text surface. Every piece of body copy sits on a card. Setting readable text directly on black is decorating the wall.",
+				"section": "colors"
+			},
+			{
+				"name": "The One-Voice-Per-Section Rule",
+				"body": "Each card commits to one accent. Signal Mint OR Lavender Wash OR Cobalt Draft — never two competing on the same surface.",
+				"section": "colors"
+			},
+			{
+				"name": "The Masthead Rule",
+				"body": "Display and headline type is always uppercase, always extra-bold, always Thunder. No mixed-case display, no light-weight display, no substituting the body font for a cleaner hero.",
+				"section": "typography"
+			},
+			{
+				"name": "The No-Eyebrow Rule",
+				"body": "No small uppercase tracked kicker text above section titles. The masthead itself carries the section identity.",
+				"section": "typography"
+			},
+			{
+				"name": "The No-Shadow Rule",
+				"body": "Cards do not have drop shadows at rest. If a surface needs to feel lifted, the answer is contrast, spacing, or motion — never a blurred rectangle underneath.",
+				"section": "elevation"
+			},
+			{
+				"name": "The Motion-As-Depth Rule",
+				"body": "When a card must come forward on interaction, use translateY(-2px) or a spring-easing scale paired with an accent-color background transition. Depth is a verb, not a shadow token.",
+				"section": "elevation"
+			}
+		],
+		"dos": [
+			"Do treat the black canvas as the gallery wall — every text surface is a card sitting on it.",
+			"Do use Thunder uppercase extra-bold for every display and headline, tight tracking, tight line-height.",
+			"Do run body copy at weight 500 minimum — the site has a point of view, not a whisper.",
+			"Do give each About-grid plate a single accent (Signal Mint OR Lavender Wash OR off-white). One voice per surface.",
+			"Do convey elevation through contrast and motion; use translateY on hover with spring easing.",
+			"Do ship a real reduced-motion path for every animation — a static composition that still communicates hierarchy. Never a blank page waiting for a class trigger.",
+			"Do honor axe-core: every focus state visible, alt text on every asset, ≥4.5:1 body contrast on both mint and off-white card backgrounds."
+		],
+		"donts": [
+			"Don't set body text directly on the black canvas. Text lives on cards. Always.",
+			"Don't drop a shadow under a card at rest. Contrast is the elevation.",
+			"Don't stack more than one accent color on a single card. The palette is under review; do not compound its ambiguity.",
+			"Don't ship a small uppercase tracked kicker eyebrow above section titles — AI-grammar scaffolding, not voice.",
+			"Don't scaffold sections with 01 / 02 / 03 numbered markers unless the section is genuinely an ordered sequence.",
+			"Don't apply background-clip: text gradient fills to headlines. Solid ink only. Emphasis via weight or size, never chroma-drift.",
+			"Don't use border-left greater than 1px as a colored accent stripe on cards, alerts, or list items. Ever.",
+			"Don't deploy decorative glassmorphism / backdrop-blur panels — the site is flat-by-default.",
+			"Don't compose a Hero → Features → CTA → Testimonials SaaS template. Asymmetry over symmetry.",
+			"Don't animate decoratively. If you can't say what an animation does for the user, cut it."
+		]
+	}
+}

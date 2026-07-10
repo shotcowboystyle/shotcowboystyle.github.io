@@ -13,6 +13,7 @@ const projectCollection = defineCollection({
 			url: z.string(),
 			linkText: z.string(),
 			tags: z.array(z.string()),
+			variant: z.enum(['feature', 'split', 'poster']).default('feature'),
 		}),
 });
 

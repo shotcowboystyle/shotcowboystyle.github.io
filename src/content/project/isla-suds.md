@@ -10,4 +10,5 @@ tags:
   - React
   - Shopify Hydrogen
   - GSAP
+variant: poster
 ---

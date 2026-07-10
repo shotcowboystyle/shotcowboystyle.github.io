@@ -27,7 +27,6 @@ function clientManualChunks() {
 							manualChunks: (id) => {
 								if (id.includes('maplibre-gl')) return 'maplibre-gl';
 								if (id.includes('lottie-web')) return 'lottie-web';
-								if (id.includes('swiper')) return 'swiper';
 								if (id.includes('gsap')) return 'gsap';
 							},
 						},
@@ -77,8 +76,5 @@ export default defineConfig({
 			},
 		},
 		optimizeDeps: { exclude: ['fsevents'] },
-		ssr: {
-			noExternal: ['swiper'],
-		},
 	},
 });

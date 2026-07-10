@@ -8,73 +8,199 @@ interface Props {
 }
 
 const { data } = Astro.props.project;
+const variant = data.variant;
+
+const tagList = data.tags;
+const ctaLabel = `${data.linkText}: ${data.title}`;
 ---
 
-<Image
-	src={data.screenshotImage}
-	widths={[480, 680, 720, data.screenshotImage.width]}
-	alt={`${data.title} screenshot`}
-	class="project-screenshot"
-/>
+<div class:list={['project-card-inner', `project-card-variant-${variant}`]}>
+	{
+		variant === 'feature' && (
+			<>
+				<Image
+					src={data.screenshotImage}
+					widths={[480, 680, 720, data.screenshotImage.width]}
+					alt={`${data.title} screenshot`}
+					class="project-screenshot"
+				/>
 
-<Image
-	src={data.bgImage}
-	widths={[354, 740, 790, data.bgImage.width]}
-	alt={`${data.title} section background`}
-	class="project-bg"
-/>
+				<Image
+					src={data.bgImage}
+					widths={[354, 740, 790, data.bgImage.width]}
+					alt=""
+					aria-hidden="true"
+					class="project-bg"
+				/>
 
-<div
-	class="pointer-events-auto relative z-[2] flex items-end justify-between text-white max-sm:flex-col"
->
-	<div class="max-sm:-mb-16">
-		<h2 class="mb-4 text-6xl font-bold sm:text-9xl lg:text-8xl">
-			{data.title}
-		</h2>
+				<div class="feature-content pointer-events-auto relative z-[2] flex items-end justify-between text-white max-sm:flex-col">
+					<div class="max-sm:-mb-16">
+						<h2 class="mb-4 text-6xl font-bold sm:text-9xl lg:text-8xl">{data.title}</h2>
 
-		<div>
-			<ul
-				role="list"
-				class="tech-badge flow flex-wr col-auto row-auto mb-8 flex auto-cols-auto grid-flow-col justify-start justify-items-start gap-4 max-sm:items-start sm:grid"
-				style={{ 'flex-flow': 'wrap' }}
-			>
-				{
-					data.tags.map((tag: string) => (
-						<li class="border-base-100 relative rounded-full border px-3 pb-1 font-medium uppercase sm:px-5 sm:py-2 sm:font-semibold">
-							<small class="whitespace-nowrap">{tag}</small>
-						</li>
-					))
-				}
-			</ul>
-		</div>
+						<ul class="tech-badge col-auto row-auto mb-8 flex flex-wrap justify-start gap-4 max-sm:items-start">
+							{tagList.map((tag: string) => (
+								<li class="border-base-100 relative rounded-full border px-3 pb-1 font-medium uppercase sm:px-5 sm:py-2 sm:font-semibold">
+									<small class="whitespace-nowrap">{tag}</small>
+								</li>
+							))}
+						</ul>
 
-		<p class="!mb-0 max-w-[39ch] max-sm:mr-24 sm:text-2xl sm:!leading-snug lg:text-lg">
-			{data.description}
-		</p>
-	</div>
+						<p class="!mb-0 max-w-[39ch] max-sm:mr-24 sm:text-2xl sm:!leading-snug lg:text-lg">
+							{data.description}
+						</p>
+					</div>
 
-	<CircleButton
-		link={data.url}
-		label={data.linkText}
-	/>
+					<CircleButton link={data.url} label={ctaLabel} />
 
-	<a
-		href={data.url}
-		target="_blank"
-		rel="noopener noreferrer"
-		class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
-	>
-		<span class="project-card-button-label">
-			{data.linkText}
-		</span>
-		<span class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
-		></span>
-	</a>
+					<a
+						href={data.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={ctaLabel}
+						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
+					>
+						<span class="project-card-button-label" aria-hidden="true">
+							{data.linkText}
+						</span>
+						<span
+							class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
+							aria-hidden="true"
+						/>
+					</a>
+				</div>
+			</>
+		)
+	}
+
+	{
+		variant === 'split' && (
+			<>
+				<Image
+					src={data.bgImage}
+					widths={[354, 740, 790, data.bgImage.width]}
+					alt=""
+					aria-hidden="true"
+					class="project-bg"
+				/>
+
+				<div class="split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 text-white sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
+					<figure class="split-screenshot-frame relative flex items-center justify-center overflow-hidden rounded-xl bg-black/20 p-4 sm:rounded-2xl sm:p-6">
+						<Image
+							src={data.screenshotImage}
+							widths={[480, 680, 720, data.screenshotImage.width]}
+							alt={`${data.title} screenshot`}
+							class="split-screenshot h-full w-full object-contain"
+						/>
+					</figure>
+
+					<div class="split-body flex flex-col justify-between gap-8 sm:gap-6">
+						<div>
+							<h2 class="mb-4 text-6xl font-bold sm:text-8xl lg:text-7xl">{data.title}</h2>
+
+							<ul class="tech-badge mb-6 flex flex-wrap justify-start gap-3 max-sm:items-start">
+								{tagList.map((tag: string) => (
+									<li class="border-base-100 relative rounded-full border px-3 pb-1 font-medium uppercase sm:px-4 sm:py-1.5 sm:font-semibold">
+										<small class="whitespace-nowrap">{tag}</small>
+									</li>
+								))}
+							</ul>
+
+							<p class="!mb-0 max-w-[45ch] sm:text-xl sm:!leading-snug lg:text-lg">
+								{data.description}
+							</p>
+						</div>
+
+						<div class="flex items-end justify-end">
+							<CircleButton link={data.url} label={ctaLabel} />
+
+							<a
+								href={data.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={ctaLabel}
+								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
+							>
+								<span class="project-card-button-label" aria-hidden="true">
+									{data.linkText}
+								</span>
+								<span
+									class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
+									aria-hidden="true"
+								/>
+							</a>
+						</div>
+					</div>
+				</div>
+			</>
+		)
+	}
+
+	{
+		variant === 'poster' && (
+			<>
+				<Image
+					src={data.screenshotImage}
+					widths={[720, 1080, 1440, data.screenshotImage.width]}
+					alt={`${data.title} screenshot`}
+					class="poster-screenshot"
+				/>
+
+				<div class="poster-scrim" aria-hidden="true" />
+
+				<div class="poster-content pointer-events-auto relative z-[2] flex h-full flex-col justify-between text-white">
+					<div class="poster-masthead">
+						<h2 class="!leading-[0.85] text-[3.5rem] font-black uppercase sm:text-[10rem] lg:text-[9rem] xl:text-[11rem]">
+							{data.title}
+						</h2>
+					</div>
+
+					<div class="poster-footer flex items-end justify-between gap-6">
+						<div class="max-w-[45ch]">
+							<ul class="tech-badge mb-4 flex flex-wrap justify-start gap-3 max-sm:items-start">
+								{tagList.map((tag: string) => (
+									<li class="border-white/70 relative rounded-full border px-3 pb-1 font-medium uppercase sm:px-4 sm:py-1.5 sm:font-semibold">
+										<small class="whitespace-nowrap">{tag}</small>
+									</li>
+								))}
+							</ul>
+
+							<p class="!mb-0 sm:text-xl sm:!leading-snug lg:text-lg">
+								{data.description}
+							</p>
+						</div>
+
+						<CircleButton link={data.url} label={ctaLabel} />
+
+						<a
+							href={data.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={ctaLabel}
+							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
+						>
+							<span class="project-card-button-label" aria-hidden="true">
+								{data.linkText}
+							</span>
+							<span
+								class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
+								aria-hidden="true"
+							/>
+						</a>
+					</div>
+				</div>
+			</>
+		)
+	}
 </div>
 
 <style>
 	@reference "../styles/base.css";
 
+	.project-card-inner {
+		@apply relative flex h-full w-full flex-1 flex-col justify-end;
+	}
+
+	/* FEATURE variant — the default, unchanged silhouette */
 	.project-screenshot {
 		@apply pointer-events-none absolute top-0 right-0 z-[2] inline-block w-[130%] max-w-none translate-y-[5%] align-middle max-sm:left-0 sm:-top-[5%] sm:right-auto sm:w-11/12 sm:max-w-full lg:-top-[25%] lg:right-0 lg:w-[60%];
 
@@ -100,6 +226,49 @@ const { data } = Astro.props.project;
 
 		@media screen and (orientation: landscape) and (hover: none) {
 			font-size: 2rem;
+		}
+	}
+
+	/* SPLIT variant — screenshot framed left, copy right */
+	.project-card-variant-split {
+		@apply justify-center;
+	}
+
+	.split-screenshot-frame {
+		max-height: 60vh;
+		border: 1px solid rgb(255 255 255 / 15%);
+	}
+
+	@media (width >= theme(--breakpoint-sm)) {
+		.split-screenshot-frame {
+			max-height: none;
+		}
+	}
+
+	/* POSTER variant — screenshot fills the card, huge masthead overlay */
+	.project-card-variant-poster {
+		@apply justify-end;
+	}
+
+	.poster-screenshot {
+		@apply pointer-events-none absolute inset-0 z-0 h-full w-full max-w-none object-cover;
+	}
+
+	.poster-scrim {
+		@apply pointer-events-none absolute inset-0 z-[1];
+
+		background:
+			linear-gradient(180deg, rgb(0 0 0 / 55%) 0%, rgb(0 0 0 / 15%) 40%, rgb(0 0 0 / 65%) 100%);
+	}
+
+	.poster-masthead h2 {
+		letter-spacing: -0.02em;
+		text-shadow: 0 2px 30px rgb(0 0 0 / 25%);
+	}
+
+	@media screen and (orientation: landscape) and (hover: none) {
+		.poster-masthead h2 {
+			font-size: 8rem;
 		}
 	}
 </style>

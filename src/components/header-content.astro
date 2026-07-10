@@ -12,7 +12,7 @@ const socials = await getCollection('social');
 
 <div
 	id="header-content-wrapper"
-	class="flex w-full flex-col justify-between rounded-2xl bg-gray-200 p-5 text-black sm:rounded-3xl sm:p-24 lg:p-20"
+	class="bg-base-100 flex w-full flex-col justify-between rounded-2xl p-5 text-black sm:rounded-3xl sm:p-24 lg:p-20"
 >
 	<div class="flex items-center justify-between">
 		<a
@@ -84,40 +84,43 @@ const socials = await getCollection('social');
 				id="header-intro"
 				class="c-animated-text js-split-words js-animation-reveal-text-wrapper mt-4 mb-0 max-w-[25ch] !leading-5 sm:mb-16 sm:!leading-tight lg:mb-4 lg:ml-auto"
 			>
-				I help companies build robust, scalable and engaging experiences through motion and space.
+				Motion is the language. Fifteen years of shipping considered work for teams that treat craft
+				as evidence.
 			</p>
 		</div>
 
-		<div
+		<nav
 			id="header-links-wrapper"
+			aria-label="Primary"
 			class="pointer-events-auto relative flex justify-between"
 		>
 			<div
 				id="header-links"
 				class="grid auto-cols-[1fr] grid-flow-row grid-cols-[auto] grid-rows-[auto] items-center gap-y-8 sm:auto-cols-auto sm:grid-flow-col sm:!gap-4"
 			>
-				<div
-					class="header-social-links grid auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] items-center justify-start gap-4"
+				<ul
+					class="header-social-links m-0 grid list-none auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] items-center justify-start gap-4 p-0"
 				>
 					{
 						socials.map((social) => (
-							<a
-								aria-label={`Go to my ${social.data.name} profile`}
-								href={social.data.link}
-								target="_blank"
-								rel="me noopener noreferrer"
-								class="inline-block h-5 w-5 sm:block sm:h-8 sm:w-8 lg:h-5 lg:w-5"
-							>
-								<div class="h-5 w-5 text-black sm:h-8 sm:w-8 lg:h-5 lg:w-5">
+							<li class="inline-flex">
+								<a
+									aria-label={`Visit my ${social.data.name} profile`}
+									href={social.data.link}
+									target="_blank"
+									rel="me noopener noreferrer"
+									class="inline-flex h-11 w-11 items-center justify-center sm:h-11 sm:w-11 lg:h-8 lg:w-8"
+								>
 									<SvgSprite
 										name={social.data.icon}
 										class="h-5 w-5 stroke-black sm:h-8 sm:w-8 lg:h-5 lg:w-5"
+										aria-hidden="true"
 									/>
-								</div>
-							</a>
+								</a>
+							</li>
 						))
 					}
-				</div>
+				</ul>
 
 				<div class="flex items-center gap-4 sm:gap-5">
 					<a
@@ -139,9 +142,10 @@ const socials = await getCollection('social');
 				data-animation-source="/animation/lottie-scroll.json"
 				data-animation-play-control="autoplay"
 				data-animation-loop="true"
+				aria-hidden="true"
 			>
 			</div>
-		</div>
+		</nav>
 	</div>
 </div>
 

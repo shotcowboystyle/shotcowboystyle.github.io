@@ -27,3 +27,9 @@ stats.html
 .cspellcache
 .serena
 .mcp.json
+
+# impeccable design tooling — user-local skill and generated caches
+.claude/skills/
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/live/

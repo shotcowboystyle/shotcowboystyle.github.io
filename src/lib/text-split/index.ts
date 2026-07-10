@@ -66,6 +66,14 @@ export default class SplitText {
 	setupWords(element: HTMLElement): void {
 		this.wordSplitter.setup(element);
 	}
+
+	/**
+	 * Revert DOM mutations from both splitters
+	 */
+	destroy(): void {
+		this.lineSplitter.destroy();
+		this.wordSplitter.destroy();
+	}
 }
 
 // Export types and individual splitters for advanced usage
