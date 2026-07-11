@@ -200,6 +200,12 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			width: 100%;
 			height: 100%;
 
+			@media (prefers-reduced-motion: reduce) {
+				.size-20:hover {
+					transform: none;
+				}
+			}
+
 			.size-5 {
 				--size: 1cqb;
 
@@ -280,7 +286,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 
 			.size-20:hover {
 				border: none;
-				transform: scale(1.5);
+				transform: scale(1.25) rotate(3deg);
 
 				&::before {
 					opacity: 100%;

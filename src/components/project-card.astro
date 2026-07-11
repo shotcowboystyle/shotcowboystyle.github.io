@@ -50,20 +50,26 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 						</p>
 					</div>
 
-					<CircleButton link={data.url} label={ctaLabel} />
+					<CircleButton
+						link={data.url}
+						label={ctaLabel}
+					/>
 
 					<a
 						href={data.url}
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label={ctaLabel}
-						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
+						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none sm:hidden sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
 					>
-						<span class="project-card-button-label" aria-hidden="true">
+						<span
+							class="project-card-button-label"
+							aria-hidden="true"
+						>
 							{data.linkText}
 						</span>
 						<span
-							class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
+							class="absolute inset-0 z-0 rounded-full bg-white"
 							aria-hidden="true"
 						/>
 					</a>
@@ -111,16 +117,22 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 						</div>
 
 						<div class="flex items-end justify-end">
-							<CircleButton link={data.url} label={ctaLabel} />
+							<CircleButton
+								link={data.url}
+								label={ctaLabel}
+							/>
 
 							<a
 								href={data.url}
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={ctaLabel}
-								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
+								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none sm:hidden"
 							>
-								<span class="project-card-button-label" aria-hidden="true">
+								<span
+									class="project-card-button-label"
+									aria-hidden="true"
+								>
 									{data.linkText}
 								</span>
 								<span
@@ -145,11 +157,14 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 					class="poster-screenshot"
 				/>
 
-				<div class="poster-scrim" aria-hidden="true" />
+				<div
+					class="poster-scrim"
+					aria-hidden="true"
+				/>
 
 				<div class="poster-content pointer-events-auto relative z-[2] flex h-full flex-col justify-between text-white">
 					<div class="poster-masthead">
-						<h2 class="!leading-[0.85] text-[3.5rem] font-black uppercase sm:text-[10rem] lg:text-[9rem] xl:text-[11rem]">
+						<h2 class="text-[3.5rem] !leading-[0.85] font-black uppercase sm:text-[10rem] lg:text-[9rem] xl:text-[11rem]">
 							{data.title}
 						</h2>
 					</div>
@@ -158,27 +173,31 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 						<div class="max-w-[45ch]">
 							<ul class="tech-badge mb-4 flex flex-wrap justify-start gap-3 max-sm:items-start">
 								{tagList.map((tag: string) => (
-									<li class="border-white/70 relative rounded-full border px-3 pb-1 font-medium uppercase sm:px-4 sm:py-1.5 sm:font-semibold">
+									<li class="relative rounded-full border border-white/70 px-3 pb-1 font-medium uppercase sm:px-4 sm:py-1.5 sm:font-semibold">
 										<small class="whitespace-nowrap">{tag}</small>
 									</li>
 								))}
 							</ul>
 
-							<p class="!mb-0 sm:text-xl sm:!leading-snug lg:text-lg">
-								{data.description}
-							</p>
+							<p class="!mb-0 sm:text-xl sm:!leading-snug lg:text-lg">{data.description}</p>
 						</div>
 
-						<CircleButton link={data.url} label={ctaLabel} />
+						<CircleButton
+							link={data.url}
+							label={ctaLabel}
+						/>
 
 						<a
 							href={data.url}
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label={ctaLabel}
-							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
+							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none sm:hidden"
 						>
-							<span class="project-card-button-label" aria-hidden="true">
+							<span
+								class="project-card-button-label"
+								aria-hidden="true"
+							>
 								{data.linkText}
 							</span>
 							<span
@@ -257,8 +276,12 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 	.poster-scrim {
 		@apply pointer-events-none absolute inset-0 z-[1];
 
-		background:
-			linear-gradient(180deg, rgb(0 0 0 / 55%) 0%, rgb(0 0 0 / 15%) 40%, rgb(0 0 0 / 65%) 100%);
+		background: linear-gradient(
+			180deg,
+			rgb(0 0 0 / 55%) 0%,
+			rgb(0 0 0 / 15%) 40%,
+			rgb(0 0 0 / 65%) 100%
+		);
 	}
 
 	.poster-masthead h2 {
