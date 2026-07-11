@@ -82,7 +82,7 @@ export default class ScrubControlledAnimation {
 
 		let triggerTarget = null;
 		if (target > 0) {
-			for (let i = target; i--; ) {
+			for (let i = target; i--;) {
 				triggerTarget = container.parentElement;
 			}
 		}

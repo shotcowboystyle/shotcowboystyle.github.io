@@ -30,6 +30,10 @@ stats.html
 
 # impeccable design tooling — user-local skill and generated caches
 .claude/skills/
+.claude/settings.local.json
 .impeccable/config.local.json
 .impeccable/hook.cache.json
 .impeccable/live/
+
+# lint caches
+.eslintcache
