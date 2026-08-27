@@ -102,7 +102,7 @@
 		"lighthouse": "^13.4.1",
 		"npm-package-json-lint": "^11.0.0",
 		"npm-package-json-lint-config-default": "^10.0.0",
-		"npm-run-all2": "^8.0.4",
+		"npm-run-all2": "^9.0.3",
 		"playwright": "^1.62.1",
 		"playwright-lighthouse": "^4.0.0",
 		"postcss": "^8.5.26",
