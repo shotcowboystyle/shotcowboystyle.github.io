@@ -166,8 +166,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0(supports-color@10.2.2)
       npm-package-json-lint-config-default:
-        specifier: ^9.0.1
-        version: 9.0.1(npm-package-json-lint@11.0.0(supports-color@10.2.2))
+        specifier: ^10.0.0
+        version: 10.0.0(npm-package-json-lint@11.0.0(supports-color@10.2.2))
       npm-run-all2:
         specifier: ^8.0.4
         version: 8.0.4
@@ -5268,11 +5268,11 @@ packages:
     resolution: {integrity: sha512-TZKxPvItzai9kN9H/TkmCtx/ZN/hvr3vUycjlfmH0ootY9yFBzNOpiXAdIn1Iteqsvk4lQn6B5PTrt+n6h8k/w==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
-  npm-package-json-lint-config-default@9.0.1:
-    resolution: {integrity: sha512-IJ/k8rnOt38B7F5pbJpulgWzgWuFTC40U/jwyXtoG1HnKHSiDJO7Pjgn8l6xVSDgJn8CBC/aGvkZmutxCtwO6w==}
+  npm-package-json-lint-config-default@10.0.0:
+    resolution: {integrity: sha512-mCrl03ddAtbVVPbBZNuIamN73nD5PyHl7rmeJ/B5Moc1moVJwKLHE06hRFi+xLZqeCUDn+R6rye+neZxSTv+Jw==}
     engines: {node: '>=22.0.0', npm: '>=10.0.0'}
     peerDependencies:
-      npm-package-json-lint: ^10.0.0
+      npm-package-json-lint: ^11.0.0
 
   npm-package-json-lint@11.0.0:
     resolution: {integrity: sha512-XOFaxHM+TB9tK51Uj609kA1iA87cJe/VNCv/5INLCDbM///KpZpIai+t9LRRyOzvkd62j0JEWKSJeDUlzOSG6Q==}
@@ -12734,7 +12734,7 @@ snapshots:
 
   npm-normalize-package-bin@4.0.0: {}
 
-  npm-package-json-lint-config-default@9.0.1(npm-package-json-lint@11.0.0(supports-color@10.2.2)):
+  npm-package-json-lint-config-default@10.0.0(npm-package-json-lint@11.0.0(supports-color@10.2.2)):
     dependencies:
       npm-package-json-lint: 11.0.0(supports-color@10.2.2)
 
