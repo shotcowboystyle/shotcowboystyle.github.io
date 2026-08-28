@@ -6,22 +6,35 @@
 	background-image: linear-gradient(to right bottom, rgb(169 52 126), rgb(75 50 167));
 }
 
+/*
+ * The scene is authored against a fixed 550px stage: `.circle-outer` is 550px,
+ * `.four` sits at left 30/230 and `.button`/`.sorry` center on `left: 50%`.
+ * Without an explicit box the percentage offsets resolved against the viewport
+ * and pushed the whole scene — including the only "GO HOME" link — off the
+ * left edge, where `#page-wrapper`'s `overflow: hidden` clipped it.
+ */
 .center {
-	@apply relative top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-transform;
+	--stage-size: 550px;
 
+	@apply absolute top-1/2 left-1/2 z-10 transition-transform;
+
+	width: var(--stage-size);
+	height: var(--stage-size);
 	transition-duration: 0.5s;
-	transform: translate(-50%, -50%) scale(0.6);
+
+	/*
+	 * `translate` and `scale` as separate properties, not a `transform`
+	 * shorthand: Tailwind v4's translate utilities set the `translate`
+	 * property, so a `transform: translate(...)` on top of them applied the
+	 * offset twice and pushed the scene off-center.
+	 */
+	translate: -50% -50%;
+	scale: 0.6;
 }
 
 @media screen and (height <= 600px) {
 	.center {
-		transform: translate(-50%, -50%) scale(0.75);
-	}
-}
-
-@media screen and (width > 400px) {
-	.center {
-		@apply -translate-y-1/2;
+		scale: 0.75;
 	}
 }
 
@@ -378,13 +391,46 @@
 	@apply absolute bottom-8 left-1/2 z-20 -translate-x-1/2 rounded border border-white px-3 py-2;
 
 	&:active {
-		transform: translateX(-50%) scale(0.95);
+		/* `scale` on its own, so it composes with the `translate` above
+		 * instead of overwriting the centering offset. */
+		scale: 0.96;
 	}
 }
 
+/*
+ * Sits between the "404" digits and the GO HOME link rather than on top of the
+ * astronaut. Sized against the stage's 0.6 scale so it renders near 15px.
+ */
 .sorry {
-	@apply absolute left-1/2 -translate-x-1/2;
+	@apply absolute left-1/2 -translate-x-1/2 whitespace-nowrap;
 
-	top: 210px;
-	font-size: 15px;
+	top: 60px;
+	font-size: 44px;
+}
+
+/*
+ * Reduced motion.
+ *
+ * This page had no `prefers-reduced-motion` handling at all: 80 blinking
+ * stars, two pulsing rings, a floating astronaut and a pointer-driven
+ * parallax all ran unconditionally. Each one resolves to its resting frame
+ * rather than disappearing, so the scene still reads.
+ */
+@media (prefers-reduced-motion: reduce) {
+	.star::before,
+	.star::after,
+	.oh {
+		animation: none;
+	}
+
+	.circle.circle-outer::before,
+	.circle.circle-inner::before {
+		opacity: 100%;
+		scale: 1;
+		animation: none;
+	}
+
+	.center {
+		transition: none;
+	}
 }

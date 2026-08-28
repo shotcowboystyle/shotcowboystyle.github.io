@@ -155,23 +155,25 @@ const title = `Error 404`;
 						</div>
 					</div>
 				</div>
-
-				<a
-					href="/"
-					class="button"
-					>GO HOME</a
-				>
 			</div>
 
-			<div class="sorry">Oops! Sorry, page not found.</div>
+			<a
+				href="/"
+				class="button"
+				>GO HOME</a
+			>
+
+			<h1 class="sorry">Page not found</h1>
 		</div>
 	</div>
 </BaseLayout>
 
 <script>
+	import { prefersReducedMotion } from '@/utils/motion';
+
 	const movableEl: HTMLElement | null = document.getElementById('movable');
 
-	if (movableEl) {
+	if (movableEl && !prefersReducedMotion()) {
 		document.addEventListener('mousemove', (event) => {
 			const domainX = [0, document.body.clientWidth];
 			const domainY = [0, document.body.clientHeight];
