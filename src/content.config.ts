@@ -14,6 +14,26 @@ const projectCollection = defineCollection({
 			linkText: z.string(),
 			tags: z.array(z.string()),
 			variant: z.enum(['feature', 'split', 'poster']).default('feature'),
+			role: z.string(),
+			timeline: z.string(),
+			stack: z.array(z.string()),
+			problem: z.string(),
+			approach: z.array(
+				z.object({
+					name: z.string(),
+					body: z.string(),
+				}),
+			),
+			motionMoments: z
+				.array(
+					z.object({
+						name: z.string(),
+						description: z.string(),
+					}),
+				)
+				.default([]),
+			credits: z.array(z.string()).default([]),
+			nextSlug: z.string(),
 		}),
 });
 
