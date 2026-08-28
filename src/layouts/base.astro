@@ -12,13 +12,17 @@ export type Props = {
 	meta?: PageMetaData;
 };
 
-const {
-	meta = {
-		title: 'Curtis Blanton — Full Stack Senior Developer',
-		description:
-			'Motion is the language. Fifteen years of shipping considered work for teams that treat craft as evidence.',
-	},
-} = Astro.props;
+const DEFAULT_META: Required<PageMetaData> = {
+	title: 'Curtis Blanton — Full Stack Senior Developer',
+	description:
+		'Motion is the language. Fifteen years of shipping considered work for teams that treat craft as evidence.',
+};
+
+/**
+ * Merged rather than replaced, so a page that supplies only a title still gets
+ * a description instead of emitting an empty `<meta name="description">`.
+ */
+const meta: Required<PageMetaData> = { ...DEFAULT_META, ...Astro.props.meta };
 ---
 
 <!doctype html>
@@ -38,9 +42,9 @@ const {
 
 		<link
 			rel="preload"
-			href="/fonts/Thunder-VF.ttf"
+			href="/fonts/Thunder-VF.woff2"
 			as="font"
-			type="font/ttf"
+			type="font/woff2"
 			crossorigin="anonymous"
 		/>
 		<link

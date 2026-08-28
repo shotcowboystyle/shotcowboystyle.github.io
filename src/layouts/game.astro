@@ -1,15 +1,15 @@
 ---
 import BaseLayout from '@/layouts/base.astro';
+import type { PageMetaData } from '@/types';
+
+export type Props = {
+	meta?: PageMetaData;
+};
+
+const { meta } = Astro.props;
 ---
 
-<BaseLayout>
-	<Fragment slot="head-end">
-		<meta
-			name="viewport"
-			content="width=device-width,user-scalable=no"
-		/>
-	</Fragment>
-
+<BaseLayout meta={meta}>
 	<slot />
 	<slot
 		name="body-end"

@@ -25,18 +25,21 @@ const { variant = 'light' } = Astro.props;
 					<SvgSprite
 						name="arrow-left"
 						class="h-auto w-6"
+						aria-hidden="true"
 					/>
 				</span>
 			))
 		}
 	</div>
+
+	<span class="sr-only">Back to home</span>
 </a>
 
 <style>
 	@reference "../styles/base.css";
 
 	.back-button {
-		@apply relative z-50 block h-14 w-14 cursor-pointer overflow-hidden border-none bg-transparent outline-none;
+		@apply relative z-50 block h-14 w-14 cursor-pointer overflow-hidden border-none bg-transparent;
 
 		&::before,
 		&::after {
@@ -65,7 +68,7 @@ const { variant = 'light' } = Astro.props;
 	}
 
 	.back-button:hover::before,
-	.back-button:focus::before {
+	.back-button:focus-visible::before {
 		@apply opacity-0;
 
 		transition:
@@ -75,7 +78,7 @@ const { variant = 'light' } = Astro.props;
 	}
 
 	.back-button:hover::after,
-	.back-button:focus::after {
+	.back-button:focus-visible::after {
 		@apply opacity-100;
 
 		transition:
@@ -95,7 +98,7 @@ const { variant = 'light' } = Astro.props;
 	}
 
 	.back-button:hover .back-button-box,
-	.back-button:focus .back-button-box {
+	.back-button:focus-visible .back-button-box {
 		transition: 0.4s;
 		transform: translateX(-50%);
 	}

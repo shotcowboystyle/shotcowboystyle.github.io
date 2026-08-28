@@ -22,6 +22,22 @@
 }
 
 @theme {
+	/*
+	 * Focus ring — a role token, not a borrowed brand color.
+	 *
+	 * Signal Mint measures 1.47:1 against the Card Off-White plate, so it was
+	 * never a visible indicator on the surfaces that carry most of the site's
+	 * controls. These two are drawn together as a two-tone ring, because no
+	 * single value clears 3:1 against every backdrop the site renders on.
+	 *
+	 * Measured (canvas-rasterized, sRGB relative luminance):
+	 *   ring on card 4.56 · mint 3.11 · black 3.48 · white 6.02
+	 *   halo on 404 gradient 5.72–8.66 · planet pink 3.06 · black 19.88
+	 *   ring against halo 5.71
+	 */
+	--color-focus-ring: oklch(48% 0.13 159.37deg);
+	--color-focus-ring-halo: oklch(98% 0 0deg);
+
 	/* Font families */
 	--font-sans:
 		'General Sans', Arial, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
@@ -227,13 +243,24 @@
 }
 
 @layer base {
+	/*
+	 * Both faces are variable, and both now declare the weight range their
+	 * `fvar` table actually carries. Without the descriptor the browser treats
+	 * each as a single-weight face and *synthesizes* `font-bold` and
+	 * `font-extrabold` by smearing the glyphs, instead of using the real
+	 * weight axis.
+	 */
 	@font-face {
+		font-weight: 100 900;
+		font-style: normal;
 		font-family: Thunder;
-		src: url('/fonts/Thunder-VF.ttf');
+		src: url('/fonts/Thunder-VF.woff2') format('woff2');
 		font-display: swap;
 	}
 
 	@font-face {
+		font-weight: 200 700;
+		font-style: normal;
 		font-family: 'General Sans';
 		src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
 		font-display: swap;
@@ -248,7 +275,12 @@ html {
 
 :focus-visible {
 	border-radius: inherit;
-	outline: 2px solid var(--color-primary);
+
+	/* Light band between the element and the outline, so the ring stays
+	 * visible on the dark and saturated surfaces where the outline color
+	 * alone does not reach 3:1. */
+	box-shadow: 0 0 0 5px var(--color-focus-ring-halo);
+	outline: 2px solid var(--color-focus-ring);
 	outline-offset: 3px;
 }
 
@@ -372,6 +404,28 @@ html.has-motion .split-line-child {
 	html.has-motion .split-word-child,
 	html.has-motion .split-line-child {
 		transform: none;
+	}
+
+	/*
+	 * Safety net for the component-local hover and state transitions that were
+	 * each written without a reduced-motion path — the resume-button bubbles,
+	 * the mystery-box dot swarm, the back-button ring cross-fade, the map zoom
+	 * controls, the tower-blocks chrome and the `group-hover:scale-150` CTA
+	 * expansions.
+	 *
+	 * Durations are collapsed rather than removed, so `transitionend` and
+	 * `animationend` still fire and every element still lands on its finished
+	 * state. Components that need a *different* reduced-motion treatment —
+	 * rather than simply no motion — keep their own explicit blocks and win on
+	 * the properties they set.
+	 */
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
 	}
 }
 
