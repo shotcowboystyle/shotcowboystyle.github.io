@@ -13,7 +13,7 @@ Personal portfolio website for Curtis Blanton built with Astro 5.15+, featuring 
 - Advanced animations (GSAP, Three.js, Lottie)
 - Comprehensive E2E testing with Playwright
 - Strict quality enforcement (ESLint, Prettier, TypeScript)
-- Automated releases with Semantic Release
+- Conventional commits enforced by commitlint
 
 ## Quick Navigation
 
@@ -28,29 +28,30 @@ Personal portfolio website for Curtis Blanton built with Astro 5.15+, featuring 
 ### Important Files
 
 - `astro.config.mjs` - Astro framework configuration
-- `tailwind.config.cjs` - Tailwind CSS v4 configuration
+- `postcss.config.cjs` - Tailwind CSS v4 entry (`@tailwindcss/postcss`); theme lives in CSS `@theme`
 - `tsconfig.json` - TypeScript compiler settings
 - `playwright.config.ts` - E2E test configuration
 - `lefthook.yml` - Git hooks for quality checks
+- `pnpm-workspace.yaml` - pnpm settings, overrides, build allowlist
 - `package.json` - Dependencies and npm scripts
 
 ## Tech Stack Reference
 
 ### Core Framework
 
-- **Astro 5.15+**: Static site generator with component islands
-- **TypeScript 5.9+**: Strict mode enabled for type safety
+- **Astro 6**: Static site generator with component islands
+- **TypeScript 6**: Strict mode enabled for type safety
 
 ### Styling
 
-- **Tailwind CSS 4.1+**: Utility-first CSS framework
+- **Tailwind CSS 4.3+**: Utility-first CSS framework
 - **DaisyUI**: Component library built on Tailwind
 - **PostCSS**: CSS processing with nesting, imports, preset-env
 
 ### Animation Libraries
 
-- **GSAP 3.13**: Professional-grade animation library
-- **Three.js 0.181**: 3D graphics and WebGL
+- **GSAP 3.15**: Professional-grade animation library
+- **Three.js 0.185**: 3D graphics and WebGL
 - **Cannon.js**: Physics engine for 3D interactions
 - **Lottie Web**: JSON-based animations
 - **SplitType**: Text animation utilities
@@ -58,15 +59,15 @@ Personal portfolio website for Curtis Blanton built with Astro 5.15+, featuring 
 
 ### Quality Tools
 
-- **ESLint 9**: Code linting with Astro, TypeScript, JSX a11y plugins
-- **Prettier 3.6**: Code formatting with Astro and Tailwind plugins
-- **Stylelint 16**: CSS linting for Astro and standard CSS
+- **ESLint 10**: Code linting with Astro, TypeScript, JSX a11y plugins
+- **Prettier 3.9**: Code formatting with Astro, import-sort and Tailwind plugins
+- **Stylelint 17**: CSS linting for Astro and standard CSS
 - **TypeScript**: Strict type checking with Astro integration
 - **Knip**: Unused dependencies and exports detection
 
 ### Testing
 
-- **Playwright 1.56**: E2E testing framework
+- **Playwright 1.62**: E2E testing framework
 - **@axe-core/playwright**: Accessibility testing
 - **playwright-lighthouse**: Performance testing
 - **Lighthouse 13**: Core Web Vitals and performance auditing
@@ -103,7 +104,6 @@ pnpm types:check        # Type checking (Astro sync + tsc + astro check)
 
 ```bash
 pnpm test                      # Run all E2E tests
-pnpm test:e2e                  # Run all E2E test suites
 pnpm test:e2e:accessibility    # Accessibility tests
 pnpm test:e2e:pages            # Page functionality tests
 pnpm test:e2e:performance      # Performance audits
@@ -120,10 +120,10 @@ pnpm validate           # Run format:check + lint:check + types:check + test
 
 ### Git Workflow
 
-- **Lefthook**: Pre-commit hooks enforce quality checks
-- **Commitizen**: Interactive commit message builder (`pnpm cz`)
-- **Conventional Commits**: Required format for semantic versioning
-- **Semantic Release**: Automated versioning and changelog generation
+- **Lefthook**: Pre-commit and pre-push hooks enforce quality checks
+- **Commitizen**: Interactive commit message builder, opened by the `prepare-commit-msg` hook — commit with plain `git commit`, not a wrapper script
+- **Conventional Commits**: Required format, validated by commitlint at `commit-msg`
+- **Stage ownership**: Each check runs at exactly one stage — staged-file lint at `pre-commit`, typecheck/Knip/dedupe at `pre-push`, full-repo lint in CI
 
 ## Code Quality Standards
 
@@ -138,7 +138,6 @@ pnpm validate           # Run format:check + lint:check + types:check + test
 
 - **Astro plugin**: Lint `.astro` files with `astro-eslint-parser`
 - **TypeScript plugin**: Strict type-aware linting rules
-- **Import plugin**: Enforce consistent import ordering
 - **JSX a11y plugin**: Accessibility linting for interactive elements
 - **No unused vars**: Clean up unused imports and variables
 

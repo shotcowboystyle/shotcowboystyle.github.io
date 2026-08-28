@@ -21,12 +21,16 @@ pnpm-debug.log*
 .DS_Store
 
 e2e/output
+blob-report
 lighthouse
 stats.html
 .stylelintcache
 .cspellcache
 .serena
 .mcp.json
+
+# per-developer lefthook overrides
+lefthook-local.yml
 
 # impeccable design tooling — user-local skill and generated caches
 .claude/skills/

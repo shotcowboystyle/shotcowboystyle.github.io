@@ -1,4 +1,4 @@
-/** @type {import('knip.config.mjs').KnipConfig} */
+/** @type {import('knip').KnipConfig} */
 export default {
 	rules: {
 		binaries: 'off',
@@ -9,25 +9,15 @@ export default {
 		astro: (text) => [...text.matchAll(/import[^;]+/g)].join('\n'),
 		css: (text) => [...text.matchAll(/(?<=@)import[^;]+/g)].join('\n'),
 	},
-	ignoreDependencies: [
-		'@types/eslint',
-		'conventional-changelog-conventionalcommits',
-		'@semantic-release/commit-analyzer',
-		'@semantic-release/github',
-		'@semantic-release/release-notes-generator',
-		'astro-eslint-parser',
-		'daisyui',
-		'eslint-plugin-jsx-a11y',
-	],
+	// `commitizen` is invoked as `node_modules/.bin/cz` from lefthook.yml, which
+	// knip does not scan.
+	ignoreDependencies: ['@types/eslint', 'astro-eslint-parser', 'commitizen', 'daisyui'],
 	ignore: ['src/sw/**/*'],
 	paths: {
 		'@/*': ['./src/*'],
 	},
 	postcss: {
 		config: ['postcss.config.cjs'],
-	},
-	'semantic-release': {
-		config: ['release.config.cjs', 'release.main.config.cjs'],
 	},
 	commitlint: {
 		config: ['commitlint.config.cjs'],

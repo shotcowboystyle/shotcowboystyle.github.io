@@ -61,7 +61,7 @@
 		"**/tmp": true,
 		"**/dist": true
 	},
-	"stylelint.enable": false,
+	"stylelint.enable": true,
 	"stylelint.packageManager": "pnpm",
 	"stylelint.snippet": ["astro", "css", "postcss", "html", "tailwindcss"],
 	"stylelint.validate": ["css", "postcss", "html", "astro", "tailwindcss"],

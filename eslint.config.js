@@ -8,7 +8,20 @@ import globals from 'globals';
 /** @type {import("eslint").Linter.Config[]} */
 export default [
 	{
-		ignores: ['node_modules/', 'dist/', '.astro/', 'public/sw.js'],
+		// ESLint does not read .gitignore, so gitignored paths must be repeated
+		// here. Without this, `eslint .` fails locally on vendored tooling that
+		// CI never checks out — `.claude/skills/` in particular.
+		ignores: [
+			'node_modules/',
+			'dist/',
+			'.astro/',
+			'public/sw.js',
+			'.claude/',
+			'.impeccable/',
+			'lighthouse/',
+			'e2e/output/',
+			'stats.html',
+		],
 	},
 	{
 		...js.configs.recommended,
