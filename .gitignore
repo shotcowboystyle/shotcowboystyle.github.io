@@ -26,6 +26,7 @@ pnpm-debug.log*
 
 e2e/output
 blob-report
+coverage
 lighthouse
 stats.html
 .stylelintcache

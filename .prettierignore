@@ -9,6 +9,7 @@ dist/
 # testing
 e2e/output/
 blob-report/
+coverage/
 playwright/.cache/
 
 # misc
