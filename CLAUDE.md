@@ -67,6 +67,7 @@ Personal portfolio website for Curtis Blanton built with Astro 5.15+, featuring 
 
 ### Testing
 
+- **Vitest 4**: Unit test runner, `happy-dom` environment, tests colocated as `src/**/*.test.ts`
 - **Playwright 1.62**: E2E testing framework
 - **@axe-core/playwright**: Accessibility testing
 - **playwright-lighthouse**: Performance testing
@@ -103,7 +104,10 @@ pnpm types:check        # Type checking (Astro sync + tsc + astro check)
 ### Testing
 
 ```bash
-pnpm test                      # Run all E2E tests
+pnpm test                      # Unit suite, then every E2E suite
+pnpm test:unit                 # Vitest, single run
+pnpm test:unit:watch           # Vitest, watch mode
+pnpm test:unit:coverage        # v8 coverage report (no enforced threshold)
 pnpm test:e2e:accessibility    # Accessibility tests
 pnpm test:e2e:pages            # Page functionality tests
 pnpm test:e2e:performance      # Performance audits
@@ -156,6 +160,15 @@ pnpm validate           # Run format:check + lint:check + types:check + test
 - **PostCSS support**: Lint modern CSS features
 
 ## Testing Requirements
+
+### Unit Testing (Vitest)
+
+- **Colocation**: Tests sit next to their subject as `src/**/*.test.ts`
+- **Explicit imports**: Import `describe`/`it`/`expect`/`vi` from `vitest` — globals are not enabled
+- **Environment**: `happy-dom`, so `window`, `document` and `navigator` are available
+- **Module-level globals**: Modules that read a global at import time (e.g. `src/utils/detect.ts`) need `vi.stubGlobal` + `vi.resetModules()` + dynamic `import()` per case
+- **Injectable targets**: Prefer passing an `EventTarget` over relying on `document`, as `TypedEventBus` allows
+- **Documenting defects**: When a test pins existing buggy behavior, say so in a comment and keep the fix in its own commit
 
 ### Accessibility Testing
 

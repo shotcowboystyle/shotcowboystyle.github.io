@@ -36,7 +36,10 @@
 		"lint:styles:check": "stylelint src/**/*.{astro,css} --cache --ignore-pattern .gitignore",
 		"lint:styles:fix": "stylelint src/**/*.{astro,css} --cache --ignore-pattern .gitignore --fix",
 		"preview": "astro preview",
-		"test": "run-s test:e2e:*",
+		"test": "run-s test:unit test:e2e:*",
+		"test:unit": "vitest run",
+		"test:unit:watch": "vitest",
+		"test:unit:coverage": "vitest run --coverage",
 		"test:e2e:accessibility": "playwright test e2e/tests/accessibility",
 		"test:e2e:pages": "playwright test e2e/tests/pages",
 		"test:e2e:performance": "playwright test e2e/tests/performance",
@@ -77,6 +80,7 @@
 		"@types/three": "^0.185.4",
 		"@typescript-eslint/eslint-plugin": "^8.67.0",
 		"@typescript-eslint/parser": "^8.67.0",
+		"@vitest/coverage-v8": "^4.1.11",
 		"astro-compress": "2.4.3",
 		"astro-critters": "^2.2.1",
 		"astro-eslint-parser": "^1.4.0",
@@ -90,6 +94,7 @@
 		"eslint-plugin-astro": "^3.1.0",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"globals": "^17.11.0",
+		"happy-dom": "^20.11.12",
 		"knip": "^6.32.2",
 		"lefthook": "2.1.10",
 		"lighthouse": "^13.4.1",
@@ -111,6 +116,7 @@
 		"stylelint-config-standard": "^40.0.0",
 		"stylelint-config-tailwindcss": "^1.0.1",
 		"tailwindcss": "^4.3.3",
-		"typescript": "^6.0.3"
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.11"
 	}
 }

@@ -36,6 +36,11 @@ jobs:
       - name: Typecheck
         run: pnpm run types:check
 
+      # Ahead of the browser download and production build so a broken unit
+      # test fails the job cheaply.
+      - name: Unit tests
+        run: pnpm run test:unit
+
       - name: Install playwright browsers
         run: pnpm exec playwright install --with-deps
 

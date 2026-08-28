@@ -64,6 +64,8 @@ pre-commit:
 pre-push:
   parallel: true
   commands:
+    unit:
+      run: pnpm run test:unit
     typecheck:
       run: pnpm run types:check
     dead-code:
