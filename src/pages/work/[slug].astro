@@ -40,20 +40,20 @@ const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', '
 		class="case-study"
 		data-variant={data.variant}
 	>
-		<a
-			href="/"
-			class="back-link"
-			data-astro-prefetch
-		>
-			<span
-				class="back-link-arrow"
-				aria-hidden="true"
-				>←</span
-			>
-			<span class="back-link-label">Back to portfolio</span>
-		</a>
-
 		<header class="masthead">
+			<a
+				href="/"
+				class="back-link"
+				data-astro-prefetch
+			>
+				<span
+					class="back-link-arrow"
+					aria-hidden="true"
+					>←</span
+				>
+				<span class="back-link-label">Back to portfolio</span>
+			</a>
+
 			<div class="masthead-inner">
 				<div class="masthead-lead">
 					<p class="lead">{data.problem}</p>
@@ -225,12 +225,15 @@ const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', '
 		display: flex;
 		flex-direction: column;
 		gap: clamp(4rem, 8vw, 8rem);
-		padding-block-start: clamp(2rem, 5vw, 4rem);
 		background: #000;
 		color: var(--ink-canvas);
 	}
 
-	/* ---- Back link (tertiary tier) ---- */
+	/* ---- Back link (tertiary tier) ----
+	 *
+	 * Lives inside the masthead, not the black canvas above it: `--ink-primary`
+	 * is the on-mint ink and measured 1.38:1 when the link sat on `#000`.
+	 */
 
 	.back-link {
 		position: absolute;
@@ -282,6 +285,7 @@ const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', '
 	 * ============================================================ */
 
 	.masthead {
+		position: relative;
 		display: grid;
 		align-content: center;
 		min-height: min(100dvh, 900px);
@@ -367,8 +371,14 @@ const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', '
 		}
 	}
 
+	/*
+	 * Label hierarchy comes from case, weight and tracking, not from a lighter
+	 * ink. On the mint plate at this size there is no value both light enough
+	 * to read as secondary and dark enough to clear 4.5:1, so the type
+	 * treatment carries it and the color stays at full strength.
+	 */
 	.meta-item dt {
-		color: color-mix(in oklch, var(--ink-primary) 65%, transparent);
+		color: var(--ink-primary);
 		font-weight: 600;
 		font-size: var(--text-xs);
 		font-family: var(--font-sans);
@@ -494,7 +504,8 @@ const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', '
 		position: absolute;
 		top: clamp(1rem, 2vw, 1.5rem);
 		right: clamp(1.5rem, 3vw, 3rem);
-		color: color-mix(in sRGB, currentColor 55%, transparent);
+
+		/* Inherits the plate's own ink — see `.meta-item dt`. */
 		font-weight: 600;
 		font-size: var(--text-xs);
 		font-family: var(--font-sans);
@@ -502,8 +513,13 @@ const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', '
 		text-transform: uppercase;
 	}
 
+	/*
+	 * The " / 3" reads as secondary through its position and the surrounding
+	 * type, not through a dimmed opacity: at 55% it measured 4.45:1 on the
+	 * off-white plate, just under the 4.5:1 floor.
+	 */
 	.folio-total {
-		opacity: 55%;
+		opacity: 80%;
 	}
 
 	.move-title {
