@@ -7,14 +7,28 @@ interface Props {
 	project: CollectionEntry<'project'>;
 }
 
-const { data } = Astro.props.project;
+const { data, id } = Astro.props.project;
 const variant = data.variant;
+const slug = id.replace(/\.md$/, '');
+const caseStudyHref = `/work/${slug}`;
 
 const tagList = data.tags;
-const ctaLabel = `${data.linkText}: ${data.title}`;
+
+const CTA_TEXT = 'Read the Story';
+const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 ---
 
-<div class:list={['project-card-inner', `project-card-variant-${variant}`]}>
+<div class:list={['project-card-inner', 'plate-turn', `project-card-variant-${variant}`]}>
+	<span
+		class="plate-turn-highlight"
+		aria-hidden="true"
+	></span>
+	<span
+		class="plate-turn-ghost"
+		aria-hidden="true"
+		>Read</span
+	>
+
 	{
 		variant === 'feature' && (
 			<>
@@ -51,22 +65,20 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 					</div>
 
 					<CircleButton
-						link={data.url}
-						label={ctaLabel}
+						link={caseStudyHref}
+						label={CTA_LABEL}
 					/>
 
 					<a
-						href={data.url}
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label={ctaLabel}
-						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none sm:hidden sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
+						href={caseStudyHref}
+						aria-label={CTA_LABEL}
+						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out motion-reduce:transition-none sm:hidden sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
 					>
 						<span
 							class="project-card-button-label"
 							aria-hidden="true"
 						>
-							{data.linkText}
+							{CTA_TEXT}
 						</span>
 						<span
 							class="absolute inset-0 z-0 rounded-full bg-white"
@@ -118,25 +130,23 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 
 						<div class="flex items-end justify-end">
 							<CircleButton
-								link={data.url}
-								label={ctaLabel}
+								link={caseStudyHref}
+								label={CTA_LABEL}
 							/>
 
 							<a
-								href={data.url}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={ctaLabel}
-								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none sm:hidden"
+								href={caseStudyHref}
+								aria-label={CTA_LABEL}
+								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out motion-reduce:transition-none sm:hidden"
 							>
 								<span
 									class="project-card-button-label"
 									aria-hidden="true"
 								>
-									{data.linkText}
+									{CTA_TEXT}
 								</span>
 								<span
-									class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
+									class="absolute inset-0 z-0 rounded-full bg-white"
 									aria-hidden="true"
 								/>
 							</a>
@@ -183,22 +193,20 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 						</div>
 
 						<CircleButton
-							link={data.url}
-							label={ctaLabel}
+							link={caseStudyHref}
+							label={CTA_LABEL}
 						/>
 
 						<a
-							href={data.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={ctaLabel}
-							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out hover:-translate-y-1 hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none sm:hidden"
+							href={caseStudyHref}
+							aria-label={CTA_LABEL}
+							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out motion-reduce:transition-none sm:hidden"
 						>
 							<span
 								class="project-card-button-label"
 								aria-hidden="true"
 							>
-								{data.linkText}
+								{CTA_TEXT}
 							</span>
 							<span
 								class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
@@ -217,6 +225,107 @@ const ctaLabel = `${data.linkText}: ${data.title}`;
 
 	.project-card-inner {
 		@apply relative flex h-full w-full flex-1 flex-col justify-end;
+	}
+
+	/* ============================================================
+	 * PLATE-TURN — reserved Project-tier hover signature.
+	 * The card catches light like a book page turning: a slight
+	 * rotation along the right-edge axis, a mint-tinted specular
+	 * sweep, and a ghost "Read" watermark bleeding through from
+	 * underneath the plate.
+	 * ============================================================ */
+
+	.project-card-inner.plate-turn {
+		will-change: transform;
+		transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+		transform-origin: right center;
+		perspective: 1500px;
+		transform-style: preserve-3d;
+	}
+
+	.project-card-inner.plate-turn:hover,
+	.project-card-inner.plate-turn:focus-within {
+		transform: rotate3d(0, 1, 0.05, -2.4deg);
+	}
+
+	.plate-turn-highlight {
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		border-radius: inherit;
+		background: linear-gradient(
+			115deg,
+			transparent 30%,
+			oklch(77% 0.17 159.37deg / 30%) 50%,
+			transparent 70%
+		);
+		background-position: -60% 0%;
+		background-size: 240% 100%;
+		background-repeat: no-repeat;
+		opacity: 0%;
+		mix-blend-mode: screen;
+		pointer-events: none;
+		transition:
+			opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+			background-position 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.project-card-inner.plate-turn:hover .plate-turn-highlight,
+	.project-card-inner.plate-turn:focus-within .plate-turn-highlight {
+		background-position: 160% 0%;
+		opacity: 100%;
+	}
+
+	.plate-turn-ghost {
+		position: absolute;
+		top: clamp(0.5rem, 2vw, 2rem);
+		left: clamp(-1rem, -1vw, 0.5rem);
+		z-index: 1;
+		max-width: 55%;
+		margin: 0;
+		color: oklch(77% 0.17 159.37deg / 100%);
+		font-weight: 800;
+		font-size: clamp(6rem, 15vw, 14rem);
+		font-family: var(--font-sans-serif);
+		line-height: 0.85;
+		letter-spacing: -0.03em;
+		text-transform: uppercase;
+		opacity: 0%;
+		mix-blend-mode: soft-light;
+		pointer-events: none;
+		user-select: none;
+		transition:
+			opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+			transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		transform: translateY(12px);
+	}
+
+	.project-card-inner.plate-turn:hover .plate-turn-ghost,
+	.project-card-inner.plate-turn:focus-within .plate-turn-ghost {
+		opacity: 85%;
+		transform: translateY(0);
+	}
+
+	/* Reduced-motion path: crossfade the ghost only. No rotation, no sweep. */
+	@media (prefers-reduced-motion: reduce) {
+		.project-card-inner.plate-turn,
+		.project-card-inner.plate-turn:hover,
+		.project-card-inner.plate-turn:focus-within {
+			transition: none;
+			transform: none;
+		}
+
+		.plate-turn-highlight,
+		.project-card-inner.plate-turn:hover .plate-turn-highlight,
+		.project-card-inner.plate-turn:focus-within .plate-turn-highlight {
+			opacity: 0%;
+			transition: none;
+		}
+
+		.plate-turn-ghost {
+			transition: opacity 0.3s ease-out;
+			transform: none;
+		}
 	}
 
 	/* FEATURE variant — the default, unchanged silhouette */

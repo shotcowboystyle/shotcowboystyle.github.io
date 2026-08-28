@@ -4,9 +4,11 @@ import CircleButtonStars from '@/components/circle-button-stars.astro';
 interface Props {
 	link: string;
 	label: string;
+	external?: boolean;
 }
 
-const { link, label } = Astro.props;
+const { link, label, external } = Astro.props;
+const isExternal = external ?? /^https?:\/\//.test(link);
 ---
 
 <div
@@ -15,8 +17,8 @@ const { link, label } = Astro.props;
 	<a
 		class="notify-button-button relative flex h-32 w-32 items-center justify-center rounded-full border-2 border-neutral-50"
 		href={link}
-		target="_blank"
-		rel="noopener noreferrer"
+		target={isExternal ? '_blank' : undefined}
+		rel={isExternal ? 'noopener noreferrer' : undefined}
 	>
 		<span
 			class="absolute inset-0 overflow-hidden rounded-full"

@@ -39,7 +39,7 @@ function clientManualChunks() {
 
 // https://astro.build/config
 export default defineConfig({
-	trailingSlash: 'always',
+	// trailingSlash: 'always',
 	site: IS_PROD ? 'https://shotcowboystyle.github.io' : 'http://localhost:4321',
 	integrations: [
 		svgs({ input: ['src/assets/images/sprite'] }),
