@@ -21,7 +21,7 @@ Personal portfolio website for Curtis Blanton built with Astro 5.15+, featuring 
 
 - `src/` - Source code (components, pages, layouts, styles)
 - `public/` - Static assets (images, fonts, icons)
-- `e2e/` - Playwright tests (accessibility, performance, visual, pages)
+- `e2e/` - Playwright tests (accessibility, performance, pages)
 - `.github/` - CI/CD workflows and GitHub configuration
 - `.vscode/` - Editor settings and extensions
 
@@ -111,7 +111,6 @@ pnpm test:unit:coverage        # v8 coverage report (no enforced threshold)
 pnpm test:e2e:accessibility    # Accessibility tests
 pnpm test:e2e:pages            # Page functionality tests
 pnpm test:e2e:performance      # Performance audits
-pnpm test:e2e:visual           # Visual regression tests
 pnpm test:playwright:ui        # Open Playwright UI mode
 pnpm test:playwright:debug     # Debug tests with inspector
 ```
@@ -190,9 +189,10 @@ pnpm validate           # Run format:check + lint:check + types:check + test
 
 ### Visual Regression
 
-- **Playwright screenshots**: Compare visual changes
-- **Responsive testing**: Test all breakpoints (mobile, tablet, desktop)
-- **Cross-browser**: Chromium, Firefox, WebKit
+There is no visual-regression suite. The previous one was fully `test.skip`ed with golden images
+that no longer matched the UI, so it asserted nothing. Reintroducing it needs golden images generated on
+the CI platform (ubuntu-latest), not on a contributor's machine — font rendering differs enough to
+make macOS-generated snapshots fail in CI.
 
 ### E2E Page Tests
 

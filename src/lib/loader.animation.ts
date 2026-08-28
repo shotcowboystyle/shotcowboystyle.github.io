@@ -1,4 +1,5 @@
 // import { eventBus } from '@/utils/event-bus';
+import { prefersReducedMotion } from '@/utils/motion';
 import { gsap } from 'gsap';
 
 export default class LoaderAnimation {
@@ -26,7 +27,17 @@ export default class LoaderAnimation {
 		// }
 	}
 
+	/**
+	 * Under reduced motion the curtain is skipped, but the promises still have
+	 * to settle: `App` awaits them and the `loaderFinished` event they gate is
+	 * what triggers the text reveal. Resolving immediately keeps the page from
+	 * sitting blank waiting for an animation that never runs.
+	 */
 	showLoader() {
+		if (prefersReducedMotion()) {
+			return Promise.resolve(true);
+		}
+
 		return new Promise((resolve) =>
 			gsap.to(this.DOM.loader, {
 				duration: 0.6,
@@ -39,6 +50,11 @@ export default class LoaderAnimation {
 	}
 
 	hideLoader() {
+		if (prefersReducedMotion()) {
+			gsap.set(this.DOM.loader, { scaleY: 0 });
+			return Promise.resolve(true);
+		}
+
 		return new Promise((resolve) =>
 			gsap.to(this.DOM.loader, {
 				duration: 1,

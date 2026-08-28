@@ -1,4 +1,5 @@
 import { EventHandlerRegistry } from '@/utils/disposable';
+import { prefersReducedMotion } from '@/utils/motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import type { AnimationItem } from 'lottie-web';
@@ -25,6 +26,7 @@ export default class ScrubControlledAnimation {
 	modules: NodeListOf<HTMLElement>;
 	animations: Map<string, AnimationComponent>;
 	eventRegistry: EventHandlerRegistry;
+	reducedMotion: boolean;
 
 	constructor() {
 		this.DOM = {
@@ -34,6 +36,7 @@ export default class ScrubControlledAnimation {
 		this.modules = document.querySelectorAll(this.DOM.module);
 		this.animations = new Map<string, AnimationComponent>();
 		this.eventRegistry = new EventHandlerRegistry();
+		this.reducedMotion = prefersReducedMotion();
 
 		this.init();
 	}
@@ -67,8 +70,8 @@ export default class ScrubControlledAnimation {
 		const lottieAnimationOptions = {
 			name,
 			container: container,
-			loop,
-			autoplay: playControl === 'autoplay',
+			loop: loop && !this.reducedMotion,
+			autoplay: playControl === 'autoplay' && !this.reducedMotion,
 			path,
 			rendererSettings: {
 				progressiveLoad: true,
@@ -95,7 +98,12 @@ export default class ScrubControlledAnimation {
 			triggerTarget,
 		};
 
-		if (playControl !== 'autoplay') {
+		/**
+		 * Under reduced motion even the autoplay mounts need the DOMLoaded
+		 * hook, so they can be parked on a static frame rather than left as an
+		 * empty box where an illustration should be.
+		 */
+		if (playControl !== 'autoplay' || this.reducedMotion) {
 			// Store handler reference for proper cleanup
 			const domLoadedHandler = () => this.initEvents(name, controlledAnimation, animation);
 			controlledAnimation.domLoadedHandler = domLoadedHandler;
@@ -122,6 +130,17 @@ export default class ScrubControlledAnimation {
 				Math.floor(totalFrames * (animationComponent.initialState / 100)),
 				true,
 			);
+		}
+
+		/**
+		 * Static frame rendered, no playback wired up: no autoplay loop, no
+		 * scroll scrub and no hover replay.
+		 */
+		if (this.reducedMotion) {
+			if (animationComponent.initialState === 0) {
+				animationComponent.animationItem.goToAndStop(0, true);
+			}
+			return;
 		}
 
 		if (animationComponent.triggerTarget) {

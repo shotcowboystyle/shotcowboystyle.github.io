@@ -20,6 +20,7 @@ export default [
 			'.impeccable/',
 			'lighthouse/',
 			'e2e/output/',
+			'coverage/',
 			'stats.html',
 		],
 	},
@@ -84,6 +85,18 @@ export default [
 				'error',
 				{
 					ul: ['list'],
+				},
+			],
+			// A `separator` is non-interactive until it is focusable, at which
+			// point the ARIA window-splitter pattern requires `tabindex="0"`
+			// plus arrow-key handling. That is what the resize handles in
+			// `resizer-container.astro` implement.
+			'astro/jsx-a11y/no-noninteractive-tabindex': [
+				'error',
+				{
+					tags: [],
+					roles: ['tabpanel', 'separator'],
+					allowExpressionValues: true,
 				},
 			],
 		},

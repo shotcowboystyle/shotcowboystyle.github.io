@@ -71,7 +71,7 @@ src/
 ├── types/             shared type declarations
 └── utils/             color, date, dom, debounce, detect, event bus, ...
 
-e2e/                   Playwright suites + committed visual snapshots
+e2e/                   Playwright suites: accessibility, performance, pages
 public/                static passthrough: fonts, icons, geojson, downloads
 lighthouse/            generated Lighthouse reports
 .github/               CI workflow, CodeQL, composite prepare action
@@ -147,22 +147,29 @@ Two patterns worth knowing before adding tests:
 
 ### End-to-end — Playwright
 
-Four suites under `e2e/tests/`, runnable individually:
+Three suites under `e2e/tests/`, runnable individually:
 
 ```bash
-pnpm test:e2e:accessibility   # axe-core WCAG checks
-pnpm test:e2e:pages           # routing and interaction
-pnpm test:e2e:performance     # Lighthouse audit, performance threshold 90
-pnpm test:e2e:visual          # screenshot comparison
+pnpm test:e2e:accessibility   # axe-core WCAG checks, every route
+pnpm test:e2e:performance     # Lighthouse: perf 90, a11y 95, best-practices 90, SEO 95
+pnpm test:e2e:pages           # routing and meta tags
 pnpm test:playwright:ui       # interactive debugging
 pnpm test:playwright:debug
 ```
 
+The accessibility suite iterates every route — `/`, `/404`, `/immature`, `/tower-blocks` and one
+per entry in the `project` content collection — so a new case study is covered without editing the
+spec.
+
 Playwright starts `pnpm preview` automatically unless `PLAYWRIGHT_TEST_BASE_URL` is set. Five
 projects run: `chromium`, `firefox`, `mobile-chrome` (Pixel 5), `tablet-safari` (iPad gen 6), and
 `desktop-chrome` — the last owns the Lighthouse spec exclusively, and the others exclude it.
-Viewport-specific tests are selected with `@mobile` / `@tablet` / `@desktop` tags. Snapshots live in
-`e2e/tests/__screenshots__/` and are keyed by project name; HTML reports land in `e2e/output/html/`.
+Viewport-specific tests are selected with `@mobile` / `@tablet` / `@desktop` tags. HTML reports land
+in `e2e/output/html/`.
+
+There is no visual-regression suite. The previous one was fully `test.skip`ed with golden images
+that no longer matched the UI; reintroducing it needs golden images generated on the CI platform
+rather than a contributor's machine.
 
 ---
 

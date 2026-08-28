@@ -9,6 +9,22 @@ interface Props {
 
 const { link, label, external } = Astro.props;
 const isExternal = external ?? /^https?:\/\//.test(link);
+
+/**
+ * The ring text used to repeat the label four times inside a hard
+ * `textLength="260"`, which crushed ~136 characters into a 264-unit path and
+ * rendered as overlapping, unreadable glyphs on every project card. The path is
+ * a r=42 circle, so its circumference is 2πr ≈ 264 units; at `font-size: 10`
+ * roughly 48 characters fit before glyphs start colliding.
+ */
+const RING_PATH_CAPACITY_IN_CHARACTERS = 48;
+const RING_SEPARATOR = ' • ';
+
+const ringRepeatCount = Math.max(
+	1,
+	Math.floor(RING_PATH_CAPACITY_IN_CHARACTERS / (label.length + RING_SEPARATOR.length)),
+);
+const ringText = `${Array.from({ length: ringRepeatCount }, () => label).join(RING_SEPARATOR)}${RING_SEPARATOR}`;
 ---
 
 <div
@@ -145,12 +161,7 @@ const isExternal = external ?? /^https?:\/\//.test(link);
 				class="fill-current font-medium"
 				font-size="10"
 			>
-				<textPath
-					href="#text-path"
-					textLength="260"
-				>
-					{label} • {label} • {label} • {label} •
-				</textPath>
+				<textPath href="#text-path">{ringText}</textPath>
 			</text>
 			<path
 				d="M 50 8 a 42 42 0 0 1 0 84 a 42 42 0 0 1 0 -84 z"

@@ -8,8 +8,22 @@ const { class: className } = Astro.props;
 		id="resize-me"
 	>
 		<slot />
-		<div class="resizer resizer-r"></div>
-		<div class="resizer resizer-b"></div>
+		<div
+			class="resizer resizer-r"
+			role="separator"
+			tabindex="0"
+			aria-orientation="vertical"
+			aria-label="Resize the frame width"
+		>
+		</div>
+		<div
+			class="resizer resizer-b"
+			role="separator"
+			tabindex="0"
+			aria-orientation="horizontal"
+			aria-label="Resize the frame width"
+		>
+		</div>
 	</div>
 </div>
 
@@ -25,6 +39,40 @@ const { class: className } = Astro.props;
 
 		// The dimension of the element
 		let w = 0;
+
+		const COARSE_POINTER_MIN_WIDTH = 327;
+		const FINE_POINTER_MIN_WIDTH = 654;
+
+		/** Arrow keys nudge; Shift+arrow covers ground faster. */
+		const KEYBOARD_STEP = 16;
+		const KEYBOARD_LARGE_STEP = 64;
+
+		const resizers = el.querySelectorAll<HTMLElement>('.resizer');
+
+		const minWidthFor = (isTouchEvent: boolean) =>
+			isTouchEvent ? COARSE_POINTER_MIN_WIDTH : FINE_POINTER_MIN_WIDTH;
+
+		const maxWidth = () => el.parentElement?.clientWidth ?? window.innerWidth;
+
+		/**
+		 * Single place that writes the width, so the drag and the keyboard path
+		 * cannot drift apart. Also mirrors the value onto the separators, which
+		 * is what a screen reader reads out while stepping.
+		 */
+		const applyWidth = (next: number, minWidth: number) => {
+			const clamped = Math.min(Math.max(next, minWidth), maxWidth());
+
+			el.style.width = `${clamped}px`;
+			document.body.classList.toggle('is-resize-limit', clamped <= minWidth);
+
+			resizers.forEach((resizer) => {
+				resizer.setAttribute('aria-valuenow', String(Math.round(clamped)));
+				resizer.setAttribute('aria-valuemin', String(minWidth));
+				resizer.setAttribute('aria-valuemax', String(Math.round(maxWidth())));
+			});
+
+			return clamped;
+		};
 
 		function onTouchDown(e: TouchEvent) {
 			onDown(e.touches[0]);
@@ -45,16 +93,7 @@ const { class: className } = Astro.props;
 			// How far the mouse has been moved
 			const dx = e.clientX - cx;
 
-			const minWidth = isTouchEvent ? 327 : 654;
-			if (w + dx <= minWidth) {
-				el.style.width = `${minWidth}px`;
-				document.body.classList.add('is-resize-limit');
-			} else {
-				el.style.width = `${w + dx}px`;
-				if (document.body.classList.contains('is-resize-limit')) {
-					document.body.classList.remove('is-resize-limit');
-				}
-			}
+			applyWidth(w + dx, minWidthFor(isTouchEvent));
 		};
 
 		// Handle the mousedown event
@@ -82,14 +121,48 @@ const { class: className } = Astro.props;
 			document.removeEventListener('touchend', onTouchEnd);
 		};
 
-		// Query all resizers
-		const resizers = el.querySelectorAll('.resizer');
+		/**
+		 * Keyboard equivalent of the drag. Without it the whole point of this
+		 * page — resizing the frame — was reachable by pointer only.
+		 */
+		const onKeyDown = (event: KeyboardEvent) => {
+			const minWidth = minWidthFor(window.matchMedia('(pointer: coarse)').matches);
+			const current = parseInt(window.getComputedStyle(el).width, 10);
+			const step = event.shiftKey ? KEYBOARD_LARGE_STEP : KEYBOARD_STEP;
+
+			let next: number;
+			switch (event.key) {
+				case 'ArrowLeft':
+					next = current - step;
+					break;
+				case 'ArrowRight':
+					next = current + step;
+					break;
+				case 'Home':
+					next = minWidth;
+					break;
+				case 'End':
+					next = maxWidth();
+					break;
+				default:
+					return;
+			}
+
+			event.preventDefault();
+			applyWidth(next, minWidth);
+		};
 
 		// Loop over them
-		[].forEach.call(resizers, (resizer: HTMLElement) => {
+		resizers.forEach((resizer) => {
 			resizer.addEventListener('mousedown', onDown);
 			resizer.addEventListener('touchstart', onTouchDown);
+			resizer.addEventListener('keydown', onKeyDown);
 		});
+
+		applyWidth(
+			parseInt(window.getComputedStyle(el).width, 10),
+			minWidthFor(window.matchMedia('(pointer: coarse)').matches),
+		);
 	});
 </script>
 

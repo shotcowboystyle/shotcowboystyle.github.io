@@ -498,6 +498,12 @@ const title = `Tower Blocks Game`;
 
 	#container #game {
 		@apply absolute inset-0;
+
+		/*
+		 * Suppresses the double-tap-to-zoom delay on the play surface without
+		 * taking pinch-zoom away from the whole page.
+		 */
+		touch-action: manipulation;
 	}
 
 	#container .game-over {
