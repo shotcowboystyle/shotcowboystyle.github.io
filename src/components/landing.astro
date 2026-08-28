@@ -66,17 +66,58 @@ const projects = await getCollection('project');
 	import { registerTransitionModule } from '@/utils/module-loader';
 
 	registerTransitionModule(async () => {
-		const sectionCardScroll = await import('../lib/section-card-scroll-animation.ts').then(
-			(module) => new module.default(),
-		);
+		const { prefersReducedMotion } = await import('../utils/motion.ts');
+
+		/**
+		 * The stacked-card layout is pure CSS (`sticky` + `-mb-[100vh]`), so
+		 * skipping the scrub only removes the scale-and-fade exit. The sections
+		 * still stack and scroll, which is the point of PRODUCT.md's rule that
+		 * reduced motion must still communicate hierarchy.
+		 */
+		const sectionCardScroll = prefersReducedMotion()
+			? null
+			: await import('../lib/section-card-scroll-animation.ts').then(
+					(module) => new module.default(),
+				);
+
 		const textSplit = await import('../lib/text-split/index.ts').then(
 			(module) => new module.default(),
 		);
 		const textReveal = await import('../lib/text-reveal.ts').then((module) => new module.default());
 		textReveal.animate();
 
+		/**
+		 * Lines are measured once, and `.split-line-parent` clips to a fixed
+		 * `1em`. When the viewport narrows — a rotation, a window drag, a zoom
+		 * step — the captured lines rewrap to two visual lines inside a
+		 * one-line box and the heading overlaps and clips itself. Re-splitting
+		 * against the new width is what keeps the text reachable.
+		 *
+		 * Width only: mobile browsers fire `resize` constantly as the URL bar
+		 * shows and hides, and re-splitting on that would be pure churn.
+		 */
+		const { debounce } = await import('../utils/debounce.ts');
+
+		let lastWidth = window.innerWidth;
+
+		const resplit = debounce(() => {
+			if (window.innerWidth === lastWidth) {
+				return;
+			}
+
+			lastWidth = window.innerWidth;
+
+			textReveal.destroy();
+			textSplit.destroy();
+			textSplit.init();
+			textReveal.animate();
+		}, 200);
+
+		window.addEventListener('resize', resplit);
+
 		return () => {
-			sectionCardScroll.destroy();
+			window.removeEventListener('resize', resplit);
+			sectionCardScroll?.destroy();
 			textReveal.destroy();
 			textSplit.destroy();
 		};
