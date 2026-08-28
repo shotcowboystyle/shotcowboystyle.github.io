@@ -59,7 +59,7 @@ secrets.
 src/
 ├── assets/            images, photos, favicons, SVG sprite source
 ├── components/        .astro UI components (about/, common/, testimonials/)
-├── config/            animation tokens + their unit test and usage notes
+├── config/            animation tokens, compile-time type assertions, usage notes
 ├── content/           content collections: project/, testimonial/, social/
 ├── content.config.ts  zod schemas for the collections above
 ├── layouts/           base.astro, game.astro
@@ -72,13 +72,16 @@ src/
 └── utils/             color, date, dom, debounce, detect, event bus, ...
 
 e2e/                   Playwright suites + committed visual snapshots
-public/                static passthrough: fonts, icons, geojson, downloads, sw.js
+public/                static passthrough: fonts, icons, geojson, downloads
 lighthouse/            generated Lighthouse reports
 .github/               CI workflow, CodeQL, composite prepare action
 .impeccable/           design system sidecar (tokens, motion, snippets)
 ```
 
 Import with the `@/` alias, which resolves to `src/`.
+
+The service worker is assembled from `src/sw/` by the `astro-sw` integration and emitted straight
+to `dist/sw.js` at build time — it is generated output, not a checked-in file.
 
 ### Adding a project case study
 
