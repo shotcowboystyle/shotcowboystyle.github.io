@@ -88,6 +88,9 @@ test.describe('web performance tests', async () => {
 			config: lighthouseDesktopConfig,
 			thresholds: {
 				performance: 90,
+				accessibility: 95,
+				'best-practices': 90,
+				seo: 95,
 			},
 			reports: {
 				formats: {

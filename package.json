@@ -43,7 +43,6 @@
 		"test:e2e:accessibility": "playwright test e2e/tests/accessibility",
 		"test:e2e:pages": "playwright test e2e/tests/pages",
 		"test:e2e:performance": "playwright test e2e/tests/performance",
-		"test:e2e:visual": "playwright test e2e/tests/visual",
 		"test:playwright:codegen": "playwright codegen",
 		"test:playwright:debug": "playwright test --debug",
 		"test:playwright:ui": "playwright test --ui",

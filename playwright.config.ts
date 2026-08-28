@@ -19,7 +19,6 @@ export default defineConfig({
 	reporter: isCI
 		? [['blob'], ['github']]
 		: [['line'], ['html', { outputFolder: './e2e/output/html/', open: 'never' }]],
-	snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}--{projectName}{ext}',
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
