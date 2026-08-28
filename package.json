@@ -13,29 +13,30 @@
 		"url": "https://github.com/shotcowboystyle/shotcowboystyle.github.io"
 	},
 	"license": "MIT",
+	"packageManager": "pnpm@11.24.0",
+	"engines": {
+		"node": ">=24.19.0"
+	},
 	"scripts": {
 		"postprepare": "lefthook install",
 		"astro": "astro",
 		"build": "astro build",
-		"clean": "rm -rf .astro dist lighthouse node_modules pnpm-lock.yaml",
-		"commit": "git-cz",
+		"clean": "rm -rf .astro dist lighthouse node_modules stats.html .eslintcache .stylelintcache .cspellcache",
 		"dev": "astro dev",
 		"format:check": "prettier '**/*.{tsx,ts,mjs,cjs,js,json,css,yml,yaml,md,astro}' --check",
-		"format:fix": "pnpm run format:check -w",
+		"format:fix": "prettier '**/*.{tsx,ts,mjs,cjs,js,json,css,yml,yaml,md,astro}' --write",
 		"lint:check": "run-p --continue-on-error \"lint:*:check\"",
 		"lint:fix": "run-p --continue-on-error \"lint:*:fix\"",
 		"lint:code:check": "eslint .",
-		"lint:code:fix": "pnpm run lint:code:check --fix",
-		"lint:package:check": "npmPkgJsonLint .",
+		"lint:code:fix": "eslint . --fix",
+		"lint:manifest:check": "npmPkgJsonLint .",
 		"lint:packages:check": "pnpm dedupe --check",
 		"lint:knip:check": "knip --config knip.config.mjs",
 		"lint:spelling:check": "cspell lint './**/*.{tsx,ts,mjs,cjs,js,json,css,yml,yaml,md,astro}' --gitignore --cache",
 		"lint:styles:check": "stylelint src/**/*.{astro,css} --cache --ignore-pattern .gitignore",
-		"lint:styles:fix": "pnpm run lint:styles:check --fix",
+		"lint:styles:fix": "stylelint src/**/*.{astro,css} --cache --ignore-pattern .gitignore --fix",
 		"preview": "astro preview",
-		"tsc": "tsc",
 		"test": "run-s test:e2e:*",
-		"test:e2e": "run-s test:e2e:*",
 		"test:e2e:accessibility": "playwright test e2e/tests/accessibility",
 		"test:e2e:pages": "playwright test e2e/tests/pages",
 		"test:e2e:performance": "playwright test e2e/tests/performance",
@@ -70,11 +71,6 @@
 		"@eslint/markdown": "^8.0.3",
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
 		"@playwright/test": "^1.62.1",
-		"@semantic-release/changelog": "^6.0.3",
-		"@semantic-release/commit-analyzer": "^13.0.1",
-		"@semantic-release/git": "10.0.1",
-		"@semantic-release/github": "^12.0.9",
-		"@semantic-release/release-notes-generator": "^14.1.1",
 		"@tailwindcss/postcss": "^4.3.3",
 		"@types/cannon": "^0.1.13",
 		"@types/eslint": "^9.6.1",
@@ -87,14 +83,11 @@
 		"astro-purgecss": "^6.0.1",
 		"ci-info": "^4.4.0",
 		"commitizen": "^4.3.2",
-		"conventional-changelog-conventionalcommits": "^10.4.0",
 		"cspell": "^10.1.0",
 		"cz-conventional-changelog": "^3.3.0",
 		"daisyui": "^5.7.22",
 		"eslint": "^10.9.0",
-		"eslint-import-resolver-typescript": "^4.4.5",
 		"eslint-plugin-astro": "^3.1.0",
-		"eslint-plugin-import-x": "^4.17.1",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"globals": "^17.11.0",
 		"knip": "^6.32.2",
@@ -112,7 +105,6 @@
 		"prettier-plugin-tailwindcss": "^0.8.1",
 		"rollup-plugin-analyzer": "^4.0.0",
 		"rollup-plugin-visualizer": "^7.1.1",
-		"semantic-release": "25.0.9",
 		"stylelint": "^17.14.1",
 		"stylelint-config-html": "^1.1.0",
 		"stylelint-config-hudochenkov": "^13.0.2",
@@ -120,15 +112,5 @@
 		"stylelint-config-tailwindcss": "^1.0.1",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^6.0.3"
-	},
-	"pnpm": {
-		"overrides": {
-			"lodash": ">=4.18.1"
-		}
-	},
-	"config": {
-		"commitizen": {
-			"path": "./node_modules/cz-conventional-changelog"
-		}
 	}
 }

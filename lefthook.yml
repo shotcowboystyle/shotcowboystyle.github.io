@@ -1,41 +1,66 @@
 # https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
+#
+# Binaries are invoked via `node_modules/.bin/` rather than `pnpm exec`.
+# Lefthook does not add `node_modules/.bin` to PATH, and git hooks do not
+# inherit mise's `_.path`, so the explicit path is required. It also avoids a
+# pnpm bootstrap (and its deps-status check) per command.
 
 prepare-commit-msg:
   commands:
-    commitzen:
+    commitizen:
       interactive: true
       use_stdin: true
-      run: pnpm cz --hook
+      skip:
+        - merge
+        - rebase
+      # Sole entry point for the wizard — `git commit` opens it. There is no
+      # `pnpm commit` script; having both made commitizen prompt twice.
+      #
+      # {2} is git's commit-source argument. Git sets it to
+      # message/template/merge/squash/commit when a message already exists
+      # (-m, -F, --amend, -c, merges, squashes) and omits it entirely for a
+      # bare `git commit`. Without this guard the wizard hijacks those
+      # commits, discarding the supplied message and hanging when there is no
+      # TTY.
+      #
+      # Matched positively against git's known sources rather than testing for
+      # emptiness: when git omits the argument lefthook leaves the placeholder
+      # un-substituted, and it expands every occurrence of it — so a '{2}'
+      # used as a case pattern would always match itself.
+      run: 'case "{2}" in message|template|merge|squash|commit) ;; *) node_modules/.bin/cz --hook ;; esac'
       env:
-        LEFTHOOK: "0"
+        # Stops the nested `git commit` inside commitizen re-entering lefthook.
+        LEFTHOOK: '0'
 
 commit-msg:
   commands:
     'lint commit message':
-      run: pnpm commitlint --edit {1}
+      run: node_modules/.bin/commitlint --edit {1}
 
 pre-commit:
   parallel: true
   commands:
     format:
       glob: '*.{js,cjs,mjs,ts,jsx,tsx,md,json,css,html,yml,yaml,astro}'
-      run: pnpm exec prettier --ignore-unknown --cache --write --no-error-on-unmatched-pattern --log-level error {staged_files}
+      run: node_modules/.bin/prettier --ignore-unknown --cache --write --no-error-on-unmatched-pattern --log-level error {staged_files}
       stage_fixed: true
     eslint:
       glob: '*.{js,cjs,mjs,ts,jsx,tsx,astro}'
-      run: pnpm exec eslint --fix --cache --no-error-on-unmatched-pattern {staged_files}
+      run: node_modules/.bin/eslint --fix --cache --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     stylelint:
       glob: '*.{astro,css}'
-      run: pnpm exec stylelint --fix --cache {staged_files}
+      run: node_modules/.bin/stylelint --fix --cache {staged_files}
       stage_fixed: true
     spelling:
       glob: '*.{js,cjs,mjs,ts,jsx,tsx,md,json,css,yml,yaml,astro}'
-      run: pnpm exec cspell lint --cache --no-must-find-files {staged_files}
-    lint-package:
+      run: node_modules/.bin/cspell lint --cache --no-must-find-files {staged_files}
+    lint-manifest:
       glob: 'package.json'
-      run: pnpm run lint:package:check
+      run: node_modules/.bin/npmPkgJsonLint .
 
+# Full-repo spelling deliberately lives in CI only. Running it here as well as
+# on staged files at pre-commit made the same check run three times per change.
 pre-push:
   parallel: true
   commands:
@@ -43,7 +68,5 @@ pre-push:
       run: pnpm run types:check
     dead-code:
       run: pnpm run lint:knip:check
-    spelling-full:
-      run: pnpm run lint:spelling:check
     dedupe:
       run: pnpm run lint:packages:check
