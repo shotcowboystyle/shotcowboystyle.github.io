@@ -110,7 +110,7 @@
 		"rollup-plugin-analyzer": "^4.0.0",
 		"rollup-plugin-visualizer": "^7.1.1",
 		"stylelint": "^17.14.1",
-		"stylelint-config-html": "^1.1.0",
+		"stylelint-config-html": "^2.0.0",
 		"stylelint-config-hudochenkov": "^13.0.2",
 		"stylelint-config-standard": "^40.0.0",
 		"stylelint-config-tailwindcss": "^1.0.1",
