@@ -12,17 +12,17 @@ export type Props = {
 	meta?: PageMetaData;
 };
 
-const DEFAULT_META: Required<PageMetaData> = {
+const DEFAULT_META = {
 	title: 'Curtis Blanton — Full Stack Senior Developer',
 	description:
 		'Motion is the language. Fifteen years of shipping considered work for teams that treat craft as evidence.',
-};
+} satisfies PageMetaData;
 
 /**
  * Merged rather than replaced, so a page that supplies only a title still gets
  * a description instead of emitting an empty `<meta name="description">`.
  */
-const meta: Required<PageMetaData> = { ...DEFAULT_META, ...Astro.props.meta };
+const meta: PageMetaData = { ...DEFAULT_META, ...Astro.props.meta };
 ---
 
 <!doctype html>

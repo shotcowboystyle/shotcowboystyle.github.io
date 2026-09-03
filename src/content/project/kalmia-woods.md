@@ -31,9 +31,11 @@ approach:
       No hero, no marketing scroll. The landing page is the book's cover; the cover leads to a table of contents that respects the reader's time. Photography and typography carry the room; the interface disappears.
 motionMoments:
   - name: Room-by-room scroll cadence
+    demo: stagger
     description: |
       Each room lands as a full-viewport plate with a paced reveal — the photograph settles first, the room name follows, house notes trail. Motion tells the reader "one room at a time"; it doesn't decorate.
   - name: Availability preflight
+    demo: pulse
     description: |
       When a guest queries dates, the availability card breathes once before returning an answer — signaling that a real request is running, not that a spinner is spinning.
 nextSlug: frigate-boost

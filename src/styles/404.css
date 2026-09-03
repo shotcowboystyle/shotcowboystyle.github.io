@@ -1,64 +1,37 @@
 @reference "./base.css";
 
 /*
- * The 404 used to be a purple-to-indigo gradient space scene with an animated
- * astronaut — roughly 400 lines of illustration CSS, and the only surface on
- * the site that did not sit on the black canvas. Backgrounds are flat now, so
- * the page is built from the same materials as every other page: black ground,
- * one display heading, real routes out.
+ * The 404 is built from the same materials as every other page: black ground,
+ * one display numeral, real routes out, and a mint band at the foot.
  *
- * The star field survives because it is a flat dot pattern, not a gradient, and
- * it gives an otherwise empty viewport some tooth.
+ * What is gone: the star field, and the gradient on the numeral. The star field
+ * was a scatter of blinking dots that belonged to the purple space scene this
+ * page used to be, and it was the last thing on the site drawing attention
+ * without carrying information. The gradient is the system's only one and it
+ * belongs to the landing hero, not to an error page.
  */
 
-#page-wrapper {
-	@apply relative flex min-h-[100dvh] w-full items-center overflow-hidden bg-black font-sans text-white;
-}
-
-#stars {
-	@apply pointer-events-none absolute inset-0 z-0;
-}
-
-.star {
-	@apply absolute rounded-full bg-white;
-
-	top: var(--star-top);
-	left: var(--star-left);
-	width: var(--star-size);
-	height: var(--star-size);
-	opacity: 45%;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.star {
-		@apply animate-blink;
-
-		animation-delay: var(--star-delay);
-	}
-}
-
 .not-found {
-	@apply relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-start px-6 py-24 sm:px-12;
+	@apply relative flex min-h-[100dvh] w-full flex-col justify-between overflow-hidden bg-black font-sans text-white;
+}
+
+.not-found-inner {
+	@apply relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-start px-6 pt-24 pb-16 sm:px-12;
 }
 
 .not-found-status {
-	@apply mb-6 text-xs font-semibold text-white/70 uppercase;
+	@apply mb-6 text-xs font-semibold uppercase;
 
+	color: var(--color-primary);
 	letter-spacing: 0.14em;
 }
 
-/*
- * The one gradient the system allows: hero heading text, left to right.
- * `.hero-gradient-text-dark` carries it; only the size and rhythm live here.
- */
 .not-found-code {
-	@apply mb-8 text-8xl leading-none font-bold;
+	@apply mb-8 font-bold text-white;
 
-	letter-spacing: -0.04em;
-
-	@media (width >= theme(--breakpoint-sm)) {
-		font-size: 12rem;
-	}
+	font-size: clamp(7rem, 24vw, 18rem);
+	line-height: 0.78;
+	letter-spacing: -0.05em;
 }
 
 .not-found-copy {
@@ -101,14 +74,45 @@
 	text-decoration-thickness: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-	.not-found-primary,
-	.not-found-secondary {
-		transition: none;
-	}
+/* ---- Mint band ----
+ *
+ * The one piece of motion on the page, and it has a job: a dead end that keeps
+ * restating itself. It sits at the foot as a full-bleed rule so the composition
+ * closes on the brand color rather than trailing off into black.
+ */
 
-	.not-found-primary:hover,
-	.not-found-primary:focus-visible {
-		transform: none;
+.not-found-marquee {
+	@apply relative z-10 w-full overflow-hidden py-4;
+
+	background: var(--color-primary);
+	color: var(--color-primary-content);
+}
+
+.not-found-marquee-track {
+	@apply flex w-max;
+}
+
+.not-found-marquee-run {
+	@apply m-0 flex list-none gap-8 pr-8 pl-0 text-sm font-semibold uppercase;
+
+	letter-spacing: 0.16em;
+}
+
+.not-found-marquee-tick {
+	@apply pl-8;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.not-found-marquee-track {
+		animation: marqueeDrift 42s linear infinite;
+	}
+}
+
+@keyframes marqueeDrift {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
 	}
 }

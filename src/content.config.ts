@@ -38,6 +38,32 @@ const projectCollection = defineCollection({
 					z.object({
 						name: z.string(),
 						description: z.string(),
+						/**
+						 * Which of the case-study page's built-in motion demos to run
+						 * beside the description. The page used to argue that "motion has
+						 * a job" and then describe every animation in prose, which is the
+						 * one claim a portfolio should never ask to be taken on trust.
+						 *
+						 * These are illustrative diagrams of the *kind* of movement, not
+						 * captures of the real thing. Omit the field and the card falls
+						 * back to text alone.
+						 */
+						demo: z
+							.enum(['rotate', 'slide-in', 'ink-drop', 'count-up', 'stagger', 'pulse'])
+							.optional(),
+					}),
+				)
+				.default([]),
+			/**
+			 * Measured results, rendered as a band under the approach. Left empty
+			 * until there are real numbers to put in it — an outcome block with
+			 * invented figures is worse than no outcome block.
+			 */
+			outcome: z
+				.array(
+					z.object({
+						label: z.string(),
+						value: z.string(),
 					}),
 				)
 				.default([]),

@@ -1,4 +1,6 @@
 ---
+import BackLink from '@/components/back-link.astro';
+import MotionDemo from '@/components/motion-demo.astro';
 import BaseLayout from '@/layouts/base.astro';
 import { Image } from 'astro:assets';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
@@ -30,6 +32,10 @@ const meta = {
 	title: `${data.title} — Case Study — Curtis Blanton`,
 	description:
 		problemFirstLine.length > 155 ? `${problemFirstLine.slice(0, 152)}…` : problemFirstLine,
+	/* A case study is an article, and its share image is its own screenshot
+	   rather than the site-wide card. */
+	type: 'article' as const,
+	image: data.screenshotImage.src,
 };
 ---
 
@@ -39,24 +45,19 @@ const meta = {
 		data-variant={data.variant}
 	>
 		<header class="masthead">
-			<a
-				href="/"
-				class="back-link"
-				data-astro-prefetch
-			>
-				<span
-					class="back-link-arrow"
-					aria-hidden="true"
-					>←</span
-				>
-				<span class="back-link-label">Back to portfolio</span>
-			</a>
+			{
+				/* Wrapped rather than styled through a `class` prop: Astro scopes this
+			     file's CSS with a `data-astro-cid` attribute that the component's own
+			     root element does not carry, so a `.masthead-back` rule here would
+			     never match it and the link stayed in the flow. */
+			}
+			<div class="masthead-back">
+				<BackLink tone="ink" />
+			</div>
 
 			<div class="masthead-inner">
-				<div class="masthead-lead">
-					<p class="lead">{data.problem}</p>
-					<h1 class="title">{data.title}</h1>
-				</div>
+				<p class="lead">{data.problem}</p>
+				<h1 class="title">{data.title}</h1>
 
 				<dl class="meta-rail">
 					<div class="meta-item">
@@ -73,22 +74,61 @@ const meta = {
 					</div>
 				</dl>
 			</div>
+
+			<p
+				class="masthead-cue"
+				aria-hidden="true"
+			>
+				<span class="masthead-cue-label">Scroll</span>
+				<span class="masthead-cue-rule"></span>
+			</p>
 		</header>
 
+		{
+			/*
+			 * The artifact used to be a single still cropped with `object-fit: cover`
+			 * to 85vh, which meant a full-page screenshot showed its own hero band and
+			 * nothing else, with no way to see the rest. The frame now travels the
+			 * whole capture as the section crosses the viewport — the one piece of
+			 * scroll-linked motion on the page, and it exists to show something that
+			 * was otherwise unreachable.
+			 *
+			 * `data-scrub` is set by script. Without it the frame has no fixed height
+			 * and the full screenshot simply renders at its natural length, so no-JS
+			 * and reduced-motion readers get more of the artefact, not less.
+			 */
+		}
 		<figure class="hero-artifact">
-			<Image
-				src={data.screenshotImage}
-				widths={[720, 1080, 1440, 1920, data.screenshotImage.width]}
-				sizes="(min-width: 1200px) 1200px, 100vw"
-				alt={`${data.title} — full-page screenshot`}
-				class="hero-artifact-image"
-				loading="eager"
-			/>
-			<figcaption class="hero-artifact-caption">
+			<div
+				class="artifact-frame"
+				data-artifact-frame
+			>
+				<Image
+					src={data.screenshotImage}
+					widths={[720, 1080, 1440, 1920, data.screenshotImage.width]}
+					sizes="(min-width: 1280px) 1200px, 100vw"
+					alt={`${data.title} — full-page screenshot`}
+					class="artifact-image"
+					loading="eager"
+				/>
+			</div>
+
+			<div
+				class="artifact-progress"
+				aria-hidden="true"
+			>
 				<span
-					aria-hidden="true"
-					class="caption-rule"
+					class="artifact-progress-fill"
+					data-artifact-progress
 				></span>
+			</div>
+
+			{
+				/* No "full page" note: the captures are not all full-page — some are
+			     framed mockups — and the progress rule already shows that there is
+			     more of the image than the frame is holding. */
+			}
+			<figcaption class="artifact-caption">
 				<span>{data.tags.join(' · ')}</span>
 			</figcaption>
 		</figure>
@@ -99,18 +139,18 @@ const meta = {
 		>
 			{
 				/*
-				 * The `Move I / 3` folio marks and the mint tint on the middle plate are
-				 * both gone. The numbering carried no information the reader needed — the
-				 * plates are already in order — and the tint marked one move as important
-				 * on the basis of its index rather than its content. Rhythm now comes from
-				 * the alternating plate widths alone.
+				 * Rhythm comes from the alternating plate widths alone — the folio
+				 * marks and the tint on the middle plate are gone, because neither
+				 * carried information the reader needed. The alternation is driven by
+				 * parity rather than hard-coded indices, so a fourth or fifth move
+				 * keeps the cadence instead of falling back to full width.
 				 */
 			}
 			{
 				data.approach.map((move, index) => (
 					<article
 						class="move"
-						data-index={index}
+						data-side={index % 2 === 0 ? 'lead' : 'trail'}
 					>
 						<h2 class="move-title">{move.name}</h2>
 						<p class="move-body">{move.body}</p>
@@ -118,6 +158,24 @@ const meta = {
 				))
 			}
 		</section>
+
+		{
+			data.outcome.length > 0 && (
+				<section
+					class="outcome"
+					aria-label="Outcome"
+				>
+					<dl class="outcome-grid">
+						{data.outcome.map((item) => (
+							<div class="outcome-item">
+								<dt>{item.label}</dt>
+								<dd>{item.value}</dd>
+							</div>
+						))}
+					</dl>
+				</section>
+			)
+		}
 
 		{
 			data.motionMoments.length > 0 && (
@@ -129,19 +187,23 @@ const meta = {
 						<h2>Motion has a job.</h2>
 						<p>
 							Every animation in this project earns a place by telling the reader something they'd
-							otherwise have to guess at.
+							otherwise have to guess at. The diagrams show the shape of each one.
 						</p>
 					</div>
 
 					<div class="moments-grid">
 						{data.motionMoments.map((moment) => (
 							<article class="moment">
-								<span
-									class="quote-glyph"
-									aria-hidden="true"
-								>
-									“
-								</span>
+								{moment.demo ? (
+									<MotionDemo kind={moment.demo} />
+								) : (
+									<span
+										class="quote-glyph"
+										aria-hidden="true"
+									>
+										“
+									</span>
+								)}
 								<h3 class="moment-title">{moment.name}</h3>
 								<p class="moment-body">{moment.description}</p>
 							</article>
@@ -176,6 +238,22 @@ const meta = {
 		</section>
 
 		{
+			data.credits.length > 0 && (
+				<section
+					class="credits"
+					aria-label="Credits"
+				>
+					<h2 class="credits-heading">Credits</h2>
+					<ul class="credits-list">
+						{data.credits.map((credit) => (
+							<li>{credit}</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+
+		{
 			nextSlug && nextTitle && (
 				<aside
 					class="next"
@@ -198,6 +276,29 @@ const meta = {
 				</aside>
 			)
 		}
+
+		{
+			/* A case study used to end on the next-study card, which made every
+		     route out of the page a route deeper into it. */
+		}
+		<footer class="case-foot">
+			<p class="case-foot-name">Curtis Blanton</p>
+			<nav
+				class="case-foot-nav"
+				aria-label="Site"
+			>
+				<a
+					href="/#project-cards"
+					data-astro-prefetch
+					>All work</a
+				>
+				<a
+					href="/#about"
+					data-astro-prefetch
+					>About &amp; contact</a
+				>
+			</nav>
+		</footer>
 	</article>
 </BaseLayout>
 
@@ -207,13 +308,13 @@ const meta = {
 	/* ============================================================
 	 * Case study — a Kinetic Monograph plate.
 	 * Black canvas gallery wall, Signal Mint drenched endpoints,
-	 * off-white plates carry the reading. No shadows, no gradients,
-	 * no decorative motion.
+	 * off-white plates carry the reading. No shadows, no gradients.
 	 * ============================================================ */
 
 	.case-study {
 		--case-gutter: clamp(1.25rem, 3vw, 3rem);
 		--case-plate-radius: 24px;
+		--case-measure: 1200px;
 		--ink-primary: oklch(25% 0.08 160deg); /* primary-ink on mint */
 		--ink-canvas: oklch(91% 0 0deg); /* off-white on canvas */
 		--ink-slate: oklch(36% 0.03 262.99deg);
@@ -228,57 +329,6 @@ const meta = {
 		color: var(--ink-canvas);
 	}
 
-	/* ---- Back link (tertiary tier) ----
-	 *
-	 * Lives inside the masthead, not the black canvas above it: `--ink-primary`
-	 * is the on-mint ink and measured 1.38:1 when the link sat on `#000`.
-	 */
-
-	.back-link {
-		position: absolute;
-		top: clamp(1rem, 3vw, 2rem);
-		left: var(--case-gutter);
-		z-index: 5;
-		display: inline-flex;
-		gap: 0.6rem;
-		align-items: center;
-		color: var(--ink-primary);
-		font-weight: 600;
-		font-size: var(--text-xs);
-		font-family: var(--font-sans);
-		letter-spacing: 0.08em;
-		text-decoration: none;
-		text-transform: uppercase;
-	}
-
-	.back-link-arrow {
-		display: inline-block;
-		transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
-	}
-
-	.back-link:hover .back-link-arrow,
-	.back-link:focus-visible .back-link-arrow {
-		transform: translateX(-3px);
-	}
-
-	.back-link-label {
-		padding-bottom: 2px;
-		border-bottom: 1px solid transparent;
-		transition: border-color 0.25s ease-out;
-	}
-
-	.back-link:hover .back-link-label,
-	.back-link:focus-visible .back-link-label {
-		border-bottom-color: currentColor;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.back-link-arrow,
-		.back-link-label {
-			transition: none;
-		}
-	}
-
 	/* ============================================================
 	 * MASTHEAD — drenched Signal Mint. First fold.
 	 * ============================================================ */
@@ -286,32 +336,49 @@ const meta = {
 	.masthead {
 		position: relative;
 		display: grid;
-		align-content: center;
+
+		/*
+		 * Anchored to the foot of the fold, not centred in it. Centring put an
+		 * equal band of empty mint above and below the block, which read as a
+		 * layout waiting for something rather than a title page. Setting it low
+		 * makes the empty field above deliberate, and it guarantees the title
+		 * clears the back link at every variant and title length.
+		 */
+		align-content: end;
 		min-height: min(100dvh, 900px);
-		padding: clamp(6rem, 12vw, 10rem) var(--case-gutter) clamp(3rem, 6vw, 5rem);
+		padding: clamp(5rem, 9vw, 7rem) var(--case-gutter) clamp(5rem, 8vw, 7rem);
 		background: var(--mint);
 		color: var(--ink-primary);
 	}
 
+	.masthead-back {
+		position: absolute;
+		top: clamp(1rem, 3vw, 2rem);
+		left: var(--case-gutter);
+		z-index: 5;
+	}
+
+	/*
+	 * One grid, three named areas, and the variant decides how they are placed.
+	 * `variant` has been in the content schema from the start but nothing ever
+	 * read it, so `feature`, `split` and `poster` all rendered identically.
+	 */
 	.masthead-inner {
 		display: grid;
-		grid-template-rows: auto;
+		grid-template-areas:
+			'lead meta'
+			'title meta';
 		grid-template-columns: minmax(0, 1fr) minmax(200px, 22ch);
-		gap: clamp(2rem, 5vw, 4.5rem);
+		gap: clamp(1.5rem, 3vw, 3rem) clamp(2rem, 5vw, 4.5rem);
 		align-items: end;
 		width: 100%;
 		max-width: 1400px;
 		margin-inline: auto;
 	}
 
-	.masthead-lead {
-		display: flex;
-		flex-direction: column;
-		gap: clamp(1.5rem, 3vw, 3rem);
-		min-width: 0;
-	}
-
 	.lead {
+		grid-area: lead;
+		align-self: end;
 		max-width: 42ch;
 		margin: 0;
 		color: var(--ink-primary);
@@ -328,8 +395,8 @@ const meta = {
 	 * straight through the meta rail beside it.
 	 */
 	.title {
+		grid-area: title;
 		margin: 0;
-		overflow-wrap: break-word;
 		color: var(--ink-primary);
 		font-weight: 700;
 		font-size: var(--text-6xl);
@@ -338,6 +405,7 @@ const meta = {
 		letter-spacing: -0.02em;
 		text-transform: uppercase;
 		text-wrap: balance;
+		overflow-wrap: break-word;
 	}
 
 	@media (width >= theme(--breakpoint-sm)) {
@@ -352,16 +420,55 @@ const meta = {
 		}
 	}
 
-	/* Meta rail — editorial colophon on the right column at desktop,
-	   collapses to a horizontal rail beneath the title on narrow viewports. */
+	/* `split` — the title takes a full-height column of its own and the reading
+	   matter stacks beside it. */
+	.case-study[data-variant='split'] .masthead-inner {
+		grid-template-areas:
+			'title lead'
+			'title meta';
+		grid-template-columns: minmax(0, 1.25fr) minmax(260px, 1fr);
+		align-items: start;
+	}
+
+	.case-study[data-variant='split'] .lead {
+		align-self: start;
+	}
+
+	/* `poster` — title first and largest, everything else beneath it. */
+	.case-study[data-variant='poster'] .masthead-inner {
+		grid-template-areas:
+			'title'
+			'lead'
+			'meta';
+		grid-template-columns: minmax(0, 1fr);
+		align-items: start;
+	}
+
+	.case-study[data-variant='poster'] .lead {
+		align-self: start;
+	}
+
+	@media (width >= theme(--breakpoint-xl)) {
+		.case-study[data-variant='poster'] .title {
+			font-size: clamp(var(--text-9xl), 13vw, 14rem);
+		}
+	}
+
+	/* Meta rail — editorial colophon beside the title at desktop. */
 	.meta-rail {
 		display: grid;
+		grid-area: meta;
 		grid-template-columns: 1fr;
 		gap: clamp(1.25rem, 2vw, 1.75rem);
 		align-self: end;
 		margin: 0;
 		padding: clamp(1rem, 2vw, 1.5rem) 0 0.25rem clamp(1.25rem, 2vw, 2rem);
 		border-left: 1px solid color-mix(in oklch, var(--ink-primary) 40%, transparent);
+	}
+
+	.case-study[data-variant='poster'] .meta-rail,
+	.case-study[data-variant='split'] .meta-rail {
+		align-self: start;
 	}
 
 	.meta-item {
@@ -372,7 +479,15 @@ const meta = {
 	}
 
 	@media (width <= 780px) {
-		.masthead-inner {
+		/* Every variant collapses to the same single column. There is no room
+		   for a composition below this width, only a reading order. */
+		.case-study .masthead-inner,
+		.case-study[data-variant='split'] .masthead-inner,
+		.case-study[data-variant='poster'] .masthead-inner {
+			grid-template-areas:
+				'lead'
+				'title'
+				'meta';
 			grid-template-columns: 1fr;
 			gap: clamp(2rem, 6vw, 3rem);
 			align-items: start;
@@ -385,6 +500,28 @@ const meta = {
 			padding: clamp(1rem, 2vw, 1.5rem) 0 0;
 			border-top: 1px solid color-mix(in oklch, var(--ink-primary) 40%, transparent);
 			border-left: none;
+		}
+	}
+
+	/*
+	 * Under 520px the three-column rail crushed `Stack` into a 6ch gutter and
+	 * wrapped "WebExtension APIs · Vite" over four lines. Below that width it
+	 * becomes a list of rows.
+	 */
+	@media (width <= 520px) {
+		.meta-rail {
+			grid-template-columns: 1fr;
+			gap: 0;
+		}
+
+		.meta-item {
+			gap: 0.2rem;
+			padding: 0.85rem 0;
+			border-bottom: 1px solid color-mix(in oklch, var(--ink-primary) 25%, transparent);
+		}
+
+		.meta-item:last-child {
+			border-bottom: none;
 		}
 	}
 
@@ -412,8 +549,50 @@ const meta = {
 		line-height: 1.4;
 	}
 
+	/* Scroll cue — the fold is a full viewport of flat mint and gave no sign
+	   there was anything under it. */
+	.masthead-cue {
+		position: absolute;
+		bottom: clamp(1.25rem, 3vw, 2rem);
+		left: var(--case-gutter);
+		display: flex;
+		gap: 0.75rem;
+		align-items: center;
+		margin: 0;
+		color: var(--ink-primary);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.masthead-cue-rule {
+		display: block;
+		width: 3rem;
+		height: 1px;
+		background: var(--ink-primary);
+		transform-origin: left center;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.masthead-cue-rule {
+			animation: cueDraw 2.6s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+		}
+	}
+
+	@keyframes cueDraw {
+		0%,
+		100% {
+			transform: scaleX(0.35);
+		}
+		50% {
+			transform: scaleX(1);
+		}
+	}
+
 	/* ============================================================
-	 * HERO ARTIFACT — canvas-black, framed screenshot.
+	 * HERO ARTIFACT — the full capture, traveled on scroll.
 	 * ============================================================ */
 
 	.hero-artifact {
@@ -425,26 +604,60 @@ const meta = {
 		padding: 0 var(--case-gutter);
 	}
 
-	.hero-artifact-image {
-		display: block;
-		object-fit: cover;
-		object-position: top center;
+	.artifact-frame {
+		overflow: hidden;
 		width: 100%;
-		max-width: 1200px;
-		height: auto;
-		max-height: min(85vh, 780px);
+		max-width: var(--case-measure);
 		border-radius: var(--case-plate-radius);
 		background: var(--ink-canvas);
 	}
 
-	.hero-artifact-caption {
+	/* Only the scrubbed frame is clipped. Left alone it renders the whole
+	   screenshot at its natural length. */
+	.artifact-frame[data-scrub='on'] {
+		height: min(78vh, 720px);
+	}
+
+	.artifact-image {
+		display: block;
+		width: 100%;
+		height: auto;
+		will-change: transform;
+	}
+
+	.artifact-progress {
+		overflow: hidden;
+		width: 100%;
+		max-width: var(--case-measure);
+		height: 2px;
+		border-radius: 1px;
+		background: color-mix(in oklch, var(--ink-canvas) 18%, transparent);
+		opacity: 0%;
+	}
+
+	.artifact-frame[data-scrub='on'] ~ .artifact-progress {
+		opacity: 100%;
+	}
+
+	.artifact-progress-fill {
+		display: block;
+		width: 100%;
+		height: 100%;
+		background: var(--mint);
+		transform: scaleX(0);
+		transform-origin: left center;
+	}
+
+	.artifact-caption {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.75rem;
+		gap: 0.75rem 1.5rem;
+		justify-content: space-between;
 		align-items: center;
-		max-width: 1200px;
+		width: 100%;
+		max-width: var(--case-measure);
 		margin: 0;
-		padding: 0 0.5rem;
+		padding: 0 0.25rem;
 		color: color-mix(in oklch, var(--ink-canvas) 65%, transparent);
 		font-weight: 500;
 		font-size: var(--text-xs);
@@ -453,18 +666,12 @@ const meta = {
 		text-transform: uppercase;
 	}
 
-	.caption-rule {
-		display: inline-block;
-		flex: 0 0 auto;
-		width: 24px;
-		height: 1px;
-		background: color-mix(in oklch, var(--ink-canvas) 40%, transparent);
+	.artifact-caption-note {
+		color: var(--mint);
 	}
 
 	/* ============================================================
 	 * APPROACH SPINE — one editorial move per slab.
-	 * Every plate is the same neutral off-white; emphasis comes from
-	 * width and position, not from tinting one at random.
 	 * ============================================================ */
 
 	.approach {
@@ -480,7 +687,7 @@ const meta = {
 		grid-template-columns: 1fr;
 		gap: clamp(1.25rem, 2vw, 2rem);
 		width: 100%;
-		max-width: 1200px;
+		max-width: var(--case-measure);
 		margin-inline: auto;
 		padding: clamp(2rem, 4vw, 4rem) clamp(1.5rem, 3vw, 3rem);
 		border-radius: var(--case-plate-radius);
@@ -488,25 +695,21 @@ const meta = {
 		color: #000;
 	}
 
-	/* Asymmetry: index 0 leans left, index 1 (mint accent) sits wider and
-	   centered as the emphasis, index 2 leans right. Narrower plates on the
-	   flanks give the mint plate compositional weight. Deliberate, not
-	   decorative. */
-	.move[data-index='0'] {
+	.move[data-side='lead'] {
 		max-width: 880px;
 		margin-right: auto;
 		margin-left: 0;
 	}
 
-	.move[data-index='2'] {
+	.move[data-side='trail'] {
 		max-width: 880px;
 		margin-right: 0;
 		margin-left: auto;
 	}
 
 	@media (width <= 900px) {
-		.move[data-index='0'],
-		.move[data-index='2'] {
+		.move[data-side='lead'],
+		.move[data-side='trail'] {
 			max-width: 100%;
 			margin-inline: auto;
 		}
@@ -536,7 +739,52 @@ const meta = {
 	}
 
 	/* ============================================================
-	 * MOTION MOMENTS — editorial pull-quote treatment on canvas.
+	 * OUTCOME — measured results, when there are any.
+	 * ============================================================ */
+
+	.outcome {
+		padding: 0 var(--case-gutter);
+	}
+
+	.outcome-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+		gap: clamp(1rem, 2vw, 1.75rem);
+		width: 100%;
+		max-width: var(--case-measure);
+		margin: 0 auto;
+	}
+
+	.outcome-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: clamp(1.5rem, 3vw, 2.25rem);
+		border: 1px solid color-mix(in oklch, var(--ink-canvas) 22%, transparent);
+		border-radius: var(--case-plate-radius);
+	}
+
+	.outcome-item dt {
+		color: color-mix(in oklch, var(--ink-canvas) 70%, transparent);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.outcome-item dd {
+		margin: 0;
+		color: var(--mint);
+		font-weight: 700;
+		font-size: clamp(2rem, 4vw, 3rem);
+		font-family: var(--font-sans-serif);
+		line-height: 1;
+		letter-spacing: -0.02em;
+	}
+
+	/* ============================================================
+	 * MOTION MOMENTS — each one shows the shape of its movement.
 	 * ============================================================ */
 
 	.moments {
@@ -548,7 +796,7 @@ const meta = {
 
 	.moments-heading {
 		width: 100%;
-		max-width: 1200px;
+		max-width: var(--case-measure);
 		margin-inline: auto;
 	}
 
@@ -578,7 +826,7 @@ const meta = {
 		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 		gap: clamp(1rem, 2vw, 1.75rem);
 		width: 100%;
-		max-width: 1200px;
+		max-width: var(--case-measure);
 		margin-inline: auto;
 	}
 
@@ -587,10 +835,16 @@ const meta = {
 		display: flex;
 		flex-direction: column;
 		gap: clamp(0.75rem, 1.5vw, 1rem);
-		padding: clamp(2.5rem, 4vw, 3.5rem) clamp(1.5rem, 2.5vw, 2.5rem) clamp(1.75rem, 3vw, 2.5rem);
+		padding: clamp(1.5rem, 2.5vw, 2rem) clamp(1.5rem, 2.5vw, 2.5rem) clamp(1.75rem, 3vw, 2.5rem);
 		border-radius: var(--case-plate-radius);
 		background: var(--ink-canvas);
 		color: #000;
+	}
+
+	/* Only cards with no diagram keep the pull-quote glyph, and those need the
+	   old top padding back to clear it. */
+	.moment:has(.quote-glyph) {
+		padding-top: clamp(2.5rem, 4vw, 3.5rem);
 	}
 
 	.quote-glyph {
@@ -643,7 +897,7 @@ const meta = {
 		align-items: center;
 		overflow: hidden;
 		width: 100%;
-		max-width: 1200px;
+		max-width: var(--case-measure);
 		margin-inline: auto;
 		padding: clamp(3rem, 7vw, 6rem) clamp(2rem, 4vw, 4rem);
 		border-radius: var(--case-plate-radius);
@@ -724,11 +978,41 @@ const meta = {
 		}
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		.live-panel-url-text,
-		.live-panel-arrow {
-			transition: none;
-		}
+	/* ============================================================
+	 * CREDITS — rendered only when the entry carries any.
+	 * ============================================================ */
+
+	.credits {
+		display: flex;
+		flex-wrap: wrap;
+		gap: clamp(1rem, 3vw, 3rem);
+		width: 100%;
+		max-width: var(--case-measure);
+		margin-inline: auto;
+		padding: 0 var(--case-gutter);
+	}
+
+	.credits-heading {
+		margin: 0;
+		color: color-mix(in oklch, var(--ink-canvas) 70%, transparent);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.credits-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		color: var(--ink-canvas);
+		font-weight: 500;
+		font-size: clamp(1rem, 1.2vw, 1.1rem);
+		font-family: var(--font-sans);
 	}
 
 	/* ============================================================
@@ -736,7 +1020,7 @@ const meta = {
 	 * ============================================================ */
 
 	.next {
-		padding: 0 var(--case-gutter) clamp(3rem, 6vw, 5rem);
+		padding: 0 var(--case-gutter);
 	}
 
 	.next-link {
@@ -745,7 +1029,7 @@ const meta = {
 		gap: clamp(1rem, 2vw, 2rem);
 		align-items: end;
 		width: 100%;
-		max-width: 1200px;
+		max-width: var(--case-measure);
 		margin-inline: auto;
 		padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem);
 		border-radius: var(--case-plate-radius);
@@ -793,10 +1077,54 @@ const meta = {
 		transform: translateX(8px);
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		.next-arrow {
-			transition: none;
-		}
+	/* ============================================================
+	 * FOOT — a route out of the case study, not deeper into it.
+	 * ============================================================ */
+
+	.case-foot {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem 2rem;
+		justify-content: space-between;
+		align-items: baseline;
+		width: 100%;
+		max-width: var(--case-measure);
+		margin-inline: auto;
+		padding: clamp(1.5rem, 3vw, 2rem) var(--case-gutter) clamp(3rem, 6vw, 5rem);
+		border-top: 1px solid color-mix(in oklch, var(--ink-canvas) 18%, transparent);
+	}
+
+	.case-foot-name,
+	.case-foot-nav {
+		margin: 0;
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.case-foot-name {
+		color: color-mix(in oklch, var(--ink-canvas) 70%, transparent);
+	}
+
+	.case-foot-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+	}
+
+	.case-foot-nav a {
+		padding-bottom: 2px;
+		border-bottom: 1px solid transparent;
+		color: var(--ink-canvas);
+		text-decoration: none;
+		transition: border-color 0.25s ease-out;
+	}
+
+	.case-foot-nav a:hover,
+	.case-foot-nav a:focus-visible {
+		border-bottom-color: currentColor;
 	}
 
 	/* ============================================================
@@ -804,90 +1132,199 @@ const meta = {
 	 * Defaults are visible; reveal only hides when JS has confirmed
 	 * motion is allowed. This preserves the site's "never a blank
 	 * page waiting for a class trigger" contract.
+	 *
+	 * Each group staggers and each element travels a direction that
+	 * matches where it sits: the plates come in from the edge they
+	 * are anchored to.
+	 *
+	 * The masthead is deliberately not in the set. It is the first
+	 * fold and the LCP element, so it has no business waiting on an
+	 * IntersectionObserver — and while it faded, its ink and the mint
+	 * behind it blended to a 1.2:1 pair that an axe scan landing
+	 * mid-transition reported as a real contrast failure.
 	 * ============================================================ */
 
-	:global(html.has-motion) .lead,
-	:global(html.has-motion) .title,
-	:global(html.has-motion) .meta-rail,
-	:global(html.has-motion) .hero-artifact,
-	:global(html.has-motion) .move,
-	:global(html.has-motion) .moment,
-	:global(html.has-motion) .live-panel-link,
-	:global(html.has-motion) .next-link {
+	:global(html.has-motion) .case-study :is(.move, .moment, .hero-artifact),
+	:global(html.has-motion) .case-study :is(.live-panel-link, .next-link),
+	:global(html.has-motion) .case-study :is(.outcome-item, .case-foot) {
 		opacity: 0%;
 		transition:
-			opacity 800ms cubic-bezier(0.32, 0.72, 0, 1),
-			transform 800ms cubic-bezier(0.32, 0.72, 0, 1);
+			opacity 700ms cubic-bezier(0.32, 0.72, 0, 1) var(--reveal-delay, 0ms),
+			transform 700ms cubic-bezier(0.32, 0.72, 0, 1) var(--reveal-delay, 0ms);
 		transform: translateY(24px);
 	}
 
-	:global(html.has-motion) .is-visible.lead,
-	:global(html.has-motion) .is-visible .lead,
-	:global(html.has-motion) .is-visible.title,
-	:global(html.has-motion) .is-visible .title,
-	:global(html.has-motion) .is-visible.meta-rail,
-	:global(html.has-motion) .is-visible .meta-rail,
-	:global(html.has-motion) .is-visible.hero-artifact,
-	:global(html.has-motion) .is-visible.move,
-	:global(html.has-motion) .is-visible.moment,
-	:global(html.has-motion) .is-visible.live-panel-link,
-	:global(html.has-motion) .is-visible.next-link {
+	/* Direction, not just distance. */
+	:global(html.has-motion) .case-study .move[data-side='lead'] {
+		transform: translate3d(-28px, 20px, 0);
+	}
+
+	:global(html.has-motion) .case-study .move[data-side='trail'] {
+		transform: translate3d(28px, 20px, 0);
+	}
+
+	/* Stagger inside each group. */
+	:global(html.has-motion) .case-study .moment:nth-child(2),
+	:global(html.has-motion) .case-study .outcome-item:nth-child(2) {
+		--reveal-delay: 90ms;
+	}
+
+	:global(html.has-motion) .case-study .moment:nth-child(3),
+	:global(html.has-motion) .case-study .outcome-item:nth-child(3) {
+		--reveal-delay: 180ms;
+	}
+
+	:global(html.has-motion) .case-study .moment:nth-child(n + 4),
+	:global(html.has-motion) .case-study .outcome-item:nth-child(n + 4) {
+		--reveal-delay: 270ms;
+	}
+
+	/*
+	 * Scoped, not `:global(.is-visible)`. Astro appends its `data-astro-cid`
+	 * attribute to every non-global compound, so a global `.is-visible` scored
+	 * one attribute selector lower than the rule hiding these elements and lost
+	 * — revealed content stayed at `opacity: 0` after the observer had fired.
+	 */
+	:global(html.has-motion) .case-study .is-visible {
 		opacity: 100%;
-		transform: translateY(0);
+		transform: none;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		:global(html.has-motion) .lead,
-		:global(html.has-motion) .title,
-		:global(html.has-motion) .meta-rail,
-		:global(html.has-motion) .hero-artifact,
-		:global(html.has-motion) .move,
-		:global(html.has-motion) .moment,
-		:global(html.has-motion) .live-panel-link,
-		:global(html.has-motion) .next-link {
+		:global(html.has-motion) .case-study :is(.move, .moment, .hero-artifact),
+		:global(html.has-motion) .case-study :is(.live-panel-link, .next-link),
+		:global(html.has-motion) .case-study :is(.outcome-item, .case-foot) {
 			opacity: 100%;
 			transition: none;
 			transform: none;
+		}
+
+		.next-arrow,
+		.live-panel-url-text,
+		.live-panel-arrow,
+		.case-foot-nav a {
+			transition: none;
 		}
 	}
 </style>
 
 <script>
-	// Slab reveal via IntersectionObserver. Defaults-visible for reduced motion
-	// and no-JS handled entirely in CSS; this script only activates the fade-up
-	// when motion is safe and JS is available.
-	function initReveal() {
-		if (!document.documentElement.classList.contains('has-motion')) return;
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	const REVEAL_SELECTOR = [
+		'.case-study .hero-artifact',
+		'.case-study .move',
+		'.case-study .moment',
+		'.case-study .outcome-item',
+		'.case-study .live-panel-link',
+		'.case-study .next-link',
+		'.case-study .case-foot',
+	].join(',');
 
-		const targets = document.querySelectorAll<HTMLElement>(
-			[
-				'.case-study .lead',
-				'.case-study .title',
-				'.case-study .meta-rail',
-				'.case-study .hero-artifact',
-				'.case-study .move',
-				'.case-study .moment',
-				'.case-study .live-panel-link',
-				'.case-study .next-link',
-			].join(','),
+	let observer: IntersectionObserver | null = null;
+	let detachScrub: (() => void) | null = null;
+
+	function motionAllowed() {
+		return (
+			document.documentElement.classList.contains('has-motion') &&
+			!window.matchMedia('(prefers-reduced-motion: reduce)').matches
 		);
+	}
+
+	/**
+	 * Slab reveal. Defaults-visible for reduced motion and no-JS is handled
+	 * entirely in CSS; this only activates the fade-up when motion is safe.
+	 */
+	function initReveal() {
+		if (!motionAllowed()) return;
+
+		const targets = document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR);
 		if (!targets.length) return;
 
-		const observer = new IntersectionObserver(
+		observer = new IntersectionObserver(
 			(entries) => {
 				for (const entry of entries) {
 					if (entry.isIntersecting) {
 						entry.target.classList.add('is-visible');
-						observer.unobserve(entry.target);
+						observer?.unobserve(entry.target);
 					}
 				}
 			},
 			{ rootMargin: '0px 0px -10% 0px', threshold: 0.15 },
 		);
 
-		targets.forEach((el) => observer.observe(el));
+		targets.forEach((el) => observer?.observe(el));
 	}
 
-	document.addEventListener('astro:page-load', initReveal, { once: false });
+	/**
+	 * Travels the full screenshot through a fixed frame as the figure crosses
+	 * the viewport, so the reader sees the whole page rather than the top 780px
+	 * of it. Skipped entirely without motion, in which case the frame keeps its
+	 * natural height and the image is simply shown in full.
+	 */
+	function initArtifactScrub() {
+		if (!motionAllowed()) return;
+
+		const frame = document.querySelector<HTMLElement>('[data-artifact-frame]');
+		const image = frame?.querySelector<HTMLImageElement>('img');
+		const progress = document.querySelector<HTMLElement>('[data-artifact-progress]');
+		if (!frame || !image) return;
+
+		frame.dataset.scrub = 'on';
+
+		let queued = false;
+
+		const draw = () => {
+			queued = false;
+
+			const rect = frame.getBoundingClientRect();
+			const travel = rect.height + window.innerHeight;
+			const raw = (window.innerHeight - rect.top) / travel;
+			const ratio = Math.min(Math.max(raw, 0), 1);
+
+			// Negative: how far the image has to rise to show its own last row.
+			const shift = frame.clientHeight - image.offsetHeight;
+
+			image.style.transform = `translate3d(0, ${(ratio * shift).toFixed(2)}px, 0)`;
+			if (progress) {
+				progress.style.transform = `scaleX(${ratio.toFixed(4)})`;
+			}
+		};
+
+		const schedule = () => {
+			if (queued) return;
+			queued = true;
+			window.requestAnimationFrame(draw);
+		};
+
+		window.addEventListener('scroll', schedule, { passive: true });
+		window.addEventListener('resize', schedule);
+		// The natural height is only known once the image has decoded.
+		image.addEventListener('load', schedule);
+
+		detachScrub = () => {
+			window.removeEventListener('scroll', schedule);
+			window.removeEventListener('resize', schedule);
+			image.removeEventListener('load', schedule);
+			frame.removeAttribute('data-scrub');
+			image.style.transform = '';
+		};
+
+		schedule();
+	}
+
+	function teardown() {
+		observer?.disconnect();
+		observer = null;
+		detachScrub?.();
+		detachScrub = null;
+	}
+
+	document.addEventListener('astro:page-load', () => {
+		teardown();
+		initReveal();
+		initArtifactScrub();
+	});
+
+	// View transitions swap the document without a full navigation, so the
+	// listeners bound above have to come off before the next page binds its own.
+	document.addEventListener('astro:before-swap', teardown);
 </script>

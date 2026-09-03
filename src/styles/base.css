@@ -372,13 +372,6 @@ p {
 	-webkit-text-fill-color: transparent;
 }
 
-.hero-gradient-text-dark {
-	background: linear-gradient(to right, rgb(255 255 255), rgb(155 155 155));
-	background-clip: text;
-	color: transparent;
-	-webkit-text-fill-color: transparent;
-}
-
 /*
  * Grain, not gradient. Flat surfaces read as unprinted without some tooth;
  * this is a single fixed layer over the whole document so it never doubles up
@@ -464,9 +457,8 @@ html.has-motion .split-line-child {
 	/*
 	 * Safety net for the component-local hover and state transitions that were
 	 * each written without a reduced-motion path — the resume-button bubbles,
-	 * the mystery-box dot swarm, the back-button ring cross-fade, the map zoom
-	 * controls, the tower-blocks chrome and the `group-hover:scale-150` CTA
-	 * expansions.
+	 * the mystery-box dot swarm, the map zoom controls and the
+	 * `group-hover:scale-150` CTA expansions.
 	 *
 	 * Durations are collapsed rather than removed, so `transitionend` and
 	 * `animationend` still fire and every element still lands on its finished

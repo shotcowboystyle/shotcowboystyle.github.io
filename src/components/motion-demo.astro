@@ -1,0 +1,366 @@
+---
+/**
+ * Small looping diagrams that stand in for the motion a case study describes.
+ *
+ * They are illustrations of the *kind* of movement — a turntable, a slide-in, a
+ * count — not recordings of the real interface. The point is that a page which
+ * claims motion carries meaning should be willing to move.
+ *
+ * Everything here is transform and opacity on a handful of nodes, and every
+ * animation is paused until the card it sits in has been revealed, so nothing
+ * runs off-screen. With JavaScript off or reduced motion requested the diagram
+ * holds a legible resting state instead of animating.
+ */
+export type MotionDemoKind = 'rotate' | 'slide-in' | 'ink-drop' | 'count-up' | 'stagger' | 'pulse';
+
+interface Props {
+	kind: MotionDemoKind;
+}
+
+const { kind } = Astro.props;
+
+const DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const STAGGER_BARS = [0, 1, 2];
+---
+
+<div
+	class:list={['demo', `demo-${kind}`]}
+	aria-hidden="true"
+>
+	{
+		kind === 'rotate' && (
+			<div class="demo-stage demo-stage-3d">
+				<span class="demo-slab" />
+			</div>
+		)
+	}
+
+	{
+		kind === 'slide-in' && (
+			<div class="demo-stage">
+				<span class="demo-tile" />
+				<span class="demo-panel" />
+			</div>
+		)
+	}
+
+	{
+		kind === 'ink-drop' && (
+			<div class="demo-stage">
+				<span class="demo-tile demo-tile-wide" />
+				<span class="demo-ink" />
+			</div>
+		)
+	}
+
+	{
+		kind === 'count-up' && (
+			<div class="demo-stage">
+				<span class="demo-window">
+					<span class="demo-reel">
+						{DIGITS.map((digit) => (
+							<span class="demo-digit">{digit}</span>
+						))}
+					</span>
+				</span>
+			</div>
+		)
+	}
+
+	{
+		kind === 'stagger' && (
+			<div class="demo-stage demo-stage-stack">
+				{STAGGER_BARS.map((bar) => (
+					<span
+						class="demo-bar"
+						data-bar={bar}
+					/>
+				))}
+			</div>
+		)
+	}
+
+	{
+		kind === 'pulse' && (
+			<div class="demo-stage">
+				<span class="demo-core" />
+				<span class="demo-ring" />
+			</div>
+		)
+	}
+</div>
+
+<style>
+	@reference "../styles/base.css";
+
+	.demo {
+		--demo-mint: oklch(77% 0.17 159.37deg);
+		--demo-ink: oklch(91% 0 0deg);
+
+		overflow: hidden;
+		width: 100%;
+		height: clamp(6rem, 12vw, 8rem);
+		border-radius: 12px;
+		background: #000;
+	}
+
+	.demo-stage {
+		position: relative;
+		display: grid;
+		place-items: center;
+		width: 100%;
+		height: 100%;
+	}
+
+	/*
+	 * Paused by default and started by the reveal observer adding `.is-visible`
+	 * to the card. Off-screen cards cost nothing, and a page with no JavaScript
+	 * shows every diagram at a sensible resting frame.
+	 */
+	.demo :global(*) {
+		animation-play-state: paused;
+	}
+
+	:global(.is-visible) .demo :global(*) {
+		animation-play-state: running;
+	}
+
+	/* ---- rotate: a slab on a turntable ---- */
+
+	.demo-stage-3d {
+		perspective: 520px;
+	}
+
+	.demo-slab {
+		display: block;
+		width: 45%;
+		height: 34%;
+		border-radius: 4px;
+		background: var(--demo-mint);
+		animation: demoRotate 6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	}
+
+	@keyframes demoRotate {
+		from {
+			transform: rotateY(0deg);
+		}
+		to {
+			transform: rotateY(360deg);
+		}
+	}
+
+	/* ---- slide-in: a panel arriving from the trailing edge ---- */
+
+	.demo-tile {
+		width: 28%;
+		height: 40%;
+		border-radius: 4px;
+		background: color-mix(in oklch, var(--demo-ink) 22%, transparent);
+		animation: demoDim 3.6s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+	}
+
+	.demo-tile-wide {
+		width: 46%;
+	}
+
+	.demo-panel {
+		position: absolute;
+		top: 18%;
+		right: 0;
+		bottom: 18%;
+		width: 38%;
+		border-radius: 6px 0 0 6px;
+		background: var(--demo-mint);
+		animation: demoSlideIn 3.6s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+	}
+
+	@keyframes demoSlideIn {
+		0%,
+		10% {
+			transform: translateX(105%);
+		}
+		35%,
+		75% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(105%);
+		}
+	}
+
+	@keyframes demoDim {
+		0%,
+		25% {
+			opacity: 100%;
+		}
+		40%,
+		70% {
+			opacity: 45%;
+		}
+		90%,
+		100% {
+			opacity: 100%;
+		}
+	}
+
+	/* ---- ink-drop: commitment landing on a tile ---- */
+
+	.demo-ink {
+		position: absolute;
+		width: 2.75rem;
+		height: 2.75rem;
+		border-radius: 9999px;
+		background: var(--demo-mint);
+		animation: demoInk 2.4s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+	}
+
+	@keyframes demoInk {
+		0% {
+			opacity: 0%;
+			transform: scale(0.2);
+		}
+		30%,
+		70% {
+			opacity: 100%;
+			transform: scale(1);
+		}
+		100% {
+			opacity: 0%;
+			transform: scale(1.25);
+		}
+	}
+
+	/* ---- count-up: a digit reel that slows into place ---- */
+
+	.demo-window {
+		overflow: hidden;
+		height: 2.5rem;
+		border-radius: 4px;
+		color: var(--demo-mint);
+		font-weight: 700;
+		font-size: 2.5rem;
+		font-family: var(--font-sans-serif);
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.demo-reel {
+		display: block;
+		animation: demoReel 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+	}
+
+	.demo-digit {
+		display: block;
+		height: 2.5rem;
+	}
+
+	@keyframes demoReel {
+		0% {
+			transform: translateY(0);
+		}
+		70%,
+		100% {
+			transform: translateY(-22.5rem); /* nine digit rows */
+		}
+	}
+
+	/* ---- stagger: three lines rising in sequence ---- */
+
+	.demo-stage-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		justify-content: center;
+		place-items: unset;
+		align-items: start;
+		padding-left: 18%;
+	}
+
+	.demo-bar {
+		display: block;
+		height: 0.5rem;
+		border-radius: 9999px;
+		background: var(--demo-mint);
+		animation: demoRise 3s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+	}
+
+	.demo-bar[data-bar='0'] {
+		width: 46%;
+		animation-delay: 0ms;
+	}
+
+	.demo-bar[data-bar='1'] {
+		width: 34%;
+		animation-delay: 120ms;
+	}
+
+	.demo-bar[data-bar='2'] {
+		width: 40%;
+		animation-delay: 240ms;
+	}
+
+	@keyframes demoRise {
+		0% {
+			opacity: 0%;
+			transform: translateY(0.75rem);
+		}
+		25%,
+		70% {
+			opacity: 100%;
+			transform: translateY(0);
+		}
+		95%,
+		100% {
+			opacity: 0%;
+			transform: translateY(0.75rem);
+		}
+	}
+
+	/* ---- pulse: one breath while a request is in flight ---- */
+
+	.demo-core {
+		width: 1.5rem;
+		height: 1.5rem;
+		border-radius: 9999px;
+		background: var(--demo-mint);
+	}
+
+	.demo-ring {
+		position: absolute;
+		width: 1.5rem;
+		height: 1.5rem;
+		border: 2px solid var(--demo-mint);
+		border-radius: 9999px;
+		animation: demoPulse 2s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+	}
+
+	@keyframes demoPulse {
+		0% {
+			opacity: 100%;
+			transform: scale(1);
+		}
+		70%,
+		100% {
+			opacity: 0%;
+			transform: scale(2.6);
+		}
+	}
+
+	/*
+	 * Reduced motion holds each diagram on its resting frame rather than hiding
+	 * it — the card still shows what shape the movement takes.
+	 */
+	@media (prefers-reduced-motion: reduce) {
+		.demo :global(*) {
+			animation: none !important;
+		}
+
+		.demo-panel {
+			transform: translateX(0);
+		}
+
+		.demo-reel {
+			transform: translateY(-22.5rem);
+		}
+	}
+</style>

@@ -33,9 +33,11 @@ approach:
       Every page bows to the photograph. Copy is small, deliberate, and never fights the image; the type stack is one family at two weights. The photograph is allowed to be the loudest thing on the screen.
 motionMoments:
   - name: Specimen turntable
+    demo: rotate
     description: |
       A drag-scrub or arrow-key rotate on the specimen photograph — thirty-six frames, decoded on demand, that lets the reader see the tree the way they'd see it in the greenhouse. Motion here is information, not garnish.
   - name: Basket slide-in
+    demo: slide-in
     description: |
       Adding a specimen slides the basket confirmation in from the trailing edge with a soft spring; the trigger tile dims and returns. Add-to-cart is a quiet acknowledgement, not a triumphant modal.
 nextSlug: isla-suds

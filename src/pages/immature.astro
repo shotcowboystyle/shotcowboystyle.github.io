@@ -2,105 +2,279 @@
 import leftHandBottom from '@/assets/hand-sex-bottom.png';
 import rightHand from '@/assets/hand-sex-middle.png';
 import leftHandTop from '@/assets/hand-sex-top.png';
-import BackToHomeButton from '@/components/back-to-home-button.astro';
+import BackLink from '@/components/back-link.astro';
 import ResizerContainer from '@/components/resizer-container.astro';
 import BaseLayout from '@/layouts/base.astro';
 import { Image } from 'astro:assets';
 
-const title = `Immature Responsive Design`;
+const meta = {
+	title: 'Responsive design can be so immature — Curtis Blanton',
+	description: 'A breakpoint with a punchline. Drag the handle and narrow the frame.',
+};
 ---
 
-<BaseLayout meta={{ title }}>
-	<div class="immature-page-content relative h-full w-full px-0.5 pt-8 pb-0 lg:px-24 lg:pt-24">
-		<div class="mx-auto flex w-full items-center px-16">
-			<BackToHomeButton />
+<BaseLayout meta={meta}>
+	<div class="immature">
+		<header class="immature-head">
+			<BackLink tone="canvas" />
 
-			<h1 class="page-header text-center text-white max-lg:!text-8xl lg:max-w-4xl">
-				Responsive design can be so immature
-			</h1>
-		</div>
+			<p class="immature-label">Interlude</p>
+			<h1 class="immature-title">Responsive design can be so immature</h1>
+			<p class="immature-lead">
+				Drag the mint handle — or focus it and use the arrow keys — to narrow the frame. Every
+				layout has a width at which it stops behaving.
+			</p>
+		</header>
 
-		<ResizerContainer class="relative mx-auto w-full">
-			<div class="relative h-[60vh] min-h-[60vh] w-full overflow-hidden select-none">
-				<div
-					id="bottom"
-					class="absolute top-1/2 left-0 w-full"
-				>
+		<ResizerContainer
+			class="immature-frame"
+			label="Drag"
+		>
+			<div class="stage">
+				<div class="hand hand-bottom">
 					<Image
 						src={leftHandBottom}
 						alt="outer stacked image of a left hand"
-						class="absolute top-1/2 left-0 -mt-[86px] h-auto max-w-[256px] lg:-mt-[116px] lg:h-[232px] lg:min-w-[511px]"
 					/>
 				</div>
-				<div
-					id="middle"
-					class="absolute top-[57%] right-0 w-full"
-				>
+				<div class="hand hand-middle">
 					<Image
 						src={rightHand}
 						alt="image of a right hand"
-						class="absolute top-1/2 right-0 -mt-[52px] h-auto max-w-[248px] lg:-mt-[95px] lg:h-[190px] lg:min-w-[496px]"
 					/>
 				</div>
-				<div
-					id="top"
-					class="absolute top-1/2 left-0 w-full"
-				>
+				<div class="hand hand-top">
 					<Image
 						src={leftHandTop}
 						alt="inner stacked image of a left hand"
-						class="absolute top-1/2 -left-[1px] -mt-[41px] h-auto max-w-[159px] lg:-mt-[27px] lg:h-[136px] lg:min-w-[317px]"
 					/>
-				</div>
-
-				<div
-					class="absolute right-0 bottom-0 p-2 text-white"
-					id="resize"
-				>
-					Resize me &gt;
 				</div>
 			</div>
 		</ResizerContainer>
+
+		<footer class="immature-foot">
+			<a
+				class="immature-next"
+				href="/tower-blocks"
+				data-astro-prefetch
+			>
+				<span class="immature-next-label">Next diversion</span>
+				<span class="immature-next-title">Tower Blocks</span>
+				<span
+					class="immature-next-arrow"
+					aria-hidden="true"
+					>→</span
+				>
+			</a>
+		</footer>
 	</div>
 </BaseLayout>
 
-<style is:inline>
+<style>
 	@reference "../styles/base.css";
 
-	@media screen and (width >= 320px) and (width <= 767px) and (orientation: portrait) {
-		main {
-			position: absolute;
-			top: 100%;
-			left: 0;
-			overflow-x: hidden;
-			width: 100vh;
-			height: 100vw;
-			transform: rotate(-90deg);
-			transform-origin: left top;
+	/* ============================================================
+	 * Immature — one joke, told at a specific width.
+	 *
+	 * The page used to rotate `<main>` by -90deg on portrait phones to
+	 * fake a landscape viewport, which clipped the heading mid-word and
+	 * pushed the artwork and the back link off-screen. The frame now
+	 * derives its minimum from the space it actually has, so the gag
+	 * lands at every width and nothing is rotated.
+	 * ============================================================ */
+
+	.immature {
+		--gutter: clamp(1.25rem, 3vw, 3rem);
+		--ink-canvas: oklch(91% 0 0deg);
+		--ink-slate: oklch(36% 0.03 262.99deg);
+		--mint: oklch(77% 0.17 159.37deg);
+
+		display: flex;
+		flex-direction: column;
+		gap: clamp(2rem, 5vw, 3.5rem);
+		min-height: 100dvh;
+		padding: clamp(1.5rem, 4vw, 3rem) var(--gutter) clamp(2rem, 5vw, 4rem);
+		background: #000;
+		color: var(--ink-canvas);
+	}
+
+	.immature-head {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(0.75rem, 2vw, 1.25rem);
+		align-items: start;
+		width: 100%;
+		max-width: 1200px;
+		margin-inline: auto;
+	}
+
+	.immature-label {
+		margin: 0.5rem 0 0;
+		color: var(--mint);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	/*
+	 * Set from the scale rather than an `!important` viewport override. The old
+	 * `max-lg:!text-8xl` fought the global `h1` sizing and printed the heading
+	 * larger on small screens than on large ones.
+	 */
+	.immature-title {
+		max-width: 20ch;
+		margin: 0;
+		color: var(--ink-canvas);
+		font-weight: 700;
+		font-size: var(--text-4xl);
+		font-family: var(--font-sans-serif);
+		line-height: 0.9;
+		letter-spacing: -0.02em;
+		text-transform: uppercase;
+		text-wrap: balance;
+	}
+
+	@media (width >= theme(--breakpoint-sm)) {
+		.immature-title {
+			font-size: var(--text-6xl);
 		}
 	}
 
-	@media screen and (orientation: landscape) and (hover: none) {
-		.immature-page-content {
-			padding-top: 2.75rem;
-		}
-
-		.page-header {
-			margin-left: 2rem;
-			text-align: left !important;
-		}
-
-		#resize {
-			font-size: clamp(
-				1.6018rem,
-				calc(1.6018rem + ((2.16 - 1.6018) * ((100vw - 20rem) / (96 - 20)))),
-				2.16rem
-			) !important;
-			line-height: 1.2 !important;
+	@media (width >= theme(--breakpoint-lg)) {
+		.immature-title {
+			font-size: var(--text-7xl);
 		}
 	}
 
-	:global(.is-resize-limit) {
-		@apply bg-red-500;
+	.immature-lead {
+		max-width: 52ch;
+		margin: 0;
+		color: color-mix(in oklch, var(--ink-canvas) 72%, transparent);
+		font-weight: 500;
+		font-size: clamp(1rem, 1.3vw, 1.15rem);
+		font-family: var(--font-sans);
+		line-height: 1.55;
+		text-wrap: pretty;
+	}
+
+	.immature-frame {
+		width: 100%;
+		max-width: 1200px;
+		margin-inline: auto;
+	}
+
+	/* ---- The stage ----
+	 *
+	 * Hands are anchored to the frame's leading and trailing edges, so narrowing
+	 * the frame is what brings them together.
+	 *
+	 * Sized against the viewport, deliberately not against the frame: container
+	 * units made each hand a fixed percentage of the frame, so the gap between
+	 * them stayed a constant fraction of the width and they could never actually
+	 * meet however far the handle traveled.
+	 */
+
+	.stage {
+		position: relative;
+		overflow: hidden;
+		height: clamp(14rem, 44vh, 30rem);
+		user-select: none;
+	}
+
+	.hand {
+		position: absolute;
+		top: 50%;
+	}
+
+	.hand :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.hand-bottom {
+		left: 0;
+		width: clamp(8rem, 30vw, 30rem);
+		transform: translateY(-42%);
+	}
+
+	.hand-middle {
+		right: 0;
+		width: clamp(7.75rem, 29vw, 29rem);
+		transform: translateY(-32%);
+	}
+
+	.hand-top {
+		left: 0;
+		width: clamp(4.95rem, 18.6vw, 18.6rem);
+		transform: translateY(-46%);
+	}
+
+	/* ---- Handoff ---- */
+
+	.immature-foot {
+		width: 100%;
+		max-width: 1200px;
+		margin-inline: auto;
+		margin-top: auto;
+	}
+
+	.immature-next {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: clamp(1rem, 2vw, 2rem);
+		align-items: end;
+		padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.5rem, 3vw, 2.5rem);
+		border-radius: 24px;
+		background: var(--ink-canvas);
+		color: #000;
+		text-decoration: none;
+	}
+
+	.immature-next-label {
+		grid-column: 1;
+		color: var(--ink-slate);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.immature-next-title {
+		grid-row: 2;
+		grid-column: 1;
+		color: #000;
+		font-weight: 700;
+		font-size: clamp(1.5rem, 3vw, 2.5rem);
+		font-family: var(--font-sans-serif);
+		line-height: 0.95;
+		letter-spacing: -0.015em;
+		text-transform: uppercase;
+	}
+
+	.immature-next-arrow {
+		grid-row: 1 / span 2;
+		grid-column: 2;
+		align-self: center;
+		color: oklch(48% 0.13 159.37deg);
+		font-weight: 700;
+		font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+		font-family: var(--font-sans-serif);
+		line-height: 1;
+		transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+	}
+
+	.immature-next:hover .immature-next-arrow,
+	.immature-next:focus-visible .immature-next-arrow {
+		transform: translateX(8px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.immature-next-arrow {
+			transition: none;
+		}
 	}
 </style>

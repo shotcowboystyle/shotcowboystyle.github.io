@@ -34,9 +34,11 @@ approach:
       Hydrogen's default cart is invisible; the custom cart uses the site's typography, its own transitions, and a two-column layout that keeps the soap in view while the reader edits quantities. Checkout is a continuation of the storefront, not a hand-off to a foreign shell.
 motionMoments:
   - name: Bar-tumble hero
+    demo: rotate
     description: |
       The hero soap bars tumble into position on first paint with a weighted-object easing — one bar catches the corner and pivots slightly, so the composition doesn't land dead-square. It reads as three hands placing bars on a table.
   - name: Scent-note reveal on hover
+    demo: stagger
     description: |
       Hovering a bar reveals its scent-note stack (top / heart / base) as three staggered lines rising from beneath the price. A tactile disclosure that never blocks the click.
 nextSlug: kalmia-woods
