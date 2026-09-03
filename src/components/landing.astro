@@ -32,8 +32,14 @@ const projects = await getCollection('project');
 				class="project-card js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
 			>
 				<div class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
+					{/*
+					 * No padding on the plate itself: the card art is positioned against
+					 * this box, so padding here inset every image and left the plate color
+					 * showing as a hard-edged frame around the artwork. Content padding
+					 * now lives inside `ProjectCard`, applied to the copy only.
+					 */}
 					<div
-						class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20"
+						class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
 						style={`background-color: ${project.data.cardColor};`}
 					>
 						<ProjectCard project={project} />
@@ -57,10 +63,15 @@ const projects = await getCollection('project');
 	class="relative px-5 pb-5 sm:px-8 sm:pb-8 lg:px-6 lg:pb-6"
 >
 	<h2 class="sr-only">Miscellany</h2>
-	<div
-		class="relative overflow-hidden rounded-2xl sm:rounded-3xl"
-		style="min-height: 200px;"
-	>
+	{
+		/*
+		 * A definite height, not `min-height`. The mystery box's root carries
+		 * `h-full`, and a percentage height against an auto-height parent resolves to
+		 * auto — so the card collapsed to 0px and the whole easter egg, all four
+		 * links included, rendered inside a zero-height box.
+		 */
+	}
+	<div class="relative h-[220px] overflow-hidden rounded-2xl sm:h-[300px] sm:rounded-3xl">
 		<MysteryBox />
 	</div>
 </footer>

@@ -9,35 +9,34 @@ interface Props {
 const { data } = Astro.props.testimonial;
 ---
 
-<p
-	class="testimonial-text my-4 text-base !leading-normal sm:text-xl lg:!text-sm lg:!leading-relaxed"
->
+<p class="testimonial-text my-0 max-w-[62ch] text-base sm:text-lg">
 	{data.testimonial}
 </p>
 
-<div
-	class="flex flex-row items-center justify-end justify-items-end self-end justify-self-end text-right md:mb-2 md:flex-col md:items-end"
->
-	<div class="avatar order-2 ml-4 md:order-1 md:mb-2 md:ml-0">
-		<div class="w-16 rounded-full">
+<!--
+	One row, avatar first, text left-aligned beside it. The previous layout put
+	the avatar above a right-aligned name at `md` and up, which left the name and
+	its byline ragged against each other because the two strings are different
+	lengths.
+-->
+<div class="mt-6 flex flex-row items-center gap-4">
+	<div class="avatar shrink-0">
+		<div class="w-12 overflow-hidden rounded-full sm:w-14">
 			<Image
 				src={data.avatar}
 				widths={[72, 144, data.avatar.width]}
-				class="rounded-circle"
 				alt={data.name}
 			/>
 		</div>
 	</div>
 
-	<div class="mb-0 flex flex-col justify-end md:order-2">
-		<div
-			class="testimonial-name font-sans-serif mb-0 text-base leading-none font-bold uppercase sm:text-lg"
-		>
+	<div class="flex min-w-0 flex-col">
+		<span class="testimonial-name font-sans text-sm leading-tight font-bold uppercase sm:text-base">
 			{data.name}
-		</div>
-		<div class="testimonial-byline -mt-1 text-xs leading-none sm:text-base lg:text-sm">
+		</span>
+		<span class="testimonial-byline text-xs leading-tight font-medium sm:text-sm">
 			{data.designation}, {data.companyName}
-		</div>
+		</span>
 	</div>
 </div>
 

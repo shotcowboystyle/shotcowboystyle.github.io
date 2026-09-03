@@ -1,8 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import 'maplibre-gl/dist/maplibre-gl.css';
 import memoji from '@/assets/images/memoji.png';
 import LocationNavigation from '@/components/about/location-navigation.astro';
+import { Image } from 'astro:assets';
+/*
+ * Loaded with the page rather than with the deferred map chunk. As an async
+ * chunk dependency, Vite emits a preload for it that astro-compress then
+ * renames, and the map dies on `Unable to preload CSS`. Deferring it needs a
+ * runtime-injected `<link>` against a vendored copy, not a bundler import.
+ */
+import 'maplibre-gl/dist/maplibre-gl.css';
 import '@/components/about/location.css';
 ---
 
@@ -35,10 +41,53 @@ import '@/components/about/location.css';
 <script>
 	import { registerTransitionModule } from '@/utils/module-loader';
 
-	registerTransitionModule(async () => {
-		const locationMap = await import('../../lib/map/index.ts').then(
-			(module) => new module.default(),
+	/**
+	 * The map is the last thing on the page and it is the heaviest thing on the
+	 * page: maplibre-gl is a ~1MB chunk plus its own stylesheet plus live tile
+	 * requests. Importing it at module scope meant every visitor paid for it
+	 * during the first paint of the hero, whether or not they ever scrolled to
+	 * Charleston.
+	 *
+	 * It now loads when the tile is within one viewport of being seen. The
+	 * placeholder underneath is real markup, so nothing is blank while it waits.
+	 */
+	registerTransitionModule(async (): Promise<() => void> => {
+		let locationMap: { destroy: () => void } | null = null;
+		let cancelled = false;
+
+		const load = async () => {
+			const module = await import('../../lib/map/index.ts');
+			if (cancelled) return;
+			locationMap = new module.default();
+		};
+
+		const wrapper = document.getElementById('location-map-wrapper');
+
+		// No tile to observe, or no IntersectionObserver: load it rather than
+		// leaving the reader with a permanent "Loading..." placeholder.
+		if (!wrapper || !('IntersectionObserver' in window)) {
+			await load();
+			return () => {
+				cancelled = true;
+				locationMap?.destroy();
+			};
+		}
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (!entries.some((entry) => entry.isIntersecting)) return;
+				observer.disconnect();
+				void load();
+			},
+			{ rootMargin: '100% 0px' },
 		);
-		return () => locationMap?.destroy();
+
+		observer.observe(wrapper);
+
+		return () => {
+			cancelled = true;
+			observer.disconnect();
+			locationMap?.destroy();
+		};
 	});
 </script>

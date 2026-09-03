@@ -38,40 +38,27 @@
 	--color-focus-ring: oklch(48% 0.13 159.37deg);
 	--color-focus-ring-halo: oklch(98% 0 0deg);
 
-	/* Font families */
+	/*
+	 * One typeface, one variable file. Geist carries the whole hierarchy on its
+	 * weight axis, so `--font-sans-serif` is kept as an alias rather than a
+	 * second family — the token name is load-bearing across components, the
+	 * second typeface is not.
+	 */
 	--font-sans:
-		'General Sans', Arial, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-	--font-sans-serif:
-		'Thunder', system-ui, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+		Geist, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-sans-serif: var(--font-sans);
 
-	/* Fluid type scale (replaces tailwindcss-fluid-type) */
-	--text-xs: clamp(0.8681rem, calc(0.8626rem + 0.03vw), 0.8889rem);
-	--text-xs--line-height: 1.6;
-	--text-sm: clamp(1rem, calc(0.989rem + 0.05vw), 1.0417rem);
-	--text-sm--line-height: 1.6;
-	--text-base: clamp(1.125rem, calc(1.0921rem + 0.16vw), 1.25rem);
-	--text-base--line-height: 1.6;
-	--text-lg: clamp(1.2656rem, calc(1.2039rem + 0.31vw), 1.5rem);
-	--text-lg--line-height: 1.6;
-	--text-xl: clamp(1.4238rem, calc(1.3248rem + 0.49vw), 1.8rem);
-	--text-xl--line-height: 1.2;
-	--text-2xl: clamp(1.6018rem, calc(1.4549rem + 0.73vw), 2.16rem);
-	--text-2xl--line-height: 1.2;
-	--text-3xl: clamp(1.802rem, calc(1.5941rem + 1.04vw), 2.592rem);
-	--text-3xl--line-height: 1.2;
-	--text-4xl: clamp(2.0273rem, calc(1.7423rem + 1.43vw), 3.1104rem);
-	--text-4xl--line-height: 1.1;
-	--text-5xl: clamp(2.2807rem, calc(1.8986rem + 1.91vw), 3.7325rem);
-	--text-5xl--line-height: 1.1;
-	--text-6xl: clamp(2.5658rem, calc(2.0623rem + 2.52vw), 4.479rem);
-	--text-6xl--line-height: 1.1;
-	--text-7xl: clamp(2.8865rem, calc(2.2317rem + 3.27vw), 5.3748rem);
-	--text-7xl--line-height: 1;
-	--text-8xl: clamp(3.2473rem, calc(2.4046rem + 4.21vw), 6.4497rem);
-	--text-8xl--line-height: 1;
-	--text-9xl: clamp(3.6532rem, calc(2.5779rem + 5.38vw), 7.7397rem);
-	--text-9xl--line-height: 1;
+	/*
+	 * Type scale is Tailwind's default. The previous fluid `clamp()` ramp is
+	 * gone: every size now lands on a named step so a heading can be read off
+	 * the scale instead of interpolated. Responsive changes step between named
+	 * sizes at breakpoints rather than sliding with the viewport.
+	 */
+
+	/* Surfaces */
+	--color-surface-raised: rgb(24 24 24);
+	--color-surface-sunken: rgb(31 31 31);
 
 	/* Custom animations */
 	--animate-resume-button-bottom-bubbles: resumeButtonBottomBubbles 0.6s linear;
@@ -244,25 +231,16 @@
 
 @layer base {
 	/*
-	 * Both faces are variable, and both now declare the weight range their
-	 * `fvar` table actually carries. Without the descriptor the browser treats
-	 * each as a single-weight face and *synthesizes* `font-bold` and
-	 * `font-extrabold` by smearing the glyphs, instead of using the real
-	 * weight axis.
+	 * Declares the weight range the `fvar` table actually carries. Without the
+	 * descriptor the browser treats the file as a single-weight face and
+	 * *synthesizes* bolder weights by smearing the glyphs, instead of using the
+	 * real weight axis. No italic face is loaded — the system has no italics.
 	 */
 	@font-face {
 		font-weight: 100 900;
 		font-style: normal;
-		font-family: Thunder;
-		src: url('/fonts/Thunder-VF.woff2') format('woff2');
-		font-display: swap;
-	}
-
-	@font-face {
-		font-weight: 200 700;
-		font-style: normal;
-		font-family: 'General Sans';
-		src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
+		font-family: Geist;
+		src: url('/fonts/Geist-Variable.woff2') format('woff2');
 		font-display: swap;
 	}
 }
@@ -303,55 +281,132 @@ html {
 	transform: translateY(0);
 }
 
+/*
+ * Weight tops out at bold (700). The 800 the headings used to carry read as
+ * brute force at display sizes rather than authority; hierarchy comes from
+ * size and tracking instead, both of which stay on the scale.
+ */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	@apply font-sans-serif my-0 font-bold uppercase;
+	@apply my-0 font-sans font-bold;
+
+	text-wrap: balance;
+}
+
+/* Display sizes get negative tracking; the counters close up on their own at
+   this scale and the default spacing reads loose. */
+h1,
+h2 {
+	letter-spacing: -0.02em;
+}
+
+/*
+ * Starts at `text-4xl`, not `text-5xl`: the hero sets "Developer." on its own
+ * line inside a padded card, and at 48px that single word overran a 390px
+ * viewport and clipped its last letters.
+ */
+h1 {
+	@apply text-4xl uppercase;
 
 	@media (width >= theme(--breakpoint-sm)) {
-		@apply font-extrabold;
+		@apply text-7xl;
+	}
+
+	@media (width >= theme(--breakpoint-lg)) {
+		@apply text-8xl;
 	}
 }
 
-h1,
 h2 {
-	line-height: 0.9;
+	@apply mb-4 text-4xl uppercase;
+
+	@media (width >= theme(--breakpoint-sm)) {
+		@apply text-5xl;
+	}
+
+	@media (width >= theme(--breakpoint-lg)) {
+		@apply text-6xl;
+	}
 }
 
-h1 {
-	/* Fluid range: ~70px at 640px viewport → ~104px at 1440px. Preserves the
-	   original scale that was tuned around the (now-removed) vw root shrink. */
-	font-size: clamp(4.375rem, 2.68rem + 4.25vw, 6.5rem);
-}
-
-h2 {
-	@apply mb-4;
-
-	/* Fluid range: ~42px at 640px → ~58px at 1440px. */
-	font-size: clamp(2.625rem, 1.83rem + 2vw, 3.625rem);
-}
-
+/*
+ * Sentence case from h3 down. All-caps below the masthead reads as scaffolding
+ * rather than voice, and it costs word-shape legibility at body-adjacent sizes.
+ */
 h3 {
-	@apply mb-4;
+	@apply mb-4 text-2xl;
 
-	/* Fluid range: ~28px at 640px → ~52px at 1440px. */
-	font-size: clamp(1.75rem, 0.55rem + 3vw, 3.25rem);
-	line-height: 1;
+	letter-spacing: -0.01em;
+
+	@media (width >= theme(--breakpoint-sm)) {
+		@apply text-3xl;
+	}
+
+	@media (width >= theme(--breakpoint-lg)) {
+		@apply text-4xl;
+	}
 }
 
 p {
-	@apply font-sans font-medium;
+	@apply font-sans text-base font-medium;
 
-	font-size: 0.9rem;
-	line-height: 1.5;
+	text-wrap: pretty;
 
 	@media (width >= theme(--breakpoint-sm)) {
-		/* Fluid range: ~17.6px at 640px → ~26px at 1440px. */
-		font-size: clamp(1.1rem, 0.685rem + 1.04vw, 1.625rem);
+		@apply text-lg;
 	}
+}
+
+/*
+ * The one permitted gradient in the system: hero heading text, left to right.
+ * Every other surface is flat.
+ */
+.hero-gradient-text {
+	background: linear-gradient(to right, rgb(0 0 0), rgb(102 102 102));
+	background-clip: text;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+}
+
+.hero-gradient-text-dark {
+	background: linear-gradient(to right, rgb(255 255 255), rgb(155 155 155));
+	background-clip: text;
+	color: transparent;
+	-webkit-text-fill-color: transparent;
+}
+
+/*
+ * Grain, not gradient. Flat surfaces read as unprinted without some tooth;
+ * this is a single fixed layer over the whole document so it never doubles up
+ * where sections overlap, and it is inert to the pointer.
+ */
+body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 9997;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+	opacity: 4%;
+	mix-blend-mode: overlay;
+	pointer-events: none;
+}
+
+/*
+ * Pressed feedback on every interactive surface. Wrapped in `:where()` so the
+ * whole rule carries zero specificity — components that drive their own
+ * transform (the mystery-box dot swarm, the circle button) keep it without
+ * needing an override.
+ */
+:where(a, button) {
+	transition: transform 200ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+:where(a, button):active {
+	transform: scale(0.98);
 }
 
 /* Improve Page speed */

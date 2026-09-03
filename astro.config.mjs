@@ -46,7 +46,9 @@ export default defineConfig({
 		serviceWorker(),
 		critters({ Logger: 2 }),
 		purgecss({
-			safelist: [/^dot\d/, /^four-/, /^glow-/, /^crater-/, 'github', 'linkedin', 'twitter'],
+			// `four-`, `glow-` and `crater-` belonged to the astronaut scene the 404
+			// no longer renders. `dot\d` is the mystery-box swarm, still generated.
+			safelist: [/^dot\d/, 'github', 'linkedin', 'twitter'],
 		}),
 		compress({
 			CSS: true,

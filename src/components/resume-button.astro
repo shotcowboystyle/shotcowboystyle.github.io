@@ -31,7 +31,15 @@
 		color: oklch(48% 0.13 159.37deg);
 	}
 
+	/*
+	 * The bubble particles used to fire in purple, blue and cyan — three accent
+	 * colors that appeared nowhere else on the site. The gesture is unchanged;
+	 * it now fires in the single accent, so the hover reads as part of the
+	 * system rather than as a stray widget.
+	 */
 	.resume-button {
+		--bubble-ink: var(--color-primary);
+
 		position: relative;
 		z-index: 2;
 		display: inline-flex;
@@ -72,15 +80,15 @@
 	.resume-button:hover #bubbles::before {
 		top: -70%;
 		background-image:
-			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
-			radial-gradient(circle, transparent 20%, rgb(124 41 232) 20%, transparent 30%),
-			radial-gradient(circle, rgb(84 95 252) 20%, transparent 20%),
-			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
-			radial-gradient(circle, transparent 10%, rgb(124 41 232) 15%, transparent 20%),
-			radial-gradient(circle, rgb(13 200 237) 20%, transparent 20%),
-			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
-			radial-gradient(circle, rgb(13 200 237) 20%, transparent 20%),
-			radial-gradient(circle, rgb(13 200 237) 20%, transparent 20%);
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, transparent 20%, var(--bubble-ink) 20%, transparent 30%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, transparent 10%, var(--bubble-ink) 15%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%);
 		background-position: 50% 120%;
 		background-size:
 			10% 10%,
@@ -98,13 +106,13 @@
 	.resume-button:hover #bubbles::after {
 		bottom: -70%;
 		background-image:
-			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
-			radial-gradient(circle, rgb(84 95 252) 20%, transparent 20%),
-			radial-gradient(circle, transparent 10%, rgb(124 41 232) 15%, transparent 20%),
-			radial-gradient(circle, rgb(84 95 252) 20%, transparent 20%),
-			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%),
-			radial-gradient(circle, rgb(84 95 252) 20%, transparent 20%),
-			radial-gradient(circle, rgb(124 41 232) 20%, transparent 20%);
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, transparent 10%, var(--bubble-ink) 15%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%),
+			radial-gradient(circle, var(--bubble-ink) 20%, transparent 20%);
 		background-position: 50% 0%;
 		background-size:
 			15% 15%,
