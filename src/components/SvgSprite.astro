@@ -13,5 +13,14 @@ const { class: className, name, ...rest } = Astro.props;
 	class={className}
 	{...rest}
 >
-	<use xlink:href=`${Astro.site}assets/images/sprite.svg#${name}`></use>
+	{
+		/*
+		 * Root-relative, not `${Astro.site}…`. An absolute URL makes every icon a
+		 * cross-origin `<use>` the moment the page is served from any host other
+		 * than the one hardcoded in `astro.config.mjs` — preview deploys, a custom
+		 * domain, or a dev server that had to fall back off port 4321. Browsers
+		 * block that fetch and the symbol renders empty.
+		 */
+	}
+	<use href={`/assets/images/sprite.svg#${name}`}></use>
 </svg>

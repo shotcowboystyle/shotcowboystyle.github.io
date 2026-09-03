@@ -12,16 +12,28 @@ const {
 			'Motion is the language. Fifteen years of shipping considered work for teams that treat craft as evidence.',
 	},
 } = Astro.props;
+
+/**
+ * The share image used to be `${Astro.url}socialImage.webp`, which concatenated
+ * without a separator: the path segment and the filename ran together into one
+ * word, and it pointed at a file that does not exist.
+ * Pages may now supply their own image; everything else falls back to the real
+ * asset in `public/img`.
+ */
+const origin = Astro.site ?? Astro.url;
+const shareImage = new URL(meta.image ?? '/img/og.webp', origin).href;
+const canonical = new URL(Astro.url.pathname, origin).href;
+const ogType = meta.type ?? 'website';
 ---
 
 <!-- Open Graph -->
 <meta
 	property="og:url"
-	content={Astro.url}
+	content={canonical}
 />
 <meta
 	property="og:type"
-	content="website"
+	content={ogType}
 />
 <meta
 	property="og:title"
@@ -34,7 +46,7 @@ const {
 />
 <meta
 	property="og:image"
-	content={`${Astro.url}socialImage.webp`}
+	content={shareImage}
 />
 
 <!-- Twitter -->
@@ -48,7 +60,7 @@ const {
 />
 <meta
 	property="twitter:url"
-	content={Astro.url}
+	content={canonical}
 />
 <meta
 	name="twitter:title"
@@ -60,5 +72,5 @@ const {
 />
 <meta
 	name="twitter:image"
-	content={`${Astro.url}socialImage.webp`}
+	content={shareImage}
 />
