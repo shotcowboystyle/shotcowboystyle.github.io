@@ -1,436 +1,114 @@
 @reference "./base.css";
 
-#page-wrapper {
-	@apply h-screen min-h-0 w-screen overflow-hidden font-sans text-sm tracking-tighter text-white;
-
-	background-image: linear-gradient(to right bottom, rgb(169 52 126), rgb(75 50 167));
-}
-
 /*
- * The scene is authored against a fixed 550px stage: `.circle-outer` is 550px,
- * `.four` sits at left 30/230 and `.button`/`.sorry` center on `left: 50%`.
- * Without an explicit box the percentage offsets resolved against the viewport
- * and pushed the whole scene — including the only "GO HOME" link — off the
- * left edge, where `#page-wrapper`'s `overflow: hidden` clipped it.
+ * The 404 used to be a purple-to-indigo gradient space scene with an animated
+ * astronaut — roughly 400 lines of illustration CSS, and the only surface on
+ * the site that did not sit on the black canvas. Backgrounds are flat now, so
+ * the page is built from the same materials as every other page: black ground,
+ * one display heading, real routes out.
+ *
+ * The star field survives because it is a flat dot pattern, not a gradient, and
+ * it gives an otherwise empty viewport some tooth.
  */
-.center {
-	--stage-size: 550px;
 
-	@apply absolute top-1/2 left-1/2 z-10 transition-transform;
-
-	width: var(--stage-size);
-	height: var(--stage-size);
-	transition-duration: 0.5s;
-
-	/*
-	 * `translate` and `scale` as separate properties, not a `transform`
-	 * shorthand: Tailwind v4's translate utilities set the `translate`
-	 * property, so a `transform: translate(...)` on top of them applied the
-	 * offset twice and pushed the scene off-center.
-	 */
-	translate: -50% -50%;
-	scale: 0.6;
+#page-wrapper {
+	@apply relative flex min-h-[100dvh] w-full items-center overflow-hidden bg-black font-sans text-white;
 }
 
-@media screen and (height <= 600px) {
-	.center {
-		scale: 0.75;
-	}
+#stars {
+	@apply pointer-events-none absolute inset-0 z-0;
 }
 
 .star {
-	@apply absolute z-10;
+	@apply absolute rounded-full bg-white;
 
 	top: var(--star-top);
 	left: var(--star-left);
+	width: var(--star-size);
+	height: var(--star-size);
+	opacity: 45%;
+}
 
-	&::before,
-	&::after {
-		@apply animate-blink absolute rounded-xl bg-white;
+@media (prefers-reduced-motion: no-preference) {
+	.star {
+		@apply animate-blink;
 
-		content: '';
 		animation-delay: var(--star-delay);
 	}
-
-	&::before {
-		top: calc(var(--star-size) / 2);
-		left: calc(var(--star-size) / -2);
-		width: calc(var(--star-size) * 3);
-		height: var(--star-size);
-	}
-
-	&::after {
-		top: calc(var(--star-size) / -2);
-		left: calc(var(--star-size) / 2);
-		width: var(--star-size);
-		height: calc(var(--star-size) * 3);
-	}
 }
 
-.circle {
-	--circle-size: 50%;
-
-	@apply absolute -translate-x-1/2 -translate-y-1/2 rounded-full;
-
-	top: var(--circle-size);
-	left: var(--circle-size);
-
-	&.circle-outer {
-		--circle-outer-size: 550px;
-
-		width: var(--circle-outer-size);
-		height: var(--circle-outer-size);
-
-		&::before {
-			@apply animate-pulse-scale absolute inset-0 h-full w-full scale-0 rounded-full opacity-0;
-
-			content: '';
-			background-image: linear-gradient(to right bottom, rgb(128 43 137), rgb(86 49 161));
-			box-shadow: 0 0 20px -8px rgb(0 0 0);
-		}
-	}
-
-	&.circle-inner {
-		--circle-inner-size: 355px;
-
-		width: var(--circle-inner-size);
-		height: var(--circle-inner-size);
-
-		&::before {
-			@apply animate-pulse-scale absolute inset-0 h-full w-full scale-0 rounded-full opacity-0;
-
-			content: '';
-			background-image: linear-gradient(to right bottom, rgb(117 39 139), rgb(85 48 162));
-			box-shadow: 0 0 20px -8px rgb(0 0 0);
-		}
-	}
+.not-found {
+	@apply relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-start px-6 py-24 sm:px-12;
 }
 
-.four {
-	--four-top: 100px;
+.not-found-status {
+	@apply mb-6 text-xs font-semibold text-white/70 uppercase;
 
-	@apply absolute font-black select-none;
-
-	font-size: 150px;
-	text-shadow: 0 2px 10px rgb(0 0 0 / 50%);
-
-	&.four-1 {
-		@apply z-10;
-
-		top: var(--four-top);
-		left: 30px;
-	}
-
-	&.four-2 {
-		@apply z-20;
-
-		top: var(--four-top);
-		left: 230px;
-	}
-}
-
-.astronaut {
-	--antenna-color: rgb(194 194 194);
-	--antenna-side-position: 10px;
-	--antenna-side-antenna-position: 5px;
-	--antenna-side-tip-position: 3px;
-	--antenna-border-radius: 5px;
-	--ear-width: 15px;
-	--ear-height: 20px;
-
-	@apply absolute;
-
-	top: -115px;
-	left: -30px;
-	transform: rotate(17deg);
-
-	.astronaut-backpack {
-		--backpack-size: 100px;
-
-		@apply rounded-lg bg-stone-200;
-
-		width: var(--backpack-size);
-		height: var(--backpack-size);
-
-		/* border-radius: 10px; */
-	}
-
-	.antenna-left {
-		left: var(--antenna-side-position);
-
-		.antenna {
-			left: var(--antenna-side-antenna-position);
-		}
-
-		.antenna-tip {
-			left: var(--antenna-side-tip-position);
-		}
-	}
-
-	.antenna-right {
-		right: var(--antenna-side-position);
-
-		.antenna {
-			right: var(--antenna-side-antenna-position);
-		}
-
-		.antenna-tip {
-			right: var(--antenna-side-tip-position);
-		}
-	}
-
-	.astronaut-antenna {
-		@apply absolute;
-
-		top: -7px;
-
-		.ear-down {
-			@apply absolute z-10;
-
-			bottom: -5px;
-			width: var(--ear-width);
-			height: var(--ear-height);
-			border-radius: var(--antenna-border-radius);
-			background-color: rgb(175 175 175);
-		}
-
-		.ear-up {
-			@apply relative z-20;
-
-			width: var(--ear-width);
-			height: var(--ear-height);
-			border-radius: var(--antenna-border-radius);
-			background-color: var(--antenna-color);
-		}
-
-		.antenna {
-			@apply absolute w-0.5;
-
-			top: -29px;
-			height: 30px;
-			border-radius: var(--antenna-border-radius);
-			background-color: var(--antenna-color);
-		}
-
-		.antenna-tip {
-			@apply absolute h-1.5 w-1.5 rounded-full;
-
-			top: -33px;
-			background-color: var(--antenna-color);
-		}
-	}
-
-	.astronaut-helmet {
-		--helmet-size: 66px;
-
-		@apply absolute left-1/2 z-30 -translate-x-1/2 overflow-hidden rounded-full bg-white;
-
-		top: -30px;
-		width: var(--helmet-size);
-		height: var(--helmet-size);
-		box-shadow: 0 5px 1px -3px rgb(128 128 128);
-	}
-
-	.astronaut-glass {
-		--glass-size: 56px;
-
-		@apply absolute rounded-xl;
-
-		top: 13px;
-		left: 5px;
-		width: var(--glass-size);
-		height: var(--glass-size);
-		background: rgb(0 32 46);
-	}
-
-	.glow {
-		@apply absolute rounded-full;
-
-		background-color: rgb(51 77 87);
-	}
-
-	.glow-1 {
-		--glow-1-size: 17px;
-
-		top: 25px;
-		left: 15px;
-		width: var(--glow-1-size);
-		height: var(--glow-1-size);
-	}
-
-	.glow-2 {
-		--glow-2-size: 7px;
-
-		top: 44px;
-		left: 13px;
-		width: var(--glow-2-size);
-		height: var(--glow-2-size);
-	}
-
-	.astronaut-body {
-		--astronaut-body-size: 50px;
-
-		@apply absolute left-1/2 -translate-x-1/2;
-
-		top: 30px;
-		width: var(--astronaut-body-size);
-		height: var(--astronaut-body-size);
-		background-color: var(--antenna-color);
-	}
-}
-
-.astronaut-wire {
-	@apply absolute;
-
-	top: -40px;
-	left: -260px;
-}
-
-.astronaut-hands {
-	@apply absolute z-30;
-
-	top: -89px;
-	left: -23px;
-	width: 100px;
-	transform: rotate(17deg);
-
-	.astronaut-hand {
-		@apply absolute;
-	}
-
-	.hand-left {
-		left: -3px;
-	}
-
-	.hand-right {
-		right: -3px;
-		transform: scaleX(-1);
-	}
-}
-
-.oh {
-	@apply animate-floating z-20;
-
-	transition: all 0.1s linear;
-}
-
-.planet {
-	--planet-size: 155px;
-
-	width: var(--planet-size);
-	height: var(--planet-size);
-	background-color: rgb(255 73 128);
-	box-shadow:
-		inset -6px -10px 0 1px rgb(204 59 107),
-		0 2px 10px rgb(0 0 0 / 40%);
-}
-
-.craters {
-	.crater {
-		@apply absolute rounded-full;
-
-		background-color: rgb(201 54 103);
-	}
-
-	.crater-1 {
-		--crater-1-size: 35px;
-
-		top: 30px;
-		left: 25px;
-		width: var(--crater-1-size);
-		height: var(--crater-1-size);
-	}
-
-	.crater-2 {
-		--crater-2-size: 23px;
-
-		top: 20px;
-		left: 93px;
-		width: var(--crater-2-size);
-		height: var(--crater-2-size);
-	}
-
-	.crater-3 {
-		--crater-3-size: 17px;
-
-		top: 77px;
-		left: var(--crater-3-size);
-		width: var(--crater-3-size);
-		height: var(--crater-3-size);
-	}
-
-	.crater-4 {
-		--crater-4-size: 10px;
-
-		top: 90px;
-		left: 80px;
-		width: var(--crater-4-size);
-		height: var(--crater-4-size);
-	}
-
-	.crater-5 {
-		--crater-5-size: 25px;
-
-		top: 115px;
-		left: 50px;
-		width: var(--crater-5-size);
-		height: var(--crater-5-size);
-	}
-
-	.crater-6 {
-		--crater-6-size: 13px;
-
-		top: 118px;
-		left: 105px;
-		width: var(--crater-6-size);
-		height: var(--crater-6-size);
-	}
-}
-
-.button {
-	@apply absolute bottom-8 left-1/2 z-20 -translate-x-1/2 rounded border border-white px-3 py-2;
-
-	&:active {
-		/* `scale` on its own, so it composes with the `translate` above
-		 * instead of overwriting the centering offset. */
-		scale: 0.96;
-	}
+	letter-spacing: 0.14em;
 }
 
 /*
- * Sits between the "404" digits and the GO HOME link rather than on top of the
- * astronaut. Sized against the stage's 0.6 scale so it renders near 15px.
+ * The one gradient the system allows: hero heading text, left to right.
+ * `.hero-gradient-text-dark` carries it; only the size and rhythm live here.
  */
-.sorry {
-	@apply absolute left-1/2 -translate-x-1/2 whitespace-nowrap;
+.not-found-code {
+	@apply mb-8 text-8xl leading-none font-bold;
 
-	top: 60px;
-	font-size: 44px;
+	letter-spacing: -0.04em;
+
+	@media (width >= theme(--breakpoint-sm)) {
+		font-size: 12rem;
+	}
+}
+
+.not-found-copy {
+	@apply mb-12 max-w-[46ch] text-lg font-medium text-white/80;
+}
+
+.not-found-actions {
+	@apply flex flex-wrap items-center gap-6;
 }
 
 /*
- * Reduced motion.
- *
- * This page had no `prefers-reduced-motion` handling at all: 80 blinking
- * stars, two pulsing rings, a floating astronaut and a pointer-driven
- * parallax all ran unconditionally. Each one resolves to its resting frame
- * rather than disappearing, so the scene still reads.
+ * Primary is a filled plate, secondary is a text link rather than a second
+ * outlined button — two bordered buttons side by side read as indecision about
+ * which one matters.
  */
+.not-found-primary {
+	@apply rounded-full bg-white px-6 py-3 text-base font-semibold text-black no-underline;
+
+	transition:
+		background-color 700ms cubic-bezier(0.32, 0.72, 0, 1),
+		transform 700ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.not-found-primary:hover,
+.not-found-primary:focus-visible {
+	background-color: var(--color-primary);
+	transform: translateY(-2px);
+}
+
+.not-found-secondary {
+	@apply text-base font-medium text-white underline-offset-4;
+
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	transition: text-decoration-thickness 200ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.not-found-secondary:hover,
+.not-found-secondary:focus-visible {
+	text-decoration-thickness: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
-	.star::before,
-	.star::after,
-	.oh {
-		animation: none;
-	}
-
-	.circle.circle-outer::before,
-	.circle.circle-inner::before {
-		opacity: 100%;
-		scale: 1;
-		animation: none;
-	}
-
-	.center {
+	.not-found-primary,
+	.not-found-secondary {
 		transition: none;
+	}
+
+	.not-found-primary:hover,
+	.not-found-primary:focus-visible {
+		transform: none;
 	}
 }

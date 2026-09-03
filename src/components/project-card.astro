@@ -14,15 +14,11 @@ const caseStudyHref = `/work/${slug}`;
 
 const tagList = data.tags;
 
-const CTA_TEXT = 'Read the Story';
+const CTA_TEXT = 'Read the story';
 const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 ---
 
 <div class:list={['project-card-inner', 'plate-turn', `project-card-variant-${variant}`]}>
-	<span
-		class="plate-turn-highlight"
-		aria-hidden="true"
-	></span>
 	<span
 		class="plate-turn-ghost"
 		aria-hidden="true"
@@ -39,29 +35,19 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 					class="project-screenshot"
 				/>
 
-				<Image
-					src={data.bgImage}
-					widths={[354, 740, 790, data.bgImage.width]}
-					alt=""
-					aria-hidden="true"
-					class="project-bg"
-				/>
-
-				<div class="feature-content pointer-events-auto relative z-[2] flex items-end justify-between text-white max-sm:flex-col">
+				<div class="card-content feature-content pointer-events-auto relative z-[2] flex items-end justify-between text-white max-sm:flex-col">
 					<div class="max-sm:-mb-16">
-						<h2 class="mb-4 text-6xl font-bold sm:text-9xl lg:text-8xl">{data.title}</h2>
+						<h2 class="mb-4 text-4xl sm:text-6xl lg:text-7xl">{data.title}</h2>
 
-						<ul class="tech-badge col-auto row-auto mb-8 flex flex-wrap justify-start gap-4 max-sm:items-start">
+						<ul class="tech-badge col-auto row-auto mb-8 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 							{tagList.map((tag: string) => (
-								<li class="border-base-100 relative rounded-full border px-3 pb-1 font-medium uppercase sm:px-5 sm:py-2 sm:font-semibold">
-									<small class="whitespace-nowrap">{tag}</small>
+								<li class="border-base-100/70 relative rounded-full border px-3 py-1 text-xs font-medium tracking-wide uppercase">
+									{tag}
 								</li>
 							))}
 						</ul>
 
-						<p class="!mb-0 max-w-[39ch] max-sm:mr-24 sm:text-2xl sm:!leading-snug lg:text-lg">
-							{data.description}
-						</p>
+						<p class="!mb-0 max-w-[45ch] max-sm:mr-24">{data.description}</p>
 					</div>
 
 					<CircleButton
@@ -72,7 +58,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 					<a
 						href={caseStudyHref}
 						aria-label={CTA_LABEL}
-						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out motion-reduce:transition-none sm:hidden sm:h-48 sm:w-48 lg:h-40 lg:w-40 lg:px-6"
+						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
 					>
 						<span
 							class="project-card-button-label"
@@ -80,10 +66,6 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 						>
 							{CTA_TEXT}
 						</span>
-						<span
-							class="absolute inset-0 z-0 rounded-full bg-white"
-							aria-hidden="true"
-						/>
 					</a>
 				</div>
 			</>
@@ -93,16 +75,8 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 	{
 		variant === 'split' && (
 			<>
-				<Image
-					src={data.bgImage}
-					widths={[354, 740, 790, data.bgImage.width]}
-					alt=""
-					aria-hidden="true"
-					class="project-bg"
-				/>
-
-				<div class="split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 text-white sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
-					<figure class="split-screenshot-frame relative flex items-center justify-center overflow-hidden rounded-xl bg-black/20 p-4 sm:rounded-2xl sm:p-6">
+				<div class="card-content split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 text-white sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
+					<figure class="split-screenshot-frame relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
 						<Image
 							src={data.screenshotImage}
 							widths={[480, 680, 720, data.screenshotImage.width]}
@@ -113,19 +87,17 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 
 					<div class="split-body flex flex-col justify-between gap-8 sm:gap-6">
 						<div>
-							<h2 class="mb-4 text-6xl font-bold sm:text-8xl lg:text-7xl">{data.title}</h2>
+							<h2 class="mb-4 text-4xl sm:text-5xl lg:text-6xl">{data.title}</h2>
 
-							<ul class="tech-badge mb-6 flex flex-wrap justify-start gap-3 max-sm:items-start">
+							<ul class="tech-badge mb-6 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 								{tagList.map((tag: string) => (
-									<li class="border-base-100 relative rounded-full border px-3 pb-1 font-medium uppercase sm:px-4 sm:py-1.5 sm:font-semibold">
-										<small class="whitespace-nowrap">{tag}</small>
+									<li class="border-base-100/70 relative rounded-full border px-3 py-1 text-xs font-medium tracking-wide uppercase">
+										{tag}
 									</li>
 								))}
 							</ul>
 
-							<p class="!mb-0 max-w-[45ch] sm:text-xl sm:!leading-snug lg:text-lg">
-								{data.description}
-							</p>
+							<p class="!mb-0 max-w-[45ch]">{data.description}</p>
 						</div>
 
 						<div class="flex items-end justify-end">
@@ -137,7 +109,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 							<a
 								href={caseStudyHref}
 								aria-label={CTA_LABEL}
-								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out motion-reduce:transition-none sm:hidden"
+								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
 							>
 								<span
 									class="project-card-button-label"
@@ -145,10 +117,6 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 								>
 									{CTA_TEXT}
 								</span>
-								<span
-									class="absolute inset-0 z-0 rounded-full bg-white"
-									aria-hidden="true"
-								/>
 							</a>
 						</div>
 					</div>
@@ -172,24 +140,20 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 					aria-hidden="true"
 				/>
 
-				<div class="poster-content pointer-events-auto relative z-[2] flex h-full flex-col justify-between text-white">
-					<div class="poster-masthead">
-						<h2 class="text-[3.5rem] !leading-[0.85] font-black uppercase sm:text-[10rem] lg:text-[9rem] xl:text-[11rem]">
-							{data.title}
-						</h2>
-					</div>
-
+				<div class="card-content poster-content pointer-events-auto relative z-[2] flex h-full flex-col justify-end text-white">
 					<div class="poster-footer flex items-end justify-between gap-6">
 						<div class="max-w-[45ch]">
-							<ul class="tech-badge mb-4 flex flex-wrap justify-start gap-3 max-sm:items-start">
+							<h2 class="mb-4 text-4xl sm:text-6xl lg:text-7xl">{data.title}</h2>
+
+							<ul class="tech-badge mb-4 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 								{tagList.map((tag: string) => (
-									<li class="relative rounded-full border border-white/70 px-3 pb-1 font-medium uppercase sm:px-4 sm:py-1.5 sm:font-semibold">
-										<small class="whitespace-nowrap">{tag}</small>
+									<li class="relative rounded-full border border-white/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
+										{tag}
 									</li>
 								))}
 							</ul>
 
-							<p class="!mb-0 sm:text-xl sm:!leading-snug lg:text-lg">{data.description}</p>
+							<p class="!mb-0">{data.description}</p>
 						</div>
 
 						<CircleButton
@@ -200,7 +164,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 						<a
 							href={caseStudyHref}
 							aria-label={CTA_LABEL}
-							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center transition-transform duration-300 ease-out motion-reduce:transition-none sm:hidden"
+							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
 						>
 							<span
 								class="project-card-button-label"
@@ -208,10 +172,6 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 							>
 								{CTA_TEXT}
 							</span>
-							<span
-								class="absolute inset-0 z-0 rounded-full bg-white transition-all group-hover:scale-150"
-								aria-hidden="true"
-							/>
 						</a>
 					</div>
 				</div>
@@ -227,17 +187,26 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		@apply relative flex h-full w-full flex-1 flex-col justify-end;
 	}
 
+	/*
+	 * The plate is edge-to-edge so the artwork can bleed to the rounded corner.
+	 * Padding is a property of the copy, not of the card.
+	 */
+	.card-content {
+		@apply p-5 sm:p-12 lg:p-16;
+	}
+
 	/* ============================================================
-	 * PLATE-TURN — reserved Project-tier hover signature.
-	 * The card catches light like a book page turning: a slight
-	 * rotation along the right-edge axis, a mint-tinted specular
-	 * sweep, and a ghost "Read" watermark bleeding through from
-	 * underneath the plate.
+	 * PLATE-TURN — the project-card hover signature.
+	 * The plate tips as though a page were being lifted, and an
+	 * oversized ghost "Read" surfaces from underneath it. The mint
+	 * specular sweep this used to carry was a linear-gradient
+	 * overlay; surfaces are flat now, so the gesture is transform
+	 * and type only.
 	 * ============================================================ */
 
 	.project-card-inner.plate-turn {
 		will-change: transform;
-		transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+		transition: transform 700ms cubic-bezier(0.32, 0.72, 0, 1);
 		transform-origin: right center;
 		perspective: 1500px;
 		transform-style: preserve-3d;
@@ -248,34 +217,6 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		transform: rotate3d(0, 1, 0.05, -2.4deg);
 	}
 
-	.plate-turn-highlight {
-		position: absolute;
-		inset: 0;
-		z-index: 3;
-		border-radius: inherit;
-		background: linear-gradient(
-			115deg,
-			transparent 30%,
-			oklch(77% 0.17 159.37deg / 30%) 50%,
-			transparent 70%
-		);
-		background-position: -60% 0%;
-		background-size: 240% 100%;
-		background-repeat: no-repeat;
-		opacity: 0%;
-		mix-blend-mode: screen;
-		pointer-events: none;
-		transition:
-			opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-			background-position 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	.project-card-inner.plate-turn:hover .plate-turn-highlight,
-	.project-card-inner.plate-turn:focus-within .plate-turn-highlight {
-		background-position: 160% 0%;
-		opacity: 100%;
-	}
-
 	.plate-turn-ghost {
 		position: absolute;
 		top: clamp(0.5rem, 2vw, 2rem);
@@ -283,10 +224,10 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		z-index: 1;
 		max-width: 55%;
 		margin: 0;
-		color: oklch(77% 0.17 159.37deg / 100%);
-		font-weight: 800;
+		color: rgb(255 255 255);
+		font-weight: 700;
 		font-size: clamp(6rem, 15vw, 14rem);
-		font-family: var(--font-sans-serif);
+		font-family: var(--font-sans);
 		line-height: 0.85;
 		letter-spacing: -0.03em;
 		text-transform: uppercase;
@@ -295,8 +236,8 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		pointer-events: none;
 		user-select: none;
 		transition:
-			opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-			transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+			opacity 700ms cubic-bezier(0.32, 0.72, 0, 1),
+			transform 700ms cubic-bezier(0.32, 0.72, 0, 1);
 		transform: translateY(12px);
 	}
 
@@ -306,7 +247,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		transform: translateY(0);
 	}
 
-	/* Reduced-motion path: crossfade the ghost only. No rotation, no sweep. */
+	/* Reduced-motion path: crossfade the ghost only. No rotation. */
 	@media (prefers-reduced-motion: reduce) {
 		.project-card-inner.plate-turn,
 		.project-card-inner.plate-turn:hover,
@@ -315,30 +256,27 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 			transform: none;
 		}
 
-		.plate-turn-highlight,
-		.project-card-inner.plate-turn:hover .plate-turn-highlight,
-		.project-card-inner.plate-turn:focus-within .plate-turn-highlight {
-			opacity: 0%;
-			transition: none;
-		}
-
 		.plate-turn-ghost {
 			transition: opacity 0.3s ease-out;
 			transform: none;
 		}
 	}
 
-	/* FEATURE variant — the default, unchanged silhouette */
+	/*
+	 * FEATURE variant — the screenshot is a framed artifact sitting high and
+	 * right on the plate, not a background wash. It used to be cropped by the
+	 * plate on two edges, which read as an image that had failed to load rather
+	 * than as a deliberate crop; it is fully bounded now and the asymmetry comes
+	 * from where it sits instead.
+	 */
 	.project-screenshot {
-		@apply pointer-events-none absolute top-0 right-0 z-[2] inline-block w-[130%] max-w-none translate-y-[5%] align-middle max-sm:left-0 sm:-top-[5%] sm:right-auto sm:w-11/12 sm:max-w-full lg:-top-[25%] lg:right-0 lg:w-[60%];
+		@apply pointer-events-none absolute top-8 right-0 z-[1] inline-block w-[130%] max-w-none rounded-xl align-middle max-sm:left-0 sm:top-10 sm:right-auto sm:w-11/12 sm:max-w-full lg:top-12 lg:right-12 lg:w-[58%];
+
+		border: 1px solid rgb(255 255 255 / 15%);
 
 		@media screen and (orientation: landscape) and (hover: none) {
-			@apply -top-[25%] right-0 w-[60%];
+			@apply top-8 right-8 w-[55%];
 		}
-	}
-
-	.project-bg {
-		@apply pointer-events-none absolute top-0 left-0 h-full w-full max-w-none object-cover;
 	}
 
 	@media screen and (orientation: landscape) and (hover: none) {
@@ -348,12 +286,10 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 	}
 
 	.project-card-button-label {
-		@apply text-base-content relative z-10 px-8 leading-tight;
-
-		font-size: 0.8rem;
+		@apply text-base-content relative z-10 px-6 text-xs leading-tight;
 
 		@media screen and (orientation: landscape) and (hover: none) {
-			font-size: 2rem;
+			@apply text-2xl;
 		}
 	}
 
@@ -365,6 +301,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 	.split-screenshot-frame {
 		max-height: 60vh;
 		border: 1px solid rgb(255 255 255 / 15%);
+		background: rgb(0 0 0 / 20%);
 	}
 
 	@media (width >= theme(--breakpoint-sm)) {
@@ -373,7 +310,10 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		}
 	}
 
-	/* POSTER variant — screenshot fills the card, huge masthead overlay */
+	/* POSTER variant — screenshot fills the plate, copy sits bottom-left.
+	   The masthead moved down out of the centre because these screenshots
+	   carry their own headline artwork, and two display headlines stacked
+	   in one frame read as a mistake. */
 	.project-card-variant-poster {
 		@apply justify-end;
 	}
@@ -382,25 +322,10 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		@apply pointer-events-none absolute inset-0 z-0 h-full w-full max-w-none object-cover;
 	}
 
+	/* Flat, not a gradient. It exists to buy contrast for the copy. */
 	.poster-scrim {
 		@apply pointer-events-none absolute inset-0 z-[1];
 
-		background: linear-gradient(
-			180deg,
-			rgb(0 0 0 / 55%) 0%,
-			rgb(0 0 0 / 15%) 40%,
-			rgb(0 0 0 / 65%) 100%
-		);
-	}
-
-	.poster-masthead h2 {
-		letter-spacing: -0.02em;
-		text-shadow: 0 2px 30px rgb(0 0 0 / 25%);
-	}
-
-	@media screen and (orientation: landscape) and (hover: none) {
-		.poster-masthead h2 {
-			font-size: 8rem;
-		}
+		background: rgb(0 0 0 / 55%);
 	}
 </style>

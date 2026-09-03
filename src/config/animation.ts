@@ -218,7 +218,6 @@ export const CSS_CLASSES = {
 	ANIMATION: {
 		REVEAL_TEXT: 'js-animation-reveal-text',
 		REVEAL_WRAPPER: 'js-animation-reveal-text-wrapper',
-		SPIN_SLOW: 'animate-spin-slow',
 		FLOATING: 'animate-floating',
 		BLINK: 'animate-blink',
 		PULSE_SCALE: 'animate-pulse-scale',

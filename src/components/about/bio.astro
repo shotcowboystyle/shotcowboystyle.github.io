@@ -24,7 +24,7 @@ const stack = [
 <div class="flex flex-col gap-8 sm:gap-10">
 	<h2
 		id="bio-headline"
-		class="mb-0 font-semibold sm:max-w-[18ch] sm:font-extrabold"
+		class="mb-0 font-bold sm:max-w-[18ch]"
 	>
 		I’m Curtis, A full-stack developer based in Charleston, SC.
 	</h2>
@@ -32,7 +32,7 @@ const stack = [
 	<div class="flex flex-col gap-6">
 		<p
 			id="bio-description"
-			class="text-base-content mb-0 font-sans text-base !leading-normal font-medium sm:text-xl sm:font-semibold xl:text-base"
+			class="text-base-content mb-0 max-w-[62ch] font-sans text-base font-medium sm:text-lg"
 		>
 			Fifteen-plus years shipping scalable web work — product UI, marketing sites, and interactive
 			brand pieces. Comfortable across the stack, senior-IC by preference, deadline-driven by habit.
@@ -58,8 +58,8 @@ const stack = [
 				<blockquote class="mb-4">
 					<TestimonialCard testimonial={featured} />
 				</blockquote>
-				<figcaption class="text-primary-content font-sans text-xs font-medium italic sm:text-sm">
-					— placeholder. Real testimonials shipping when clients approve; for now, enjoy the mystery
+				<figcaption class="text-primary-content font-sans text-xs font-medium sm:text-sm">
+					Placeholder. Real testimonials ship when clients approve; until then, enjoy the mystery
 					box.
 				</figcaption>
 			</figure>
@@ -68,14 +68,18 @@ const stack = [
 </div>
 
 <style>
+	/*
+	 * `@reference` is what compiles `theme()` here. Without it this block shipped
+	 * a literal `theme(--breakpoint-md)` into the stylesheet: browsers dropped
+	 * the at-rule, so these desktop sizes never applied and the card overflowed
+	 * its fixed-height grid cell — and lightningcss aborted on the invalid
+	 * token, which silently disabled CSS minification for the whole bundle.
+	 */
+	@reference "../../styles/base.css";
+
 	@media (width >= theme(--breakpoint-md)) and (hover: hover) and (pointer: fine) {
 		#bio-headline {
-			font-size: 4.5rem;
-		}
-
-		#bio-description {
-			font-weight: 500 !important;
-			font-size: 1.125em !important;
+			@apply text-5xl;
 		}
 	}
 </style>

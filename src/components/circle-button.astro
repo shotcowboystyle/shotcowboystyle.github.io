@@ -11,25 +11,33 @@ const { link, label, external } = Astro.props;
 const isExternal = external ?? /^https?:\/\//.test(link);
 
 /**
- * The ring text used to repeat the label four times inside a hard
- * `textLength="260"`, which crushed ~136 characters into a 264-unit path and
- * rendered as overlapping, unreadable glyphs on every project card. The path is
- * a r=42 circle, so its circumference is 2πr ≈ 264 units; at `font-size: 10`
- * roughly 48 characters fit before glyphs start colliding.
+ * The ring carries a short fixed phrase rather than the full CTA label. The
+ * label runs "Read the story: <Project Title>", which at ~30 characters wrapped
+ * past the halfway point of the path and rendered the back half of the sentence
+ * upside down — legible only by tilting your head. A short phrase repeated
+ * twice reads the same from every angle because both copies are short enough to
+ * stay near the top of the arc as it turns.
+ *
+ * The path is an r=42 circle, so its circumference is 2πr ≈ 264 units; at
+ * `font-size: 9` roughly 52 characters fit before glyphs start colliding.
  */
-const RING_PATH_CAPACITY_IN_CHARACTERS = 48;
+const RING_PHRASE = 'Read the story';
 const RING_SEPARATOR = ' • ';
+const RING_PATH_CAPACITY_IN_CHARACTERS = 52;
 
 const ringRepeatCount = Math.max(
 	1,
-	Math.floor(RING_PATH_CAPACITY_IN_CHARACTERS / (label.length + RING_SEPARATOR.length)),
+	Math.floor(RING_PATH_CAPACITY_IN_CHARACTERS / (RING_PHRASE.length + RING_SEPARATOR.length)),
 );
-const ringText = `${Array.from({ length: ringRepeatCount }, () => label).join(RING_SEPARATOR)}${RING_SEPARATOR}`;
+const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).join(RING_SEPARATOR)}${RING_SEPARATOR}`;
 ---
 
-<div
-	class="notify-button-wrapper relative hidden rounded-full p-8 shadow-[0_0_20px_10px] shadow-white/30 sm:block"
->
+<!--
+	The wrapper used to carry `shadow-[0_0_20px_10px] shadow-white/30`, a white
+	glow at rest that read as a bloom artifact rather than elevation. Depth here
+	comes from the ring and the plate contrast.
+-->
+<div class="notify-button-wrapper relative hidden rounded-full p-8 sm:block">
 	<a
 		class="notify-button-button relative flex h-32 w-32 items-center justify-center rounded-full border-2 border-neutral-50"
 		href={link}
@@ -64,31 +72,11 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => label).join(RI
 					</g>
 				</g>
 
-				<defs>
-					<linearGradient
-						id="plane-gradient"
-						gradientTransform="rotate(90)"
-					>
-						<stop
-							offset="30%"
-							class="text-neutral-50"
-							stop-color="currentColor"
-						>
-						</stop>
-						<stop
-							offset="80%"
-							class="text-background"
-							stop-color="currentColor"
-						>
-						</stop>
-					</linearGradient>
-				</defs>
-
 				<g class="notify-button-stream">
 					<g
 						stroke-width="0.8"
 						stroke-linecap="round"
-						stroke="url('#plane-gradient')"
+						stroke="currentColor"
 					>
 						<line
 							x1="11"
@@ -123,32 +111,41 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => label).join(RI
 			</svg>
 		</span>
 
+		<!--
+			Was a paper-plane glyph, which reads as "send" — the wrong promise for a
+			link that opens a case study. An arrow leaving the corner is the plain
+			statement of what the control does.
+		-->
 		<span
 			class="notify-button-plane block"
 			aria-hidden="true"
 		>
 			<svg
-				width="80"
-				height="80"
+				width="72"
+				height="72"
 				fill="none"
 				viewBox="0 0 24 24"
 				stroke="currentColor"
 				stroke-linecap="round"
 				stroke-linejoin="round"
-				stroke-width="1"
-				class="fill-background translate-x-[5px] -translate-y-[5px] rotate-45"
+				stroke-width="1.25"
 				aria-hidden="true"
 				focusable="false"
 			>
-				<path d="M4.75 19.25L12 4.75L19.25 19.25L12 15.75L4.75 19.25Z"></path>
-				<path d="M12 15.5V12.75"></path>
+				<path d="M7 17 17 7"></path>
+				<path d="M8.5 7H17v8.5"></path>
 			</svg>
 		</span>
 		<span class="sr-only">{label}</span>
 	</a>
 
+	<!--
+		`animate-spin-slow` was never defined in the theme, so the ring only ever
+		turned on hover. The rotation is the affordance — it says the ring is a
+		control — so it now runs from the theme's own 8s keyframe, motion-safe.
+	-->
 	<div
-		class="animate-spin-slow pointer-events-none absolute inset-2"
+		class="ring-rotor pointer-events-none absolute inset-2 motion-safe:animate-[spinCircle_8s_linear_infinite]"
 		aria-hidden="true"
 	>
 		<svg
@@ -159,7 +156,8 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => label).join(RI
 		>
 			<text
 				class="fill-current font-medium"
-				font-size="10"
+				font-size="9"
+				letter-spacing="0.5"
 			>
 				<textPath href="#text-path">{ringText}</textPath>
 			</text>
@@ -218,16 +216,8 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => label).join(RI
 		}
 	}
 
-	.notify-button-wrapper:hover {
-		.animate-spin-slow {
-			--duration: 15s;
-
-			animation: spin var(--duration) linear infinite;
-		}
-	}
-
-	:global(.lenis.lenis-scrolling .animate-spin-slow) {
-		animation: none;
+	:global(.lenis.lenis-scrolling) .ring-rotor {
+		animation-play-state: paused;
 	}
 
 	@media screen and (width >= 768px) {
@@ -306,19 +296,12 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => label).join(RI
 		}
 	}
 
-	@keyframes spin {
-		100% {
-			transform: rotate(1turn);
-		}
-	}
-
 	@media (prefers-reduced-motion: reduce) {
 		.notify-button-space,
 		.notify-button-star,
 		.notify-button-stream,
 		.notify-button-plane,
-		.animate-spin-slow,
-		.notify-button-wrapper:hover .animate-spin-slow {
+		.ring-rotor {
 			animation: none !important;
 		}
 	}

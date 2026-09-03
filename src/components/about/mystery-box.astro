@@ -5,6 +5,13 @@ const SMALL_DOTS_TOTAL = 43;
 const MEDIUM_DOTS_TOTAL = 12;
 const LARGE_DOTS_TOTAL = 4;
 const LINK_DOTS_STARTING_NUMBER = SMALL_DOTS_TOTAL + MEDIUM_DOTS_TOTAL + LARGE_DOTS_TOTAL;
+
+/**
+ * Five slots, four links. Slot 63 is deliberately skipped — the four links take
+ * offsets 1, 2, 3 and 5 — because each `dotN` class carries hand-authored
+ * coordinates and 63's position sat on top of 62. The count stays at 5 so the
+ * dots that follow keep the offsets their CSS was written against.
+ */
 const LINK_DOTS_TOTAL = 5;
 const POST_LINK_SMALL_DOTS_COUNT = 4;
 ---
@@ -120,75 +127,26 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 <style>
 	@reference "../../styles/base.css";
 
+	/*
+	 * Was nine stacked 3%-opacity linear-gradients over a blue-to-magenta base —
+	 * the one surface on the site still running the gradient look. The tile is
+	 * flat now; the swarm of white dots is what makes it worth hovering, and it
+	 * reads better against a plain ground than against a color wash.
+	 */
+	/*
+	 * `place-content: center` collapses the grid track to its content, and the
+	 * content is absolutely positioned, so `.mystery-box-container` measures 0×0.
+	 * That is load-bearing: every `dotN` coordinate is written in `cqi`/`cqb`
+	 * against this container, and the offsets were authored against the collapsed
+	 * box. Stretching the container to the card makes `cqi` ~1392px and throws
+	 * every dot past the clip. Rewriting the swarm's coordinate system is the
+	 * only way to change this; leave it collapsed until then.
+	 */
 	.mystery-box-card {
 		@apply relative grid w-full place-content-center overflow-hidden rounded-2xl;
 
-		background-image:
-			linear-gradient(
-				230deg,
-				rgb(93 93 93 / 3%) 0%,
-				rgb(93 93 93 / 3%) 50%,
-				rgb(78 78 78 / 3%) 50%,
-				rgb(78 78 78 / 3%) 100%
-			),
-			linear-gradient(
-				107deg,
-				rgb(55 55 55 / 1%) 0%,
-				rgb(55 55 55 / 1%) 50%,
-				rgb(170 170 170 / 1%) 50%,
-				rgb(170 170 170 / 1%) 100%
-			),
-			linear-gradient(
-				278deg,
-				rgb(16 16 16 / 3%) 0%,
-				rgb(16 16 16 / 3%) 50%,
-				rgb(24 24 24 / 3%) 50%,
-				rgb(24 24 24 / 3%) 100%
-			),
-			linear-gradient(
-				205deg,
-				rgb(116 116 116 / 3%) 0%,
-				rgb(116 116 116 / 3%) 50%,
-				rgb(0 0 0 / 3%) 50%,
-				rgb(0 0 0 / 3%) 100%
-			),
-			linear-gradient(
-				150deg,
-				rgb(5 5 5 / 3%) 0%,
-				rgb(5 5 5 / 3%) 50%,
-				rgb(80 80 80 / 3%) 50%,
-				rgb(80 80 80 / 3%) 100%
-			),
-			linear-gradient(
-				198deg,
-				rgb(231 231 231 / 3%) 0%,
-				rgb(231 231 231 / 3%) 50%,
-				rgb(26 26 26 / 3%) 50%,
-				rgb(26 26 26 / 3%) 100%
-			),
-			linear-gradient(
-				278deg,
-				rgb(89 89 89 / 3%) 0%,
-				rgb(89 89 89 / 3%) 50%,
-				rgb(26 26 26 / 3%) 50%,
-				rgb(26 26 26 / 3%) 100%
-			),
-			linear-gradient(
-				217deg,
-				rgb(28 28 28 / 3%) 0%,
-				rgb(28 28 28 / 3%) 50%,
-				rgb(202 202 202 / 3%) 50%,
-				rgb(202 202 202 / 3%) 100%
-			),
-			linear-gradient(
-				129deg,
-				rgb(23 23 23 / 3%) 0%,
-				rgb(23 23 23 / 3%) 50%,
-				rgb(244 244 244 / 3%) 50%,
-				rgb(244 244 244 / 3%) 100%
-			),
-			linear-gradient(135deg, rgb(1 132 255), rgb(198 5 91));
-		transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+		background-color: var(--color-surface-sunken);
+		transition: background-color 700ms cubic-bezier(0.32, 0.72, 0, 1);
 
 		@media (width >= theme(--breakpoint-sm)) {
 			@apply rounded-3xl;
@@ -306,9 +264,7 @@ const POST_LINK_SMALL_DOTS_COUNT = 4;
 			.dot {
 				position: absolute;
 				aspect-ratio: 1;
-				border-top: 1px solid rgb(255 255 255);
-				border-right: 1px solid rgb(255 255 255);
-				background: linear-gradient(45deg, rgb(255 255 255) 0%, rgb(255 255 255 / 34%) 100%);
+				background: rgb(255 255 255 / 70%);
 				transition: transform 1s ease-in-out;
 			}
 

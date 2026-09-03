@@ -2,9 +2,8 @@
 # draft: placeholder case-study copy — replace with the real story before shipping.
 title: Isla Suds
 description: Isla Suds is a small-batch organic soap company with a custom Shopify Hydrogen storefront featuring 3D product animations and a seamless checkout experience.
-bgImage: ../../assets/images/isla-suds-bg.svg
 screenshotImage: ../../assets/images/isla-suds-screenshot.png
-cardColor: '#0a4d4d'
+cardColor: '#272727'
 url: https://www.islasuds.com
 linkText: View Site
 tags:

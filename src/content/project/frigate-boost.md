@@ -2,9 +2,8 @@
 # draft: placeholder case-study copy — replace with the real story before shipping.
 title: Frigate Boost
 description: Frigate Boost is a web extension allowing for requested features that haven't been developed yet like batch deleting of events, etc.
-bgImage: ../../assets/images/frigate-boost-bg.svg
 screenshotImage: ../../assets/images/frigate-boost-screenshot.png
-cardColor: '#1c1850'
+cardColor: '#181818'
 url: https://github.com/shotcowboystyle/frigate-boost-ext
 linkText: View Source
 tags:

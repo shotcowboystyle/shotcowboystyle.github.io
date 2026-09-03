@@ -18,7 +18,7 @@ const socials = await getCollection('social');
 		<a
 			href="/"
 			aria-current="page"
-			class="c-animated-text js-split-lines js-animation-reveal-text-wrapper font-sans-serif text-3xl leading-none font-semibold uppercase sm:font-extrabold"
+			class="c-animated-text js-split-lines js-animation-reveal-text-wrapper font-sans-serif text-2xl leading-none font-bold tracking-tight uppercase sm:text-3xl"
 		>
 			shotcowboystyle.
 		</a>
@@ -43,7 +43,7 @@ const socials = await getCollection('social');
 				</span>
 
 				<span
-					class="absolute inset-0 z-0 rounded-full bg-black transition-all group-hover:scale-150"
+					class="absolute inset-0 z-0 rounded-full bg-black transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-150"
 				></span>
 			</a>
 		</div>
@@ -54,18 +54,37 @@ const socials = await getCollection('social');
 			class="header-content-content-wrapper mb-6 flex items-start max-lg:flex-col lg:mb-16 lg:items-end"
 		>
 			<div class="c-animated-big-text__text relative">
+				<!--
+					The mobile width cap was `max-w-[8ch]`, measured against a condensed
+					display face. `ch` is the width of the font's own zero, so the same 8ch
+					is far narrower in Geist: "Developer." overran the box, and the line
+					clipper's `overflow: hidden` then cut it mid-letter.
+				-->
 				<div class="anim-h1-wrapper">
 					<h1
 						id="header-headline"
-						class="c-animated-text js-split-lines js-animation-reveal-text-wrapper mb-2 max-w-[8ch] !leading-[.9] uppercase max-sm:text-9xl sm:mb-0 sm:max-w-[18ch]"
+						class="c-animated-text js-split-lines js-animation-reveal-text-wrapper hero-gradient-text mb-2 !leading-[.9] uppercase sm:mb-0 sm:max-w-[14ch]"
 					>
 						Full Stack<br />Senior Developer.
 					</h1>
 				</div>
+			</div>
 
+			<div class="sm:hidden">
+				<Availability />
+			</div>
+
+			<div class="flex flex-col items-start gap-8 lg:ml-auto lg:items-end">
+				<!--
+					Was `scale-0 opacity-0` waiting on an entrance animation that was never
+					written, so the availability badge had never rendered. It states a fact
+					the visitor needs, so it ships visible and animates only its rotation.
+					It sits beside the intro rather than over the headline, where it used to
+					land on top of the type at display sizes.
+				-->
 				<div
 					id="header-badge"
-					class="absolute -top-[20%] right-[-15%] h-24 w-24 scale-0 opacity-0 sm:-top-[20%] sm:-right-[15%] md:h-48 md:w-48 lg:-right-[20%] lg:h-40 lg:w-40"
+					class="pointer-events-none hidden h-24 w-24 sm:block md:h-32 md:w-32 lg:h-28 lg:w-28"
 				>
 					<Image
 						src={openProjectsBadge}
@@ -74,19 +93,15 @@ const socials = await getCollection('social');
 						class="motion-safe:animate-spin-circle inline-block max-w-full align-middle"
 					/>
 				</div>
-			</div>
 
-			<div class="sm:hidden">
-				<Availability />
+				<p
+					id="header-intro"
+					class="c-animated-text js-split-words js-animation-reveal-text-wrapper mt-4 mb-0 max-w-[28ch] sm:mb-16 lg:mb-4 lg:text-right"
+				>
+					Motion is the language. Fifteen years of shipping considered work for teams that treat
+					craft as evidence.
+				</p>
 			</div>
-
-			<p
-				id="header-intro"
-				class="c-animated-text js-split-words js-animation-reveal-text-wrapper mt-4 mb-0 max-w-[25ch] !leading-5 sm:mb-16 sm:!leading-tight lg:mb-4 lg:ml-auto"
-			>
-				Motion is the language. Fifteen years of shipping considered work for teams that treat craft
-				as evidence.
-			</p>
 		</div>
 
 		<nav
