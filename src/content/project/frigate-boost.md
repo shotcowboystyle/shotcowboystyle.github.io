@@ -32,9 +32,11 @@ approach:
       The extension detects a Frigate instance without configuration and refuses to run against unknown surfaces. Batch delete is behind a two-step confirm with a plain-language count. No accidental fleet wipes.
 motionMoments:
   - name: Selection ink-drop
+    demo: ink-drop
     description: |
       Selecting an event drops a subtle ink of accent color onto the tile — a two-frame transition that reads as commitment, not a hover flourish.
   - name: Batch confirm scrub
+    demo: count-up
     description: |
       The confirm dialog counts up to the target number over three hundred milliseconds. It slows down enough for the eye to catch the last digit — a designed pause before an irreversible action.
 nextSlug: charleston-bonsai
