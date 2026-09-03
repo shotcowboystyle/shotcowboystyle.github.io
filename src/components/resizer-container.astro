@@ -1,29 +1,50 @@
 ---
-const { class: className } = Astro.props;
+interface Props {
+	class?: string;
+	/** Rendered beside the handle so the affordance says what it does. */
+	label?: string;
+}
+
+const { class: className, label = 'Drag' } = Astro.props;
 ---
 
-<div class:list={['container', className]}>
+<div class:list={['resize-frame', className]}>
 	<div
 		class="resizable"
 		id="resize-me"
 	>
 		<slot />
+
+		{
+			/*
+			 * One handle, on the trailing edge. There used to be a second
+			 * `.resizer-b` on the bottom edge with `aria-orientation="horizontal"`
+			 * and a row-resize cursor, but nothing in the drag or keyboard path
+			 * ever touched the height — it was a focusable control that announced
+			 * itself as a resizer and did nothing.
+			 */
+		}
 		<div
-			class="resizer resizer-r"
+			class="resizer"
 			role="separator"
 			tabindex="0"
 			aria-orientation="vertical"
-			aria-label="Resize the frame width"
+			aria-label="Frame width"
 		>
+			<span
+				class="resizer-grip"
+				aria-hidden="true"
+			></span>
 		</div>
-		<div
-			class="resizer resizer-b"
-			role="separator"
-			tabindex="0"
-			aria-orientation="horizontal"
-			aria-label="Resize the frame width"
+
+		<p
+			class="resizer-hint"
+			aria-hidden="true"
 		>
-		</div>
+			{label}
+		</p>
+
+		<p class="resizer-limit">Narrowest</p>
 	</div>
 </div>
 
@@ -49,26 +70,42 @@ const { class: className } = Astro.props;
 
 		const resizers = el.querySelectorAll<HTMLElement>('.resizer');
 
-		const minWidthFor = (isTouchEvent: boolean) =>
-			isTouchEvent ? COARSE_POINTER_MIN_WIDTH : FINE_POINTER_MIN_WIDTH;
-
 		const maxWidth = () => el.parentElement?.clientWidth ?? window.innerWidth;
 
 		/**
+		 * The floor is whichever is smaller: the per-pointer minimum, or 55% of
+		 * the space available. The flat constants alone meant that on any viewport
+		 * narrower than the minimum — every phone in portrait — the clamp pinned
+		 * the frame at full width and the handle did nothing at all. That is what
+		 * the old `rotate(-90deg)` hack on `<main>` was working around.
+		 */
+		const minWidthFor = (isTouchEvent: boolean) =>
+			Math.min(
+				isTouchEvent ? COARSE_POINTER_MIN_WIDTH : FINE_POINTER_MIN_WIDTH,
+				Math.round(maxWidth() * 0.55),
+			);
+
+		/**
 		 * Single place that writes the width, so the drag and the keyboard path
-		 * cannot drift apart. Also mirrors the value onto the separators, which
+		 * cannot drift apart. Also mirrors the value onto the separator, which
 		 * is what a screen reader reads out while stepping.
 		 */
 		const applyWidth = (next: number, minWidth: number) => {
 			const clamped = Math.min(Math.max(next, minWidth), maxWidth());
 
 			el.style.width = `${clamped}px`;
-			document.body.classList.toggle('is-resize-limit', clamped <= minWidth);
+			/*
+			 * Scoped to the frame. This used to toggle on `<body>` and the limit
+			 * state was `bg-red-500` — the whole viewport flashed red to report
+			 * that one element had stopped getting narrower.
+			 */
+			el.classList.toggle('is-resize-limit', clamped <= minWidth);
 
 			resizers.forEach((resizer) => {
 				resizer.setAttribute('aria-valuenow', String(Math.round(clamped)));
 				resizer.setAttribute('aria-valuemin', String(minWidth));
 				resizer.setAttribute('aria-valuemax', String(Math.round(maxWidth())));
+				resizer.setAttribute('aria-valuetext', `${Math.round(clamped)} pixels wide`);
 			});
 
 			return clamped;
@@ -106,6 +143,8 @@ const { class: className } = Astro.props;
 			const styles = window.getComputedStyle(el);
 			w = parseInt(styles.width, 10);
 
+			el.classList.add('is-resizing');
+
 			// Attach the listeners to document
 			document.addEventListener('mousemove', onMove);
 			document.addEventListener('mouseup', onUp);
@@ -114,6 +153,8 @@ const { class: className } = Astro.props;
 		};
 
 		const onUp = () => {
+			el.classList.remove('is-resizing');
+
 			// Remove the handlers of mousemove and mouseup
 			document.removeEventListener('mousemove', onMove);
 			document.removeEventListener('mouseup', onUp);
@@ -159,36 +200,146 @@ const { class: className } = Astro.props;
 			resizer.addEventListener('keydown', onKeyDown);
 		});
 
-		applyWidth(
-			parseInt(window.getComputedStyle(el).width, 10),
-			minWidthFor(window.matchMedia('(pointer: coarse)').matches),
-		);
+		/**
+		 * The frame is re-clamped on resize because `maxWidth()` is the parent's
+		 * width — rotating a phone used to leave the frame wider than the page.
+		 */
+		const onWindowResize = () =>
+			applyWidth(
+				parseInt(window.getComputedStyle(el).width, 10),
+				minWidthFor(window.matchMedia('(pointer: coarse)').matches),
+			);
+
+		window.addEventListener('resize', onWindowResize);
+
+		onWindowResize();
 	});
 </script>
 
 <style>
 	@reference "../styles/base.css";
 
+	.resize-frame {
+		--frame-ink: oklch(91% 0 0deg);
+		--frame-mint: oklch(77% 0.17 159.37deg);
+		--frame-ink-primary: oklch(25% 0.08 160deg);
+
+		min-height: fit-content;
+	}
+
 	.resizable {
-		@apply relative w-full items-center justify-center border border-gray-300;
+		position: relative;
+		width: 100%;
+
+		/* Room on the trailing edge for the handle to sit outside the artwork. */
+		padding-right: 1.5rem;
+		border: 1px solid color-mix(in oklch, var(--frame-ink) 35%, transparent);
+		border-radius: 16px;
 	}
 
+	/* ---- The handle ----
+	 *
+	 * This was a 1px transparent strip. It is the only control on the page and
+	 * the entire point of the page, so it is now a visible mint bar with a grip,
+	 * sized past the 44px minimum target on its long axis.
+	 */
 	.resizer {
-		@apply absolute;
+		position: absolute;
+		top: 50%;
+		right: -0.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 1.5rem;
+		height: clamp(4rem, 12vh, 7rem);
+		border-radius: 9999px;
+		background: var(--frame-mint);
+		cursor: col-resize;
+		touch-action: none;
+		transition: background-color 0.25s ease-out;
+		transform: translateY(-50%);
 	}
 
-	/* Placed at the right side */
-	.resizer-r {
-		@apply top-0 right-0 h-full w-1 cursor-col-resize;
+	.resizer-grip {
+		display: block;
+		width: 2px;
+		height: 40%;
+		border-radius: 1px;
+		background: var(--frame-ink-primary);
+		box-shadow:
+			4px 0 0 var(--frame-ink-primary),
+			-4px 0 0 var(--frame-ink-primary);
 	}
 
-	/* Placed at the bottom side */
-	.resizer-b {
-		@apply bottom-0 left-0 h-1 w-full cursor-row-resize;
+	.resizer-hint {
+		position: absolute;
+		right: 2.25rem;
+		bottom: 0.75rem;
+		margin: 0;
+		color: color-mix(in oklch, var(--frame-ink) 70%, transparent);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		pointer-events: none;
 	}
 
-	/* Optional styles */
-	.container {
-		@apply min-h-fit p-4;
+	/* ---- Limit state ---- */
+
+	/* Top-left, not bottom-left: at the narrowest widths — which is exactly when
+	   this appears — it collided with the drag hint in the opposite corner. */
+	.resizer-limit {
+		position: absolute;
+		top: 0.75rem;
+		left: 0.75rem;
+		margin: 0;
+		padding: 0.35rem 0.75rem;
+		border-radius: 9999px;
+		background: var(--frame-mint);
+		color: var(--frame-ink-primary);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		opacity: 0%;
+		pointer-events: none;
+		transition: opacity 0.2s ease-out;
+	}
+
+	.resizable.is-resize-limit {
+		border-color: var(--frame-mint);
+	}
+
+	.resizable.is-resize-limit .resizer-limit {
+		opacity: 100%;
+	}
+
+	/* Split from the `.is-resizing` rule below so the lower-specificity state
+	   selectors are declared first. */
+	.resizer:hover,
+	.resizer:focus-visible {
+		background: oklch(48% 0.13 159.37deg);
+	}
+
+	.resizable.is-resizing .resizer {
+		background: oklch(48% 0.13 159.37deg);
+	}
+
+	.resizable.is-resizing .resizer-grip,
+	.resizer:hover .resizer-grip,
+	.resizer:focus-visible .resizer-grip {
+		background: var(--frame-ink);
+		box-shadow:
+			4px 0 0 var(--frame-ink),
+			-4px 0 0 var(--frame-ink);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.resizer,
+		.resizer-limit {
+			transition: none;
+		}
 	}
 </style>
