@@ -1,37 +1,71 @@
 ---
-import BackToHomeButton from '@/components/back-to-home-button.astro';
+import BackLink from '@/components/back-link.astro';
 import GameLayout from '@/layouts/game.astro';
 
-const title = `Tower Blocks Game`;
+const meta = {
+	title: 'Tower Blocks — Curtis Blanton',
+	description:
+		'A stacking game, built with Three.js and Cannon.js. Click or press space to place the block.',
+};
 ---
 
-<GameLayout meta={{ title }}>
-	<div class="absolute top-2 left-2">
-		<BackToHomeButton variant="dark" />
-	</div>
-
+<GameLayout meta={meta}>
 	<div id="container">
 		<div id="game"></div>
-		<div id="score">0</div>
-		<div id="instructions">Click (or press the space bar) to place the block</div>
-		<div class="game-over">
-			<h2>Game Over</h2>
-			<p>You did great, you're the best.</p>
-			<p>Click or space bar to start again</p>
+
+		<div class="chrome-top">
+			<BackLink tone="canvas" />
+
+			{
+				/*
+				 * `aria-live="polite"` with `aria-atomic`: the score is the only
+				 * feedback a player gets for a successful placement, and without a
+				 * live region it changed silently for anyone not watching the numeral.
+				 */
+			}
+			<p
+				id="score"
+				aria-live="polite"
+				aria-atomic="true"
+			>
+				<span class="visually-hidden">Score:</span><span id="score-value">0</span>
+			</p>
 		</div>
 
-		<div class="game-ready">
-			<div>
+		<div class="plate-slot">
+			<div class="game-ready plate plate-canvas">
+				<p class="plate-label">Interlude</p>
 				<h1 id="start-message">In case you were bored</h1>
+				<p class="plate-body">
+					Drop each slab on the one below it. Whatever hangs over the edge gets cut off and falls.
+					Miss entirely and the tower is finished.
+				</p>
 				<button
 					type="button"
 					id="start-button"
+					class="plate-action"
 				>
-					Start</button
-				>
+					Start stacking
+				</button>
 			</div>
-			<div></div>
+
+			{
+				/*
+				 * `role="status"` rather than a bare div: the end of a run is a state
+				 * change with no focus move, so it has to be announced.
+				 */
+			}
+			<div
+				class="game-over plate plate-mint"
+				role="status"
+			>
+				<p class="plate-label">Tower down</p>
+				<h2>You stacked <span id="final-score">0</span></h2>
+				<p class="plate-body">Click, tap, or press the space bar to start again.</p>
+			</div>
 		</div>
+
+		<p id="instructions">Click or press the space bar to place the block</p>
 	</div>
 </GameLayout>
 
@@ -48,8 +82,6 @@ const title = `Tower Blocks Game`;
 		direction?: BlockPlane;
 	}
 
-	// const BOX_HEIGHT = 1; // Height of each layer
-	// const ORIGINAL_BOX_SIZE = 3; // Original width and height of a box
 	const BOX_HEIGHT = 3; // Height of each layer
 	const ORIGINAL_BOX_SIZE = 9; // Original width and height of a box
 	const GAME_STATES = {
@@ -59,6 +91,32 @@ const title = `Tower Blocks Game`;
 		ENDED: 'ended',
 		RESETTING: 'resetting',
 	};
+
+	/**
+	 * Signal Mint · Cobalt Draft · Lavender Wash, measured off the `oklch()`
+	 * tokens in `base.css`. The old ramp was `hsl(30 + n * 4, 100%, 50%)` — a
+	 * saturated orange run that shared nothing with the rest of the site.
+	 *
+	 * Layers walk the ramp forward and then back again over sixteen layers, so
+	 * the tower reads as a printed color bar climbing rather than a wheel spin,
+	 * and there is no hard seam where the cycle restarts.
+	 */
+	const BLOCK_RAMP = ['#20d48c', '#377bf9', '#aaacdd'] as const;
+	const RAMP_PERIOD = 16;
+	const CLEAR_COLOR = '#000000';
+
+	function blockColor(layerIndex: number): THREE.Color {
+		const span = BLOCK_RAMP.length - 1;
+		const cycle = (layerIndex % RAMP_PERIOD) / (RAMP_PERIOD / 2);
+		const triangle = cycle <= 1 ? cycle : 2 - cycle;
+		const position = triangle * span;
+		const stop = Math.min(Math.floor(position), span - 1);
+
+		return new THREE.Color(BLOCK_RAMP[stop]).lerp(
+			new THREE.Color(BLOCK_RAMP[stop + 1]),
+			position - stop,
+		);
+	}
 
 	// ThreeJS globals
 	let camera: THREE.OrthographicCamera;
@@ -72,7 +130,17 @@ const title = `Tower Blocks Game`;
 	let gameState: (typeof GAME_STATES)[keyof typeof GAME_STATES];
 
 	let scoreElement: HTMLElement | null;
+	let finalScoreElement: HTMLElement | null;
 	let pageContainerElement: HTMLElement | null;
+
+	function setScore(value: number) {
+		if (scoreElement) {
+			scoreElement.innerText = String(value);
+		}
+		if (finalScoreElement) {
+			finalScoreElement.innerText = String(value);
+		}
+	}
 
 	function generateBlock(
 		x: number,
@@ -81,11 +149,11 @@ const title = `Tower Blocks Game`;
 		width: number,
 		depth: number,
 		falls: boolean,
+		layerIndex: number,
 	): GeneratedBlock {
 		// ThreeJS
 		const geometry = new THREE.BoxGeometry(width, BOX_HEIGHT, depth);
-		const color = new THREE.Color(`hsl(${30 + stack.length * 4}, 100%, 50%)`);
-		const material = new THREE.MeshLambertMaterial({ color });
+		const material = new THREE.MeshLambertMaterial({ color: blockColor(layerIndex) });
 		const mesh = new THREE.Mesh(geometry, material);
 		mesh.position.set(x, y, z);
 		scene.add(mesh);
@@ -111,7 +179,7 @@ const title = `Tower Blocks Game`;
 
 	function addLayer(x: number, z: number, width: number, depth: number, direction?: BlockPlane) {
 		const y = BOX_HEIGHT * stack.length; // Add the new box one layer higher
-		const layer = generateBlock(x, y, z, width, depth, false);
+		const layer = generateBlock(x, y, z, width, depth, false, stack.length);
 		layer.direction = direction;
 		stack.push(layer);
 
@@ -123,9 +191,14 @@ const title = `Tower Blocks Game`;
 		}
 	}
 
+	/**
+	 * Takes the color of the layer it was cut from — `stack.length` is one past
+	 * that layer's index, so the offcut used to be tinted as if it were the next
+	 * layer up and visibly mismatched the slab it fell off.
+	 */
 	function addOverhang(x: number, z: number, width: number, depth: number) {
 		const y = BOX_HEIGHT * (stack.length - 1); // Add the new box one the same layer
-		const overhang = generateBlock(x, y, z, width, depth, true);
+		const overhang = generateBlock(x, y, z, width, depth, true, stack.length - 1);
 		overhangs.push(overhang);
 	}
 
@@ -277,9 +350,7 @@ const title = `Tower Blocks Game`;
 			const newDepth = topLayer.depth; // New layer has the same size as the cut top layer
 			const nextDirection = direction === 'x' ? 'z' : 'x';
 
-			if (scoreElement) {
-				scoreElement.innerText = String(stack.length - 1);
-			}
+			setScore(stack.length - 1);
 
 			addLayer(nextX, nextZ, newWidth, newDepth, nextDirection);
 		} else {
@@ -294,9 +365,7 @@ const title = `Tower Blocks Game`;
 		stack = [];
 		overhangs = [];
 
-		if (scoreElement) {
-			scoreElement.innerText = '0';
-		}
+		setScore(0);
 
 		if (world) {
 			// Remove every object from world
@@ -373,11 +442,15 @@ const title = `Tower Blocks Game`;
 		// Foundation
 		addLayer(0, 0, ORIGINAL_BOX_SIZE, ORIGINAL_BOX_SIZE);
 
-		// Set up lights
-		const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+		/*
+		 * Lifted from 0.6/0.6. On the black canvas the slabs no longer sit against
+		 * a light ground bouncing fill back at them, so the unlit faces were
+		 * closing up into the background and the tower lost its silhouette.
+		 */
+		const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
 		scene.add(ambientLight);
 
-		const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+		const dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
 		dirLight.position.set(10, 20, 0);
 		scene.add(dirLight);
 
@@ -385,8 +458,10 @@ const title = `Tower Blocks Game`;
 		const gameContainerElement = document.getElementById('game');
 		if (gameContainerElement) {
 			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+			// Capped at 2: past that the extra pixels are invisible and the fill cost is not.
+			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 			renderer.setSize(window.innerWidth, window.innerHeight);
-			renderer.setClearColor('#D0CBC7', 1);
+			renderer.setClearColor(CLEAR_COLOR, 1);
 			renderer.setAnimationLoop(animation);
 			gameContainerElement.appendChild(renderer.domElement);
 
@@ -413,8 +488,15 @@ const title = `Tower Blocks Game`;
 
 		camera.top = height / 2;
 		camera.bottom = height / -2;
+		/*
+		 * Without this the new frustum bounds are never pushed into the projection
+		 * matrix, so a resize re-stretched the canvas while the camera carried on
+		 * projecting at the old aspect ratio.
+		 */
+		camera.updateProjectionMatrix();
 
 		// Reset renderer
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		renderer.render(scene, camera);
 	}
@@ -425,7 +507,8 @@ const title = `Tower Blocks Game`;
 		updateState(GAME_STATES.LOADING);
 
 		pageContainerElement = document.getElementById('container');
-		scoreElement = document.getElementById('score');
+		scoreElement = document.getElementById('score-value');
+		finalScoreElement = document.getElementById('final-score');
 		if (scoreElement && pageContainerElement) {
 			init();
 		}
@@ -485,19 +568,33 @@ const title = `Tower Blocks Game`;
 <style>
 	@reference "../styles/base.css";
 
+	/* ============================================================
+	 * Tower Blocks — the same materials as every other page.
+	 * Canvas Black ground, off-white and mint plates, one display
+	 * numeral. The beige-and-orange CodePen skin is gone.
+	 * ============================================================ */
+
 	#container {
-		@apply h-full w-full;
-	}
+		--game-gutter: clamp(1.25rem, 3vw, 3rem);
+		--ink-canvas: oklch(91% 0 0deg);
+		--ink-primary: oklch(25% 0.08 160deg);
+		--ink-slate: oklch(36% 0.03 262.99deg);
+		--mint: oklch(77% 0.17 159.37deg);
+		--plate-radius: 24px;
 
-	#container #score {
-		@apply font-sans-serif text-base-content absolute mb-4 w-full text-center;
-
-		font-size: 10vh;
-		transform: scale(0);
+		/*
+		 * Fixed rather than `h-full`: `<main>` has no height of its own, so a
+		 * percentage height collapsed to zero and every absolutely-positioned
+		 * piece of chrome resolved against the viewport instead of the board.
+		 * The game is a full-viewport surface; say so.
+		 */
+		position: fixed;
+		inset: 0;
+		background: #000;
 	}
 
 	#container #game {
-		@apply absolute inset-0;
+		@apply absolute inset-0 z-0;
 
 		/*
 		 * Suppresses the double-tap-to-zoom delay on the play surface without
@@ -506,80 +603,233 @@ const title = `Tower Blocks Game`;
 		touch-action: manipulation;
 	}
 
-	#container .game-over {
-		@apply absolute left-0 flex h-3/5 w-full flex-col items-center justify-center;
+	.visually-hidden {
+		position: absolute;
+		overflow: hidden;
+		clip-path: inset(50%);
+		width: 1px;
+		height: 1px;
+		white-space: nowrap;
 	}
 
-	#container .game-over * {
-		@apply text-base-content font-sans opacity-0;
+	/* ---- Top chrome: the way out, and the running score ---- */
 
-		transition:
-			opacity 0.5s ease,
-			transform 0.5s ease;
-		transform: translateY(-50px);
+	.chrome-top {
+		position: absolute;
+		top: var(--game-gutter);
+		right: var(--game-gutter);
+		left: var(--game-gutter);
+		z-index: 10;
+		display: flex;
+		gap: 1rem;
+		justify-content: space-between;
+		align-items: baseline;
+		pointer-events: none;
 	}
 
+	.chrome-top :global(a) {
+		pointer-events: auto;
+	}
+
+	/* Same dark chip as the instruction label, for the same reason: the tower
+	   climbs into this corner and the numeral has to stay readable on a slab. */
+	#container #score {
+		margin: 0;
+		padding: 0.25rem 0.75rem 0.4rem;
+		border-radius: 16px;
+		background: color-mix(in oklch, #000 82%, transparent);
+		color: var(--ink-canvas);
+		font-weight: 700;
+		font-size: clamp(3rem, 9vw, 8rem);
+		font-family: var(--font-sans-serif);
+		line-height: 0.8;
+		letter-spacing: -0.03em;
+		opacity: 0%;
+		transition: opacity 0.4s ease;
+		font-variant-numeric: tabular-nums;
+	}
+
+	#container.playing #score,
+	#container.resetting #score,
+	#container.ended #score {
+		opacity: 100%;
+	}
+
+	/* ---- Plates: bottom-left, clear of the tower ----
+	 *
+	 * The ready and game-over panels used to be centred in a `justify-around`
+	 * column, which printed the title and the Start button straight across the
+	 * face of the stack. They share one slot in the lower-left corner now, so
+	 * the tower always has the middle of the frame to itself.
+	 */
+
+	.plate-slot {
+		position: absolute;
+		bottom: var(--game-gutter);
+		left: var(--game-gutter);
+		z-index: 10;
+		display: grid;
+
+		/* Both plates share one grid cell so they occupy the same corner. Without
+		   `end` the shorter one stretches to the taller one's height and the
+		   game-over plate rendered with a dead band under its last line. */
+		align-items: end;
+		width: min(34rem, calc(100% - (2 * var(--game-gutter))));
+	}
+
+	.plate {
+		display: flex;
+		flex-direction: column;
+		grid-area: 1 / 1;
+		gap: clamp(0.75rem, 1.5vw, 1rem);
+		align-items: start;
+		padding: clamp(1.75rem, 3vw, 2.5rem);
+		border-radius: var(--plate-radius);
+		opacity: 0%;
+		pointer-events: none;
+		transition: opacity 0.5s ease;
+		transform: translateY(16px);
+	}
+
+	.plate-canvas {
+		background: var(--ink-canvas);
+		color: #000;
+	}
+
+	.plate-mint {
+		background: var(--mint);
+		color: var(--ink-primary);
+	}
+
+	.plate-label {
+		margin: 0;
+		color: var(--ink-slate);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.plate-mint .plate-label {
+		color: var(--ink-primary);
+	}
+
+	#container .game-ready h1,
 	#container .game-over h2 {
-		@apply font-sans-serif m-0 p-0 text-6xl;
+		margin: 0;
+		color: inherit;
+		font-weight: 700;
+		font-size: clamp(2rem, 4vw, 3.25rem);
+		font-family: var(--font-sans-serif);
+		line-height: 0.95;
+		letter-spacing: -0.015em;
+		text-transform: uppercase;
 	}
 
-	#container .game-ready {
-		@apply absolute top-0 left-0 flex h-full w-full flex-col items-center justify-around;
+	.plate-body {
+		max-width: 44ch;
+		margin: 0;
+		color: var(--ink-slate);
+		font-weight: 500;
+		font-size: clamp(0.95rem, 1.2vw, 1.075rem);
+		font-family: var(--font-sans);
+		line-height: 1.55;
 	}
 
-	#container .game-ready #start-message,
-	#container .game-ready #start-button {
-		@apply text-base-content mx-auto mb-1 w-full text-center text-3xl opacity-0;
-
-		transition:
-			opacity 0.5s ease,
-			transform 0.5s ease;
-		transform: translateY(-50px);
+	.plate-mint .plate-body {
+		color: var(--ink-primary);
 	}
 
-	#container .game-ready #start-button {
-		@apply border-base-content border-4 bg-transparent px-4 py-2;
+	/* Filled mint pill on the off-white plate — the one primary action
+	   on the page, matching the panel-tier CTA elsewhere on the site. */
+	.plate-action {
+		margin-top: 0.5rem;
+		padding: 0.75rem 1.5rem;
+		border: none;
+		border-radius: 9999px;
+		background: var(--mint);
+		color: var(--ink-primary);
+		font-weight: 600;
+		font-size: var(--text-base);
+		font-family: var(--font-sans);
+		cursor: pointer;
+		transition: background-color 0.3s cubic-bezier(0.32, 0.72, 0, 1);
 	}
 
+	.plate-action:hover,
+	.plate-action:focus-visible {
+		background: oklch(48% 0.13 159.37deg);
+		color: var(--ink-canvas);
+	}
+
+	#container.ready .game-ready,
+	#container.ended .game-over {
+		opacity: 100%;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+
+	/* ---- Instructions: quiet label, bottom centre ---- */
+
+	/*
+	 * Set on its own dark chip rather than straight onto the canvas. The label
+	 * sits at the bottom of the frame, which is exactly where the foundation
+	 * slab fills the screen — plain off-white type landed on mint and lost most
+	 * of its contrast.
+	 */
 	#container #instructions {
-		@apply absolute top-1/4 left-0 w-full text-center opacity-0;
+		position: absolute;
+		right: 0;
+		bottom: var(--game-gutter);
+		left: 0;
+		z-index: 5;
+		width: fit-content;
+		margin: 0 auto;
+		padding: 0.6rem 1.1rem;
+		border-radius: 9999px;
+		background: color-mix(in oklch, #000 82%, transparent);
+		color: var(--ink-canvas);
+		font-weight: 600;
+		font-size: var(--text-xs);
+		font-family: var(--font-sans);
+		letter-spacing: 0.14em;
+		text-align: center;
+		text-transform: uppercase;
+		opacity: 0%;
+		pointer-events: none;
+		transition: opacity 0.5s ease;
+	}
 
-		transition:
-			opacity 0.5s ease,
-			transform 0.5s ease;
+	#container.playing #instructions {
+		opacity: 100%;
 	}
 
 	#container #instructions.hide {
 		@apply !opacity-0;
 	}
 
-	#container.playing #score,
-	#container.resetting #score {
-		transform: translateY(0) scale(1);
+	/*
+	 * At narrow widths the plate takes the full gutter-to-gutter width, so the
+	 * centred instruction label would sit underneath it. It moves above.
+	 */
+	@media (width <= 640px) {
+		#container #instructions {
+			top: 45%;
+			bottom: auto;
+		}
 	}
 
-	#container.playing #instructions {
-		@apply opacity-100;
-	}
+	@media (prefers-reduced-motion: reduce) {
+		#container #score,
+		.plate,
+		.plate-action,
+		#container #instructions {
+			transition: none;
+		}
 
-	#container.ready .game-ready #start-message,
-	#container.ready .game-ready #start-button {
-		@apply opacity-100;
-
-		transform: translateY(0);
-	}
-
-	#container.ended #score {
-		transform: translateY(6vh) scale(1.5);
-	}
-
-	#container.ended .game-over * {
-		@apply opacity-100;
-
-		transform: translateY(0);
-	}
-
-	#container.ended .game-over p {
-		transition-delay: 0.3s;
+		.plate {
+			transform: none;
+		}
 	}
 </style>
