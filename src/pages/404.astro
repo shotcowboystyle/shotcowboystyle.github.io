@@ -2,51 +2,31 @@
 import BaseLayout from '@/layouts/base.astro';
 import '@/styles/404.css';
 
-const title = 'Page not found — Curtis Blanton';
-const description = 'That page does not exist. Here is the way back.';
+const meta = {
+	title: 'Page not found — Curtis Blanton',
+	description: 'That page does not exist. Here is the way back.',
+};
 
 /**
- * Deterministic star field. `Math.random()` at build time gave a different
- * layout on every rebuild, which made the page impossible to diff or to pin in
- * a screenshot test. A cheap integer hash off the index gives the same
- * scattered-but-not-gridded result and reproduces exactly.
+ * The marquee band is a real, repeated string rather than a CSS `content` trick
+ * so it survives with motion disabled — it simply stops moving and reads as a
+ * printed rule across the foot of the page.
  */
-const STAR_COUNT = 64;
-const stars = Array.from({ length: STAR_COUNT }, (_, i) => {
-	const hash = (n: number) => (((Math.sin(n) * 43758.5453) % 1) + 1) % 1;
-	return {
-		top: Math.round(hash(i + 1) * 100),
-		left: Math.round(hash(i + 101) * 100),
-		size: 1 + Math.round(hash(i + 201) * 2),
-		delay: -(i % 8),
-	};
-});
+const MARQUEE_WORD = 'Page not found';
+const MARQUEE_REPEATS = 8;
+const marquee = Array.from({ length: MARQUEE_REPEATS }, () => MARQUEE_WORD);
 ---
 
-<BaseLayout meta={{ title, description }}>
-	<div id="page-wrapper">
-		<div
-			id="stars"
-			aria-hidden="true"
-		>
-			{
-				stars.map((star) => (
-					<span
-						class="star"
-						style={`--star-top: ${star.top}vh; --star-left: ${star.left}vw; --star-size: ${star.size}px; --star-delay: ${star.delay}s;`}
-					/>
-				))
-			}
-		</div>
-
-		{
-			/* A `div`, not a `main`: BaseLayout already provides the page's `<main>`
-		     landmark, and nesting a second one inside it is a landmark violation. */
-		}
-		<div class="not-found">
+<BaseLayout meta={meta}>
+	{
+		/* A `div`, not a `main`: BaseLayout already provides the page's `<main>`
+	     landmark, and nesting a second one inside it is a landmark violation. */
+	}
+	<div class="not-found">
+		<div class="not-found-inner">
 			<p class="not-found-status">Error 404</p>
 
-			<h1 class="not-found-code hero-gradient-text-dark">404</h1>
+			<h1 class="not-found-code">404</h1>
 
 			<p class="not-found-copy">
 				This page does not exist. It may have been renamed, or the link that brought you here was
@@ -69,6 +49,29 @@ const stars = Array.from({ length: STAR_COUNT }, (_, i) => {
 				>
 					See selected work
 				</a>
+			</div>
+		</div>
+
+		<div
+			class="not-found-marquee"
+			aria-hidden="true"
+		>
+			<div class="not-found-marquee-track">
+				{
+					/* Two identical runs of the same list: the track translates by
+				     exactly half its width, so the second run is standing where the
+				     first one started when the animation loops and there is no seam. */
+					[0, 1].map(() => (
+						<ul class="not-found-marquee-run">
+							{marquee.map((word) => (
+								<li>
+									{word}
+									<span class="not-found-marquee-tick">·</span>
+								</li>
+							))}
+						</ul>
+					))
+				}
 			</div>
 		</div>
 	</div>
