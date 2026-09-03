@@ -14,6 +14,16 @@ const projectCollection = defineCollection({
 			linkText: z.string(),
 			tags: z.array(z.string()),
 			variant: z.enum(['feature', 'split', 'poster']).default('feature'),
+				/**
+				 * Base plate color of the card — the flat `<rect>` fill under `bgImage`.
+				 * Painted on the card container so the corners, the plate-turn rotation
+				 * gap, and any image-load gap stay in-palette instead of flashing the
+				 * page behind. Constrained to a 6-digit hex so it is safe to
+				 * interpolate into an inline `style` attribute.
+				 */
+				cardColor: z
+					.string()
+					.regex(/^#[0-9a-f]{6}$/i, 'cardColor must be a 6-digit hex color, e.g. #1b3a2a'),
 			role: z.string(),
 			timeline: z.string(),
 			stack: z.array(z.string()),

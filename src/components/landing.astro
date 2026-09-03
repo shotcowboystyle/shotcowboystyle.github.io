@@ -11,7 +11,7 @@ const projects = await getCollection('project');
 <section
 	id="header"
 	aria-labelledby="header-headline"
-	class="js-section-card-wrapper bg-primary relative -mb-[100vh] h-[250vh]"
+	class="js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
 >
 	<div
 		class="js-section-card h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
@@ -32,7 +32,10 @@ const projects = await getCollection('project');
 				class="project-card js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
 			>
 				<div class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
-					<div class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20">
+					<div
+						class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-20"
+						style={`background-color: ${project.data.cardColor};`}
+					>
 						<ProjectCard project={project} />
 					</div>
 				</div>
