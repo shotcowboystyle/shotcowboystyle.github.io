@@ -36,7 +36,7 @@ this.addEventListener('fetch', (event) => {
 					if (
 						url.startsWith('chrome-extension') ||
 						url.includes('extension') ||
-						!(url.startsWith('http'))
+						!url.startsWith('http')
 					) {
 						return await fetch(event.request);
 					}
