@@ -33,8 +33,6 @@ export function androidVersion(): number | undefined {
 	}
 }
 
-export const isAppleDevice = (): boolean => agent.startsWith('ip');
-
 // Older mobile devices will default to non-centred camera mode
 export function isOldAndroid(): boolean {
 	const version = androidVersion();
