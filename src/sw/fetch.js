@@ -33,13 +33,13 @@ this.addEventListener('fetch', (event) => {
 					}
 
 					// To fix 'chrome-extension'
-					// if (
-					// 	url.startsWith('chrome-extension') ||
-					// 	url.includes('extension') ||
-					// 	!(url.indexOf('http') === 0)
-					// ) {
-					// 	return await fetch(event.request);
-					// }
+					if (
+						url.startsWith('chrome-extension') ||
+						url.includes('extension') ||
+						!url.startsWith('http')
+					) {
+						return await fetch(event.request);
+					}
 
 					response = await cache.match((event.request.url += 'index.html'));
 					if (response) {
