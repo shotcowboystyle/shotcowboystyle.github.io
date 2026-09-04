@@ -13,29 +13,23 @@ describe('getRandomColor', () => {
 	});
 
 	it('maps the lowest random value to black', () => {
-		vi.spyOn(crypto, 'getRandomValues').mockImplementation(<T extends ArrayBufferView | null>(array: T): T => {
-			if (array) {
-				const arr = array as unknown as Uint8Array;
-				for (let i = 0; i < arr.length; i++) {
-					arr[i] = 0;
-				}
+		vi.spyOn(crypto, 'getRandomValues').mockImplementation(((array: Uint8Array) => {
+			for (let i = 0; i < array.length; i++) {
+				array[i] = 0;
 			}
 			return array;
-		});
+		}) as unknown as typeof crypto.getRandomValues);
 
 		expect(getRandomColor()).toBe('#000000');
 	});
 
 	it('maps the highest random value to white', () => {
-		vi.spyOn(crypto, 'getRandomValues').mockImplementation(<T extends ArrayBufferView | null>(array: T): T => {
-			if (array) {
-				const arr = array as unknown as Uint8Array;
-				for (let i = 0; i < arr.length; i++) {
-					arr[i] = 255;
-				}
+		vi.spyOn(crypto, 'getRandomValues').mockImplementation(((array: Uint8Array) => {
+			for (let i = 0; i < array.length; i++) {
+				array[i] = 255;
 			}
 			return array;
-		});
+		}) as unknown as typeof crypto.getRandomValues);
 
 		expect(getRandomColor()).toBe('#FFFFFF');
 	});
