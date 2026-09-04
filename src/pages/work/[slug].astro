@@ -1251,7 +1251,7 @@ const meta = {
 			{ rootMargin: '0px 0px -10% 0px', threshold: 0.15 },
 		);
 
-		targets.forEach((el) => observer?.observe(el));
+		for (const el of targets) observer?.observe(el);
 	}
 
 	/**
