@@ -220,7 +220,9 @@ const meta = {
 		}
 		if (topLayer.threejs.material) {
 			if (Array.isArray(topLayer.threejs.material)) {
-				topLayer.threejs.material.forEach((material) => material.dispose());
+				for (const material of topLayer.threejs.material) {
+					material.dispose();
+				}
 			} else {
 				topLayer.threejs.material.dispose();
 			}
@@ -386,7 +388,9 @@ const meta = {
 					// Dispose of material(s)
 					if (mesh.material) {
 						if (Array.isArray(mesh.material)) {
-							mesh.material.forEach((material) => material.dispose());
+							for (const material of mesh.material) {
+								material.dispose();
+							}
 						} else {
 							mesh.material.dispose();
 						}
