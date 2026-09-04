@@ -1,6 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { WordSplitter } from './word-splitter';
 import SplitType from 'split-type';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { WordSplitter } from './word-splitter';
 
 // Mock SplitType
 const mockRevert = vi.fn();
@@ -9,7 +9,11 @@ vi.mock('split-type', () => {
 		default: vi.fn().mockImplementation(function (target) {
 			// If target is an array/NodeList of words (nested call), don't return words to avoid infinite loops in test assumptions,
 			// or just return words in the first call
-			const isNestedCall = Array.isArray(target) || target instanceof NodeList || target instanceof HTMLCollection || (typeof target === 'object' && target !== null && 'length' in target);
+			const isNestedCall =
+				Array.isArray(target) ||
+				target instanceof NodeList ||
+				target instanceof HTMLCollection ||
+				(typeof target === 'object' && target !== null && 'length' in target);
 
 			return {
 				revert: mockRevert,
