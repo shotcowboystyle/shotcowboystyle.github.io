@@ -276,8 +276,8 @@ const meta = {
 
 	function updateState(newState: string) {
 		if (pageContainerElement) {
-			for (let key in GAME_STATES) {
-				pageContainerElement?.classList.remove(GAME_STATES[key as keyof typeof GAME_STATES]);
+			for (const state of Object.values(GAME_STATES)) {
+				pageContainerElement?.classList.remove(state);
 			}
 
 			pageContainerElement?.classList.add(newState);
