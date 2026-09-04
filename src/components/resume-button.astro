@@ -18,7 +18,9 @@
 <script>
 	const downloadResumeButton = document.getElementById('download-resume-button');
 	if (downloadResumeButton) {
-		downloadResumeButton.addEventListener('click', () => window.open('/downloads/Resume.pdf'));
+		downloadResumeButton.addEventListener('click', () =>
+			window.open('/downloads/Resume.pdf', '_blank', 'noopener,noreferrer'),
+		);
 	}
 </script>
 
