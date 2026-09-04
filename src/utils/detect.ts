@@ -4,15 +4,6 @@ export const isLargeScreen = (): boolean => window.innerWidth >= 1500;
 
 export const isIPad = (): boolean => agent.includes('ipad');
 
-export const isSafari = (): boolean => agent.includes('safari') && !agent.includes('chrome');
-
-export const isEdge = (): boolean => agent.includes('edge/');
-
-export const isMobile = (): boolean =>
-	agent.includes('android') || agent.includes('iphone') || agent.includes('ipad');
-
-export const isTablet = () => isMobile() && window.innerWidth >= 640;
-
 export const isMacOS = agent.indexOf('mac os x') !== -1;
 
 export const isMacintoshFirefox = (): boolean => agent.includes('mac') && agent.includes('firefox');

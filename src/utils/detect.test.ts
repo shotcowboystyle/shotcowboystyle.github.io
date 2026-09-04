@@ -37,29 +37,20 @@ afterEach(() => {
 
 describe('device family', () => {
 	it('detects an iPad', async () => {
-		const { isIPad, isMobile } = await loadDetect(UA.iPad);
+		const { isIPad } = await loadDetect(UA.iPad);
 
 		expect(isIPad()).toBe(true);
-		expect(isMobile()).toBe(true);
 	});
 
 	it('detects an iPhone but not an iPad', async () => {
-		const { isIPad, isMobile } = await loadDetect(UA.iPhone);
+		const { isIPad } = await loadDetect(UA.iPhone);
 
 		expect(isIPad()).toBe(false);
-		expect(isMobile()).toBe(true);
-	});
-
-	it('detects Android as mobile', async () => {
-		const { isMobile } = await loadDetect(UA.android);
-
-		expect(isMobile()).toBe(true);
 	});
 
 	it('treats desktop macOS as not mobile', async () => {
-		const { isMobile, isMacOS } = await loadDetect(UA.macSafari);
+		const { isMacOS } = await loadDetect(UA.macSafari);
 
-		expect(isMobile()).toBe(false);
 		expect(isMacOS).toBe(true);
 	});
 
@@ -79,22 +70,6 @@ describe('device family', () => {
 });
 
 describe('browser detection', () => {
-	it('identifies Safari and excludes Chrome', async () => {
-		const safari = await loadDetect(UA.macSafari);
-		expect(safari.isSafari()).toBe(true);
-
-		const chrome = await loadDetect(UA.macChrome);
-		expect(chrome.isSafari()).toBe(false);
-	});
-
-	it('identifies Edge', async () => {
-		const { isEdge } = await loadDetect(UA.edge);
-		expect(isEdge()).toBe(true);
-
-		const chrome = await loadDetect(UA.macChrome);
-		expect(chrome.isEdge()).toBe(false);
-	});
-
 	it('identifies Firefox on macOS', async () => {
 		const { isMacintoshFirefox } = await loadDetect(UA.macFirefox);
 		expect(isMacintoshFirefox()).toBe(true);
@@ -161,23 +136,6 @@ describe('viewport helpers', () => {
 
 		window.innerWidth = 1499;
 		expect(isLargeScreen()).toBe(false);
-	});
-
-	it('treats a wide mobile viewport as a tablet', async () => {
-		const { isTablet } = await loadDetect(UA.android);
-
-		window.innerWidth = 800;
-		expect(isTablet()).toBe(true);
-
-		window.innerWidth = 500;
-		expect(isTablet()).toBe(false);
-	});
-
-	it('never reports a desktop as a tablet', async () => {
-		const { isTablet } = await loadDetect(UA.macChrome);
-
-		window.innerWidth = 800;
-		expect(isTablet()).toBe(false);
 	});
 });
 
