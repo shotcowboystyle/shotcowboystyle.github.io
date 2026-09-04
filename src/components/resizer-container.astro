@@ -101,12 +101,12 @@ const { class: className, label = 'Drag' } = Astro.props;
 			 */
 			el.classList.toggle('is-resize-limit', clamped <= minWidth);
 
-			resizers.forEach((resizer) => {
+			for (const resizer of resizers) {
 				resizer.setAttribute('aria-valuenow', String(Math.round(clamped)));
 				resizer.setAttribute('aria-valuemin', String(minWidth));
 				resizer.setAttribute('aria-valuemax', String(Math.round(maxWidth())));
 				resizer.setAttribute('aria-valuetext', `${Math.round(clamped)} pixels wide`);
-			});
+			}
 
 			return clamped;
 		};
@@ -194,11 +194,11 @@ const { class: className, label = 'Drag' } = Astro.props;
 		};
 
 		// Loop over them
-		resizers.forEach((resizer) => {
+		for (const resizer of resizers) {
 			resizer.addEventListener('mousedown', onDown);
 			resizer.addEventListener('touchstart', onTouchDown);
 			resizer.addEventListener('keydown', onKeyDown);
-		});
+		}
 
 		/**
 		 * The frame is re-clamped on resize because `maxWidth()` is the parent's
