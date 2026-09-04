@@ -13,24 +13,33 @@ describe('getRandomColor', () => {
 	});
 
 	it('maps the lowest random value to black', () => {
-		vi.spyOn(Math, 'random').mockReturnValue(0);
+		vi.spyOn(crypto, 'getRandomValues').mockImplementation(((array: Uint8Array) => {
+			for (let i = 0; i < array.length; i++) {
+				array[i] = 0;
+			}
+			return array;
+		}) as unknown as typeof crypto.getRandomValues);
 
 		expect(getRandomColor()).toBe('#000000');
 	});
 
 	it('maps the highest random value to white', () => {
-		// 0.999... * 16 floors to 15, which indexes 'F'.
-		vi.spyOn(Math, 'random').mockReturnValue(0.9999);
+		vi.spyOn(crypto, 'getRandomValues').mockImplementation(((array: Uint8Array) => {
+			for (let i = 0; i < array.length; i++) {
+				array[i] = 255;
+			}
+			return array;
+		}) as unknown as typeof crypto.getRandomValues);
 
 		expect(getRandomColor()).toBe('#FFFFFF');
 	});
 
-	it('consumes one random draw per hex digit', () => {
-		const random = vi.spyOn(Math, 'random').mockReturnValue(0.5);
+	it('consumes one random draw per call', () => {
+		const random = vi.spyOn(crypto, 'getRandomValues');
 
 		getRandomColor();
 
-		expect(random).toHaveBeenCalledTimes(6);
+		expect(random).toHaveBeenCalledTimes(1);
 	});
 
 	it('varies across calls', () => {
