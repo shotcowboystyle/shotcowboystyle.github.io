@@ -73,11 +73,11 @@ describe('LineSplitter', () => {
 			const mockLines = [document.createElement('div')];
 
 			// Mock the next implementation to return an instance with lines
-			vi.mocked(SplitType).mockImplementationOnce(function (this: any) {
+			vi.mocked(SplitType).mockImplementationOnce(function (this: SplitType) {
 				this.lines = mockLines;
 				this.revert = vi.fn();
 				return this;
-			} as any);
+			} as unknown as typeof SplitType);
 
 			splitter = new LineSplitter(mockConfig);
 			const element = document.createElement('div');
@@ -100,16 +100,16 @@ describe('LineSplitter', () => {
 			const mockRevert2 = vi.fn();
 
 			vi.mocked(SplitType)
-				.mockImplementationOnce(function (this: any) {
+				.mockImplementationOnce(function (this: SplitType) {
 					this.lines = [];
 					this.revert = mockRevert1;
 					return this;
-				} as any)
-				.mockImplementationOnce(function (this: any) {
+				} as unknown as typeof SplitType)
+				.mockImplementationOnce(function (this: SplitType) {
 					this.lines = [];
 					this.revert = mockRevert2;
 					return this;
-				} as any);
+				} as unknown as typeof SplitType);
 
 			splitter = new LineSplitter(mockConfig);
 			splitter.init(); // Creates 2 instances
