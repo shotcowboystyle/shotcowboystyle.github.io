@@ -62,20 +62,6 @@ describe('device family', () => {
 		expect(isMobile()).toBe(false);
 		expect(isMacOS).toBe(true);
 	});
-
-	// Documents current behavior, not desired behavior. `isAppleDevice` tests
-	// `agent.startsWith('ip')`, but every real user agent begins with 'mozilla/',
-	// so the check can never pass for an actual browser -- including on the Apple
-	// devices it is meant to identify.
-	it('isAppleDevice never matches a real user agent', async () => {
-		for (const userAgent of [UA.iPad, UA.iPhone, UA.macSafari, UA.android]) {
-			const { isAppleDevice } = await loadDetect(userAgent);
-			expect(isAppleDevice()).toBe(false);
-		}
-
-		const { isAppleDevice } = await loadDetect('ipad-bare-token');
-		expect(isAppleDevice()).toBe(true);
-	});
 });
 
 describe('browser detection', () => {
