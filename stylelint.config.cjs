@@ -24,6 +24,7 @@ const config = {
 		'hue-degree-notation': 'angle',
 
 		/** Allow Tailwind CSS v4 directives. */
+		'at-rule-prelude-no-invalid': null,
 		'at-rule-no-unknown': [
 			true,
 			{
