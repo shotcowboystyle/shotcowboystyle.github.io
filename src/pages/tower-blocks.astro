@@ -537,20 +537,22 @@ const meta = {
 
 			if (scene) {
 				// Dispose of all meshes in the scene
-				scene.children.forEach((child) => {
+				for (const child of scene.children) {
 					if (child instanceof THREE.Mesh) {
 						if (child.geometry) {
 							child.geometry.dispose();
 						}
 						if (child.material) {
 							if (Array.isArray(child.material)) {
-								child.material.forEach((material) => material.dispose());
+								for (const material of child.material) {
+									material.dispose();
+								}
 							} else {
 								child.material.dispose();
 							}
 						}
 					}
-				});
+				}
 				// Clear the scene
 				scene.clear();
 			}
