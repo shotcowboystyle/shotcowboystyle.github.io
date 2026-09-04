@@ -1,11 +1,12 @@
 export const getRandomColor = () => {
-	const letters = '0123456789ABCDEF';
+	const array = new Uint8Array(3);
+	crypto.getRandomValues(array);
 
-	let color = '#';
-
-	for (let i = 0; i < 6; i++) {
-		color += letters[Math.floor(Math.random() * 16)];
-	}
-
-	return color;
+	return (
+		'#' +
+		Array.from(array)
+			.map((b) => b.toString(16).padStart(2, '0'))
+			.join('')
+			.toUpperCase()
+	);
 };
