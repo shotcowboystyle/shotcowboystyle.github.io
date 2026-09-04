@@ -1,6 +1,6 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { LineSplitter } from './line-splitter';
 import SplitType from 'split-type';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { LineSplitter } from './line-splitter';
 
 vi.mock('split-type', () => {
 	const SplitTypeMock = vi.fn();
@@ -73,7 +73,7 @@ describe('LineSplitter', () => {
 			const mockLines = [document.createElement('div')];
 
 			// Mock the next implementation to return an instance with lines
-			vi.mocked(SplitType).mockImplementationOnce(function(this: any) {
+			vi.mocked(SplitType).mockImplementationOnce(function (this: any) {
 				this.lines = mockLines;
 				this.revert = vi.fn();
 				return this;
@@ -100,12 +100,12 @@ describe('LineSplitter', () => {
 			const mockRevert2 = vi.fn();
 
 			vi.mocked(SplitType)
-				.mockImplementationOnce(function(this: any) {
+				.mockImplementationOnce(function (this: any) {
 					this.lines = [];
 					this.revert = mockRevert1;
 					return this;
 				} as any)
-				.mockImplementationOnce(function(this: any) {
+				.mockImplementationOnce(function (this: any) {
 					this.lines = [];
 					this.revert = mockRevert2;
 					return this;
