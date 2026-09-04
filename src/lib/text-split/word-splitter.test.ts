@@ -1,19 +1,15 @@
-import SplitType from 'split-type';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { WordSplitter } from './word-splitter';
+import SplitType from 'split-type';
 
 // Mock SplitType
 const mockRevert = vi.fn();
 vi.mock('split-type', () => {
 	return {
-		default: vi.fn().mockImplementation(function (target, options) {
+		default: vi.fn().mockImplementation(function (target) {
 			// If target is an array/NodeList of words (nested call), don't return words to avoid infinite loops in test assumptions,
 			// or just return words in the first call
-			const isNestedCall =
-				Array.isArray(target) ||
-				target instanceof NodeList ||
-				target instanceof HTMLCollection ||
-				(typeof target === 'object' && target !== null && 'length' in target);
+			const isNestedCall = Array.isArray(target) || target instanceof NodeList || target instanceof HTMLCollection || (typeof target === 'object' && target !== null && 'length' in target);
 
 			return {
 				revert: mockRevert,
@@ -101,11 +97,11 @@ describe('WordSplitter', () => {
 
 		it('should not create nested SplitType if no words are returned', () => {
 			// Adjust mock for this specific test
-			vi.mocked(SplitType).mockImplementationOnce(function (target, options) {
+			vi.mocked(SplitType).mockImplementationOnce(function () {
 				return {
 					revert: mockRevert,
 					words: [], // empty array means no words
-				} as any;
+				} as unknown as SplitType;
 			});
 
 			const div = document.createElement('div');
