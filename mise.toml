@@ -1,4 +1,4 @@
 [tools]
-node = "25"
-rust = "1.98.0"
-"github:pnpm/pnpm" = "12.3.2"
+node = "25.9.0"
+rust = "1.98.1"
+"github:pnpm/pnpm" = "12.4.1"
