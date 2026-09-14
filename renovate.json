@@ -26,6 +26,11 @@
 		{
 			"groupName": "prettier",
 			"matchPackageNames": ["/^prettier/"]
+		},
+		{
+			"description": "typescript-eslint has no TS 7 support yet; unpin when it ships",
+			"matchPackageNames": ["typescript"],
+			"allowedVersions": "<7"
 		}
 	],
 	"prHourlyLimit": 5,

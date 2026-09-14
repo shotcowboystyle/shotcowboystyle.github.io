@@ -73,7 +73,7 @@
 		"@eslint/markdown": "^8.0.3",
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
 		"@playwright/test": "^1.63.0",
-		"@tailwindcss/postcss": "^4.3.3",
+		"@tailwindcss/vite": "^4.3.3",
 		"@types/cannon": "^0.1.13",
 		"@types/eslint": "^9.6.1",
 		"@types/three": "^0.186.0",
@@ -115,7 +115,7 @@
 		"stylelint-config-standard": "^40.0.0",
 		"stylelint-config-tailwindcss": "^1.0.1",
 		"tailwindcss": "^4.3.3",
-		"typescript": "^7.0.2",
+		"typescript": "^6.0.3",
 		"vitest": "^4.1.11"
 	}
 }
