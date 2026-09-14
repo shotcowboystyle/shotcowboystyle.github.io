@@ -14,7 +14,7 @@ runs:
     # @see https://github.com/actions/setup-node/issues/531
     # Version comes from the `packageManager` field in package.json.
     - name: Install pnpm
-      uses: pnpm/action-setup@v4
+      uses: pnpm/action-setup@v6
       id: pnpm-install
       with:
         run_install: false
