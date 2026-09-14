@@ -1,4 +1,5 @@
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 import compress from 'astro-compress';
 import critters from 'astro-critters';
 import purgecss from 'astro-purgecss';
@@ -61,6 +62,9 @@ export default defineConfig({
 	],
 	vite: {
 		plugins: [
+			// Vite 8 (Astro 7) resolves CSS `@import` before PostCSS plugins run, so the
+			// `@tailwindcss/postcss` setup can no longer resolve `@import 'tailwindcss'`.
+			tailwindcss(),
 			clientManualChunks(),
 			IS_PROD && analyze(),
 			IS_PROD &&
