@@ -12,6 +12,14 @@
 	--color-neutral: oklch(36% 0.03 262.99deg);
 	--color-base-100: oklch(91% 0 0deg);
 	--color-info: oklch(45% 0.26 269.6deg);
+
+	/*
+	 * Set explicitly: daisyUI derives `-content` from its own default `info`, and
+	 * that derivation (a dark blue, oklch 29%) lands at 1.83:1 against the 45%
+	 * blue above — a serious axe color-contrast failure on the contact card.
+	 * White measures 8.36:1 (canvas-rasterized, sRGB relative luminance).
+	 */
+	--color-info-content: oklch(100% 0 0deg);
 	--color-success: oklch(77% 0.15 163.1deg);
 	--color-warning: oklch(86% 0.17 88.01deg);
 	--color-error: oklch(64% 0.21 11.45deg);

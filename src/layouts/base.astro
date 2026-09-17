@@ -35,9 +35,19 @@ const meta: PageMetaData = { ...DEFAULT_META, ...Astro.props.meta };
 		<ClientRouter />
 
 		<script is:inline>
-			if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-				document.documentElement.classList.add('has-motion');
+			// Re-applied on every swap: the ClientRouter replaces `<html>`'s attributes
+			// with the incoming document's, dropping a class that only exists at runtime.
+			// Without this, `prefersReducedMotion()` reports `true` after the first
+			// client-side navigation and every motion path on the site goes dead.
+			function applyMotionClass() {
+				document.documentElement.classList.toggle(
+					'has-motion',
+					!window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+				);
 			}
+
+			applyMotionClass();
+			document.addEventListener('astro:after-swap', applyMotionClass);
 		</script>
 
 		<link

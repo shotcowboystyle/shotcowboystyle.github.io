@@ -1,18 +1,9 @@
-import { readdirSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 const WCAG_AA_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
 
-/**
- * Case-study routes come from the `project` content collection, so a new
- * markdown file is covered without editing this list.
- */
-const caseStudyRoutes = readdirSync(new URL('../../../src/content/project', import.meta.url))
-	.filter((fileName) => fileName.endsWith('.md'))
-	.map((fileName) => `/work/${fileName.replace(/\.md$/, '')}`);
-
-const routes = ['/', '/404', '/immature', '/tower-blocks', ...caseStudyRoutes];
+const routes = ['/', '/404', '/immature', '/tower-blocks'];
 
 /**
  * Waits for every CSS transition to finish before scanning.
@@ -24,7 +15,7 @@ const routes = ['/', '/404', '/immature', '/tower-blocks', ...caseStudyRoutes];
  * hundred milliseconds and is not what any reader sees.
  *
  * Only transitions are awaited. The looping animations on this site (the 404
- * marquee, the scroll cue, the motion-demo diagrams) never reach `finished`, so
+ * marquee, the scroll cue, the circle-button ring) never reach `finished`, so
  * waiting on `getAnimations()` wholesale would always time out.
  */
 async function waitForTransitionsToSettle(page: Page) {

@@ -7,24 +7,21 @@ interface Props {
 	project: CollectionEntry<'project'>;
 }
 
-const { data, id } = Astro.props.project;
+const { data } = Astro.props.project;
 const variant = data.variant;
-const slug = id.replace(/\.md$/, '');
-const caseStudyHref = `/work/${slug}`;
 
 const tagList = data.tags;
 
-const CTA_TEXT = 'Read the story';
+/*
+ * The card links straight to the project — the live site, or the repository for
+ * the ones that ship as source. `linkText` carries which of the two it is, so
+ * the CTA states the destination rather than promising a story.
+ */
+const CTA_TEXT = data.linkText;
 const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 ---
 
 <div class:list={['project-card-inner', 'plate-turn', `project-card-variant-${variant}`]}>
-	<span
-		class="plate-turn-ghost"
-		aria-hidden="true"
-		>Read</span
-	>
-
 	{
 		variant === 'feature' && (
 			<>
@@ -51,12 +48,15 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 					</div>
 
 					<CircleButton
-						link={caseStudyHref}
+						link={data.url}
 						label={CTA_LABEL}
+						ringPhrase={CTA_TEXT}
 					/>
 
 					<a
-						href={caseStudyHref}
+						href={data.url}
+						target="_blank"
+						rel="noopener noreferrer"
 						aria-label={CTA_LABEL}
 						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
 					>
@@ -102,12 +102,15 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 
 						<div class="flex items-end justify-end">
 							<CircleButton
-								link={caseStudyHref}
+								link={data.url}
 								label={CTA_LABEL}
+								ringPhrase={CTA_TEXT}
 							/>
 
 							<a
-								href={caseStudyHref}
+								href={data.url}
+								target="_blank"
+								rel="noopener noreferrer"
 								aria-label={CTA_LABEL}
 								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
 							>
@@ -157,12 +160,15 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 						</div>
 
 						<CircleButton
-							link={caseStudyHref}
+							link={data.url}
 							label={CTA_LABEL}
+							ringPhrase={CTA_TEXT}
 						/>
 
 						<a
-							href={caseStudyHref}
+							href={data.url}
+							target="_blank"
+							rel="noopener noreferrer"
 							aria-label={CTA_LABEL}
 							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
 						>
@@ -197,11 +203,10 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 
 	/* ============================================================
 	 * PLATE-TURN — the project-card hover signature.
-	 * The plate tips as though a page were being lifted, and an
-	 * oversized ghost "Read" surfaces from underneath it. The mint
+	 * The plate tips as though a page were being lifted. The mint
 	 * specular sweep this used to carry was a linear-gradient
 	 * overlay; surfaces are flat now, so the gesture is transform
-	 * and type only.
+	 * only.
 	 * ============================================================ */
 
 	.project-card-inner.plate-turn {
@@ -217,47 +222,12 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		transform: rotate3d(0, 1, 0.05, -2.4deg);
 	}
 
-	.plate-turn-ghost {
-		position: absolute;
-		top: clamp(0.5rem, 2vw, 2rem);
-		left: clamp(-1rem, -1vw, 0.5rem);
-		z-index: 1;
-		max-width: 55%;
-		margin: 0;
-		color: rgb(255 255 255);
-		font-weight: 700;
-		font-size: clamp(6rem, 15vw, 14rem);
-		font-family: var(--font-sans);
-		line-height: 0.85;
-		letter-spacing: -0.03em;
-		text-transform: uppercase;
-		opacity: 0%;
-		mix-blend-mode: soft-light;
-		pointer-events: none;
-		user-select: none;
-		transition:
-			opacity 700ms cubic-bezier(0.32, 0.72, 0, 1),
-			transform 700ms cubic-bezier(0.32, 0.72, 0, 1);
-		transform: translateY(12px);
-	}
-
-	.project-card-inner.plate-turn:hover .plate-turn-ghost,
-	.project-card-inner.plate-turn:focus-within .plate-turn-ghost {
-		opacity: 85%;
-		transform: translateY(0);
-	}
-
-	/* Reduced-motion path: crossfade the ghost only. No rotation. */
+	/* Reduced-motion path: no rotation at all. */
 	@media (prefers-reduced-motion: reduce) {
 		.project-card-inner.plate-turn,
 		.project-card-inner.plate-turn:hover,
 		.project-card-inner.plate-turn:focus-within {
 			transition: none;
-			transform: none;
-		}
-
-		.plate-turn-ghost {
-			transition: opacity 0.3s ease-out;
 			transform: none;
 		}
 	}

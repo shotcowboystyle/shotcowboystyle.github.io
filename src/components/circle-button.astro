@@ -5,23 +5,25 @@ interface Props {
 	link: string;
 	label: string;
 	external?: boolean;
+	ringPhrase?: string;
 }
 
-const { link, label, external } = Astro.props;
+const { link, label, external, ringPhrase } = Astro.props;
 const isExternal = external ?? /^https?:\/\//.test(link);
 
 /**
- * The ring carries a short fixed phrase rather than the full CTA label. The
- * label runs "Read the story: <Project Title>", which at ~30 characters wrapped
- * past the halfway point of the path and rendered the back half of the sentence
- * upside down — legible only by tilting your head. A short phrase repeated
- * twice reads the same from every angle because both copies are short enough to
- * stay near the top of the arc as it turns.
+ * The ring carries a short phrase rather than the full CTA label. The label runs
+ * "<Link Text>: <Project Title>", which at ~30 characters wrapped past the
+ * halfway point of the path and rendered the back half of the sentence upside
+ * down — legible only by tilting your head. A short phrase repeated twice reads
+ * the same from every angle because both copies are short enough to stay near
+ * the top of the arc as it turns.
  *
  * The path is an r=42 circle, so its circumference is 2πr ≈ 264 units; at
- * `font-size: 9` roughly 52 characters fit before glyphs start colliding.
+ * `font-size: 9` roughly 52 characters fit before glyphs start colliding. The
+ * repeat count below adapts, so a caller can pass a phrase of any length.
  */
-const RING_PHRASE = 'Read the story';
+const RING_PHRASE = ringPhrase ?? label;
 const RING_SEPARATOR = ' • ';
 const RING_PATH_CAPACITY_IN_CHARACTERS = 52;
 
@@ -113,8 +115,8 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 
 		<!--
 			Was a paper-plane glyph, which reads as "send" — the wrong promise for a
-			link that opens a case study. An arrow leaving the corner is the plain
-			statement of what the control does.
+			link that opens the project itself. An arrow leaving the corner is the
+			plain statement of what the control does.
 		-->
 		<span
 			class="notify-button-plane block"
