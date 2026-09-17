@@ -1,0 +1,107 @@
+{
+	"version": 1,
+	"skills": {
+		"animaxxing": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/animaxxing/SKILL.md",
+			"computedHash": "7b4a2beccad63a80dc8c6912e0617fb082e1fa744e0c8a6704fd4216b2e1f0f5"
+		},
+		"gsap-astro": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-astro/SKILL.md",
+			"computedHash": "0125447964ec07b68d2542be9c6009a276ea2e6c38ccdb81c84f5e7a2f943c06"
+		},
+		"gsap-core": {
+			"source": "greensock/gsap-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-core/SKILL.md",
+			"computedHash": "c4a01101d9e1aafbf4b49f75d74f9349790d8741981ba0237c990093863035a6"
+		},
+		"gsap-frameworks": {
+			"source": "greensock/gsap-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-frameworks/SKILL.md",
+			"computedHash": "4852e85a48088d9044b08ebd1db607915b628c0c3ec7e04300713f546728fbdf"
+		},
+		"gsap-nextjs": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-nextjs/SKILL.md",
+			"computedHash": "df20a787164960decfb4601b6b021914f11656ee25d73c5111ea528e4637d892"
+		},
+		"gsap-nuxt": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-nuxt/SKILL.md",
+			"computedHash": "3ef3b97e5a22be6db6f9615201a6a28c49ed4e04d552d71875399b08027658dd"
+		},
+		"gsap-performance": {
+			"source": "greensock/gsap-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-performance/SKILL.md",
+			"computedHash": "863842ac2d7aee53fd4f0025c960173d7ad3e658a5715b89b2211fa280213c1f"
+		},
+		"gsap-plugins": {
+			"source": "greensock/gsap-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-plugins/SKILL.md",
+			"computedHash": "791bda0e6e460511fe82a78e745db519b88ffaeeab4d04a74879a03ca4f41740"
+		},
+		"gsap-react": {
+			"source": "greensock/gsap-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-react/SKILL.md",
+			"computedHash": "7d3b52822681a4158e371f895c58fb7030ecaf33f585a534b7162f9e92c5d893"
+		},
+		"gsap-react-router": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-react-router/SKILL.md",
+			"computedHash": "e5c0561a30ac4431c7e0b34bc143c37e389d5a69f1597f0c2b83804a78656d2f"
+		},
+		"gsap-scrolltrigger": {
+			"source": "greensock/gsap-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-scrolltrigger/SKILL.md",
+			"computedHash": "1cdc5647693783cb7a662d84a5de434c88a051ed56b4d33597c9b5782b5973e6"
+		},
+		"gsap-sveltekit": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-sveltekit/SKILL.md",
+			"computedHash": "16983fe09de17fef741cea3a0837e15a3af57b69e812bce68edc0a59928f057b"
+		},
+		"gsap-tanstack-router": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-tanstack-router/SKILL.md",
+			"computedHash": "dc4b7d7e2f92f39564d392211e00dece239247545bb75ce53d3c735becf65a38"
+		},
+		"gsap-timeline": {
+			"source": "greensock/gsap-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-timeline/SKILL.md",
+			"computedHash": "54981c2feec5a9c0d57988aeb32315af32bdeadd261550d5e9db7a7b1f08b487"
+		},
+		"gsap-utils": {
+			"source": "greensock/gsap-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-utils/SKILL.md",
+			"computedHash": "1ab2387f6e694718a4f1b5acf2a4ab16e1b884c3428adf5f6b26d830f00826cf"
+		},
+		"gsap-vanilla": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/gsap-vanilla/SKILL.md",
+			"computedHash": "b51bcbeb6e1833b8f01f92c012596d55e5636eea7763536992cfb55d7dd0eb98"
+		},
+		"style-animaxxing": {
+			"source": "johnpolacek/animaxxing-skills",
+			"sourceType": "github",
+			"skillPath": "skills/style-animaxxing/SKILL.md",
+			"computedHash": "2ea7fd619e3d690b3d16651ec6985678ef0a6745919dead8061f001e2e737267"
+		}
+	}
+}

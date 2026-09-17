@@ -370,15 +370,12 @@ p {
 }
 
 /*
- * The one permitted gradient in the system: hero heading text, left to right.
- * Every other surface is flat.
+ * The hero heading used to carry the system's one gradient, painted with
+ * `background-clip: text`. That only reaches text in the heading's own inline
+ * formatting context, and SplitText wraps every character in an `inline-block`
+ * that starts its own — so the split headline rendered fully transparent. The
+ * heading is flat black now, like every other surface in the system.
  */
-.hero-gradient-text {
-	background: linear-gradient(to right, rgb(0 0 0), rgb(102 102 102));
-	background-clip: text;
-	color: transparent;
-	-webkit-text-fill-color: transparent;
-}
 
 /*
  * Grain, not gradient. Flat surfaces read as unprinted without some tooth;
@@ -421,45 +418,25 @@ img {
    confirmed via html.has-motion (set inline in base.astro before first paint).
    This keeps no-JS, reduced-motion, and headless renders from shipping blank. */
 .c-animated-text {
+	/*
+	 * Permanent typography for split targets, not an animation state. SplitText
+	 * wraps characters and lines in elements, which interrupts browser kerning
+	 * and re-flows balanced text — so a split and its revert measure
+	 * differently and the heading snaps sideways the moment it finishes.
+	 */
+	font-kerning: none;
+	text-wrap: wrap;
 	opacity: 100%;
-}
-
-.split-word-parent,
-.split-line-parent {
-	position: relative;
-	overflow: hidden;
-}
-
-.split-word-parent {
-	height: 1.2em;
-}
-
-.split-line-parent {
-	height: 1em;
-}
-
-.split-word-child,
-.split-line-child {
-	transform: none;
+	text-rendering: optimizeSpeed;
 }
 
 html.has-motion .c-animated-text {
 	opacity: 0%;
 }
 
-html.has-motion .split-word-child,
-html.has-motion .split-line-child {
-	transform: translateY(100%);
-}
-
 @media (prefers-reduced-motion: reduce) {
 	html.has-motion .c-animated-text {
 		opacity: 100%;
-	}
-
-	html.has-motion .split-word-child,
-	html.has-motion .split-line-child {
-		transform: none;
 	}
 
 	/*
