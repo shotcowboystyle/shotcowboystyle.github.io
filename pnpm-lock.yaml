@@ -199,9 +199,6 @@ importers:
       sharp:
         specifier: ^0.35.4
         version: 0.35.4(@types/node@26.1.2)
-      split-type:
-        specifier: ^0.3.4
-        version: 0.3.4
       swiper:
         specifier: ^14.2.0
         version: 14.2.0
@@ -5485,9 +5482,6 @@ packages:
   speedline-core@1.4.3:
     resolution: {integrity: sha512-DI7/OuAUD+GMpR6dmu8lliO2Wg5zfeh+/xsdyJZCzd8o5JgFUjCeLsBDuZjIQJdwXS3J0L/uZYrELKYqx+PXog==}
     engines: {node: '>=8.0'}
-
-  split-type@0.3.4:
-    resolution: {integrity: sha512-otEk9vnD8qwfLsk3Lx0gz+qRkNIJCx0mlyL47ImP/DjMuV39d75Lpfwjn9fHteDRz0aoOblSzQjSNT9+Sswxcg==}
 
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
@@ -11860,8 +11854,6 @@ snapshots:
       '@types/node': 22.20.3
       image-ssim: 0.2.0
       jpeg-js: 0.4.4
-
-  split-type@0.3.4: {}
 
   stackback@0.0.2: {}
 

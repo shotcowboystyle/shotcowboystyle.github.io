@@ -139,14 +139,8 @@ describe('CSS_CLASSES', () => {
 		}
 	});
 
-	it('keeps the split-text children tagged for reveal animation', () => {
-		expect(CSS_CLASSES.SPLIT.LINE_CHILD).toContain(CSS_CLASSES.ANIMATION.REVEAL_TEXT);
-		expect(CSS_CLASSES.SPLIT.WORD_CHILD).toContain(CSS_CLASSES.ANIMATION.REVEAL_TEXT);
-	});
-
-	it('matches the reveal selectors in DOM_SELECTORS', () => {
-		expect(DOM_SELECTORS.TEXT.REVEAL).toBe(`.${CSS_CLASSES.ANIMATION.REVEAL_TEXT}`);
-		expect(DOM_SELECTORS.TEXT.REVEAL_WRAPPER).toBe(`.${CSS_CLASSES.ANIMATION.REVEAL_WRAPPER}`);
+	it('matches the pre-paint hiding selector in DOM_SELECTORS', () => {
+		expect(DOM_SELECTORS.TEXT.ANIMATED).toBe(`.${CSS_CLASSES.ANIMATION.ANIMATED_TEXT}`);
 	});
 });
 

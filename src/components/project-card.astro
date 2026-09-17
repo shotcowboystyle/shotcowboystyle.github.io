@@ -34,7 +34,9 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 
 				<div class="card-content feature-content pointer-events-auto relative z-[2] flex items-end justify-between text-white max-sm:flex-col">
 					<div class="max-sm:-mb-16">
-						<h2 class="mb-4 text-4xl sm:text-6xl lg:text-7xl">{data.title}</h2>
+						<h2 class="c-animated-text js-split-lines js-reveal-on-scroll mb-4 text-4xl sm:text-6xl lg:text-7xl">
+							{data.title}
+						</h2>
 
 						<ul class="tech-badge col-auto row-auto mb-8 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 							{tagList.map((tag: string) => (
@@ -44,7 +46,9 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 							))}
 						</ul>
 
-						<p class="!mb-0 max-w-[45ch] max-sm:mr-24">{data.description}</p>
+						<p class="c-animated-text js-split-lines js-reveal-on-scroll !mb-0 max-w-[45ch] max-sm:mr-24">
+							{data.description}
+						</p>
 					</div>
 
 					<CircleButton
@@ -87,7 +91,9 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 
 					<div class="split-body flex flex-col justify-between gap-8 sm:gap-6">
 						<div>
-							<h2 class="mb-4 text-4xl sm:text-5xl lg:text-6xl">{data.title}</h2>
+							<h2 class="c-animated-text js-split-lines js-reveal-on-scroll mb-4 text-4xl sm:text-5xl lg:text-6xl">
+								{data.title}
+							</h2>
 
 							<ul class="tech-badge mb-6 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 								{tagList.map((tag: string) => (
@@ -97,7 +103,9 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 								))}
 							</ul>
 
-							<p class="!mb-0 max-w-[45ch]">{data.description}</p>
+							<p class="c-animated-text js-split-lines js-reveal-on-scroll !mb-0 max-w-[45ch]">
+								{data.description}
+							</p>
 						</div>
 
 						<div class="flex items-end justify-end">
@@ -146,7 +154,9 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 				<div class="card-content poster-content pointer-events-auto relative z-[2] flex h-full flex-col justify-end text-white">
 					<div class="poster-footer flex items-end justify-between gap-6">
 						<div class="max-w-[45ch]">
-							<h2 class="mb-4 text-4xl sm:text-6xl lg:text-7xl">{data.title}</h2>
+							<h2 class="c-animated-text js-split-lines js-reveal-on-scroll mb-4 text-4xl sm:text-6xl lg:text-7xl">
+								{data.title}
+							</h2>
 
 							<ul class="tech-badge mb-4 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 								{tagList.map((tag: string) => (
@@ -156,7 +166,9 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 								))}
 							</ul>
 
-							<p class="!mb-0">{data.description}</p>
+							<p class="c-animated-text js-split-lines js-reveal-on-scroll !mb-0">
+								{data.description}
+							</p>
 						</div>
 
 						<CircleButton

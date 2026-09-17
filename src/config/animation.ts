@@ -175,10 +175,13 @@ export const DOM_SELECTORS = {
 	},
 	/** Text animation elements */
 	TEXT: {
-		REVEAL_WRAPPER: '.js-animation-reveal-text-wrapper',
-		REVEAL: '.js-animation-reveal-text',
+		/** Hidden before first paint, revealed by whichever entrance owns it. */
+		ANIMATED: '.c-animated-text',
+		SPLIT_CHARS: '.js-split-chars',
 		SPLIT_LINES: '.js-split-lines',
 		SPLIT_WORDS: '.js-split-words',
+		/** Modifier: hold the entrance until the element scrolls into view. */
+		REVEAL_ON_SCROLL: '.js-reveal-on-scroll',
 	},
 	/** Scroll animation elements */
 	SCROLL: {
@@ -207,17 +210,9 @@ export const CSS_CLASSES = {
 		SCROLLING: 'lenis-scrolling',
 		SMOOTH: 'lenis.lenis-scrolling',
 	},
-	/** Split text classes */
-	SPLIT: {
-		LINE_PARENT: 'split-line-parent',
-		LINE_CHILD: 'split-line-child js-animation-reveal-text',
-		WORD_PARENT: 'split-word-parent',
-		WORD_CHILD: 'split-word-child js-animation-reveal-text',
-	},
 	/** Animation utility classes */
 	ANIMATION: {
-		REVEAL_TEXT: 'js-animation-reveal-text',
-		REVEAL_WRAPPER: 'js-animation-reveal-text-wrapper',
+		ANIMATED_TEXT: 'c-animated-text',
 		FLOATING: 'animate-floating',
 		BLINK: 'animate-blink',
 		PULSE_SCALE: 'animate-pulse-scale',
