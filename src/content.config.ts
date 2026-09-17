@@ -9,6 +9,11 @@ const projectCollection = defineCollection({
 			title: z.string(),
 			description: z.string(),
 			screenshotImage: image(),
+			/**
+			 * Where the card sends you — the live site, or the repository for the
+			 * projects that ship as source. `linkText` is the card's CTA label and
+			 * says which of the two it is ("View Site" / "View Source").
+			 */
 			url: z.string(),
 			linkText: z.string(),
 			tags: z.array(z.string()),
@@ -23,52 +28,6 @@ const projectCollection = defineCollection({
 			cardColor: z
 				.string()
 				.regex(/^#[0-9a-f]{6}$/i, 'cardColor must be a 6-digit hex color, e.g. #1b3a2a'),
-			role: z.string(),
-			timeline: z.string(),
-			stack: z.array(z.string()),
-			problem: z.string(),
-			approach: z.array(
-				z.object({
-					name: z.string(),
-					body: z.string(),
-				}),
-			),
-			motionMoments: z
-				.array(
-					z.object({
-						name: z.string(),
-						description: z.string(),
-						/**
-						 * Which of the case-study page's built-in motion demos to run
-						 * beside the description. The page used to argue that "motion has
-						 * a job" and then describe every animation in prose, which is the
-						 * one claim a portfolio should never ask to be taken on trust.
-						 *
-						 * These are illustrative diagrams of the *kind* of movement, not
-						 * captures of the real thing. Omit the field and the card falls
-						 * back to text alone.
-						 */
-						demo: z
-							.enum(['rotate', 'slide-in', 'ink-drop', 'count-up', 'stagger', 'pulse'])
-							.optional(),
-					}),
-				)
-				.default([]),
-			/**
-			 * Measured results, rendered as a band under the approach. Left empty
-			 * until there are real numbers to put in it — an outcome block with
-			 * invented figures is worse than no outcome block.
-			 */
-			outcome: z
-				.array(
-					z.object({
-						label: z.string(),
-						value: z.string(),
-					}),
-				)
-				.default([]),
-			credits: z.array(z.string()).default([]),
-			nextSlug: z.string(),
 		}),
 });
 

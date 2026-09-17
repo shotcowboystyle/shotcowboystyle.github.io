@@ -37,10 +37,12 @@ import { CONTACT_EMAIL, CONTACT_MAILTO_HREF } from '@/utils/email.server';
 <style>
 	@reference "../styles/base.css";
 
-	.contact-button {
-		color: var(--color-primary-content, oklch(25% 0.08 160deg));
-	}
-
+	/*
+	 * No `color` here on purpose — the card inherits it from the grid cell in
+	 * about.astro. Hard-coding `--color-primary-content` was correct while that
+	 * cell was `bg-primary`; once it became `!bg-info` the dark green stayed put
+	 * and rendered at 1.83:1 on the blue.
+	 */
 	.contact-button-email {
 		text-decoration: underline;
 		text-decoration-thickness: 1px;

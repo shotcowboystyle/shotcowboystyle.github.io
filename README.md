@@ -83,13 +83,15 @@ Import with the `@/` alias, which resolves to `src/`.
 The service worker is assembled from `src/sw/` by the `astro-sw` integration and emitted straight
 to `dist/sw.js` at build time — it is generated output, not a checked-in file.
 
-### Adding a project case study
+### Adding a project
 
 Drop a Markdown file into `src/content/project/`. The schema in `src/content.config.ts` requires
-`title`, `description`, `bgImage`, `screenshotImage`, `url`, `linkText`, `tags`, `role`,
-`timeline`, `stack`, `problem`, `approach[]`, and `nextSlug`; `variant` (`feature` | `split` |
-`poster`), `motionMoments[]`, and `credits[]` are optional. The route
-`src/pages/work/[slug].astro` renders it — no other wiring needed.
+`title`, `description`, `screenshotImage`, `cardColor`, `url`, `linkText`, and `tags`; `variant`
+(`feature` | `split` | `poster`, default `feature`) is optional.
+
+There are no inner case-study pages. `src/components/project-card.astro` links straight to `url` —
+the live site, or the repository for projects that ship as source — and uses `linkText` as the CTA
+label ("View Site" / "View Source"). No other wiring needed.
 
 ---
 
@@ -157,9 +159,7 @@ pnpm test:playwright:ui       # interactive debugging
 pnpm test:playwright:debug
 ```
 
-The accessibility suite iterates every route — `/`, `/404`, `/immature`, `/tower-blocks` and one
-per entry in the `project` content collection — so a new case study is covered without editing the
-spec.
+The accessibility suite iterates every route — `/`, `/404`, `/immature` and `/tower-blocks`.
 
 Playwright starts `pnpm preview` automatically unless `PLAYWRIGHT_TEST_BASE_URL` is set. Five
 projects run: `chromium`, `firefox`, `mobile-chrome` (Pixel 5), `tablet-safari` (iPad gen 6), and

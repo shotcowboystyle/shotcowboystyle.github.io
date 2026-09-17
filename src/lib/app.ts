@@ -32,9 +32,14 @@ export default class App {
 		};
 	}
 
+	/**
+	 * `is-loading` is dropped *before* the curtain retracts, not after: it hides
+	 * `#main`'s children, so clearing it afterwards would slide the bars off a
+	 * blank page. The new page is already swapped in and sitting behind them.
+	 */
 	async handleOnSwapEnd() {
-		await this.loaderAnimation?.hideLoader();
 		document.body.classList.remove('is-loading');
+		await this.loaderAnimation?.hideLoader();
 		eventBus.dispatch('loaderFinished', { isLoaded: true });
 	}
 

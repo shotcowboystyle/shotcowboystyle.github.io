@@ -1,10 +1,4 @@
 ---
-import TestimonialCard from '@/components/testimonials/testimonial-card.astro';
-import { getCollection } from 'astro:content';
-
-const testimonials = await getCollection('testimonial');
-const featured = testimonials.sort((a, b) => a.data.order - b.data.order)[0];
-
 const stack = [
 	'TypeScript',
 	'React',
@@ -21,50 +15,41 @@ const stack = [
 ];
 ---
 
-<div class="flex flex-col gap-8 sm:gap-10">
+<!--
+  Two top-level children on purpose: the parent grid in about.astro switches to
+  `grid-flow-col grid-cols-[1fr_1fr]` at sm, so headline and copy become the two
+  columns. Wrapping them in a single div collapses that back to one column.
+-->
+<div class="flex flex-col justify-end">
 	<h2
 		id="bio-headline"
 		class="mb-0 font-bold sm:max-w-[18ch]"
 	>
 		I’m Curtis, A full-stack developer based in Charleston, SC.
 	</h2>
+</div>
 
-	<div class="flex flex-col gap-6">
-		<p
-			id="bio-description"
-			class="text-base-content mb-0 max-w-[62ch] font-sans text-base font-medium sm:text-lg"
-		>
-			Fifteen-plus years shipping scalable web work — product UI, marketing sites, and interactive
-			brand pieces. Comfortable across the stack, senior-IC by preference, deadline-driven by habit.
-		</p>
+<div class="flex flex-col justify-end gap-6">
+	<p
+		id="bio-description"
+		class="text-base-content mb-0 max-w-[62ch] font-sans text-base font-medium sm:text-lg"
+	>
+		Fifteen-plus years shipping scalable web work — product UI, marketing sites, and interactive
+		brand pieces. Comfortable across the stack, senior-IC by preference, deadline-driven by habit.
+	</p>
 
-		<ul
-			class="bio-stack flex flex-wrap items-center gap-2 sm:gap-3"
-			aria-label="Selected stack"
-		>
-			{
-				stack.map((tag) => (
-					<li class="border-primary-content/40 rounded-full border px-3 py-1 font-sans text-xs font-semibold tracking-wide uppercase sm:text-sm">
-						{tag}
-					</li>
-				))
-			}
-		</ul>
-	</div>
-
-	{
-		featured && (
-			<figure class="bio-quote border-primary-content/25 border-t pt-6 sm:pt-8">
-				<blockquote class="mb-4">
-					<TestimonialCard testimonial={featured} />
-				</blockquote>
-				<figcaption class="text-primary-content font-sans text-xs font-medium sm:text-sm">
-					Placeholder. Real testimonials ship when clients approve; until then, enjoy the mystery
-					box.
-				</figcaption>
-			</figure>
-		)
-	}
+	<ul
+		class="bio-stack flex flex-wrap items-center gap-2 sm:gap-3"
+		aria-label="Selected stack"
+	>
+		{
+			stack.map((tag) => (
+				<li class="border-primary-content/40 rounded-full border px-3 py-1 font-sans text-xs tracking-wide uppercase sm:text-sm">
+					{tag}
+				</li>
+			))
+		}
+	</ul>
 </div>
 
 <style>
