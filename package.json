@@ -51,7 +51,7 @@
 	},
 	"dependencies": {
 		"@astrojs/sitemap": "^3.7.4",
-		"astro": "^7.3.2",
+		"astro": "^7.3.5",
 		"astro-svgs": "^1.2.2",
 		"astro-sw": "^1.0.5",
 		"cannon": "^0.6.2",
@@ -82,7 +82,7 @@
 		"@vitest/coverage-v8": "^5.0.0",
 		"astro-compress": "2.4.3",
 		"astro-critters": "^2.2.1",
-		"astro-eslint-parser": "^3.1.0",
+		"astro-eslint-parser": "^3.2.0",
 		"astro-purgecss": "^7.0.0",
 		"ci-info": "^4.4.0",
 		"commitizen": "^4.3.2",
