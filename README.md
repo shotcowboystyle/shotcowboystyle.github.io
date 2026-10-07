@@ -60,16 +60,16 @@ src/
 ├── assets/            images, photos, favicons, SVG sprite source
 ├── components/        .astro UI components (about/, common/, testimonials/)
 ├── config/            animation tokens, their unit tests and usage notes
-├── content/           content collections: project/, testimonial/, social/
+├── content/           content collections: project/, testimonial/, social/, cv.json
 ├── content.config.ts  zod schemas for the collections above
 ├── layouts/           base.astro, game.astro
-├── lib/               client behavior: landing, smooth-scroll, text-reveal,
-│                      loader/scroll animations, map/, text-split/
+├── lib/               client behavior: landing, smooth-scroll, view transitions,
+│                      scroll animations, experiments rail, map/
 ├── pages/             file-based routes (index, 404, work/[slug], one-offs)
 ├── styles/            global CSS
 ├── sw/                service worker modules (cache, fetch, push, ...)
 ├── types/             shared type declarations
-└── utils/             color, date, dom, debounce, detect, event bus, ...
+└── utils/             color, date, dom, debounce, detect, motion, ...
 
 e2e/                   Playwright suites: accessibility, performance, pages
 public/                static passthrough: fonts, icons, geojson, downloads
@@ -85,12 +85,27 @@ to `dist/sw.js` at build time — it is generated output, not a checked-in file.
 ### Adding a project
 
 Drop a Markdown file into `src/content/project/`. The schema in `src/content.config.ts` requires
-`title`, `description`, `screenshotImage`, `cardColor`, `url`, `linkText`, and `tags`; `variant`
+`title`, `description`, `screenshotImage`, `cardColor`, `linkText`, and `tags`; `variant`
 (`feature` | `split` | `poster`, default `feature`) is optional.
 
-There are no inner case-study pages. `src/components/project-card.astro` links straight to `url` —
-the live site, or the repository for projects that ship as source — and uses `linkText` as the CTA
-label ("View Site" / "View Source"). No other wiring needed.
+Each project gets a plate in the landing stack and a folio at `/work/<filename>/`, which the card
+opens with the page-turn transition. On the folio:
+
+- `url` is the live link (or the repository), labelled with `linkText` ("View Site" / "View Source").
+  Leave it out when there is nowhere public to go yet.
+- `year` and `role` are optional facts. Leave them out rather than guess.
+- `gallery` is a list of `{ image, alt, device }`, with `device` `desktop` or `phone`. Captures live
+  in `src/assets/images/<project>/`. The `alt` text is also the visible caption.
+- The Markdown body is the story. It renders only once `storyReady: true`, so a draft can sit in
+  the file without shipping.
+
+### Experiments
+
+The Experiments plate reads `https://shotcowboystyle.github.io/experiments/feed.json` at build time
+(`EXPERIMENTS_FEED_URL` in `src/constants.ts`). The experiments live in their own repository,
+[shotcowboystyle/experiments](https://github.com/shotcowboystyle/experiments), which deploys to
+`/experiments/` on this origin. The build fails if the feed is unreachable, and the plate only
+updates when this site rebuilds.
 
 ---
 
@@ -143,8 +158,8 @@ Two patterns worth knowing before adding tests:
 
 - `src/utils/detect.ts` reads `navigator.userAgent` into a module-level constant at import time, so
   its tests stub the global and then `vi.resetModules()` + dynamic `import()` per user agent.
-- `TypedEventBus` takes an `EventTarget` in its constructor; pass `new EventTarget()` to keep tests
-  isolated from `document`.
+- `src/lib/view-transition.js` is a classic `<head>` script, not a module, so its test evaluates the
+  source once and drives it with synthetic `pageswap` / `pagereveal` events.
 
 ### End-to-end — Playwright
 

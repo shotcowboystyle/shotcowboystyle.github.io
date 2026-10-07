@@ -45,6 +45,7 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 		href={link}
 		target={isExternal ? '_blank' : undefined}
 		rel={isExternal ? 'noopener noreferrer' : undefined}
+		data-astro-prefetch={!isExternal || undefined}
 	>
 		<span
 			class="absolute inset-0 overflow-hidden rounded-full"

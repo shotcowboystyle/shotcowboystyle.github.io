@@ -13,22 +13,25 @@
  */
 interface Props {
 	tone?: 'ink' | 'canvas';
+	href?: string;
+	label?: string;
 }
 
-const { tone = 'ink' } = Astro.props;
+const { tone = 'ink', href = '/', label = 'Back to portfolio' } = Astro.props;
 ---
 
 <a
-	href="/"
+	href={href}
 	class:list={['back-link', `back-link-${tone}`]}
 	data-astro-prefetch
+	data-back-link
 >
 	<span
 		class="back-link-arrow"
 		aria-hidden="true"
 		>←</span
 	>
-	<span class="back-link-label">Back to portfolio</span>
+	<span class="back-link-label">{label}</span>
 </a>
 
 <style>

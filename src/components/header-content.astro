@@ -104,7 +104,7 @@ const socials = await getCollection('social');
 
 		<nav
 			id="header-links-wrapper"
-			aria-label="Primary"
+			aria-label="Profile links"
 			class="pointer-events-auto relative flex justify-between"
 		>
 			<div
@@ -143,6 +143,15 @@ const socials = await getCollection('social');
 					>
 						About Me
 					</a>
+
+					<button
+						type="button"
+						class="cursor-pointer text-sm font-medium uppercase underline-offset-4 hover:underline"
+						data-index-open
+						aria-haspopup="dialog"
+					>
+						Index
+					</button>
 
 					<ResumeButton />
 				</div>

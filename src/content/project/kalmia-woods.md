@@ -9,4 +9,31 @@ tags:
   - Typescript
   - Vue
   - Astro
+role: Architecture, build and production support
+gallery:
+  - image: ../../assets/images/kalmia-woods/desktop-hero.webp
+    alt: 'Home page, desktop: the illustrated cabin in the Blue Ridge'
+    device: desktop
+  - image: ../../assets/images/kalmia-woods/desktop-rooms.webp
+    alt: 'Rooms, with photographs of the house interior'
+    device: desktop
+  - image: ../../assets/images/kalmia-woods/desktop-cabin.webp
+    alt: 'The cabin from the yard'
+    device: desktop
+  - image: ../../assets/images/kalmia-woods/desktop-cabins.webp
+    alt: "The two stays, Cozy Cabin and Nature's Haven, with nightly rates"
+    device: desktop
+  - image: ../../assets/images/kalmia-woods/phone-hero.webp
+    alt: 'Home page on a phone'
+    device: phone
+  - image: ../../assets/images/kalmia-woods/phone-rooms.webp
+    alt: 'Rooms and stays on a phone'
+    device: phone
+storyReady: false
 ---
+
+<!-- DRAFT for Curtis to edit. Hidden until storyReady is true. Facts are from the resume and the live site only. -->
+
+Kalmia Woods is a mountain house rental on 38 acres in Oconee County, a few minutes from Lake Jocassee and Lake Keowee. The site books it directly, with Stripe handling checkout and payments, and carries a full guest Welcome Book that will be open sourced.
+
+I built and run it end to end: architecture, delivery, hosting and ongoing production support, on Astro, Vue and TypeScript.

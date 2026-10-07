@@ -39,8 +39,6 @@ import '@/components/about/location.css';
 </div>
 
 <script>
-	import { registerTransitionModule } from '@/utils/module-loader';
-
 	/**
 	 * The map is the last thing on the page and it is the heaviest thing on the
 	 * page: maplibre-gl is a ~1MB chunk plus its own stylesheet plus live tile
@@ -51,28 +49,18 @@ import '@/components/about/location.css';
 	 * It now loads when the tile is within one viewport of being seen. The
 	 * placeholder underneath is real markup, so nothing is blank while it waits.
 	 */
-	registerTransitionModule(async (): Promise<() => void> => {
-		let locationMap: { destroy: () => void } | null = null;
-		let cancelled = false;
+	const load = async () => {
+		const module = await import('../../lib/map/index.ts');
+		new module.default();
+	};
 
-		const load = async () => {
-			const module = await import('../../lib/map/index.ts');
-			if (cancelled) return;
-			locationMap = new module.default();
-		};
+	const wrapper = document.getElementById('location-map-wrapper');
 
-		const wrapper = document.getElementById('location-map-wrapper');
-
-		// No tile to observe, or no IntersectionObserver: load it rather than
-		// leaving the reader with a permanent "Loading..." placeholder.
-		if (!wrapper || !('IntersectionObserver' in window)) {
-			await load();
-			return () => {
-				cancelled = true;
-				locationMap?.destroy();
-			};
-		}
-
+	// No tile to observe, or no IntersectionObserver: load it rather than
+	// leaving the reader with a permanent "Loading..." placeholder.
+	if (!wrapper || !('IntersectionObserver' in window)) {
+		void load();
+	} else {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				if (!entries.some((entry) => entry.isIntersecting)) return;
@@ -83,11 +71,5 @@ import '@/components/about/location.css';
 		);
 
 		observer.observe(wrapper);
-
-		return () => {
-			cancelled = true;
-			observer.disconnect();
-			locationMap?.destroy();
-		};
-	});
+	}
 </script>

@@ -505,70 +505,25 @@ const meta = {
 		renderer.render(scene, camera);
 	}
 
-	document.addEventListener('astro:page-load', () => {
-		let controller: AbortController | null;
+	/*
+	 * Runs once per document. Navigation is a full page load now, so the old
+	 * teardown before a client-side swap is gone: leaving the page discards the
+	 * WebGL context with it, and a back-forward cache restore resumes the game
+	 * exactly where it was.
+	 */
+	updateState(GAME_STATES.LOADING);
 
-		updateState(GAME_STATES.LOADING);
+	pageContainerElement = document.getElementById('container');
+	scoreElement = document.getElementById('score-value');
+	finalScoreElement = document.getElementById('final-score');
+	if (scoreElement && pageContainerElement) {
+		init();
+	}
 
-		pageContainerElement = document.getElementById('container');
-		scoreElement = document.getElementById('score-value');
-		finalScoreElement = document.getElementById('final-score');
-		if (scoreElement && pageContainerElement) {
-			init();
-		}
-
-		const startButton = document.getElementById('start-button');
-		if (startButton) {
-			controller = new AbortController();
-			const { signal } = controller;
-
-			startButton?.addEventListener('click', startGame, { signal });
-			document.addEventListener('touchstart', splitBlockAndAddNextOneIfOverlaps, { signal });
-			document.addEventListener('keydown', handleOnKeydown, { signal });
-			window.addEventListener('resize', handleOnResize, { signal });
-		}
-
-		document.addEventListener('astro:before-preparation', () => {
-			if (controller) {
-				controller.abort();
-			}
-
-			// Clean up Three.js resources to prevent memory leaks
-			if (renderer) {
-				renderer.setAnimationLoop(null);
-				renderer.dispose();
-			}
-
-			if (scene) {
-				// Dispose of all meshes in the scene
-				for (const child of scene.children) {
-					if (child instanceof THREE.Mesh) {
-						if (child.geometry) {
-							child.geometry.dispose();
-						}
-						if (child.material) {
-							if (Array.isArray(child.material)) {
-								for (const material of child.material) {
-									material.dispose();
-								}
-							} else {
-								child.material.dispose();
-							}
-						}
-					}
-				}
-				// Clear the scene
-				scene.clear();
-			}
-
-			// Clean up Cannon.js world
-			if (world) {
-				while (world.bodies.length > 0) {
-					world.remove(world.bodies[0]);
-				}
-			}
-		});
-	});
+	document.getElementById('start-button')?.addEventListener('click', startGame);
+	document.addEventListener('touchstart', splitBlockAndAddNextOneIfOverlaps);
+	document.addEventListener('keydown', handleOnKeydown);
+	window.addEventListener('resize', handleOnResize);
 </script>
 
 <style>

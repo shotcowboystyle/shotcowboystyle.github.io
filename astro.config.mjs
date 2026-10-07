@@ -42,6 +42,9 @@ function clientManualChunks() {
 export default defineConfig({
 	// trailingSlash: 'always',
 	site: IS_PROD ? 'https://shotcowboystyle.github.io' : 'http://localhost:4321',
+	// Every navigation is a full document load (cross-document view transitions),
+	// so links marked `data-astro-prefetch` warm the next page on hover.
+	prefetch: { defaultStrategy: 'hover' },
 	integrations: [
 		svgs({ input: ['src/assets/images/sprite'] }),
 		serviceWorker(),
@@ -49,7 +52,8 @@ export default defineConfig({
 		purgecss({
 			// `four-`, `glow-` and `crater-` belonged to the astronaut scene the 404
 			// no longer renders. `dot\d` is the mystery-box swarm, still generated.
-			safelist: [/^dot\d/, 'github', 'linkedin', 'twitter'],
+			// `is-panning` and `past-hero` are added by script only.
+			safelist: [/^dot\d/, 'github', 'linkedin', 'twitter', 'is-panning', 'past-hero'],
 		}),
 		compress({
 			CSS: true,

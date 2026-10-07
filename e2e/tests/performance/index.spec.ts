@@ -75,6 +75,10 @@ test.describe('web performance tests', async () => {
 	 * @see https://www.npmjs.com/package/playwright-lighthouse
 	 */
 	test('Run Lighthouse Audit', async () => {
+		// A full Lighthouse pass routinely takes longer than the 30s default; the
+		// thresholds are the assertion here, not the wall-clock time.
+		test.setTimeout(120_000);
+
 		const browser = await chromium.launch({
 			headless: true,
 			args: ['--remote-debugging-port=9222'],

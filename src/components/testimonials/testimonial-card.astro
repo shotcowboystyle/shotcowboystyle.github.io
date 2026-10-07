@@ -13,12 +13,8 @@ const { data } = Astro.props.testimonial;
 	{data.testimonial}
 </p>
 
-<!--
-	One row, avatar first, text beside it. The row is pushed to the right edge so
-	it clears the swiper nav buttons, which sit absolutely in the bottom-left of
-	the card; name and byline share a flush right edge.
--->
-<div class="mb-8 flex flex-row items-center justify-end gap-4">
+<!-- One row, avatar first, text beside it; name and byline share a flush right edge. -->
+<div class="mt-6 flex flex-row items-center justify-end gap-4">
 	<div class="avatar shrink-0">
 		<div class="w-12 overflow-hidden rounded-full sm:w-14">
 			<Image
@@ -38,13 +34,3 @@ const { data } = Astro.props.testimonial;
 		</span>
 	</div>
 </div>
-
-<style>
-	@reference "../../styles/base.css";
-
-	@media screen and (orientation: landscape) and (hover: none) {
-		.testimonial-text {
-			@apply mb-16;
-		}
-	}
-</style>

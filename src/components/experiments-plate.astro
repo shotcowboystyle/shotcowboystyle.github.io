@@ -1,0 +1,224 @@
+---
+import { EXPERIMENTS_PATH } from '@/constants';
+import { getCollection } from 'astro:content';
+
+/*
+ * A teaser, not the collection: the newest few, then the door to the rest. The
+ * rail's pan has to be readable at scroll speed, which caps how many fit.
+ */
+const ON_PLATE = 8;
+
+const all = await getCollection('experiment');
+const experiments = all
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, ON_PLATE);
+---
+
+<!--
+	One more plate in the stack, in Cobalt Draft: mint is the person (the hero,
+	the contact panel), cobalt is play. While the plate holds, the rail travels
+	sideways with the scroll, which is the change of tempo after the slow
+	project plates.
+-->
+<section
+	id="experiments"
+	aria-labelledby="experiments-title"
+	class="js-section-card-wrapper js-experiments relative -mb-[100vh] h-[450vh]"
+>
+	<div
+		class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
+	>
+		<div
+			class="js-section-card experiments-plate bg-secondary flex w-full flex-1 flex-col justify-between gap-8 rounded-2xl py-5 text-white sm:rounded-3xl sm:py-12 lg:py-16"
+		>
+			<div
+				class="flex flex-wrap items-end justify-between gap-6 px-5 pt-10 sm:px-12 sm:pt-0 lg:px-16"
+			>
+				<h2
+					id="experiments-title"
+					class="c-animated-text js-split-lines js-reveal-on-scroll mb-0"
+				>
+					Experiments
+				</h2>
+				<!-- Bold at 20px is large text, which white on cobalt clears (3.9:1); body-size white would not. -->
+				<p class="experiments-intro mb-0 max-w-[32ch]">
+					Small web experiments. Each one runs live on its own page.
+				</p>
+			</div>
+
+			<div class="js-experiments-viewport experiments-viewport">
+				<ul
+					class="js-experiments-rail experiments-rail"
+					aria-label="Latest experiments"
+				>
+					{
+						experiments.map(({ data }) => (
+							<li class="experiments-tile">
+								<a
+									href={`${EXPERIMENTS_PATH}/${data.slug}/`}
+									class="experiments-tile-link"
+								>
+									<img
+										src={data.poster}
+										alt=""
+										width="880"
+										height="880"
+										loading="lazy"
+										decoding="async"
+										class="experiments-poster"
+									/>
+									<span class="experiments-tile-title">{data.title}</span>
+									<span class="experiments-tile-description">{data.description}</span>
+								</a>
+							</li>
+						))
+					}
+					<li class="experiments-tile">
+						<a
+							href={`${EXPERIMENTS_PATH}/`}
+							class="experiments-tile-link experiments-tile-all"
+						>
+							<span class="font-sans-serif text-5xl leading-[0.9] font-bold uppercase sm:text-6xl">
+								All<br />experiments
+							</span>
+							<span
+								class="text-4xl"
+								aria-hidden="true"
+								>→</span
+							>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	import { prefersReducedMotion } from '@/utils/motion';
+
+	/*
+	 * Without motion (or without this script) the rail is a native horizontal
+	 * scroller: swipe, trackpad and Tab all reach every tile. With motion it
+	 * pans with the page scroll instead.
+	 */
+	if (!prefersReducedMotion()) {
+		void import('@/lib/experiments-rail').then((module) => new module.default());
+	}
+</script>
+
+<style>
+	@reference "../styles/base.css";
+
+	/* With no pan there is nothing for the hold to do, so the plate holds for one
+	   screen instead of three and a half. */
+	@media (prefers-reduced-motion: reduce) {
+		.js-experiments {
+			height: 200vh;
+		}
+	}
+
+	/* A class rule, not utilities: the global `p` size would win over those. */
+	.experiments-intro {
+		font-weight: 700;
+		font-size: 1.25rem;
+		line-height: 1.35;
+	}
+
+	/* The window onto the rail. It stays put; the rail moves inside it. */
+	.experiments-viewport {
+		overflow-x: auto;
+		scroll-padding-inline: 1.25rem;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: thin;
+
+		@media (width >= theme(--breakpoint-sm)) {
+			scroll-padding-inline: 3rem;
+		}
+
+		@media (width >= theme(--breakpoint-lg)) {
+			scroll-padding-inline: 4rem;
+		}
+	}
+
+	.experiments-rail {
+		display: flex;
+		gap: 1.5rem;
+		width: max-content;
+		margin: 0;
+		padding: 0.5rem 1.25rem 1rem;
+		list-style: none;
+
+		@media (width >= theme(--breakpoint-sm)) {
+			gap: 2rem;
+			padding-inline: 3rem;
+		}
+
+		@media (width >= theme(--breakpoint-lg)) {
+			padding-inline: 4rem;
+		}
+	}
+
+	/* The script owns the travel: no native scroller, and `clip` (not `hidden`)
+	   so focusing a tile cannot scroll the window sideways behind the tween. */
+	.is-panning .experiments-viewport {
+		overflow-x: clip;
+		scroll-snap-type: none;
+	}
+
+	.is-panning .experiments-rail {
+		will-change: transform;
+	}
+
+	.experiments-plate.is-panning {
+		overflow: clip;
+	}
+
+	/* Sized off the plate's height, so the posters fill the screen they hold. */
+	.experiments-tile {
+		flex: 0 0 auto;
+		scroll-snap-align: start;
+		width: min(72vw, clamp(16rem, calc(100svh - 26rem), 30rem));
+	}
+
+	.experiments-tile-link {
+		@apply bg-base-100 flex h-full flex-col gap-2 rounded-2xl p-3 pb-5 text-black;
+
+		transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.experiments-poster {
+		width: 100%;
+		height: auto;
+		margin-bottom: 0.5rem;
+		border-radius: 0.75rem;
+	}
+
+	.experiments-tile-title {
+		@apply px-2 text-base font-bold;
+	}
+
+	.experiments-tile-description {
+		@apply line-clamp-2 px-2 text-sm;
+	}
+
+	/* The last tile is the door: the plate's own cobalt, so it reads as a way
+	   through rather than one more experiment. */
+	.experiments-tile-all {
+		@apply border border-white/40 bg-transparent p-6 text-white;
+
+		justify-content: space-between;
+		min-height: 100%;
+	}
+
+	/*
+	 * The Mystery Box's playful physics, scaled down: these are discoveries, not
+	 * actions, so they borrow the discovery voice rather than an action tier.
+	 */
+	@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+		.experiments-tile-link:hover,
+		.experiments-tile-link:focus-visible {
+			transform: scale(1.04) rotate(-1.5deg);
+		}
+	}
+</style>

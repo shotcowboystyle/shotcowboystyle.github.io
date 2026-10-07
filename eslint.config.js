@@ -18,6 +18,7 @@ export default [
 			'public/sw.js',
 			'.claude/',
 			'.agents/',
+			'_*-design-handoff/',
 			'lighthouse/',
 			'e2e/output/',
 			'coverage/',

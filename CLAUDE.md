@@ -23,8 +23,7 @@ This file holds only what the codebase can't tell you.
 - **Environment**: `happy-dom`, so `window`, `document` and `navigator` are available.
 - **Module-level globals**: modules that read a global at import time (e.g. `src/utils/detect.ts`)
   need `vi.stubGlobal` + `vi.resetModules()` + a dynamic `import()` per case.
-- **Injectable targets**: prefer passing an `EventTarget` over relying on `document`, as
-  `TypedEventBus` allows.
+- **Injectable targets**: prefer passing an `EventTarget` over relying on `document`.
 - **Documenting defects**: when a test pins existing buggy behavior, say so in a comment and keep the
   fix in its own commit.
 
@@ -57,5 +56,5 @@ Strategy and visual system live in root-level docs — read these before any des
 - **[`PRODUCT.md`](./PRODUCT.md)** — register (brand), users, brand personality, anti-references, 5
   design principles, accessibility (WCAG 2.1 AA + reduced-motion first-class).
 - **[`DESIGN.md`](./DESIGN.md)** — visual spec (DESIGN.md format). Creative North Star: _"The Kinetic
-  Monograph"_. Palette (Signal Mint / Cobalt Draft / Lavender Wash on Canvas Black + Card Off-White)
-  is documented but marked **pre-decision**.
+  Monograph"_. Palette: Signal Mint (the person), Cobalt Draft (play, the Experiments plate),
+  Lavender Wash (the CV cell) on Canvas Black + Card Off-White.

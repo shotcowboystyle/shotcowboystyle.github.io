@@ -42,3 +42,6 @@ lefthook-local.yml
 
 # lint caches
 .eslintcache
+
+# local design handoffs: large, and they bundle licensed fonts
+_*-design-handoff/
