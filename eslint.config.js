@@ -17,7 +17,7 @@ export default [
 			'.astro/',
 			'public/sw.js',
 			'.claude/',
-			'.impeccable/',
+			'.agents/',
 			'lighthouse/',
 			'e2e/output/',
 			'coverage/',

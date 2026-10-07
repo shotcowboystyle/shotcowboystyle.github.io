@@ -137,7 +137,7 @@ This system explicitly rejects: SaaS-templated hero → features → CTA layouts
 
 ## 2. Colors
 
-The palette is currently DaisyUI-derived: a mint-forward primary, a saturated cobalt secondary, and a pale lavender accent, all sitting on a **pure black canvas** with **off-white cards**. It is functional but under review — a future `/impeccable colorize` pass may replace the accent trio with a more committed color strategy.
+The palette is currently DaisyUI-derived: a mint-forward primary, a saturated cobalt secondary, and a pale lavender accent, all sitting on a **pure black canvas** with **off-white cards**.
 
 ### Primary
 

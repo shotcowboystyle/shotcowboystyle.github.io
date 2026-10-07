@@ -36,3 +36,6 @@ public/geojson
 .cspellcache
 .stylelintcache
 .eslintcache
+
+# vendored agent skills
+.agents/

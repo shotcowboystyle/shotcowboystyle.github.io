@@ -59,9 +59,3 @@ Strategy and visual system live in root-level docs — read these before any des
 - **[`DESIGN.md`](./DESIGN.md)** — visual spec (DESIGN.md format). Creative North Star: _"The Kinetic
   Monograph"_. Palette (Signal Mint / Cobalt Draft / Lavender Wash on Canvas Black + Card Off-White)
   is documented but marked **pre-decision**.
-- **`.impeccable/design.json`** — sidecar with tonal ramps, motion tokens, and canonical component
-  snippets consumed by the impeccable live panel.
-
-The `impeccable` skill (`.claude/skills/impeccable/`) reads these on every invocation. Use
-`/impeccable` sub-commands (`critique`, `audit`, `polish`, `colorize`, `live`, etc.) for
-design-facing work.

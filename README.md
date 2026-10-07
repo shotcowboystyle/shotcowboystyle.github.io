@@ -75,7 +75,6 @@ e2e/                   Playwright suites: accessibility, performance, pages
 public/                static passthrough: fonts, icons, geojson, downloads
 lighthouse/            generated Lighthouse reports
 .github/               CI workflow, CodeQL, composite prepare action
-.impeccable/           design system sidecar (tokens, motion, snippets)
 ```
 
 Import with the `@/` alias, which resolves to `src/`.
