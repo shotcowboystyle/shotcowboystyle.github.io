@@ -34,5 +34,6 @@
 		}
 	],
 	"prHourlyLimit": 5,
-	"rangeStrategy": "bump"
+	"rangeStrategy": "bump",
+	"minimumReleaseAge": "1 day"
 }
