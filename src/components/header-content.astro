@@ -1,10 +1,8 @@
 ---
-import openProjectsBadge from '@/assets/open-projects-badge.svg';
 import Availability from '@/components/availability.astro';
 import ResumeButton from '@/components/resume-button.astro';
 import SvgSprite from '@/components/SvgSprite.astro';
 import { CONTACT_MAILTO_HREF } from '@/utils/email.server';
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 const socials = await getCollection('social');
@@ -82,7 +80,7 @@ const socials = await getCollection('social');
 					It sits beside the intro rather than over the headline, where it used to
 					land on top of the type at display sizes.
 				-->
-				<div
+				<!-- <div
 					id="header-badge"
 					class="pointer-events-none hidden h-24 w-24 sm:block md:h-32 md:w-32 lg:h-28 lg:w-28"
 				>
@@ -92,7 +90,7 @@ const socials = await getCollection('social');
 						widths={[108, 216, openProjectsBadge.width]}
 						class="motion-safe:animate-spin-circle inline-block max-w-full align-middle"
 					/>
-				</div>
+				</div> -->
 
 				<p
 					id="header-intro"

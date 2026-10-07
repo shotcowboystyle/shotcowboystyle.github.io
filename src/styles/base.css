@@ -46,16 +46,12 @@
 	--color-focus-ring: oklch(48% 0.13 159.37deg);
 	--color-focus-ring-halo: oklch(98% 0 0deg);
 
-	/*
-	 * One typeface, one variable file. Geist carries the whole hierarchy on its
-	 * weight axis, so `--font-sans-serif` is kept as an alias rather than a
-	 * second family — the token name is load-bearing across components, the
-	 * second typeface is not.
-	 */
+	/* Font families */
 	--font-sans:
-		Geist, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', 'Noto Color Emoji';
-	--font-sans-serif: var(--font-sans);
+		'General Sans', Arial, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-sans-serif:
+		'Thunder', system-ui, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 
 	/*
 	 * Type scale is Tailwind's default. The previous fluid `clamp()` ramp is
@@ -238,17 +234,19 @@
 }
 
 @layer base {
-	/*
-	 * Declares the weight range the `fvar` table actually carries. Without the
-	 * descriptor the browser treats the file as a single-weight face and
-	 * *synthesizes* bolder weights by smearing the glyphs, instead of using the
-	 * real weight axis. No italic face is loaded — the system has no italics.
-	 */
 	@font-face {
 		font-weight: 100 900;
 		font-style: normal;
-		font-family: Geist;
-		src: url('/fonts/Geist-Variable.woff2') format('woff2');
+		font-family: Thunder;
+		src: url('/fonts/Thunder-VF.woff2') format('woff2');
+		font-display: swap;
+	}
+
+	@font-face {
+		font-weight: 100 900;
+		font-style: normal;
+		font-family: 'General Sans';
+		src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
 		font-display: swap;
 	}
 }

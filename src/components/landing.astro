@@ -40,7 +40,11 @@ const projects = await getCollection('project');
 					 */}
 					<div
 						class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
-						style={`background-color: ${project.data.cardColor};`}
+						style={
+							project.data.cardAurora
+								? `background: radial-gradient(105% 56% at 8% -4%, ${project.data.cardAurora[0]} 0%, transparent 60%), radial-gradient(88% 44% at 98% 14%, ${project.data.cardAurora[1]} 0%, transparent 56%), ${project.data.cardColor};`
+								: `background-color: ${project.data.cardColor};`
+						}
 					>
 						<ProjectCard project={project} />
 					</div>

@@ -28,6 +28,14 @@ const projectCollection = defineCollection({
 			cardColor: z
 				.string()
 				.regex(/^#[0-9a-f]{6}$/i, 'cardColor must be a 6-digit hex color, e.g. #1b3a2a'),
+			/**
+			 * Optional two-bloom radial "aurora" over `cardColor`, for projects whose
+			 * own ground is a gradient (Clean Break). Hex-only for the same inline
+			 * `style` safety reason as `cardColor`.
+			 */
+			cardAurora: z
+				.tuple([z.string().regex(/^#[0-9a-f]{6}$/i), z.string().regex(/^#[0-9a-f]{6}$/i)])
+				.optional(),
 		}),
 });
 
