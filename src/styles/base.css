@@ -46,16 +46,12 @@
 	--color-focus-ring: oklch(48% 0.13 159.37deg);
 	--color-focus-ring-halo: oklch(98% 0 0deg);
 
-	/*
-	 * One typeface, one variable file. Geist carries the whole hierarchy on its
-	 * weight axis, so `--font-sans-serif` is kept as an alias rather than a
-	 * second family — the token name is load-bearing across components, the
-	 * second typeface is not.
-	 */
+	/* Font families */
 	--font-sans:
-		Geist, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', 'Noto Color Emoji';
-	--font-sans-serif: var(--font-sans);
+		'General Sans', Arial, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-sans-serif:
+		'Thunder', system-ui, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
 
 	/*
 	 * Type scale is Tailwind's default. The previous fluid `clamp()` ramp is
@@ -238,17 +234,19 @@
 }
 
 @layer base {
-	/*
-	 * Declares the weight range the `fvar` table actually carries. Without the
-	 * descriptor the browser treats the file as a single-weight face and
-	 * *synthesizes* bolder weights by smearing the glyphs, instead of using the
-	 * real weight axis. No italic face is loaded — the system has no italics.
-	 */
 	@font-face {
 		font-weight: 100 900;
 		font-style: normal;
-		font-family: Geist;
-		src: url('/fonts/Geist-Variable.woff2') format('woff2');
+		font-family: Thunder;
+		src: url('/fonts/Thunder-VF.woff2') format('woff2');
+		font-display: swap;
+	}
+
+	@font-face {
+		font-weight: 100 900;
+		font-style: normal;
+		font-family: 'General Sans';
+		src: url('/fonts/GeneralSans-Variable.woff2') format('woff2');
 		font-display: swap;
 	}
 }
@@ -461,21 +459,203 @@ html.has-motion .c-animated-text {
 	}
 }
 
-.is-loading #main > * {
-	display: none;
+/* ============================================================
+ * PLATE-TURN — the Project tier's hover, on the landing cards and
+ * the folio's next plate. The plate tips on its right-edge hinge as
+ * though a page were being lifted; opening it finishes the turn
+ * (see the turn-open view transition below).
+ * ============================================================ */
+
+.plate-turn {
+	will-change: transform;
+	transition: transform 700ms cubic-bezier(0.32, 0.72, 0, 1);
+	transform-origin: right center;
+	perspective: 1500px;
+	transform-style: preserve-3d;
 }
 
-::view-transition-image-pair(root) {
-	isolation: auto;
+.plate-turn:hover,
+.plate-turn:focus-within {
+	transform: rotate3d(0, 1, 0.05, -2.4deg);
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-	mix-blend-mode: normal;
-	animation: none;
+/* Reduced-motion path: no rotation at all. */
+@media (prefers-reduced-motion: reduce) {
+	.plate-turn,
+	.plate-turn:hover,
+	.plate-turn:focus-within {
+		transition: none;
+		transform: none;
+	}
 }
 
-::view-transition-old(main),
-::view-transition-new(main) {
-	visibility: hidden;
+/* ============================================================
+ * VIEW TRANSITIONS
+ * Every navigation is a document navigation, opted in here and on
+ * the experiments site. `src/lib/view-transition.js` names the
+ * type; the choreography lives below.
+ * ============================================================ */
+
+@view-transition {
+	navigation: auto;
+}
+
+html:active-view-transition-type(turn-open, turn-close, wipe) {
+	&::view-transition-old(root),
+	&::view-transition-new(root) {
+		mix-blend-mode: normal;
+		animation-duration: 800ms;
+		animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+		animation-fill-mode: both;
+	}
+
+	&::view-transition-group(folio-title) {
+		animation-duration: 800ms;
+		animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+	}
+}
+
+/*
+ * turn-open: the plate-turn hover tips the page 2.4deg on its right-edge
+ * hinge. Opening a project finishes that turn: the page swings away on the
+ * same hinge and the folio is underneath, while the project's title holds
+ * still and settles into the folio's masthead.
+ */
+html:active-view-transition-type(turn-open) {
+	&::view-transition-old(root) {
+		z-index: 1;
+		transform-origin: right center;
+		animation-name: plate-turn-away;
+		animation-timing-function: var(--ease-page-turn);
+	}
+
+	&::view-transition-new(root) {
+		animation-name: plate-surface;
+	}
+}
+
+/* turn-close: the same page swings back shut over the folio. */
+html:active-view-transition-type(turn-close) {
+	&::view-transition-old(root) {
+		animation-name: plate-surface;
+		animation-direction: reverse;
+	}
+
+	&::view-transition-new(root) {
+		z-index: 1;
+		transform-origin: right center;
+		animation-name: plate-turn-away;
+		animation-timing-function: var(--ease-page-turn);
+		animation-direction: reverse;
+	}
+}
+
+/*
+ * The turn itself needs an even, readable sweep, so it runs on its own curve:
+ * the plate-turn's quick release would have it edge-on in the first frames.
+ */
+:root {
+	--ease-page-turn: cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+
+@keyframes plate-turn-away {
+	from {
+		transform: perspective(2400px) rotate3d(0, 1, 0.05, 0deg);
+	}
+
+	80% {
+		opacity: 100%;
+	}
+
+	to {
+		opacity: 0%;
+		transform: perspective(2400px) rotate3d(0, 1, 0.05, -90deg);
+	}
+}
+
+@keyframes plate-surface {
+	from {
+		filter: brightness(0.6);
+		transform: scale(0.94);
+	}
+}
+
+/*
+ * wipe: the old diagonal curtain, as one mint band. The outgoing page is cut
+ * away along a 45deg front running bottom-left to top-right; the incoming page
+ * follows a beat behind it, and the gap between the two fronts is the mint
+ * ground of the image pair.
+ */
+html:active-view-transition-type(wipe) {
+	&::view-transition-image-pair(root) {
+		background-color: var(--color-primary);
+	}
+
+	&::view-transition-old(root) {
+		animation-name: wipe-out;
+	}
+
+	&::view-transition-new(root) {
+		animation-name: wipe-in;
+		animation-delay: 140ms;
+	}
+}
+
+@keyframes wipe-out {
+	from {
+		clip-path: polygon(0% 100%, 0% 100%, 0% -200%, 300% -200%, 300% 100%);
+	}
+
+	to {
+		clip-path: polygon(200% 100%, 0% -100%, 0% -200%, 300% -200%, 300% 100%);
+	}
+}
+
+@keyframes wipe-in {
+	from {
+		clip-path: polygon(0% 100%, 0% 100%, 0% 100%);
+	}
+
+	to {
+		clip-path: polygon(0% 100%, 0% -100%, 200% 100%);
+	}
+}
+
+/* Reduced motion: no hinge, no sweep, no travel. A short crossfade. */
+@media (prefers-reduced-motion: reduce) {
+	html:active-view-transition-type(turn-open, turn-close, wipe) {
+		&::view-transition-old(root),
+		&::view-transition-new(root) {
+			z-index: auto;
+			animation: 150ms ease-out both;
+		}
+
+		&::view-transition-old(root) {
+			animation-name: vt-fade-out;
+		}
+
+		&::view-transition-new(root) {
+			animation-name: vt-fade-in;
+		}
+
+		&::view-transition-image-pair(root) {
+			background-color: transparent;
+		}
+
+		&::view-transition-group(folio-title) {
+			animation: none;
+		}
+	}
+}
+
+@keyframes vt-fade-out {
+	to {
+		opacity: 0%;
+	}
+}
+
+@keyframes vt-fade-in {
+	from {
+		opacity: 0%;
+	}
 }

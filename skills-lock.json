@@ -1,11 +1,53 @@
 {
 	"version": 1,
 	"skills": {
+		"academic-cv-builder": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/academic-cv-builder/SKILL.md",
+			"computedHash": "10dfddb1d7d01fdbec8e965841c1de42b193e5af67d2570f24d3469ece4ded3b"
+		},
 		"animaxxing": {
 			"source": "johnpolacek/animaxxing-skills",
 			"sourceType": "github",
 			"skillPath": "skills/animaxxing/SKILL.md",
 			"computedHash": "7b4a2beccad63a80dc8c6912e0617fb082e1fa744e0c8a6704fd4216b2e1f0f5"
+		},
+		"application-form-filler": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/application-form-filler/SKILL.md",
+			"computedHash": "65d16042daefd3c84b6ea02a7a689e6889289902af5b6b3cd1a5d120d78911a5"
+		},
+		"career-changer-translator": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/career-changer-translator/SKILL.md",
+			"computedHash": "3ee269bf946090ef6c88fd516e1e0d76a5f47ff4379a9163bb409d7210f6753f"
+		},
+		"cold-email-writer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/cold-email-writer/SKILL.md",
+			"computedHash": "719e80c87fdf3a5c063bf99f534ce02fc56474f04d7d176adbe242d350e3a729"
+		},
+		"cover-letter-generator": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/cover-letter-generator/SKILL.md",
+			"computedHash": "be8edf0952716e813a721f6d097cc8ae4d3562fac0a413138ca993cce8c4b5db"
+		},
+		"creative-portfolio-resume": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/creative-portfolio-resume/SKILL.md",
+			"computedHash": "a606d15d5a5af4bbbbb8f06433a3b4d16d6e88f23fc3f755eeee201cd35c94e1"
+		},
+		"executive-resume-writer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/executive-resume-writer/SKILL.md",
+			"computedHash": "4c8c519df4a69f2078ef14c354707754de4e28a73ddb5eb1032c88f2fd2201fe"
 		},
 		"gsap-astro": {
 			"source": "johnpolacek/animaxxing-skills",
@@ -97,11 +139,107 @@
 			"skillPath": "skills/gsap-vanilla/SKILL.md",
 			"computedHash": "b51bcbeb6e1833b8f01f92c012596d55e5636eea7763536992cfb55d7dd0eb98"
 		},
+		"interview-prep-generator": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/interview-prep-generator/SKILL.md",
+			"computedHash": "6079ff8377d21ec5bb660a9505ae77d4f33a9cdeb418f886c18e9668ff0b2852"
+		},
+		"job-description-analyzer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/job-description-analyzer/SKILL.md",
+			"computedHash": "f6b48144029ceef1e18e9ea9d8d7f3036965615608d82f91d3adb1321d3f4bbe"
+		},
+		"linkedin-profile-optimizer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/linkedin-profile-optimizer/SKILL.md",
+			"computedHash": "2d49d4fb126ddfdc630542e0844e87822abb8960030788de7cafa5deae7d736c"
+		},
+		"offer-comparison-analyzer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/offer-comparison-analyzer/SKILL.md",
+			"computedHash": "f80c939fe91f3a702a3b548b580c780cc204fa91281195fea800dd64246b4205"
+		},
+		"portfolio-case-study-writer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/portfolio-case-study-writer/SKILL.md",
+			"computedHash": "06712b3c7b6699797d15009ae31eca1e5b582290695f759a25a0bd9759312375"
+		},
+		"reference-list-builder": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/reference-list-builder/SKILL.md",
+			"computedHash": "a8cf62ebbbbc899caec7a64f9721c4eecece38a7981fa72929a8378f3ec6ad0f"
+		},
+		"resume-ats-optimizer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/resume-ats-optimizer/SKILL.md",
+			"computedHash": "2e3782b6176807b6d714213a14258bd86ca988d442757674eb86181d81465abd"
+		},
+		"resume-bullet-writer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/resume-bullet-writer/SKILL.md",
+			"computedHash": "c66df886c061907f50672f506120f716f64c3319ebd7ba306b70e9bb523d1ea8"
+		},
+		"resume-formatter": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/resume-formatter/SKILL.md",
+			"computedHash": "788284eb2f841efd6b59ee984924db4e67794ab842818f04870eb86ee61306c1"
+		},
+		"resume-quantifier": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/resume-quantifier/SKILL.md",
+			"computedHash": "d251f6c2f23684fe5bd270397a4cdb33e71575686dd3e44036536ddba645ad2c"
+		},
+		"resume-section-builder": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/resume-section-builder/SKILL.md",
+			"computedHash": "05ab3de39b14b41c93521536c77ea71793b21480381f1bfb01b032191b80ffac"
+		},
+		"resume-tailor": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/resume-tailor/SKILL.md",
+			"computedHash": "8b740a9d2ba26d33b02f0a6408975ed2aa1c322a6ceede049f06bd27878e1eff"
+		},
+		"resume-version-manager": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/resume-version-manager/SKILL.md",
+			"computedHash": "172c04ab07ba5e23a0136839f31dc36b6223877b60e2d438189ff95d816792f4"
+		},
+		"salary-negotiation-prep": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/salary-negotiation-prep/SKILL.md",
+			"computedHash": "f6b35719a68e88861f335871df923aa4239a4ef1f868fb88e011e189a0871203"
+		},
+		"scroll-craft": {
+			"source": "nateherkai/scroll-craft",
+			"sourceType": "github",
+			"skillPath": "plugins/nateherk-design/skills/scroll-craft/SKILL.md",
+			"computedHash": "b78387f42dd6ecc70b28c4623919bf3037e4e2dda1f021bdac7346d7b9b83bca"
+		},
 		"style-animaxxing": {
 			"source": "johnpolacek/animaxxing-skills",
 			"sourceType": "github",
 			"skillPath": "skills/style-animaxxing/SKILL.md",
 			"computedHash": "2ea7fd619e3d690b3d16651ec6985678ef0a6745919dead8061f001e2e737267"
+		},
+		"tech-resume-optimizer": {
+			"source": "Paramchoudhary/ResumeSkills",
+			"sourceType": "github",
+			"skillPath": "skills/tech-resume-optimizer/SKILL.md",
+			"computedHash": "2e29bf63c6532e5fb233aef21a7f7418a472fc52883995cd0d70544f1ba9b2ed"
 		}
 	}
 }

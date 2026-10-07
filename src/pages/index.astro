@@ -10,13 +10,7 @@ import BaseLayout from '@/layouts/base.astro';
 <script>
 	import Landing from '@/lib/landing';
 
-	document.addEventListener(
-		'astro:page-load',
-		() => {
-			new Landing();
-		},
-		{ once: true },
-	);
+	new Landing();
 </script>
 
 <style is:inline>

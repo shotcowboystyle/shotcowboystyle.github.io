@@ -1,9 +1,15 @@
+import { readdirSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 const WCAG_AA_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
 
-const routes = ['/', '/404', '/immature', '/tower-blocks'];
+/** One folio per project entry, so a new project is scanned without editing this list. */
+const folios = readdirSync('src/content/project')
+	.filter((file) => file.endsWith('.md'))
+	.map((file) => `/work/${file.replace(/\.md$/, '')}/`);
+
+const routes = ['/', '/404', '/immature', '/tower-blocks', ...folios];
 
 /**
  * Waits for every CSS transition to finish before scanning.

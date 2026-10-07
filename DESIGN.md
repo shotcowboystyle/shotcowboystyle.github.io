@@ -83,7 +83,7 @@ components:
     typography: '{typography.label} uppercase'
     hover: 'underline-offset-4'
   action-project:
-    role: 'Project-card affordance only. Opens the live project (or its repo) in a new tab.'
+    role: 'Project-card affordance only. Opens the project folio at /work/[slug]; the folio links out.'
     shape: 'circle w/ rotating textPath ring + plane orbit'
     backgroundColor: 'transparent'
     textColor: '{colors.card-off-white}'
@@ -137,7 +137,7 @@ This system explicitly rejects: SaaS-templated hero → features → CTA layouts
 
 ## 2. Colors
 
-The palette is currently DaisyUI-derived: a mint-forward primary, a saturated cobalt secondary, and a pale lavender accent, all sitting on a **pure black canvas** with **off-white cards**. It is functional but under review — a future `/impeccable colorize` pass may replace the accent trio with a more committed color strategy.
+The palette is currently DaisyUI-derived: a mint-forward primary, a saturated cobalt secondary, and a pale lavender accent, all sitting on a **pure black canvas** with **off-white cards**.
 
 ### Primary
 
@@ -145,11 +145,11 @@ The palette is currently DaisyUI-derived: a mint-forward primary, a saturated co
 
 ### Secondary
 
-- **Cobalt Draft** (`oklch(61% 0.2 261.29deg)`): Reserved for secondary emphasis and future work callouts. Currently under-used; treat as a placeholder until a `colorize` pass locks its role.
+- **Cobalt Draft** (`oklch(61% 0.2 261.29deg)`): **Play.** The Experiments plate, the one cobalt surface on the page. Mint is the person (hero, contact); cobalt is the side work. White on cobalt measures 3.9:1, so text set directly on it must be large (20px bold, or 24px and up); small copy sits on off-white tiles.
 
 ### Tertiary
 
-- **Lavender Wash** (`oklch(76% 0.07 282.78deg)`): The soft testimonial card fill in the About grid — low-chroma so quoted voices don't compete with the mint. A quiet third color, not a headline.
+- **Lavender Wash** (`oklch(76% 0.07 282.78deg)`): The CV ledger cell in the About grid — low-chroma so the work history doesn't compete with the mint. A quiet third color, not a headline.
 
 ### Neutral
 
@@ -169,7 +169,7 @@ A handful of RGB literals live inside signature-motion components and are outsid
 
 **The Gallery-Wall Rule.** The black canvas is never a text surface. Every piece of body copy sits on a card. If you find yourself setting readable text directly on black, you are decorating the wall — stop.
 
-**The One-Voice-Per-Section Rule.** Each card commits to one accent. Signal Mint OR Cobalt Draft OR off-white — never two competing on the same surface. The hero fold and the About section both commit to Signal Mint — hero as a drenched field with an off-white card floating on it (see Cards / Containers → Field vs. plate below), About as mint plates (Bio + Contact) with a neutral map. The mint field bookends the page; projects and the mystery-box footer sit on the black canvas between. Lavender Wash is now unused after the testimonials tile was folded into Bio — leave it in the token file for future use rather than the current site.
+**The One-Voice-Per-Section Rule.** Each card commits to one accent. Signal Mint OR Cobalt Draft OR off-white — never two competing on the same surface. The hero is an off-white plate on the black canvas; each project plate takes its project's own ground; the Experiments plate is cobalt; the About grid gives each cell one voice (mint Bio, lavender CV, yellow back-to-top, info-blue Contact). Every surface sits on the black canvas.
 
 **The Signature-Motion Isolation Rule.** The signature-motion palette (Mystery-Box gradient, Resume-button hover bubbles) is component-scoped. Do not pull those RGB literals into new components. If you need a new signature moment, propose a new named literal for it and add it here.
 
@@ -213,13 +213,13 @@ A handful of RGB literals live inside signature-motion components and are outsid
 
 Five tiers, ordered by weight. Every clickable element on the site belongs to exactly one tier; do not mix visual languages across tiers. The tier is chosen by the **purpose** of the action, not by aesthetic preference.
 
-| Tier          | Purpose                                                                                  | Visual language                                                                                                                               | Hover signature (reserved per tier)                                                                                                                                                                                                                                                 | Where it lives                                                      |
-| ------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| **Primary**   | Contact / talk — the single most important CTA.                                          | Black circle, off-white text.                                                                                                                 | **Radial expansion.** Inner span `scale-150`. The reserved gesture — no other tier may share it.                                                                                                                                                                                    | Hero "Let's Talk" (`header-content.astro`). Reserved.               |
-| **Secondary** | Utility / download.                                                                      | Transparent pill, 1px black border, deep-mint underlined emphasis on partial letters ("RESU**ME**").                                          | **Signature bubble-particle keyframes.** Radial-gradient bubbles ping up and down.                                                                                                                                                                                                  | Hero Resume button. Reserved.                                       |
-| **Tertiary**  | Inline supporting nav (section jumps, in-flow anchors).                                  | Uppercase label text.                                                                                                                         | **Underline reveal.** `underline-offset-4 hover:underline`.                                                                                                                                                                                                                         | Hero "About Me" anchor. Use for future in-flow anchors.             |
-| **Project**   | Project-card affordance only. Opens the live project — or its repository — in a new tab. | Circle with rotating textPath ring + plane orbit, 8s spin (motion-safe). Ring phrase is the entry's `linkText` ("View Site" / "View Source"). | **Plate-Turn.** The card catches light like a page being lifted: `rotate3d(0, 1, 0.05, -2.4deg)` around a right-center pivot with `perspective: 1500px`. Reads as "the plate is tipping toward you," distinct from Primary's outward radial expansion. Reduced-motion: no rotation. | Every project card. Never used outside the project-card domain.     |
-| **Panel**     | Peak-end closing CTA.                                                                    | Full Signal Mint tile, giant Thunder headline, underlined email.                                                                              | **Email underline weight shift.** `text-decoration-thickness: 1px → 2px` on the email row.                                                                                                                                                                                          | Contact tile at the end of the About grid. Only one Panel per page. |
+| Tier          | Purpose                                                                    | Visual language                                                                                                                                                      | Hover signature (reserved per tier)                                                                                                                                                                                                                                                 | Where it lives                                                                            |
+| ------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Primary**   | Contact / talk — the single most important CTA.                            | Black circle, off-white text.                                                                                                                                        | **Radial expansion.** Inner span `scale-150`. The reserved gesture — no other tier may share it.                                                                                                                                                                                    | Hero "Let's Talk" (`header-content.astro`). Reserved.                                     |
+| **Secondary** | Utility / download.                                                        | Transparent pill, 1px black border, deep-mint underlined emphasis on partial letters ("RESU**ME**").                                                                 | **Signature bubble-particle keyframes.** Radial-gradient bubbles ping up and down.                                                                                                                                                                                                  | Hero Resume button. Reserved.                                                             |
+| **Tertiary**  | Inline supporting nav (section jumps, in-flow anchors).                    | Uppercase label text.                                                                                                                                                | **Underline reveal.** `underline-offset-4 hover:underline`.                                                                                                                                                                                                                         | Hero "About Me" and "Index", the Index links, the CV's PDF link and References.           |
+| **Project**   | Project-card affordance only. Opens the project's folio at `/work/[slug]`. | Circle with rotating textPath ring + plane orbit, 8s spin (motion-safe). Ring phrase is "View Project" on the card, the entry's `linkText` on the folio's live link. | **Plate-Turn.** The card catches light like a page being lifted: `rotate3d(0, 1, 0.05, -2.4deg)` around a right-center pivot with `perspective: 1500px`. Reads as "the plate is tipping toward you," distinct from Primary's outward radial expansion. Reduced-motion: no rotation. | Every project card, and the folio's next-project plate. Never outside the project domain. |
+| **Panel**     | Peak-end closing CTA.                                                      | Full info-blue tile, giant Thunder headline, underlined email.                                                                                                       | **Email underline weight shift.** `text-decoration-thickness: 1px → 2px` on the email row.                                                                                                                                                                                          | Contact tile at the end of the About grid. Only one Panel per page.                       |
 
 The **Mystery Box** footer easter-egg uses its own **playful physics** hover — `scale(1.25) rotate(3deg)` plus an internal fill reveal (dot fills with black background, icon fills white). Distinct from all five action tiers by design: the mystery box is a discovery moment, not an action, and its off-system signature-motion palette (see Section 2) matches the off-tier gesture language.
 
@@ -233,13 +233,15 @@ The **Mystery Box** footer easter-egg uses its own **playful physics** hover —
 
 **The Reserved-Hover Rule.** Each tier owns its hover signature exclusively: Primary owns radial expansion (`scale-150`), Secondary owns the bubble-particle keyframes, Tertiary owns underline reveal, Project owns the plate-turn (3D page-catches-light rotation), Panel owns the underline weight shift. Mystery Box is the sixth voice — playful physics (`scale-1.25 rotate-3`) — and is not a tier. When you add a new interactive surface, choose a tier and inherit its hover; do not compose a new hover per-component.
 
-The Project tier previously used a directional-lift (`translate-y-1 scale-105`) hover, retired in favour of the Plate-Turn. The cards now open off-site again — the live project, or its repository — so the tier reads "lift the plate and leave," and the arrow glyph inside the circle states the departure plainly.
+The Project tier previously used a directional-lift (`translate-y-1 scale-105`) hover, retired in favour of the Plate-Turn. Cards open the project's folio, and the click **finishes the turn**: see Page transitions below. The folio carries the link out to the live project or its repository.
+
+The **Experiments plate's tiles** borrow the Mystery Box's playful physics, scaled down (`scale(1.04) rotate(-1.5deg)`): experiments are discoveries, not actions.
 
 ### Cards / Containers
 
 - **Corner Style:** `16px` on the card baseline, `24px` on the About-grid plates (larger surfaces earn a larger radius).
-- **Background:** Signal Mint (Bio identity + Contact panel), Card Off-White (hero card, Location plate, default). Never on black. See the One-Voice-Per-Section rule above; About section commits to Signal Mint end-to-end.
-- **Field vs. plate:** The hero section is _drenched_ — its section wrapper is Signal Mint so the fold opens on brand color, and the off-white hero card floats on the mint field. Card-on-mint framing lets the palette land in second 0 without abandoning the light-plate reading model. Only the hero fold uses this layering; project slabs and About tiles remain flat.
+- **Background:** Card Off-White (hero plate, Index plate, tiles, default), each project's `cardColor` (project plates and folios), Cobalt Draft (Experiments), and one accent per About cell. Never body copy on black. See the One-Voice-Per-Section rule above.
+- **Plates, not fields:** Every section is a flat plate on the black canvas, and the plates stack: each one sticks, holds, and recedes as the next slides up over it. The Index uses the same slide-up.
 - **Shadow Strategy:** None at rest. See Elevation.
 - **Border:** None. Contrast carries the edge.
 - **Internal Padding:** `1rem` → `3rem` fluid; the plate breathes.
@@ -250,7 +252,8 @@ Not currently used in the site (no forms in the shipped surface). If added, foll
 
 ### Navigation
 
-- **Style:** No traditional top nav. Navigation is scroll-driven — the landing scene, projects, availability, and about are stacked full-height sections traversed by Lenis smooth-scroll. Contact and resume are inline affordances, not a persistent menu.
+- **Style:** No top bar. The page is still read by scrolling the stack; the one piece of persistent chrome is the **Index** (`site-index.astro`): a small black pill, top right, that opens a native modal `<dialog>`. The Index slides up as an off-white plate, the same motion as the stack, listing Work (each project's folio), Experiments, CV and Contact in Thunder. On the landing page the pill waits until the first plate has come halfway over the hero, which carries its own Index link in its nav row.
+- **Experiments** live in their own repository and deploy to `/experiments/` on this origin, so the move between the two sites is a same-origin navigation and gets the wipe.
 - **Skip link:** `.skip-to-content` styled anchor lives at the top of `<body>` in `BaseLayout`. Hidden until keyboard-focused; slides down with Signal Mint background + primary-ink text. Every page inherits it.
 - **Focus system:** Global `:focus-visible` rule in `base.css` — 2px Signal Mint outline, 3px offset. Component-local overrides only when the surface contrast needs it.
 - **Mobile:** Same model; touch-scroll replaces smooth-wheel, motion behaviors persist through prefers-reduced-motion crossfades.
@@ -258,6 +261,22 @@ Not currently used in the site (no forms in the shipped surface). If added, foll
 ### Signature Component: The Rotating Availability Badge
 
 The `animate-spin-circle` badge that reads "OPEN FOR PROJECTS" around a rotating ring. Communicates state (availability), never decorates. Under `prefers-reduced-motion`, the rotation halts and the text ring is set static — the state is still readable.
+
+### Page transitions
+
+Every navigation is a document navigation with a cross-document view transition (`@view-transition` in `base.css`; `src/lib/view-transition.js` names the type). Browsers without them simply navigate.
+
+- **Page-turn (`turn-open` / `turn-close`):** opening a project finishes the plate-turn. The page swings away on the same right-edge hinge the hover tipped it on, the folio is underneath, and the project title holds still and settles into the folio's masthead. Back swings the page shut, and the back-forward cache returns the stack at the exact plate. Folio to next folio is another `turn-open`.
+- **Wipe (`wipe`):** stepping into a side room (Experiments, Immature, Tower Blocks) or back. The old diagonal curtain, as one Signal Mint band running bottom-left to top-right.
+- **Reduced motion:** a 150ms crossfade. No hinge, no sweep, no travel.
+
+### Project folio (`/work/[slug]`)
+
+The back of the plate: one tall plate in the project's `cardColor` on black, with the stack's insets. The first screen opens the card's screenshot edge to edge as a band, with the title, tags and facts (year, role, only when verifiable) beneath it and the live link as a Project-tier circle. Then the lead, the story (only when `storyReady`), and the gallery: desktop captures wide or paired, phone captures clustered, each with a visible label. It ends on the next project's plate peeking up from the bottom edge.
+
+### CV ledger and References
+
+The About grid's lavender cell is the work history: years, company, role, newest first, from `src/content/cv.json`, with the PDF beneath. Its last line is the References, which are the old joke testimonials. Each name opens its quote in a native popover.
 
 ### Footer Component: The Mystery Box
 

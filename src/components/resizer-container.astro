@@ -49,7 +49,7 @@ const { class: className, label = 'Drag' } = Astro.props;
 </div>
 
 <script>
-	document.addEventListener('astro:page-load', () => {
+	function setup() {
 		const el = document.getElementById('resize-me');
 		if (!el) {
 			return;
@@ -213,7 +213,9 @@ const { class: className, label = 'Drag' } = Astro.props;
 		window.addEventListener('resize', onWindowResize);
 
 		onWindowResize();
-	});
+	}
+
+	setup();
 </script>
 
 <style>

@@ -1,0 +1,43 @@
+[
+	{
+		"id": "independent",
+		"company": "Independent",
+		"role": "Software Consultant",
+		"start": "2023-02"
+	},
+	{
+		"id": "seamless-ai",
+		"company": "Seamless.AI",
+		"role": "Principal Software Architect",
+		"start": "2018-04",
+		"end": "2023-02"
+	},
+	{
+		"id": "questis",
+		"company": "Questis",
+		"role": "Senior Software Engineer",
+		"start": "2015-02",
+		"end": "2018-04"
+	},
+	{
+		"id": "sparc",
+		"company": "SPARC",
+		"role": "Front-end Developer and Designer",
+		"start": "2013-02",
+		"end": "2015-02"
+	},
+	{
+		"id": "peoplematter",
+		"company": "PeopleMatter",
+		"role": "Interface Engineer",
+		"start": "2009-11",
+		"end": "2013-02"
+	},
+	{
+		"id": "zestra",
+		"company": "Zestra Laboratories",
+		"role": "Director, IT Solutions",
+		"start": "2002-06",
+		"end": "2008-07"
+	}
+]

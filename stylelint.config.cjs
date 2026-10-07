@@ -6,6 +6,8 @@ const config = {
 		'stylelint-config-tailwindcss',
 	],
 	allowEmptyInput: true,
+	// Vendored agent skills ship their own CSS; they are not this site's styles.
+	ignoreFiles: ['.agents/**'],
 	reportNeedlessDisables: true,
 	rules: {
 		/** Vendor prefixes should be handled by postcss autoprefixer. */

@@ -25,7 +25,7 @@ const isExternal = external ?? /^https?:\/\//.test(link);
  */
 const RING_PHRASE = ringPhrase ?? label;
 const RING_SEPARATOR = ' • ';
-const RING_PATH_CAPACITY_IN_CHARACTERS = 52;
+const RING_PATH_CAPACITY_IN_CHARACTERS = 72;
 
 const ringRepeatCount = Math.max(
 	1,
@@ -45,6 +45,7 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 		href={link}
 		target={isExternal ? '_blank' : undefined}
 		rel={isExternal ? 'noopener noreferrer' : undefined}
+		data-astro-prefetch={!isExternal || undefined}
 	>
 		<span
 			class="absolute inset-0 overflow-hidden rounded-full"

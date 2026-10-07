@@ -1,0 +1,248 @@
+---
+import { EXPERIMENTS_PATH } from '@/constants';
+import { getProjects } from '@/lib/projects';
+import { CONTACT_EMAIL, CONTACT_MAILTO_HREF } from '@/utils/email.server';
+
+const projects = await getProjects();
+---
+
+<!--
+	The site's one persistent piece of chrome. It is a plate like everything else:
+	the Index slides up over the page the same way each plate in the stack slides
+	up over the last. A native modal <dialog> carries the focus trap, the inert
+	background and Escape.
+-->
+<button
+	type="button"
+	class="index-pill"
+	data-index-open
+	aria-haspopup="dialog"
+>
+	Index
+</button>
+
+<dialog
+	id="site-index"
+	class="site-index"
+	aria-label="Index"
+	data-lenis-prevent
+>
+	<div class="site-index-plate">
+		<div class="flex items-start justify-between gap-6">
+			<a
+				href="/"
+				class="font-sans-serif text-2xl leading-none font-bold tracking-tight uppercase sm:text-3xl"
+			>
+				shotcowboystyle.
+			</a>
+
+			<form method="dialog">
+				<button
+					type="submit"
+					class="index-close"
+				>
+					Close
+				</button>
+			</form>
+		</div>
+
+		<nav aria-label="Site">
+			<ul class="site-index-list">
+				<li>
+					<a
+						href="/#project-cards"
+						class="site-index-link"
+						>Work</a
+					>
+					<ul class="site-index-projects">
+						{
+							projects.map((project) => (
+								<li>
+									<a
+										href={`/work/${project.id}/`}
+										data-astro-prefetch
+									>
+										{project.data.title}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</li>
+				<li>
+					<a
+						href={`${EXPERIMENTS_PATH}/`}
+						class="site-index-link"
+						>Experiments</a
+					>
+				</li>
+				<li>
+					<a
+						href="/#cv"
+						class="site-index-link"
+						>CV</a
+					>
+				</li>
+				<li>
+					<a
+						href={CONTACT_MAILTO_HREF}
+						class="js-inject-email-link site-index-link"
+						>Contact</a
+					>
+					<p class="js-inject-email-text site-index-email">{CONTACT_EMAIL}</p>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</dialog>
+
+<script>
+	const index = document.querySelector<HTMLDialogElement>('#site-index')!;
+
+	for (const opener of document.querySelectorAll('[data-index-open]')) {
+		opener.addEventListener('click', () => index.showModal());
+	}
+
+	index.addEventListener('click', (event) => {
+		const target = event.target as Element;
+
+		// A click on the dialog itself is a click on the margin around the plate:
+		// the backdrop. A click on a link is leaving, even if only to an anchor on
+		// this same page, so the Index steps out of the way either way.
+		if (target === index || target.closest('a')) index.close();
+	});
+</script>
+
+<style>
+	@reference "../styles/base.css";
+
+	.index-pill {
+		@apply fixed top-5 right-5 z-40 rounded-full bg-black px-5 py-2.5 text-xs font-bold tracking-wide text-white uppercase sm:top-9 sm:right-9 lg:top-8 lg:right-8;
+
+		border: 1px solid rgb(255 255 255 / 25%);
+		cursor: pointer;
+		transition:
+			opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
+			visibility 200ms;
+	}
+
+	/*
+	 * The landing hero carries its own Index link in its nav row, and on a phone
+	 * the pill would sit on top of the hero's Let's Talk button, so on the landing
+	 * page the pill waits until the stack takes over. `landing.astro` sets
+	 * `past-hero`.
+	 */
+	:global(html:has(#header):not(.past-hero)) .index-pill {
+		opacity: 0%;
+		visibility: hidden;
+	}
+
+	.site-index {
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		max-height: none;
+		margin: 0;
+		padding: 1rem;
+		border: 0;
+		background: transparent;
+
+		/* `display` and `overlay` hold the closing dialog in the top layer until
+		   the plate has slid back down. */
+		transition:
+			display 500ms allow-discrete,
+			overlay 500ms allow-discrete;
+
+		@media (width >= theme(--breakpoint-sm)) {
+			padding: 2rem;
+		}
+
+		@media (width >= theme(--breakpoint-lg)) {
+			padding: 1.5rem;
+		}
+
+		&::backdrop {
+			background: rgb(0 0 0 / 60%);
+		}
+	}
+
+	/* The page under the Index holds still, wheel and touch alike. */
+	:global(html:has(.site-index[open])) {
+		overflow: hidden;
+	}
+
+	.site-index-plate {
+		@apply bg-base-100 flex h-full flex-col gap-12 overflow-y-auto rounded-2xl p-5 text-black sm:rounded-3xl sm:p-12 lg:p-16;
+
+		transition:
+			transform 500ms cubic-bezier(0.32, 0.72, 0, 1),
+			opacity 500ms cubic-bezier(0.32, 0.72, 0, 1);
+		transform: translateY(0);
+
+		@starting-style {
+			transform: translateY(100%);
+		}
+	}
+
+	.site-index:not([open]) .site-index-plate {
+		transform: translateY(100%);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.site-index-plate {
+			transition: opacity 150ms ease-out;
+
+			@starting-style {
+				opacity: 0%;
+				transform: none;
+			}
+		}
+
+		.site-index:not([open]) .site-index-plate {
+			opacity: 0%;
+			transform: none;
+		}
+	}
+
+	.site-index-list {
+		@apply flex flex-col gap-6 sm:gap-8;
+	}
+
+	.site-index-link {
+		@apply font-sans-serif text-6xl leading-[0.9] font-bold uppercase sm:text-7xl lg:text-8xl;
+	}
+
+	.site-index-projects {
+		@apply mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium uppercase sm:text-base;
+	}
+
+	.site-index-email {
+		@apply mt-2 mb-0 text-sm sm:text-base;
+	}
+
+	.index-close {
+		@apply text-xs font-bold tracking-wide uppercase;
+
+		cursor: pointer;
+	}
+
+	/* Tertiary tier: the underline is the affordance. */
+	.site-index-link,
+	.site-index-projects a,
+	.index-close {
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.12em;
+		transition: text-decoration-color 160ms ease-out;
+	}
+
+	.site-index-link:hover,
+	.site-index-link:focus-visible,
+	.site-index-projects a:hover,
+	.site-index-projects a:focus-visible,
+	.index-close:hover,
+	.index-close:focus-visible {
+		text-decoration-color: currentColor;
+	}
+</style>

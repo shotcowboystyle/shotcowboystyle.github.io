@@ -1,0 +1,399 @@
+---
+import BackLink from '@/components/back-link.astro';
+import CircleButton from '@/components/circle-button.astro';
+import BaseLayout from '@/layouts/base.astro';
+import { getProjects, nextProject, plateBackground } from '@/lib/projects';
+import { Image } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+	const projects = await getProjects();
+	return projects.map((project, index) => ({
+		params: { slug: project.id },
+		props: { project, next: nextProject(projects, index) },
+	}));
+}
+
+interface Props {
+	project: CollectionEntry<'project'>;
+	next: CollectionEntry<'project'>;
+}
+
+const { project, next } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+
+const desktopShots = data.gallery.filter((shot) => shot.device === 'desktop');
+const phoneShots = data.gallery.filter((shot) => shot.device === 'phone');
+
+/*
+ * The first desktop shot runs wide, the rest pair up. An odd one out at the end
+ * runs wide too, so the spread never ends on a half-empty row.
+ */
+const isWide = (index: number) =>
+	index === 0 || (index === desktopShots.length - 1 && (desktopShots.length - 1) % 2 === 1);
+
+const liveLabel = `${data.linkText}: ${data.title}`;
+---
+
+<BaseLayout meta={{ title: `${data.title} — Curtis Blanton`, description: data.description }}>
+	<Fragment slot="head-end">
+		{/* Hold the first paint until the title exists, so it can travel. */}
+		<link
+			rel="expect"
+			href="#folio-title"
+			blocking="render"
+		/>
+	</Fragment>
+
+	<article
+		class="folio p-4 sm:p-8 lg:p-6"
+		data-folio-slug={project.id}
+		aria-labelledby="folio-title"
+	>
+		<div
+			class="folio-plate overflow-hidden rounded-2xl text-white sm:rounded-3xl"
+			style={plateBackground(data)}
+		>
+			<header class="folio-cover flex flex-col">
+				<div class="px-5 pt-5 pb-6 sm:px-12 sm:pt-12 lg:px-16 lg:pt-10">
+					<BackLink
+						tone="canvas"
+						href={`/#work-${project.id}`}
+						label="All work"
+					/>
+				</div>
+
+				{
+					/*
+					 * The card framed its screenshot as a small artifact; the folio opens it
+					 * up edge to edge. That change is what reads as having turned the page,
+					 * while the title below stays exactly where the card had it.
+					 */
+				}
+				<Image
+					src={data.screenshotImage}
+					widths={[720, 1080, 1440, data.screenshotImage.width]}
+					sizes="100vw"
+					alt={`${data.title} screenshot`}
+					class="folio-cover-image"
+					loading="eager"
+				/>
+
+				<div
+					class="flex items-end justify-between gap-8 p-5 max-sm:flex-col max-sm:items-start sm:p-12 lg:p-16"
+				>
+					<div>
+						<h1
+							id="folio-title"
+							data-folio-title
+							class="folio-title"
+						>
+							{data.title}
+						</h1>
+
+						<ul class="flex flex-wrap gap-2 sm:gap-3">
+							{
+								data.tags.map((tag) => (
+									<li class="rounded-full border border-white/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
+										{tag}
+									</li>
+								))
+							}
+						</ul>
+
+						{
+							(data.year || data.role) && (
+								<dl class="folio-facts mt-6 flex flex-wrap gap-x-10 gap-y-2 text-sm">
+									{data.year && (
+										<div>
+											<dt>Year</dt>
+											<dd>{data.year}</dd>
+										</div>
+									)}
+									{data.role && (
+										<div>
+											<dt>Role</dt>
+											<dd>{data.role}</dd>
+										</div>
+									)}
+								</dl>
+							)
+						}
+					</div>
+
+					{
+						data.url && (
+							<>
+								<CircleButton
+									link={data.url}
+									label={liveLabel}
+									ringPhrase={data.linkText}
+								/>
+
+								<a
+									href={data.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={liveLabel}
+									class="folio-live-mobile flex h-16 w-16 items-center justify-center rounded-full bg-white px-3 text-center text-xs leading-tight text-black sm:hidden"
+								>
+									<span aria-hidden="true">{data.linkText}</span>
+								</a>
+							</>
+						)
+					}
+				</div>
+			</header>
+
+			<div class="folio-body px-5 pb-16 sm:px-12 sm:pb-24 lg:px-16">
+				<p class="folio-lead">{data.description}</p>
+
+				{
+					data.storyReady && (
+						<div class="folio-story">
+							<Content />
+						</div>
+					)
+				}
+
+				{
+					data.gallery.length > 0 && (
+						<section
+							class="folio-gallery"
+							aria-label={`${data.title} screens`}
+						>
+							{desktopShots.map((shot, index) => (
+								<figure
+									class:list={['folio-shot', isWide(index) ? 'folio-shot-wide' : 'folio-shot-half']}
+								>
+									<Image
+										src={shot.image}
+										widths={[480, 720, 1080, 1440, shot.image.width]}
+										sizes={
+											isWide(index)
+												? '(min-width: 1024px) 90vw, 100vw'
+												: '(min-width: 640px) 45vw, 100vw'
+										}
+										alt=""
+										class="rounded-xl"
+									/>
+									<figcaption>{shot.alt}</figcaption>
+								</figure>
+							))}
+
+							{phoneShots.length > 0 && (
+								<div class="folio-phones">
+									{phoneShots.map((shot) => (
+										<figure class="folio-shot folio-shot-phone">
+											<Image
+												src={shot.image}
+												widths={[240, 390, 780]}
+												sizes="(min-width: 640px) 20vw, 45vw"
+												alt=""
+												class="rounded-2xl"
+											/>
+											<figcaption>{shot.alt}</figcaption>
+										</figure>
+									))}
+								</div>
+							)}
+						</section>
+					)
+				}
+			</div>
+		</div>
+	</article>
+
+	<nav
+		class="px-4 pb-4 sm:px-8 sm:pb-8 lg:px-6 lg:pb-6"
+		aria-label="Next project"
+	>
+		<a
+			href={`/work/${next.id}/`}
+			class="folio-next plate-turn flex flex-col justify-end gap-3 rounded-2xl p-5 text-white sm:rounded-3xl sm:p-12 lg:p-16"
+			style={plateBackground(next.data)}
+			data-folio-slug={next.id}
+			data-astro-prefetch
+		>
+			<span class="text-xs font-medium tracking-wide uppercase">Next project</span>
+			<span
+				data-folio-title
+				class="folio-title font-bold uppercase"
+			>
+				{next.data.title}
+			</span>
+		</a>
+	</nav>
+</BaseLayout>
+
+<script>
+	import SmoothScroll from '@/lib/smooth-scroll';
+	import { prefersReducedMotion } from '@/utils/motion';
+
+	if (!prefersReducedMotion()) new SmoothScroll();
+
+	/*
+	 * Back to the stack. When the stack is the page this folio was opened from,
+	 * going back is a history step, so the browser restores the landing page
+	 * from its back-forward cache at the exact plate, mid-scroll, with nothing
+	 * re-initialized. Arriving any other way, the link loads the stack fresh at
+	 * this project's plate.
+	 */
+	document.querySelector('[data-back-link]')?.addEventListener('click', (event) => {
+		if (!document.referrer) return;
+
+		const from = new URL(document.referrer);
+		if (from.origin === window.location.origin && from.pathname === '/') {
+			event.preventDefault();
+			history.back();
+		}
+	});
+</script>
+
+<style>
+	@reference "../../styles/base.css";
+
+	/* The aurora blooms belong to the first screen, not to the whole folio. */
+	.folio-plate {
+		background-size: 100% 100lvh;
+		background-repeat: no-repeat;
+	}
+
+	/* The plate's back, one screen tall: the same insets as the landing stack. */
+	.folio-cover {
+		min-height: calc(100svh - 2rem);
+
+		@media (width >= theme(--breakpoint-sm)) {
+			min-height: calc(100svh - 4rem);
+		}
+
+		@media (width >= theme(--breakpoint-lg)) {
+			min-height: calc(100svh - 3rem);
+		}
+	}
+
+	/*
+	 * Set at exactly the size the card's title renders at (the global h2 scale),
+	 * so the shared-element morph during the page-turn is a pure move: no bitmap
+	 * scaling, no blur.
+	 */
+	.folio-title {
+		@apply mb-4 text-4xl sm:text-5xl lg:text-6xl;
+
+		letter-spacing: -0.02em;
+	}
+
+	/* A band across the plate that takes whatever height the title leaves it. */
+	.folio-cover-image {
+		flex: 1 1 0;
+		object-fit: cover;
+		object-position: top center;
+		width: 100%;
+		min-height: 14rem;
+		border-block: 1px solid rgb(255 255 255 / 15%);
+	}
+
+	.folio-facts dt {
+		@apply text-xs tracking-wide uppercase opacity-70;
+	}
+
+	.folio-lead,
+	.folio-story {
+		max-width: 62ch;
+
+		@media (width >= theme(--breakpoint-lg)) {
+			margin-left: 33%;
+		}
+	}
+
+	.folio-lead {
+		@apply text-lg sm:text-xl;
+
+		padding-top: 4rem;
+		text-wrap: pretty;
+	}
+
+	.folio-story {
+		margin-top: 2.5rem;
+		text-wrap: pretty;
+
+		:global(p + p) {
+			margin-top: 1.25rem;
+		}
+
+		:global(h2),
+		:global(h3) {
+			@apply text-2xl sm:text-3xl;
+
+			margin-top: 3rem;
+			margin-bottom: 1rem;
+		}
+	}
+
+	.folio-gallery {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		margin-top: 6rem;
+
+		@media (width >= theme(--breakpoint-sm)) {
+			grid-template-columns: 1fr 1fr;
+			gap: 2.5rem;
+		}
+	}
+
+	.folio-shot img {
+		width: 100%;
+		height: auto;
+		border: 1px solid rgb(255 255 255 / 15%);
+	}
+
+	.folio-shot figcaption {
+		@apply mt-3 text-xs tracking-wide uppercase opacity-70;
+	}
+
+	.folio-shot-wide,
+	.folio-phones {
+		@media (width >= theme(--breakpoint-sm)) {
+			grid-column: 1 / -1;
+		}
+	}
+
+	.folio-phones {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		justify-content: center;
+	}
+
+	.folio-shot-phone {
+		width: calc(50% - 1rem);
+
+		@media (width >= theme(--breakpoint-sm)) {
+			width: min(22%, 18rem);
+		}
+	}
+
+	/* Each plate settles into place as it reaches the reader, with no script. */
+	@supports (animation-timeline: view()) {
+		@media (prefers-reduced-motion: no-preference) {
+			.folio-shot {
+				animation: folio-shot-settle linear both;
+				animation-timeline: view();
+				animation-range: entry 0% entry 70%;
+			}
+		}
+	}
+
+	@keyframes folio-shot-settle {
+		from {
+			opacity: 0%;
+			transform: translateY(3rem) scale(0.97);
+		}
+	}
+
+	.folio-next {
+		min-height: 45vh;
+	}
+</style>

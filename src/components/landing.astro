@@ -1,11 +1,12 @@
 ---
 import About from '@/components/about/about.astro';
+import ExperimentsPlate from '@/components/experiments-plate.astro';
 // import MysteryBox from '@/components/about/mystery-box.astro';
 import HeaderContent from '@/components/header-content.astro';
 import ProjectCard from '@/components/project-card.astro';
-import { getCollection } from 'astro:content';
+import { getProjects, plateBackground } from '@/lib/projects';
 
-const projects = await getCollection('project');
+const projects = await getProjects();
 ---
 
 <section
@@ -26,9 +27,10 @@ const projects = await getCollection('project');
 	class="relative h-full w-full"
 >
 	{
-		projects.map((project, idx) => (
+		projects.map((project) => (
 			<article
-				id={`project-card_${idx + 1}`}
+				id={`work-${project.id}`}
+				data-folio-slug={project.id}
 				class="project-card js-section-card-wrapper relative -mb-[100vh] h-[550vh]"
 			>
 				<div class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
@@ -40,7 +42,7 @@ const projects = await getCollection('project');
 					 */}
 					<div
 						class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
-						style={`background-color: ${project.data.cardColor};`}
+						style={plateBackground(project.data)}
 					>
 						<ProjectCard project={project} />
 					</div>
@@ -49,6 +51,8 @@ const projects = await getCollection('project');
 		))
 	}
 </section>
+
+<ExperimentsPlate />
 
 <section
 	id="about"
@@ -77,35 +81,42 @@ const projects = await getCollection('project');
 </footer> -->
 
 <script>
-	import { registerTransitionModule } from '@/utils/module-loader';
+	import { prefersReducedMotion } from '../utils/motion.ts';
 
-	registerTransitionModule(async () => {
-		const { prefersReducedMotion } = await import('../utils/motion.ts');
+	/**
+	 * The stacked-card layout is pure CSS (`sticky` + `-mb-[100vh]`), so
+	 * skipping the scrub only removes the scale-and-fade exit. The sections
+	 * still stack and scroll, which is the point of PRODUCT.md's rule that
+	 * reduced motion must still communicate hierarchy.
+	 */
+	if (!prefersReducedMotion()) {
+		void import('../lib/section-card-scroll-animation.ts').then((module) => new module.default());
+	}
 
-		/**
-		 * The stacked-card layout is pure CSS (`sticky` + `-mb-[100vh]`), so
-		 * skipping the scrub only removes the scale-and-fade exit. The sections
-		 * still stack and scroll, which is the point of PRODUCT.md's rule that
-		 * reduced motion must still communicate hierarchy.
-		 */
-		const sectionCardScroll = prefersReducedMotion()
-			? null
-			: await import('../lib/section-card-scroll-animation.ts').then(
-					(module) => new module.default(),
-				);
+	/**
+	 * Split entrances, the scroll reveals, and the ambient wave on the hero
+	 * headline. Each split is reverted as its entrance finishes, so a later
+	 * resize re-measures from clean markup rather than from captured lines.
+	 */
+	void import('../lib/heading-motion.ts').then((module) => new module.default());
 
-		/**
-		 * Split entrances, the scroll reveals, and the ambient wave on the hero
-		 * headline. Each split is reverted as its entrance finishes, so a later
-		 * resize re-measures from clean markup rather than from captured lines.
-		 */
-		const headingMotion = await import('../lib/heading-motion.ts').then(
-			(module) => new module.default(),
-		);
-
-		return () => {
-			sectionCardScroll?.destroy();
-			headingMotion.destroy();
-		};
-	});
+	/*
+	 * The fixed Index pill stays out of the hero, which has its own Index link
+	 * and, on a phone, no room for the pill beside Let's Talk. It arrives once
+	 * the first plate has come halfway up over the hero, and stays for the rest
+	 * of the page.
+	 */
+	const firstPlate = document.querySelector('#project-cards > article');
+	if (firstPlate) {
+		// A scroll listener rather than an IntersectionObserver: an anchor jump or a
+		// restored scroll position can skip clean over the plate without ever
+		// changing its intersection, and the pill would stay hidden.
+		const update = () =>
+			document.documentElement.classList.toggle(
+				'past-hero',
+				firstPlate.getBoundingClientRect().top < window.innerHeight / 2,
+			);
+		window.addEventListener('scroll', update, { passive: true });
+		update();
+	}
 </script>
