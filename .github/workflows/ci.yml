@@ -81,6 +81,13 @@ jobs:
         with:
           path: dist
 
+      # The e2e preview is served behind portless at e2e.shotcowboystyle.localhost.
+      # Started as root because portless cannot prompt for sudo without a TTY, and
+      # a root proxy writes the /etc/hosts entries WebKit needs to resolve
+      # `*.localhost`. Plain HTTP skips trusting its local CA.
+      - name: Start portless proxy
+        run: sudo env "PATH=$PATH" "$(pnpm bin)/portless" proxy start --no-tls
+
       # One Playwright run over all of e2e/tests. `pnpm run test` would re-run
       # the unit tests and start three Playwright runs, each wiping the
       # previous run's `blob-report/`.

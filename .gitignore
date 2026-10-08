@@ -28,6 +28,7 @@ e2e/output
 blob-report
 coverage
 lighthouse
+.lighthouseci
 stats.html
 .stylelintcache
 .cspellcache
