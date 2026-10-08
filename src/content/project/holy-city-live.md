@@ -2,7 +2,10 @@
 title: Holy City Live
 description: Holy City Live is a set of live flood, heat, construction, public safety and city-service dashboards for Charleston, SC, built on public NOAA, USGS, FEMA, City and County data.
 screenshotImage: ../../assets/images/holy-city-live-screenshot.png
-cardColor: '#0b0e14'
+cardColor: '#e9e9e7'
+cardInk: '#1c1d21'
+cardBg: ../../assets/images/holy-city-live/card-bg.svg
+cardBgMobile: ../../assets/images/holy-city-live/card-bg-mobile.svg
 url: https://www.holycity.live
 linkText: View Site
 tags:

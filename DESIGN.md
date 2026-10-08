@@ -169,7 +169,7 @@ A handful of RGB literals live inside signature-motion components and are outsid
 
 **The Gallery-Wall Rule.** The black canvas is never a text surface. Every piece of body copy sits on a card. If you find yourself setting readable text directly on black, you are decorating the wall — stop.
 
-**The One-Voice-Per-Section Rule.** Each card commits to one accent. Signal Mint OR Cobalt Draft OR off-white — never two competing on the same surface. The hero is an off-white plate on the black canvas; each project plate takes its project's own ground; the Experiments plate is cobalt; the About grid gives each cell one voice (mint Bio, lavender CV, yellow back-to-top, info-blue Contact). Every surface sits on the black canvas.
+**The One-Voice-Per-Section Rule.** Each card commits to one accent. Signal Mint OR Cobalt Draft OR off-white — never two competing on the same surface. The hero is an off-white plate on the black canvas; each project plate takes its project's own brand ground (light or dark) and its own art; the Experiments plate is cobalt; the About grid gives each cell one voice (mint Bio, lavender CV, yellow back-to-top, info-blue Contact). Every surface sits on the black canvas.
 
 **The Signature-Motion Isolation Rule.** The signature-motion palette (Mystery-Box gradient, Resume-button hover bubbles) is component-scoped. Do not pull those RGB literals into new components. If you need a new signature moment, propose a new named literal for it and add it here.
 
@@ -240,9 +240,9 @@ The **Experiments plate's tiles** borrow the Mystery Box's playful physics, scal
 ### Cards / Containers
 
 - **Corner Style:** `16px` on the card baseline, `24px` on the About-grid plates (larger surfaces earn a larger radius).
-- **Background:** Card Off-White (hero plate, Index plate, tiles, default), each project's `cardColor` (project plates and folios), Cobalt Draft (Experiments), and one accent per About cell. Never body copy on black. See the One-Voice-Per-Section rule above.
+- **Background:** Card Off-White (hero plate, Index plate, tiles, default), each project's `cardColor` (project plates and folios) with its `cardBg` art on the landing card, inked in its `cardInk`, Cobalt Draft (Experiments), and one accent per About cell. Never body copy on black. See the One-Voice-Per-Section rule above.
 - **Plates, not fields:** Every section is a flat plate on the black canvas, and the plates stack: each one sticks, holds, and recedes as the next slides up over it. The Index uses the same slide-up.
-- **Plate cadence:** A project plate runs 250vh. It holds for half a viewport, then shrinks to half scale and fades over 1.125 viewports, linearly, with a 20px blur trailing a quarter viewport behind (fine-pointer devices only); the next plate covers it a viewport after the shrink starts.
+- **Plate cadence:** A project plate runs 250vh. It holds for half a viewport, then shrinks to half scale and fades over 1.125 viewports, linearly, with a 20px blur trailing a quarter viewport behind (fine-pointer devices only); the next plate covers it a viewport after the shrink starts. The art settles from 1.3× and −15% to 1.2× and 0 as the plate rises into place.
 - **Shadow Strategy:** None at rest. See Elevation.
 - **Border:** None. Contrast carries the edge.
 - **Internal Padding:** `1rem` → `3rem` fluid; the plate breathes.
@@ -273,7 +273,7 @@ Every navigation is a document navigation with a cross-document view transition 
 
 ### Project folio (`/work/[slug]`)
 
-The back of the plate: one tall plate in the project's `cardColor` on black, with the stack's insets. The first screen opens the card's screenshot edge to edge as a band, with the title, tags and facts (year, role, only when verifiable) beneath it and the live link as a Project-tier circle. Then the lead, the story (only when `storyReady`), and the gallery: desktop captures wide or paired, phone captures clustered, each with a visible label. It ends on the next project's plate peeking up from the bottom edge.
+The back of the plate: one tall plate in the project's `cardColor` and `cardInk` on black, with the stack's insets. The first screen opens the card's screenshot edge to edge as a band, with the title, tags and facts (year, role, only when verifiable) beneath it and the live link as a Project-tier circle. Then the lead, the story (only when `storyReady`), and the gallery: desktop captures wide or paired, phone captures clustered, each with a visible label. It ends on the next project's plate peeking up from the bottom edge.
 
 ### CV ledger and References
 

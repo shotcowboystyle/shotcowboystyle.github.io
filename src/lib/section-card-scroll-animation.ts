@@ -4,10 +4,11 @@ import { ScrollTrigger } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger);
 
 /*
- * The exit is lifted from the reference site's scroll interactions, over a
- * 250vh plate wrapper. The plate holds for half a viewport, then shrinks and
- * fades across 1.125 viewports, linearly, as the next plate slides up over it.
- * The blur trails, starting a quarter viewport into the shrink.
+ * The exit and the background drift are lifted from the reference site's scroll
+ * interactions, over a 250vh plate wrapper. The plate holds for half a
+ * viewport, then shrinks and fades across 1.125 viewports, linearly, as the
+ * next plate slides up over it. The blur trails, starting a quarter viewport
+ * into the shrink.
  */
 const EXIT_LENGTH = 1.125;
 const BLUR_START = 0.25 / EXIT_LENGTH;
@@ -24,6 +25,7 @@ export default class SectionCardScrollAnimation {
 	DOM: {
 		sectionCardWrapper: string;
 		sectionCard: string;
+		cardBg: string;
 	};
 
 	modules: NodeListOf<HTMLElement>;
@@ -34,6 +36,7 @@ export default class SectionCardScrollAnimation {
 		this.DOM = {
 			sectionCardWrapper: '.js-section-card-wrapper',
 			sectionCard: '.js-section-card',
+			cardBg: '.js-card-bg',
 		};
 
 		this.modules = document.querySelectorAll<HTMLElement>(this.DOM.sectionCardWrapper);
@@ -79,6 +82,27 @@ export default class SectionCardScrollAnimation {
 				);
 			}
 			this.tweens.push(timeline);
+		}
+
+		/*
+		 * The art settles as the plate rises into place. Only the entering half of
+		 * the reference's drift is played: once the plate sticks it stays put, and
+		 * by the time it scrolls on it is under the next plate.
+		 */
+		const $bg = $el.querySelector<HTMLElement>(this.DOM.cardBg);
+		if ($bg) {
+			this.tweens.push(
+				gsap.fromTo(
+					$bg,
+					{ scale: 1.3, yPercent: -15 },
+					{
+						scale: 1.2,
+						yPercent: 0,
+						ease: 'none',
+						scrollTrigger: { trigger: $el, start: 'top bottom', end: 'top top', scrub: true },
+					},
+				),
+			);
 		}
 	}
 

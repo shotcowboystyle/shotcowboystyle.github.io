@@ -9,10 +9,10 @@
  * text link works on every surface and states where it goes.
  *
  * `tone` picks the ink, not the layout: `ink` for the mint masthead, `canvas`
- * for the black pages.
+ * for the black pages, `plate` for a folio plate, which carries its own ink.
  */
 interface Props {
-	tone?: 'ink' | 'canvas';
+	tone?: 'ink' | 'canvas' | 'plate';
 	href?: string;
 	label?: string;
 }
@@ -57,6 +57,10 @@ const { tone = 'ink', href = '/', label = 'Back to portfolio' } = Astro.props;
 
 	.back-link-canvas {
 		color: oklch(91% 0 0deg);
+	}
+
+	.back-link-plate {
+		color: inherit;
 	}
 
 	.back-link-arrow {

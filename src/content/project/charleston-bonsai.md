@@ -2,7 +2,10 @@
 title: Charleston Bonsai Co.
 description: Charleston Bonsai Company is a premium bonsai gallery and e-commerce site showcasing hand-cultivated specimens with a curated shopping experience.
 screenshotImage: ../../assets/images/charleston-bonsai-screenshot.png
-cardColor: '#131209'
+cardColor: '#f2f1ec'
+cardInk: '#1b1a17'
+cardBg: ../../assets/images/charleston-bonsai/card-bg.svg
+cardBgMobile: ../../assets/images/charleston-bonsai/card-bg-mobile.svg
 url: https://www.charlestonbonsaico.com
 linkText: View Site
 tags:

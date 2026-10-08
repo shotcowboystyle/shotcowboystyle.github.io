@@ -52,13 +52,13 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 		aria-labelledby="folio-title"
 	>
 		<div
-			class="folio-plate overflow-hidden rounded-2xl text-white sm:rounded-3xl"
+			class="folio-plate overflow-hidden rounded-2xl sm:rounded-3xl"
 			style={plateBackground(data)}
 		>
 			<header class="folio-cover flex flex-col">
 				<div class="px-5 pt-5 pb-6 sm:px-12 sm:pt-12 lg:px-16 lg:pt-10">
 					<BackLink
-						tone="canvas"
+						tone="plate"
 						href={`/#work-${project.id}`}
 						label="All work"
 					/>
@@ -95,7 +95,7 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 						<ul class="flex flex-wrap gap-2 sm:gap-3">
 							{
 								data.tags.map((tag) => (
-									<li class="rounded-full border border-white/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
+									<li class="rounded-full border border-current/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
 										{tag}
 									</li>
 								))
@@ -136,7 +136,7 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label={liveLabel}
-									class="folio-live-mobile flex h-16 w-16 items-center justify-center rounded-full bg-white px-3 text-center text-xs leading-tight text-black sm:hidden"
+									class="folio-live-mobile flex h-16 w-16 items-center justify-center rounded-full bg-(--card-ink) px-3 text-center text-xs leading-tight text-(--card-ground) sm:hidden"
 								>
 									<span aria-hidden="true">{data.linkText}</span>
 								</a>
@@ -211,7 +211,7 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 	>
 		<a
 			href={`/work/${next.id}/`}
-			class="folio-next plate-turn flex flex-col justify-end gap-3 rounded-2xl p-5 text-white sm:rounded-3xl sm:p-12 lg:p-16"
+			class="folio-next plate-turn flex flex-col justify-end gap-3 rounded-2xl p-5 sm:rounded-3xl sm:p-12 lg:p-16"
 			style={plateBackground(next.data)}
 			data-folio-slug={next.id}
 			data-astro-prefetch
@@ -291,7 +291,7 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 		object-position: top center;
 		width: 100%;
 		min-height: 14rem;
-		border-block: 1px solid rgb(255 255 255 / 15%);
+		border-block: 1px solid color-mix(in oklab, currentColor 15%, transparent);
 	}
 
 	.folio-facts dt {
@@ -346,7 +346,7 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 	.folio-shot img {
 		width: 100%;
 		height: auto;
-		border: 1px solid rgb(255 255 255 / 15%);
+		border: 1px solid color-mix(in oklab, currentColor 15%, transparent);
 	}
 
 	.folio-shot figcaption {

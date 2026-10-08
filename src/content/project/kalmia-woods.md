@@ -2,7 +2,9 @@
 title: Kalmia Woods
 description: Kalmia Woods is a mountain house rental with a full-blown guest Welcome Book that will soon be open sourced for use.
 screenshotImage: ../../assets/images/kalmia-woods-screenshot.png
-cardColor: '#1f1f1f'
+cardColor: '#0f3d2a'
+cardBg: ../../assets/images/kalmia-woods/card-bg.svg
+cardBgMobile: ../../assets/images/kalmia-woods/card-bg-mobile.svg
 url: https://www.kalmiawoods.com
 linkText: View Site
 tags:

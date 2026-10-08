@@ -41,9 +41,31 @@ const projects = await getProjects();
 					 * now lives inside `ProjectCard`, applied to the copy only.
 					 */}
 					<div
-						class="js-section-card flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
+						class="js-section-card relative flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
 						style={plateBackground(project.data)}
 					>
+						{/*
+						 * The project's art, outside the plate-turn so the hover tilt opens
+						 * onto it rather than onto a flat edge. Its ground is `cardColor`, so
+						 * nothing shifts while it loads.
+						 */}
+						{project.data.cardBg && (
+							<picture>
+								{project.data.cardBgMobile && (
+									<source
+										media="(max-width: 767px)"
+										srcset={project.data.cardBgMobile.src}
+									/>
+								)}
+								<img
+									src={project.data.cardBg.src}
+									alt=""
+									loading="lazy"
+									decoding="async"
+									class="js-card-bg pointer-events-none absolute inset-0 h-full w-full object-cover"
+								/>
+							</picture>
+						)}
 						<ProjectCard project={project} />
 					</div>
 				</div>
