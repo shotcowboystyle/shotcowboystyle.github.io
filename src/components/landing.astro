@@ -15,7 +15,7 @@ const projects = await getProjects();
 	class="js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
 >
 	<div
-		class="js-section-card h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
+		class="js-section-card sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
 	>
 		<HeaderContent />
 	</div>
@@ -33,7 +33,7 @@ const projects = await getProjects();
 				data-folio-slug={project.id}
 				class="project-card js-section-card-wrapper relative -mb-[100vh] h-[550vh]"
 			>
-				<div class="h-full-mobile sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
+				<div class="sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
 					{/*
 					 * No padding on the plate itself: the card art is positioned against
 					 * this box, so padding here inset every image and left the plate color
@@ -41,7 +41,7 @@ const projects = await getProjects();
 					 * now lives inside `ProjectCard`, applied to the copy only.
 					 */}
 					<div
-						class="js-section-card sticky flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
+						class="js-section-card flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
 						style={plateBackground(project.data)}
 					>
 						<ProjectCard project={project} />
