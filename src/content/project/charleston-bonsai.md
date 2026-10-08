@@ -12,20 +12,29 @@ tags:
   - Supabase
 role: Architecture, build and production support
 gallery:
-  - image: ../../assets/images/charleston-bonsai/desktop-specimen-hero.webp
-    alt: 'Home page, desktop: a specimen on a whitewashed brick wall'
+  - image: ../../assets/images/charleston-bonsai/desktop-hero.webp
+    alt: 'Home page, desktop: "Bonsai, shaped by hand in Charleston." beside an ink-wash pine'
     device: desktop
-  - image: ../../assets/images/charleston-bonsai/desktop-specimen-detail.webp
-    alt: 'Specimen 01, Lagerstroemia indica, with its age, height and class'
+  - image: ../../assets/images/charleston-bonsai/desktop-waiting.webp
+    alt: '"The work is mostly waiting." over ink-drawn hands wiring a branch'
     device: desktop
-  - image: ../../assets/images/charleston-bonsai/desktop-ligustrum.webp
-    alt: 'A Ligustrum specimen beside its catalog facts'
+  - image: ../../assets/images/charleston-bonsai/desktop-seasons.webp
+    alt: '"One tree, every season." with the same tree drawn through four seasons'
     device: desktop
-  - image: ../../assets/images/charleston-bonsai/phone-specimen.webp
+  - image: ../../assets/images/charleston-bonsai/desktop-real-tree.webp
+    alt: '"This one is real.": a photographed crepe myrtle breaking through the ink drawing'
+    device: desktop
+  - image: ../../assets/images/charleston-bonsai/desktop-catalog.webp
+    alt: '"Around two hundred trees, in the Lowcountry." with hanging catalog cards for each specimen'
+    device: desktop
+  - image: ../../assets/images/charleston-bonsai/phone-hero.webp
     alt: 'Home page on a phone'
     device: phone
-  - image: ../../assets/images/charleston-bonsai/phone-care-notes.webp
-    alt: 'Care notes on a phone: trained in-house, repot interval, wiring season, soil'
+  - image: ../../assets/images/charleston-bonsai/phone-real-tree.webp
+    alt: 'The real-tree reveal on a phone'
+    device: phone
+  - image: ../../assets/images/charleston-bonsai/phone-catalog.webp
+    alt: 'Catalog cards on a phone'
     device: phone
 storyReady: false
 ---
