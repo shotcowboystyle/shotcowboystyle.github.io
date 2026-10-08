@@ -12,16 +12,16 @@ tags:
 variant: split
 gallery:
   - image: ../../assets/images/holy-city-live/desktop-flood-heat.webp
-    alt: 'Flood & Heat Risk: tide gauge, weather, air quality and alerts over a 3D map of the peninsula'
+    alt: 'Flood & Heat Risk: the flooding outlook and an hourly tide-and-rain forecast over a terrain map of the peninsula'
     device: desktop
   - image: ../../assets/images/holy-city-live/desktop-construction.webp
-    alt: 'Construction Near Me: permits, road closures and open code cases around an address'
+    alt: 'Construction Near Me: street closures, permits and the biggest projects within half a mile of an address'
     device: desktop
   - image: ../../assets/images/holy-city-live/desktop-public-safety.webp
     alt: 'Public Safety Trends: police department open data by neighborhood, with a 24-month trend'
     device: desktop
   - image: ../../assets/images/holy-city-live/desktop-service-days.webp
-    alt: 'Service Days: trash, yard waste and street sweeping days, council district and fire station for an address'
+    alt: 'Service Days: trash, yard waste and street sweeping days for an address, with a two-week pickup calendar'
     device: desktop
   - image: ../../assets/images/holy-city-live/phone-construction.webp
     alt: 'Construction Near Me on a phone'
