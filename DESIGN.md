@@ -242,6 +242,7 @@ The **Experiments plate's tiles** borrow the Mystery Box's playful physics, scal
 - **Corner Style:** `16px` on the card baseline, `24px` on the About-grid plates (larger surfaces earn a larger radius).
 - **Background:** Card Off-White (hero plate, Index plate, tiles, default), each project's `cardColor` (project plates and folios), Cobalt Draft (Experiments), and one accent per About cell. Never body copy on black. See the One-Voice-Per-Section rule above.
 - **Plates, not fields:** Every section is a flat plate on the black canvas, and the plates stack: each one sticks, holds, and recedes as the next slides up over it. The Index uses the same slide-up.
+- **Plate cadence:** A project plate runs 250vh. It holds for half a viewport, then shrinks to half scale and fades over 1.125 viewports, linearly, with a 20px blur trailing a quarter viewport behind (fine-pointer devices only); the next plate covers it a viewport after the shrink starts.
 - **Shadow Strategy:** None at rest. See Elevation.
 - **Border:** None. Contrast carries the edge.
 - **Internal Padding:** `1rem` → `3rem` fluid; the plate breathes.
