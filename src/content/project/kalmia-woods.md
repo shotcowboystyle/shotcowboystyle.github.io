@@ -17,17 +17,20 @@ gallery:
   - image: ../../assets/images/kalmia-woods/desktop-rooms.webp
     alt: 'Rooms, with photographs of the house interior'
     device: desktop
-  - image: ../../assets/images/kalmia-woods/desktop-cabin.webp
-    alt: 'The cabin from the yard'
-    device: desktop
   - image: ../../assets/images/kalmia-woods/desktop-cabins.webp
-    alt: "The two stays, Cozy Cabin and Nature's Haven, with nightly rates"
+    alt: "The stays list: Cozy Cabin, Nature's Haven and Forest Escape, with nightly rates"
+    device: desktop
+  - image: ../../assets/images/kalmia-woods/desktop-dining.webp
+    alt: 'Dining options with regional specialties, on a deep blue panel'
+    device: desktop
+  - image: ../../assets/images/kalmia-woods/desktop-lakes.webp
+    alt: 'Lakes and waterfalls of Oconee County, with photographs of a waterfall and a swimming cove'
     device: desktop
   - image: ../../assets/images/kalmia-woods/phone-hero.webp
     alt: 'Home page on a phone'
     device: phone
   - image: ../../assets/images/kalmia-woods/phone-rooms.webp
-    alt: 'Rooms and stays on a phone'
+    alt: 'Rooms on a phone'
     device: phone
 storyReady: false
 ---
