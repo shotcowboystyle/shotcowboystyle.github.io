@@ -141,6 +141,10 @@
 		"webapp",
 		"webp",
 		"wordmark",
-		"zindex"
+		"zindex",
+		"autorun",
+		"lhci",
+		"lighthouserc",
+		"worktree"
 	]
 }

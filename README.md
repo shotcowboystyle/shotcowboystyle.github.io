@@ -38,8 +38,16 @@ polish. Motion respects `prefers-reduced-motion` throughout.
 mise install          # Node 24 + corepack/pnpm
 pnpm install          # installs deps, runs `lefthook install`
 cp .env.example .env  # fill in the public keys below
-pnpm dev              # http://localhost:4321
+pnpm dev              # https://shotcowboystyle.localhost (via portless)
 ```
+
+`dev`, `preview`, the Playwright web server and Lighthouse run behind
+[portless](https://github.com/vercel-labs/portless), which gives each one a named `*.localhost` URL
+instead of a fixed port, so they never collide with other projects. The first run starts the proxy
+on :443 and trusts its local CA, which prompts for `sudo` once. Run `portless proxy start -p 1355
+--no-tls` beforehand to avoid sudo, or `PORTLESS=0 pnpm dev` to bypass portless entirely. A proxy
+without sudo cannot write `/etc/hosts`, so the WebKit (`tablet-safari`) e2e project fails to resolve
+`*.localhost` against it.
 
 ### Environment
 
