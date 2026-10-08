@@ -30,7 +30,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 					src={data.screenshotImage}
 					widths={[480, 680, 720, data.screenshotImage.width]}
 					alt={`${data.title} screenshot`}
-					class="project-screenshot"
+					class="project-screenshot js-card-shot"
 				/>
 
 				<div class="card-content feature-content pointer-events-auto relative z-[2] flex items-end justify-between max-sm:flex-col">
@@ -83,7 +83,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		variant === 'split' && (
 			<>
 				<div class="card-content split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
-					<figure class="split-screenshot-frame relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
+					<figure class="split-screenshot-frame js-card-shot relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
 						<Image
 							src={data.screenshotImage}
 							widths={[480, 680, 720, data.screenshotImage.width]}

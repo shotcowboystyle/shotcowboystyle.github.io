@@ -21,11 +21,21 @@ const BLUR_START = 0.25 / EXIT_LENGTH;
  */
 const canBlur = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+/*
+ * The art and the screenshot settle as the plate rises into place: the art
+ * eases out of a zoom, the screenshot turns upright. Only the entering half of
+ * the reference's drift is played: once the plate sticks it stays put, and by
+ * the time it scrolls on it is under the next plate.
+ */
+const ENTRANCES: [selector: string, from: gsap.TweenVars, to: gsap.TweenVars][] = [
+	['.js-card-bg', { scale: 1.3, yPercent: -15 }, { scale: 1.2, yPercent: 0 }],
+	['.js-card-shot', { rotation: -15, yPercent: -10 }, { rotation: 0, yPercent: 5 }],
+];
+
 export default class SectionCardScrollAnimation {
 	DOM: {
 		sectionCardWrapper: string;
 		sectionCard: string;
-		cardBg: string;
 	};
 
 	modules: NodeListOf<HTMLElement>;
@@ -36,7 +46,6 @@ export default class SectionCardScrollAnimation {
 		this.DOM = {
 			sectionCardWrapper: '.js-section-card-wrapper',
 			sectionCard: '.js-section-card',
-			cardBg: '.js-card-bg',
 		};
 
 		this.modules = document.querySelectorAll<HTMLElement>(this.DOM.sectionCardWrapper);
@@ -84,25 +93,17 @@ export default class SectionCardScrollAnimation {
 			this.tweens.push(timeline);
 		}
 
-		/*
-		 * The art settles as the plate rises into place. Only the entering half of
-		 * the reference's drift is played: once the plate sticks it stays put, and
-		 * by the time it scrolls on it is under the next plate.
-		 */
-		const $bg = $el.querySelector<HTMLElement>(this.DOM.cardBg);
-		if ($bg) {
-			this.tweens.push(
-				gsap.fromTo(
-					$bg,
-					{ scale: 1.3, yPercent: -15 },
-					{
-						scale: 1.2,
-						yPercent: 0,
+		for (const [selector, from, to] of ENTRANCES) {
+			const $target = $el.querySelector<HTMLElement>(selector);
+			if ($target) {
+				this.tweens.push(
+					gsap.fromTo($target, from, {
+						...to,
 						ease: 'none',
 						scrollTrigger: { trigger: $el, start: 'top bottom', end: 'top top', scrub: true },
-					},
-				),
-			);
+					}),
+				);
+			}
 		}
 	}
 
