@@ -1,23 +1,20 @@
 ---
-import Rating from '@/components/testimonials/rating.astro';
-import TestimonialCard from '@/components/testimonials/testimonial-card.astro';
 import { getCollection } from 'astro:content';
 
 const roles = (await getCollection('cv')).sort((a, b) => b.data.start.localeCompare(a.data.start));
-const references = (await getCollection('testimonial')).sort((a, b) => a.data.order - b.data.order);
 
 /** `2018-04` → `2018`, and an open-ended role reads as running to now. */
 const years = (start: string, end?: string) =>
 	`${start.slice(0, 4)}–${end ? end.slice(2, 4) : 'Now'}`;
 ---
 
-<div class="flex h-full flex-col gap-8 p-6 sm:p-8 xl:p-10">
+<div class="flex h-full flex-col gap-6 p-6 sm:p-8 xl:p-10">
 	<h2 class="text-4xl sm:text-5xl">CV</h2>
 
-	<ol class="cv-ledger flex flex-col gap-4">
+	<ol class="cv-ledger flex flex-col gap-3 sm:gap-4">
 		{
 			roles.map(({ data }) => (
-				<li class="grid grid-cols-[5.5ch_1fr] gap-x-4 text-sm leading-snug sm:text-base">
+				<li class="grid grid-cols-[auto_1fr] gap-x-4 text-sm leading-snug sm:text-base">
 					<span class="cv-years">{years(data.start, data.end)}</span>
 					<span>
 						<span class="block font-bold">{data.company}</span>
@@ -28,119 +25,31 @@ const years = (start: string, end?: string) =>
 		}
 	</ol>
 
-	<div class="mt-auto flex flex-col gap-4 text-sm sm:text-base">
-		<a
-			href="/downloads/Resume.pdf"
-			class="cv-link self-start font-bold uppercase"
-			download
-		>
-			Full CV (PDF)
-		</a>
-
-		<p class="cv-references mb-0">
-			References:{' '}
-			{
-				references.map((reference, index) => (
-					<>
-						<button
-							type="button"
-							class="cv-reference"
-							popovertarget={`reference-${reference.id}`}
-						>
-							{reference.data.name}
-						</button>
-						{index < references.length - 1 ? ', ' : '.'}
-					</>
-				))
-			}
-		</p>
-	</div>
+	<a
+		href="/downloads/Resume.pdf"
+		class="cv-link mt-auto self-start text-sm font-bold uppercase sm:text-base"
+		download
+	>
+		Full CV (PDF)
+	</a>
 </div>
 
-{
-	references.map((reference) => (
-		<div
-			id={`reference-${reference.id}`}
-			class="cv-reference-card"
-			popover
-		>
-			<div class="mb-6 flex items-center justify-between gap-4">
-				<Rating />
-				<button
-					type="button"
-					class="cv-reference-close"
-					popovertarget={`reference-${reference.id}`}
-					popovertargetaction="hide"
-				>
-					Close
-				</button>
-			</div>
-			<TestimonialCard testimonial={reference} />
-		</div>
-	))
-}
-
 <style>
-	@reference "../../styles/base.css";
-
+	/* `nowrap` so "2023–Now" holds one line instead of breaking at the dash. */
 	.cv-years {
+		white-space: nowrap;
 		font-variant-numeric: tabular-nums;
 	}
 
-	.cv-reference {
-		font: inherit;
-	}
-
-	.cv-reference-close {
-		@apply text-xs font-bold tracking-wide uppercase;
-	}
-
 	/* The Tertiary tier: an uppercase label whose underline is the affordance. */
-	.cv-link,
-	.cv-reference,
-	.cv-reference-close {
+	.cv-link {
 		text-decoration: underline;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 0.2em;
 		cursor: pointer;
 	}
 
-	.cv-link:hover,
-	.cv-reference:hover,
-	.cv-reference-close:hover {
+	.cv-link:hover {
 		text-decoration-thickness: 2px;
-	}
-
-	/*
-	 * A plate lifted out of the grid. Popovers sit in the top layer, so the
-	 * cell's `overflow: hidden` cannot clip them, and Escape or a click outside
-	 * puts them back.
-	 */
-	.cv-reference-card {
-		@apply bg-base-100 text-base-content rounded-3xl p-6 sm:p-8;
-
-		width: min(32rem, calc(100vw - 2rem));
-		border: 0;
-		opacity: 100%;
-		transition:
-			opacity 200ms cubic-bezier(0.23, 1, 0.32, 1),
-			transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
-			overlay 200ms allow-discrete,
-			display 200ms allow-discrete;
-		transform: none;
-
-		@starting-style {
-			opacity: 0%;
-			transform: scale(0.95);
-		}
-
-		&::backdrop {
-			background: rgb(0 0 0 / 55%);
-		}
-	}
-
-	.cv-reference-card:not(:popover-open) {
-		opacity: 0%;
-		transform: scale(0.95);
 	}
 </style>

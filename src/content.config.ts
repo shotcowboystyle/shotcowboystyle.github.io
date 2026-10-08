@@ -63,19 +63,6 @@ const projectCollection = defineCollection({
 		}),
 });
 
-const testimonialCollection = defineCollection({
-	loader: glob({ pattern: '**/*.md', base: './src/content/testimonial' }),
-	schema: ({ image }) =>
-		z.object({
-			name: z.string(),
-			testimonial: z.string(),
-			avatar: image(),
-			designation: z.string(),
-			companyName: z.string(),
-			order: z.number(),
-		}),
-});
-
 /** Work history, from `public/downloads/Resume.pdf`. Months are `YYYY-MM`. */
 const cvCollection = defineCollection({
 	loader: file('src/content/cv.json'),
@@ -127,7 +114,6 @@ const socialCollection = defineCollection({
 
 export const collections = {
 	project: projectCollection,
-	testimonial: testimonialCollection,
 	social: socialCollection,
 	cv: cvCollection,
 	experiment: experimentCollection,

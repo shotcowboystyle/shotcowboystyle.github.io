@@ -76,7 +76,7 @@ test.describe('Index', () => {
 });
 
 test.describe('CV', () => {
-	test('lists the work history and keeps the references to hand', async ({ page }) => {
+	test('lists the work history and links the full CV', async ({ page }) => {
 		await page.goto('/#cv');
 		const cv = page.locator('#cv');
 
@@ -85,14 +85,6 @@ test.describe('CV', () => {
 			'href',
 			'/downloads/Resume.pdf',
 		);
-
-		const reference = cv.getByRole('button', { name: 'Jar Jar Binks' });
-		await reference.focus();
-		await page.keyboard.press('Enter');
-		await expect(page.locator('#reference-jar-jar-binks')).toBeVisible();
-
-		await page.keyboard.press('Escape');
-		await expect(page.locator('#reference-jar-jar-binks')).toBeHidden();
 	});
 });
 
