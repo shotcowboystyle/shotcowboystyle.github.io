@@ -30,10 +30,10 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 					src={data.screenshotImage}
 					widths={[480, 680, 720, data.screenshotImage.width]}
 					alt={`${data.title} screenshot`}
-					class="project-screenshot"
+					class="project-screenshot js-card-shot"
 				/>
 
-				<div class="card-content feature-content pointer-events-auto relative z-[2] flex items-end justify-between text-white max-sm:flex-col">
+				<div class="card-content feature-content pointer-events-auto relative z-[2] flex items-end justify-between max-sm:flex-col">
 					<div class="max-sm:-mb-16">
 						<h2
 							data-folio-title
@@ -44,7 +44,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 
 						<ul class="tech-badge col-auto row-auto mb-8 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 							{tagList.map((tag: string) => (
-								<li class="border-base-100/70 relative rounded-full border px-3 py-1 text-xs font-medium tracking-wide uppercase">
+								<li class="relative rounded-full border border-current/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
 									{tag}
 								</li>
 							))}
@@ -65,7 +65,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 						href={FOLIO_HREF}
 						data-astro-prefetch
 						aria-label={CTA_LABEL}
-						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
+						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-current text-center sm:hidden"
 					>
 						<span
 							class="project-card-button-label"
@@ -82,8 +82,8 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 	{
 		variant === 'split' && (
 			<>
-				<div class="card-content split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 text-white sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
-					<figure class="split-screenshot-frame relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
+				<div class="card-content split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
+					<figure class="split-screenshot-frame js-card-shot relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
 						<Image
 							src={data.screenshotImage}
 							widths={[480, 680, 720, data.screenshotImage.width]}
@@ -103,7 +103,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 
 							<ul class="tech-badge mb-6 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 								{tagList.map((tag: string) => (
-									<li class="border-base-100/70 relative rounded-full border px-3 py-1 text-xs font-medium tracking-wide uppercase">
+									<li class="relative rounded-full border border-current/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
 										{tag}
 									</li>
 								))}
@@ -125,7 +125,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 								href={FOLIO_HREF}
 								data-astro-prefetch
 								aria-label={CTA_LABEL}
-								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
+								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-current text-center sm:hidden"
 							>
 								<span
 									class="project-card-button-label"
@@ -135,69 +135,6 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 								</span>
 							</a>
 						</div>
-					</div>
-				</div>
-			</>
-		)
-	}
-
-	{
-		variant === 'poster' && (
-			<>
-				<Image
-					src={data.screenshotImage}
-					widths={[720, 1080, 1440, data.screenshotImage.width]}
-					alt={`${data.title} screenshot`}
-					class="poster-screenshot"
-				/>
-
-				<div
-					class="poster-scrim"
-					aria-hidden="true"
-				/>
-
-				<div class="card-content poster-content pointer-events-auto relative z-[2] flex h-full flex-col justify-end text-white">
-					<div class="poster-footer flex items-end justify-between gap-6">
-						<div class="max-w-[45ch]">
-							<h2
-								data-folio-title
-								class="c-animated-text js-split-lines js-reveal-on-scroll mb-4 text-4xl sm:text-6xl lg:text-7xl"
-							>
-								{data.title}
-							</h2>
-
-							<ul class="tech-badge mb-4 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
-								{tagList.map((tag: string) => (
-									<li class="relative rounded-full border border-white/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
-										{tag}
-									</li>
-								))}
-							</ul>
-
-							<p class="c-animated-text js-split-lines js-reveal-on-scroll !mb-0">
-								{data.description}
-							</p>
-						</div>
-
-						<CircleButton
-							link={FOLIO_HREF}
-							label={CTA_LABEL}
-							ringPhrase={CTA_TEXT}
-						/>
-
-						<a
-							href={FOLIO_HREF}
-							data-astro-prefetch
-							aria-label={CTA_LABEL}
-							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-white text-center sm:hidden"
-						>
-							<span
-								class="project-card-button-label"
-								aria-hidden="true"
-							>
-								{CTA_TEXT}
-							</span>
-						</a>
 					</div>
 				</div>
 			</>
@@ -230,7 +167,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 	.project-screenshot {
 		@apply pointer-events-none absolute top-8 right-0 z-[1] inline-block w-[130%] max-w-none rounded-xl align-middle max-sm:left-0 sm:top-10 sm:right-auto sm:w-11/12 sm:max-w-full lg:top-12 lg:right-12 lg:w-[58%];
 
-		border: 1px solid rgb(255 255 255 / 15%);
+		border: 1px solid color-mix(in oklab, currentColor 15%, transparent);
 
 		@media screen and (orientation: landscape) and (hover: none) {
 			@apply top-8 right-8 w-[55%];
@@ -244,7 +181,7 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 	}
 
 	.project-card-button-label {
-		@apply text-base-content relative z-10 px-6 text-xs leading-tight;
+		@apply relative z-10 px-6 text-xs leading-tight text-(--card-ground);
 
 		@media screen and (orientation: landscape) and (hover: none) {
 			@apply text-2xl;
@@ -258,32 +195,13 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 
 	.split-screenshot-frame {
 		max-height: 60vh;
-		border: 1px solid rgb(255 255 255 / 15%);
-		background: rgb(0 0 0 / 20%);
+		border: 1px solid color-mix(in oklab, currentColor 15%, transparent);
+		background: color-mix(in oklab, currentColor 8%, transparent);
 	}
 
 	@media (width >= theme(--breakpoint-sm)) {
 		.split-screenshot-frame {
 			max-height: none;
 		}
-	}
-
-	/* POSTER variant — screenshot fills the plate, copy sits bottom-left.
-	   The masthead moved down out of the centre because these screenshots
-	   carry their own headline artwork, and two display headlines stacked
-	   in one frame read as a mistake. */
-	.project-card-variant-poster {
-		@apply justify-end;
-	}
-
-	.poster-screenshot {
-		@apply pointer-events-none absolute inset-0 z-0 h-full w-full max-w-none object-cover;
-	}
-
-	/* Flat, not a gradient. It exists to buy contrast for the copy. */
-	.poster-scrim {
-		@apply pointer-events-none absolute inset-0 z-[1];
-
-		background: rgb(0 0 0 / 55%);
 	}
 </style>

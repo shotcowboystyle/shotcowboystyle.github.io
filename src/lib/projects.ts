@@ -17,14 +17,16 @@ export function nextProject<T>(projects: readonly T[], index: number): T {
 }
 
 /**
- * A plate's ground as inline style: the flat `cardColor`, plus the two-bloom
- * aurora for projects whose own ground is a gradient. Longhands rather than the
+ * A plate's ground and ink as inline style: the flat `cardColor`, the
+ * `cardInk` text color (exposed with the ground as `--card-ink` and
+ * `--card-ground`, for buttons that invert them), plus the two-bloom aurora for
+ * projects whose own ground is a gradient. Longhands rather than the
  * `background` shorthand, so a page can still size the blooms (the folio pins
- * them to its first screen). Both values are schema-validated hex, which is
- * what makes them safe to interpolate here.
+ * them to its first screen). Every value is schema-validated hex, which is what
+ * makes them safe to interpolate here.
  */
 export function plateBackground(data: Project['data']): string {
-	const color = `background-color: ${data.cardColor};`;
+	const color = `background-color: ${data.cardColor}; color: ${data.cardInk}; --card-ink: ${data.cardInk}; --card-ground: ${data.cardColor};`;
 	if (!data.cardAurora) return color;
 
 	const [first, second] = data.cardAurora;

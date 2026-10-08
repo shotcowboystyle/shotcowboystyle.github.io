@@ -41,17 +41,33 @@ const projectCollection = defineCollection({
 			 */
 			storyReady: z.boolean().default(false),
 			tags: z.array(z.string()),
-			variant: z.enum(['feature', 'split', 'poster']).default('feature'),
+			variant: z.enum(['feature', 'split']).default('feature'),
 			/**
-			 * Flat plate color of the card, and its only background. The
-			 * gradient-mesh `bgImage` SVGs that used to sit on top of it are gone,
-			 * so this carries the corners, the plate-turn rotation gap, and any
-			 * image-load gap. Constrained to a 6-digit hex so it is safe to
-			 * interpolate into an inline `style` attribute.
+			 * The project's brand ground: the folio plate, the next-project plate,
+			 * and the base fill of `cardBg`, so the card shows no seam while the art
+			 * loads. Constrained to a 6-digit hex so it is safe to interpolate into
+			 * an inline `style` attribute.
 			 */
 			cardColor: z
 				.string()
 				.regex(/^#[0-9a-f]{6}$/i, 'cardColor must be a 6-digit hex color, e.g. #1b3a2a'),
+			/**
+			 * Text color on `cardColor`: title, tags, description and buttons. Must
+			 * clear WCAG AA (4.5:1) against it. Hex-only for the same inline `style`
+			 * safety reason as `cardColor`.
+			 */
+			cardInk: z
+				.string()
+				.regex(/^#[0-9a-f]{6}$/i, 'cardInk must be a 6-digit hex color, e.g. #1b1a17')
+				.default('#ffffff'),
+			/**
+			 * The landing card's art: brand-derived shapes on `cardColor`, drawn at
+			 * 1856×889. `cardBgMobile` is the same art recomposed at 768×1300 for
+			 * phones. The copy sits bottom-left (feature) or top-right (split), and
+			 * in the bottom half on a phone, so the art keeps out of those zones.
+			 */
+			cardBg: image().optional(),
+			cardBgMobile: image().optional(),
 			/**
 			 * Optional two-bloom radial "aurora" over `cardColor`, for projects whose
 			 * own ground is a gradient (Clean Break). Hex-only for the same inline
