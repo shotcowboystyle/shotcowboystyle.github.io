@@ -1,5 +1,9 @@
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import type { MapOptions } from './types';
+
+// v6 derives the worker URL from import.meta.url, which a bundled chunk breaks.
+maplibregl.setWorkerUrl(workerUrl);
 
 /**
  * MapProvider is responsible for creating and managing the MapLibre GL instance.
