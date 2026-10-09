@@ -44,13 +44,11 @@ const stack = [
 		class="bio-stack flex flex-wrap items-center gap-2 sm:gap-3"
 		aria-label="Selected stack"
 	>
-		{
-			stack.map((tag) => (
-				<li class="border-primary-content/40 rounded-full border px-3 py-1 font-sans text-xs tracking-wide uppercase sm:text-sm">
-					{tag}
-				</li>
-			))
-		}
+		{stack.map((tag) => (
+			<li class="border-primary-content/40 rounded-full border px-3 py-1 font-sans text-xs tracking-wide uppercase sm:text-sm">
+				{tag}
+			</li>
+		))}
 	</ul>
 </div>
 

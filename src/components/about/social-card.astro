@@ -50,24 +50,22 @@ const socials = await getCollection('social');
 		</svg>
 	</div>
 
-	{
-		socials.map((social) => (
-			<a
-				aria-label={`Go to my ${social.data.name} profile`}
-				class={`link ${social.data.name.toLowerCase()}`}
-				href={social.data.link}
-				rel="me noopener noreferrer"
-				target="_blank"
-			>
-				<span class="link-icon-wrapper">
-					<SvgSprite
-						name={social.data.icon}
-						class="h-4 w-4 fill-white sm:h-8 sm:w-8 lg:h-4 lg:w-4"
-					/>
-				</span>
-			</a>
-		))
-	}
+	{socials.map((social) => (
+		<a
+			aria-label={`Go to my ${social.data.name} profile`}
+			class={`link ${social.data.name.toLowerCase()}`}
+			href={social.data.link}
+			rel="me noopener noreferrer"
+			target="_blank"
+		>
+			<span class="link-icon-wrapper">
+				<SvgSprite
+					name={social.data.icon}
+					class="h-4 w-4 fill-white sm:h-8 sm:w-8 lg:h-4 lg:w-4"
+				/>
+			</span>
+		</a>
+	))}
 </div>
 
 <div class="extra link"></div>

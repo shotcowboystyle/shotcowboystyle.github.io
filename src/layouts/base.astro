@@ -37,12 +37,10 @@ const meta: PageMetaData = { ...DEFAULT_META, ...Astro.props.meta };
 				!window.matchMedia('(prefers-reduced-motion: reduce)').matches,
 			);
 		</script>
-
 		<script
 			is:inline
 			set:html={viewTransitionScript}
 		/>
-
 		<link
 			rel="preload"
 			href="/fonts/Thunder-VF.woff2"
@@ -71,13 +69,10 @@ const meta: PageMetaData = { ...DEFAULT_META, ...Astro.props.meta };
 			data-website-id="1427b780-3626-4e70-87a5-09b06ce64b8e"
 			data-domains="shotcowboystyle.github.io"
 		></script>
-
 		<slot name="head-end" />
 	</head>
 
-	<body
-		class="selection:text-base-neutral text-base-content m-0 min-h-full bg-black font-sans leading-normal font-medium selection:bg-rose-200"
-	>
+	<body class="selection:text-base-neutral text-base-content m-0 min-h-full bg-black font-sans leading-normal font-medium selection:bg-rose-200">
 		<a
 			href="#main"
 			class="skip-to-content"
@@ -97,8 +92,7 @@ const meta: PageMetaData = { ...DEFAULT_META, ...Astro.props.meta };
 		<div
 			class="report"
 			id="report"
-		>
-		</div>
+		></div>
 
 		<slot name="body-end" />
 

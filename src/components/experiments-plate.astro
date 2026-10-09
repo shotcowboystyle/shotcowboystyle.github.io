@@ -26,12 +26,8 @@ const experiments = all
 	class="js-section-card-wrapper js-experiments relative -mb-[100vh] h-[450vh]"
 >
 	<div class="sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
-		<div
-			class="js-section-card experiments-plate bg-secondary flex w-full flex-1 flex-col justify-between gap-8 rounded-2xl py-5 text-white sm:rounded-3xl sm:py-12 lg:py-16"
-		>
-			<div
-				class="flex flex-wrap items-end justify-between gap-6 px-5 pt-10 sm:px-12 sm:pt-0 lg:px-16"
-			>
+		<div class="js-section-card experiments-plate bg-secondary flex w-full flex-1 flex-col justify-between gap-8 rounded-2xl py-5 text-white sm:rounded-3xl sm:py-12 lg:py-16">
+			<div class="flex flex-wrap items-end justify-between gap-6 px-5 pt-10 sm:px-12 sm:pt-0 lg:px-16">
 				<h2
 					id="experiments-title"
 					class="c-animated-text js-split-lines js-reveal-on-scroll mb-0"
@@ -49,41 +45,42 @@ const experiments = all
 					class="js-experiments-rail experiments-rail"
 					aria-label="Latest experiments"
 				>
-					{
-						experiments.map(({ data }) => (
-							<li class="experiments-tile">
-								<a
-									href={`${EXPERIMENTS_PATH}/${data.slug}/`}
-									class="experiments-tile-link"
-								>
-									<img
-										src={data.poster}
-										alt=""
-										width="880"
-										height="880"
-										loading="lazy"
-										decoding="async"
-										class="experiments-poster"
-									/>
-									<span class="experiments-tile-title">{data.title}</span>
-									<span class="experiments-tile-description">{data.description}</span>
-								</a>
-							</li>
-						))
-					}
+					{experiments.map(({ data }) => (
+						<li class="experiments-tile">
+							<a
+								href={`${EXPERIMENTS_PATH}/${data.slug}/`}
+								class="experiments-tile-link"
+							>
+								<img
+									src={data.poster}
+									alt=""
+									width="880"
+									height="880"
+									loading="lazy"
+									decoding="async"
+									class="experiments-poster"
+								/>
+								<span class="experiments-tile-title">{data.title}</span>
+								<span class="experiments-tile-description">{data.description}</span>
+							</a>
+						</li>
+					))}
 					<li class="experiments-tile">
 						<a
 							href={`${EXPERIMENTS_PATH}/`}
 							class="experiments-tile-link experiments-tile-all"
 						>
 							<span class="font-sans-serif text-5xl leading-[0.9] font-bold uppercase sm:text-6xl">
-								All<br />experiments
+								All
+								<br />
+								experiments
 							</span>
 							<span
 								class="text-4xl"
 								aria-hidden="true"
-								>→</span
 							>
+								→
+							</span>
 						</a>
 					</li>
 				</ul>

@@ -68,41 +68,35 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 					/>
 				</div>
 
-				{
-					/*
-					 * The card framed its screenshot as a small artifact; the folio opens it
-					 * up edge to edge. That change is what reads as having turned the page,
-					 * while the title below stays exactly where the card had it.
-					 */
-				}
-				{
-					isPhoneCover ? (
-						<div class="folio-cover-phone">
-							<PhoneFrame class="folio-cover-phone-frame">
-								<Image
-									src={data.screenshotImage}
-									widths={[480, 720, data.screenshotImage.width]}
-									sizes="(min-width: 640px) 24rem, 60vw"
-									alt={`${data.title} screenshot`}
-									loading="eager"
-								/>
-							</PhoneFrame>
-						</div>
-					) : (
-						<Image
-							src={data.screenshotImage}
-							widths={[720, 1080, 1440, data.screenshotImage.width]}
-							sizes="100vw"
-							alt={`${data.title} screenshot`}
-							class="folio-cover-image"
-							loading="eager"
-						/>
-					)
-				}
+				{/*
+				 * The card framed its screenshot as a small artifact; the folio opens it
+				 * up edge to edge. That change is what reads as having turned the page,
+				 * while the title below stays exactly where the card had it.
+				 */}
+				{isPhoneCover ? (
+					<div class="folio-cover-phone">
+						<PhoneFrame class="folio-cover-phone-frame">
+							<Image
+								src={data.screenshotImage}
+								widths={[480, 720, data.screenshotImage.width]}
+								sizes="(min-width: 640px) 24rem, 60vw"
+								alt={`${data.title} screenshot`}
+								loading="eager"
+							/>
+						</PhoneFrame>
+					</div>
+				) : (
+					<Image
+						src={data.screenshotImage}
+						widths={[720, 1080, 1440, data.screenshotImage.width]}
+						sizes="100vw"
+						alt={`${data.title} screenshot`}
+						class="folio-cover-image"
+						loading="eager"
+					/>
+				)}
 
-				<div
-					class="flex items-end justify-between gap-8 p-5 max-sm:flex-col max-sm:items-start sm:p-12 lg:p-16"
-				>
+				<div class="flex items-end justify-between gap-8 p-5 max-sm:flex-col max-sm:items-start sm:p-12 lg:p-16">
 					<div>
 						<h1
 							id="folio-title"
@@ -113,115 +107,105 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 						</h1>
 
 						<ul class="flex flex-wrap gap-2 sm:gap-3">
-							{
-								data.tags.map((tag) => (
-									<li class="rounded-full border border-current/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
-										{tag}
-									</li>
-								))
-							}
+							{data.tags.map((tag) => (
+								<li class="rounded-full border border-current/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
+									{tag}
+								</li>
+							))}
 						</ul>
 
-						{
-							(data.year || data.role) && (
-								<dl class="folio-facts mt-6 flex flex-wrap gap-x-10 gap-y-2 text-sm">
-									{data.year && (
-										<div>
-											<dt>Year</dt>
-											<dd>{data.year}</dd>
-										</div>
-									)}
-									{data.role && (
-										<div>
-											<dt>Role</dt>
-											<dd>{data.role}</dd>
-										</div>
-									)}
-								</dl>
-							)
-						}
+						{(data.year || data.role) && (
+							<dl class="folio-facts mt-6 flex flex-wrap gap-x-10 gap-y-2 text-sm">
+								{data.year && (
+									<div>
+										<dt>Year</dt>
+										<dd>{data.year}</dd>
+									</div>
+								)}
+								{data.role && (
+									<div>
+										<dt>Role</dt>
+										<dd>{data.role}</dd>
+									</div>
+								)}
+							</dl>
+						)}
 					</div>
 
-					{
-						data.url && (
-							<>
-								<CircleButton
-									link={data.url}
-									label={liveLabel}
-									ringPhrase={data.linkText}
-								/>
+					{data.url && (
+						<>
+							<CircleButton
+								link={data.url}
+								label={liveLabel}
+								ringPhrase={data.linkText}
+							/>
 
-								<a
-									href={data.url}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={liveLabel}
-									class="folio-live-mobile flex h-16 w-16 items-center justify-center rounded-full bg-(--card-ink) px-3 text-center text-xs leading-tight text-(--card-ground) sm:hidden"
-								>
-									<span aria-hidden="true">{data.linkText}</span>
-								</a>
-							</>
-						)
-					}
+							<a
+								href={data.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={liveLabel}
+								class="folio-live-mobile flex h-16 w-16 items-center justify-center rounded-full bg-(--card-ink) px-3 text-center text-xs leading-tight text-(--card-ground) sm:hidden"
+							>
+								<span aria-hidden="true">{data.linkText}</span>
+							</a>
+						</>
+					)}
 				</div>
 			</header>
 
 			<div class="folio-body px-5 pb-16 sm:px-12 sm:pb-24 lg:px-16">
 				<p class="folio-lead">{data.description}</p>
 
-				{
-					data.storyReady && (
-						<div class="folio-story">
-							<Content />
-						</div>
-					)
-				}
+				{data.storyReady && (
+					<div class="folio-story">
+						<Content />
+					</div>
+				)}
 
-				{
-					data.gallery.length > 0 && (
-						<section
-							class="folio-gallery"
-							aria-label={`${data.title} screens`}
-						>
-							{desktopShots.map((shot, index) => (
-								<figure
-									class:list={['folio-shot', isWide(index) ? 'folio-shot-wide' : 'folio-shot-half']}
-								>
-									<Image
-										src={shot.image}
-										widths={[480, 720, 1080, 1440, shot.image.width]}
-										sizes={
-											isWide(index)
-												? '(min-width: 1024px) 90vw, 100vw'
-												: '(min-width: 640px) 45vw, 100vw'
-										}
-										alt=""
-										class="rounded-xl"
-									/>
-									<figcaption>{shot.alt}</figcaption>
-								</figure>
-							))}
+				{data.gallery.length > 0 && (
+					<section
+						class="folio-gallery"
+						aria-label={`${data.title} screens`}
+					>
+						{desktopShots.map((shot, index) => (
+							<figure
+								class:list={['folio-shot', isWide(index) ? 'folio-shot-wide' : 'folio-shot-half']}
+							>
+								<Image
+									src={shot.image}
+									widths={[480, 720, 1080, 1440, shot.image.width]}
+									sizes={
+										isWide(index)
+											? '(min-width: 1024px) 90vw, 100vw'
+											: '(min-width: 640px) 45vw, 100vw'
+									}
+									alt=""
+									class="rounded-xl"
+								/>
+								<figcaption>{shot.alt}</figcaption>
+							</figure>
+						))}
 
-							{phoneShots.length > 0 && (
-								<div class="folio-phones">
-									{phoneShots.map((shot) => (
-										<figure class="folio-shot folio-shot-phone">
-											<PhoneFrame>
-												<Image
-													src={shot.image}
-													widths={[240, 390, 780]}
-													sizes="(min-width: 640px) 20vw, 45vw"
-													alt=""
-												/>
-											</PhoneFrame>
-											<figcaption>{shot.alt}</figcaption>
-										</figure>
-									))}
-								</div>
-							)}
-						</section>
-					)
-				}
+						{phoneShots.length > 0 && (
+							<div class="folio-phones">
+								{phoneShots.map((shot) => (
+									<figure class="folio-shot folio-shot-phone">
+										<PhoneFrame>
+											<Image
+												src={shot.image}
+												widths={[240, 390, 780]}
+												sizes="(min-width: 640px) 20vw, 45vw"
+												alt=""
+											/>
+										</PhoneFrame>
+										<figcaption>{shot.alt}</figcaption>
+									</figure>
+								))}
+							</div>
+						)}
+					</section>
+				)}
 			</div>
 		</div>
 	</article>
