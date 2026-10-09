@@ -52,43 +52,45 @@ const projects = await getProjects();
 					<a
 						href="/#project-cards"
 						class="site-index-link"
-						>Work</a
 					>
+						Work
+					</a>
 					<ul class="site-index-projects">
-						{
-							projects.map((project) => (
-								<li>
-									<a
-										href={`/work/${project.id}/`}
-										data-astro-prefetch
-									>
-										{project.data.title}
-									</a>
-								</li>
-							))
-						}
+						{projects.map((project) => (
+							<li>
+								<a
+									href={`/work/${project.id}/`}
+									data-astro-prefetch
+								>
+									{project.data.title}
+								</a>
+							</li>
+						))}
 					</ul>
 				</li>
 				<li>
 					<a
 						href={`${EXPERIMENTS_PATH}/`}
 						class="site-index-link"
-						>Experiments</a
 					>
+						Experiments
+					</a>
 				</li>
 				<li>
 					<a
 						href="/#cv"
 						class="site-index-link"
-						>CV</a
 					>
+						CV
+					</a>
 				</li>
 				<li>
 					<a
 						href={CONTACT_MAILTO_HREF}
 						class="js-inject-email-link site-index-link"
-						>Contact</a
 					>
+						Contact
+					</a>
 					<p class="js-inject-email-text site-index-email">{CONTACT_EMAIL}</p>
 				</li>
 			</ul>

@@ -16,19 +16,18 @@ const meta = {
 		<div class="chrome-top">
 			<BackLink tone="canvas" />
 
-			{
-				/*
-				 * `aria-live="polite"` with `aria-atomic`: the score is the only
-				 * feedback a player gets for a successful placement, and without a
-				 * live region it changed silently for anyone not watching the numeral.
-				 */
-			}
+			{/*
+			 * `aria-live="polite"` with `aria-atomic`: the score is the only
+			 * feedback a player gets for a successful placement, and without a
+			 * live region it changed silently for anyone not watching the numeral.
+			 */}
 			<p
 				id="score"
 				aria-live="polite"
 				aria-atomic="true"
 			>
-				<span class="visually-hidden">Score:</span><span id="score-value">0</span>
+				<span class="visually-hidden">Score:</span>
+				<span id="score-value">0</span>
 			</p>
 		</div>
 
@@ -49,18 +48,18 @@ const meta = {
 				</button>
 			</div>
 
-			{
-				/*
-				 * `role="status"` rather than a bare div: the end of a run is a state
-				 * change with no focus move, so it has to be announced.
-				 */
-			}
+			{/*
+			 * `role="status"` rather than a bare div: the end of a run is a state
+			 * change with no focus move, so it has to be announced.
+			 */}
 			<div
 				class="game-over plate plate-mint"
 				role="status"
 			>
 				<p class="plate-label">Tower down</p>
-				<h2>You stacked <span id="final-score">0</span></h2>
+				<h2>
+					You stacked <span id="final-score">0</span>
+				</h2>
 				<p class="plate-body">Click, tap, or press the space bar to start again.</p>
 			</div>
 		</div>

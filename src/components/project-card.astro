@@ -27,26 +27,94 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 ---
 
 <div class:list={['project-card-inner', 'plate-turn', `project-card-variant-${variant}`]}>
-	{
-		variant === 'feature' && (
-			<>
-				<Image
-					src={data.screenshotImage}
-					widths={[480, 680, 720, data.screenshotImage.width]}
-					alt={`${data.title} screenshot`}
-					class="project-screenshot js-card-shot"
+	{variant === 'feature' && (
+		<>
+			<Image
+				src={data.screenshotImage}
+				widths={[480, 680, 720, data.screenshotImage.width]}
+				alt={`${data.title} screenshot`}
+				class="project-screenshot js-card-shot"
+			/>
+
+			<div class="card-content feature-content pointer-events-auto relative z-[2] flex items-end justify-between max-sm:flex-col">
+				<div class="max-sm:-mb-16">
+					<h2
+						data-folio-title
+						class="c-animated-text js-split-lines js-reveal-on-scroll mb-4 text-4xl sm:text-6xl lg:text-7xl"
+					>
+						{data.title}
+					</h2>
+
+					<ul class="tech-badge col-auto row-auto mb-8 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
+						{tagList.map((tag: string) => (
+							<li class="relative rounded-full border border-current/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
+								{tag}
+							</li>
+						))}
+					</ul>
+
+					<p class="c-animated-text js-split-lines js-reveal-on-scroll !mb-0 max-w-[45ch] max-sm:mr-24">
+						{data.description}
+					</p>
+				</div>
+
+				<CircleButton
+					link={FOLIO_HREF}
+					label={CTA_LABEL}
+					ringPhrase={CTA_TEXT}
 				/>
 
-				<div class="card-content feature-content pointer-events-auto relative z-[2] flex items-end justify-between max-sm:flex-col">
-					<div class="max-sm:-mb-16">
+				<a
+					href={FOLIO_HREF}
+					data-astro-prefetch
+					aria-label={CTA_LABEL}
+					class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-current text-center sm:hidden"
+				>
+					<span
+						class="project-card-button-label"
+						aria-hidden="true"
+					>
+						{CTA_TEXT}
+					</span>
+				</a>
+			</div>
+		</>
+	)}
+
+	{variant === 'split' && (
+		<>
+			<div class="card-content split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
+				{isPhoneShot ? (
+					<figure class="split-phone js-card-shot relative flex min-h-0 items-center justify-center">
+						<PhoneFrame class="split-phone-frame">
+							<Image
+								src={data.screenshotImage}
+								widths={[480, 680, 720, data.screenshotImage.width]}
+								alt={`${data.title} screenshot`}
+							/>
+						</PhoneFrame>
+					</figure>
+				) : (
+					<figure class="split-screenshot-frame js-card-shot relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
+						<Image
+							src={data.screenshotImage}
+							widths={[480, 680, 720, data.screenshotImage.width]}
+							alt={`${data.title} screenshot`}
+							class="split-screenshot h-full w-full object-contain"
+						/>
+					</figure>
+				)}
+
+				<div class="split-body flex flex-col justify-between gap-8 sm:gap-6">
+					<div>
 						<h2
 							data-folio-title
-							class="c-animated-text js-split-lines js-reveal-on-scroll mb-4 text-4xl sm:text-6xl lg:text-7xl"
+							class="c-animated-text js-split-lines js-reveal-on-scroll mb-4 text-4xl sm:text-5xl lg:text-6xl"
 						>
 							{data.title}
 						</h2>
 
-						<ul class="tech-badge col-auto row-auto mb-8 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
+						<ul class="tech-badge mb-6 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
 							{tagList.map((tag: string) => (
 								<li class="relative rounded-full border border-current/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
 									{tag}
@@ -54,108 +122,36 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 							))}
 						</ul>
 
-						<p class="c-animated-text js-split-lines js-reveal-on-scroll !mb-0 max-w-[45ch] max-sm:mr-24">
+						<p class="c-animated-text js-split-lines js-reveal-on-scroll !mb-0 max-w-[45ch]">
 							{data.description}
 						</p>
 					</div>
 
-					<CircleButton
-						link={FOLIO_HREF}
-						label={CTA_LABEL}
-						ringPhrase={CTA_TEXT}
-					/>
+					<div class="flex items-end justify-end">
+						<CircleButton
+							link={FOLIO_HREF}
+							label={CTA_LABEL}
+							ringPhrase={CTA_TEXT}
+						/>
 
-					<a
-						href={FOLIO_HREF}
-						data-astro-prefetch
-						aria-label={CTA_LABEL}
-						class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-current text-center sm:hidden"
-					>
-						<span
-							class="project-card-button-label"
-							aria-hidden="true"
+						<a
+							href={FOLIO_HREF}
+							data-astro-prefetch
+							aria-label={CTA_LABEL}
+							class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-current text-center sm:hidden"
 						>
-							{CTA_TEXT}
-						</span>
-					</a>
-				</div>
-			</>
-		)
-	}
-
-	{
-		variant === 'split' && (
-			<>
-				<div class="card-content split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
-					{isPhoneShot ? (
-						<figure class="split-phone js-card-shot relative flex min-h-0 items-center justify-center">
-							<PhoneFrame class="split-phone-frame">
-								<Image
-									src={data.screenshotImage}
-									widths={[480, 680, 720, data.screenshotImage.width]}
-									alt={`${data.title} screenshot`}
-								/>
-							</PhoneFrame>
-						</figure>
-					) : (
-						<figure class="split-screenshot-frame js-card-shot relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
-							<Image
-								src={data.screenshotImage}
-								widths={[480, 680, 720, data.screenshotImage.width]}
-								alt={`${data.title} screenshot`}
-								class="split-screenshot h-full w-full object-contain"
-							/>
-						</figure>
-					)}
-
-					<div class="split-body flex flex-col justify-between gap-8 sm:gap-6">
-						<div>
-							<h2
-								data-folio-title
-								class="c-animated-text js-split-lines js-reveal-on-scroll mb-4 text-4xl sm:text-5xl lg:text-6xl"
+							<span
+								class="project-card-button-label"
+								aria-hidden="true"
 							>
-								{data.title}
-							</h2>
-
-							<ul class="tech-badge mb-6 flex flex-wrap justify-start gap-2 max-sm:items-start sm:gap-3">
-								{tagList.map((tag: string) => (
-									<li class="relative rounded-full border border-current/70 px-3 py-1 text-xs font-medium tracking-wide uppercase">
-										{tag}
-									</li>
-								))}
-							</ul>
-
-							<p class="c-animated-text js-split-lines js-reveal-on-scroll !mb-0 max-w-[45ch]">
-								{data.description}
-							</p>
-						</div>
-
-						<div class="flex items-end justify-end">
-							<CircleButton
-								link={FOLIO_HREF}
-								label={CTA_LABEL}
-								ringPhrase={CTA_TEXT}
-							/>
-
-							<a
-								href={FOLIO_HREF}
-								data-astro-prefetch
-								aria-label={CTA_LABEL}
-								class="project-card-link group relative flex h-16 w-16 items-center justify-center rounded-full bg-current text-center sm:hidden"
-							>
-								<span
-									class="project-card-button-label"
-									aria-hidden="true"
-								>
-									{CTA_TEXT}
-								</span>
-							</a>
-						</div>
+								{CTA_TEXT}
+							</span>
+						</a>
 					</div>
 				</div>
-			</>
-		)
-	}
+			</div>
+		</>
+	)}
 </div>
 
 <style>

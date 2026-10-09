@@ -54,41 +54,39 @@ const dots = layoutQuestionMark().map((dot) => ({
 ---
 
 <div class="mystery-box-card h-full">
-	{
-		dots.map((dot) => {
-			if (dot.link === undefined)
-				return (
-					<span
-						class="dot"
-						style={dot.style}
-					/>
-				);
-
-			const link = LINKS[dot.link];
-			const external = link.href.startsWith('http');
+	{dots.map((dot) => {
+		if (dot.link === undefined)
 			return (
-				<a
-					href={link.href}
-					aria-label={link.label}
-					id={link.id}
-					class="dot link"
-					style={`${dot.style};--pulse:${link.pulse};--delay:${link.delay}`}
-					{...(external && { target: '_blank', rel: 'noopener noreferrer' })}
-				>
-					<span
-						class="lg:tooltip"
-						data-tip={link.tip ?? link.label}
-						aria-hidden="true"
-					>
-						<SvgSprite
-							name={link.icon}
-							class={`svg ${link.variant}`}
-						/>
-					</span>
-				</a>
+				<span
+					class="dot"
+					style={dot.style}
+				/>
 			);
-		})
-	}
+
+		const link = LINKS[dot.link];
+		const external = link.href.startsWith('http');
+		return (
+			<a
+				href={link.href}
+				aria-label={link.label}
+				id={link.id}
+				class="dot link"
+				style={`${dot.style};--pulse:${link.pulse};--delay:${link.delay}`}
+				{...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+			>
+				<span
+					class="lg:tooltip"
+					data-tip={link.tip ?? link.label}
+					aria-hidden="true"
+				>
+					<SvgSprite
+						name={link.icon}
+						class={`svg ${link.variant}`}
+					/>
+				</span>
+			</a>
+		);
+	})}
 </div>
 
 <style>

@@ -14,9 +14,7 @@ const projects = await getProjects();
 	aria-labelledby="header-headline"
 	class="js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
 >
-	<div
-		class="js-section-card sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6"
-	>
+	<div class="js-section-card sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
 		<HeaderContent />
 	</div>
 </section>
@@ -26,52 +24,50 @@ const projects = await getProjects();
 	aria-label="Selected projects"
 	class="relative h-full w-full"
 >
-	{
-		projects.map((project) => (
-			<article
-				id={`work-${project.id}`}
-				data-folio-slug={project.id}
-				class="project-card js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
-			>
-				<div class="sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
+	{projects.map((project) => (
+		<article
+			id={`work-${project.id}`}
+			data-folio-slug={project.id}
+			class="project-card js-section-card-wrapper relative -mb-[100vh] h-[250vh]"
+		>
+			<div class="sticky top-0 flex min-h-screen w-full overflow-hidden p-4 sm:p-8 lg:p-6">
+				{/*
+				 * No padding on the plate itself: the card art is positioned against
+				 * this box, so padding here inset every image and left the plate color
+				 * showing as a hard-edged frame around the artwork. Content padding
+				 * now lives inside `ProjectCard`, applied to the copy only.
+				 */}
+				<div
+					class="js-section-card relative flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
+					style={plateBackground(project.data)}
+				>
 					{/*
-					 * No padding on the plate itself: the card art is positioned against
-					 * this box, so padding here inset every image and left the plate color
-					 * showing as a hard-edged frame around the artwork. Content padding
-					 * now lives inside `ProjectCard`, applied to the copy only.
+					 * The project's art, outside the plate-turn so the hover tilt opens
+					 * onto it rather than onto a flat edge. Its ground is `cardColor`, so
+					 * nothing shifts while it loads.
 					 */}
-					<div
-						class="js-section-card relative flex w-full flex-1 flex-col justify-end overflow-hidden rounded-2xl sm:rounded-3xl"
-						style={plateBackground(project.data)}
-					>
-						{/*
-						 * The project's art, outside the plate-turn so the hover tilt opens
-						 * onto it rather than onto a flat edge. Its ground is `cardColor`, so
-						 * nothing shifts while it loads.
-						 */}
-						{project.data.cardBg && (
-							<picture>
-								{project.data.cardBgMobile && (
-									<source
-										media="(max-width: 767px)"
-										srcset={project.data.cardBgMobile.src}
-									/>
-								)}
-								<img
-									src={project.data.cardBg.src}
-									alt=""
-									loading="lazy"
-									decoding="async"
-									class="js-card-bg pointer-events-none absolute inset-0 h-full w-full object-cover"
+					{project.data.cardBg && (
+						<picture>
+							{project.data.cardBgMobile && (
+								<source
+									media="(max-width: 767px)"
+									srcset={project.data.cardBgMobile.src}
 								/>
-							</picture>
-						)}
-						<ProjectCard project={project} />
-					</div>
+							)}
+							<img
+								src={project.data.cardBg.src}
+								alt=""
+								loading="lazy"
+								decoding="async"
+								class="js-card-bg pointer-events-none absolute inset-0 h-full w-full object-cover"
+							/>
+						</picture>
+					)}
+					<ProjectCard project={project} />
 				</div>
-			</article>
-		))
-	}
+			</div>
+		</article>
+	))}
 </section>
 
 <ExperimentsPlate />

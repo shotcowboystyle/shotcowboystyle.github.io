@@ -13,7 +13,9 @@ const { class: className } = Astro.props;
 ---
 
 <div class:list={['phone-frame', className]}>
-	<div class="phone-screen"><slot /></div>
+	<div class="phone-screen">
+		<slot />
+	</div>
 </div>
 
 <style>

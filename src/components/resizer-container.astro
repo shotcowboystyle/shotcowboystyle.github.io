@@ -15,15 +15,13 @@ const { class: className, label = 'Drag' } = Astro.props;
 	>
 		<slot />
 
-		{
-			/*
-			 * One handle, on the trailing edge. There used to be a second
-			 * `.resizer-b` on the bottom edge with `aria-orientation="horizontal"`
-			 * and a row-resize cursor, but nothing in the drag or keyboard path
-			 * ever touched the height — it was a focusable control that announced
-			 * itself as a resizer and did nothing.
-			 */
-		}
+		{/*
+		 * One handle, on the trailing edge. There used to be a second
+		 * `.resizer-b` on the bottom edge with `aria-orientation="horizontal"`
+		 * and a row-resize cursor, but nothing in the drag or keyboard path
+		 * ever touched the height — it was a focusable control that announced
+		 * itself as a resizer and did nothing.
+		 */}
 		<div
 			class="resizer"
 			role="separator"

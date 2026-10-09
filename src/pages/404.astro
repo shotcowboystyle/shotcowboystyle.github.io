@@ -18,10 +18,8 @@ const marquee = Array.from({ length: MARQUEE_REPEATS }, () => MARQUEE_WORD);
 ---
 
 <BaseLayout meta={meta}>
-	{
-		/* A `div`, not a `main`: BaseLayout already provides the page's `<main>`
-	     landmark, and nesting a second one inside it is a landmark violation. */
-	}
+	{/* A `div`, not a `main`: BaseLayout already provides the page's `<main>`
+	     landmark, and nesting a second one inside it is a landmark violation. */}
 	<div class="not-found">
 		<div class="not-found-inner">
 			<p class="not-found-status">Error 404</p>
