@@ -14,7 +14,7 @@ This file holds only what the codebase can't tell you.
   wrapper script.
 - **Conventional Commits** required, validated by commitlint at `commit-msg`.
 - **Stage ownership**: each check runs at exactly one stage — staged-file lint at `pre-commit`,
-  typecheck / Knip / dedupe at `pre-push`, full-repo lint in CI. Don't duplicate a check across stages.
+  typecheck / Knip at `pre-push`, full-repo lint in CI. Don't duplicate a check across stages.
 
 ## Unit testing (Vitest)
 

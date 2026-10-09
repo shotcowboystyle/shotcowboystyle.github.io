@@ -30,7 +30,6 @@
 		"lint:code:check": "eslint .",
 		"lint:code:fix": "eslint . --fix",
 		"lint:manifest:check": "npmPkgJsonLint .",
-		"lint:packages:check": "pnpm dedupe --check",
 		"lint:knip:check": "knip --config knip.config.mjs",
 		"lint:spelling:check": "cspell lint './**/*.{tsx,ts,mjs,cjs,js,json,css,yml,yaml,md,astro}' --gitignore --cache",
 		"lint:styles:check": "stylelint src/**/*.{astro,css} --cache --ignore-pattern .gitignore",
