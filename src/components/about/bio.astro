@@ -17,8 +17,10 @@ const stack = [
 
 <!--
   Two top-level children on purpose: the parent grid in about.astro switches to
-  `grid-flow-col grid-cols-[1fr_1fr]` at sm, so headline and copy become the two
-  columns. Wrapping them in a single div collapses that back to one column.
+  `grid-flow-col grid-cols-[1fr_1fr]` wherever the card is wide enough (md, while
+  it spans the grid, and again from 2xl), so headline and copy become the two
+  columns. Wrapping them in
+  a single div collapses that back to one column.
 -->
 <div class="flex flex-col justify-end">
 	<h2
