@@ -1,5 +1,5 @@
 import { EventHandlerRegistry } from '@/utils/disposable';
-import type maplibregl from 'maplibre-gl';
+import type * as maplibregl from 'maplibre-gl';
 import type { MapOptions } from './types';
 
 /**
