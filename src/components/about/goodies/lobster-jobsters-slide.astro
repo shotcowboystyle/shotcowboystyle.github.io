@@ -1,0 +1,299 @@
+---
+/*
+ * The experiments site's Fanning Folder, trimmed to a picture: no checkbox,
+ * search or hint. It fans when the goodie link is hovered or focused, and stays
+ * fanned on touch, where there is no hover to open it.
+ */
+const files = ['SOUL.md', 'AGENTS.md', 'KILL_SWITCH.md', 'ledger.jsonl', 'RUNBOOK.md'];
+---
+
+<div
+	class="folder"
+	aria-hidden="true"
+>
+	<div class="folder-container">
+		<svg
+			class="folder-back"
+			viewBox="0 0 50 40"
+			fill="none"
+		>
+			<path
+				d="M0 4C0 1.79086 1.79086 0 4 0H16.524C17.721 0 18.8415 0.54051 19.574 1.4673L22.426 5.0654C23.1585 5.99219 24.279 6.5327 25.476 6.5327H46C48.2091 6.5327 50 8.32356 50 10.5327V36C50 38.2091 48.2091 40 46 40H4C1.79086 40 0 38.2091 0 36V4Z"
+				fill="#b3261e"
+			></path>
+		</svg>
+
+		{files.map((name, i) => (
+			<div class={`file file-${i + 1}`}>
+				<div class="shine" />
+				<div class="file-text">{name}</div>
+			</div>
+		))}
+
+		<div class="folder-front-wrapper">
+			<svg
+				class="folder-front"
+				viewBox="0 0 50 34"
+				fill="none"
+			>
+				<path
+					d="M0 4C0 1.79086 1.79086 0 4 0H46C48.2091 0 50 1.79086 50 4V30C50 32.2091 48.2091 34 46 34H4C1.79086 34 0 32.2091 0 30V4Z"
+					fill="rgb(229 72 56 / 85%)"
+				></path>
+			</svg>
+			<div class="folder-label"></div>
+			<div class="counter">
+				<div class="status-dot"></div>
+				<span class="counter-label">AGENTS</span>
+				<span class="counter-number">45</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.folder {
+		width: 170px;
+		height: 130px;
+		margin-top: 70px;
+		perspective: 1200px;
+	}
+
+	.folder-container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+		transform-style: preserve-3d;
+	}
+
+	.folder-back {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		filter: drop-shadow(0 10px 20px rgb(0 0 0 / 40%));
+	}
+
+	.folder-front-wrapper {
+		position: absolute;
+		bottom: -7px;
+		z-index: 90;
+		width: 100%;
+		transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		transform-origin: bottom;
+	}
+
+	.folder-label {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		width: 30px;
+		height: 4px;
+		border-radius: 10px;
+		background: rgb(255 255 255 / 50%);
+	}
+
+	.counter {
+		position: absolute;
+		top: -95px;
+		right: -60px;
+		z-index: 100;
+		display: flex;
+		gap: 8px;
+		align-items: center;
+		padding: 4px 8px;
+		border-radius: 50px;
+		background-color: #fff;
+		box-shadow: 0 10px 20px rgb(0 0 0 / 30%);
+		opacity: 0%;
+		transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+		transition-duration: 0.5s;
+		transition-property: transform, opacity;
+		transform: scale(0) translateY(20px);
+	}
+
+	.status-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: #34d399;
+		box-shadow: 0 0 10px #34d399;
+	}
+
+	.counter-label {
+		color: #000;
+		font-weight: 800;
+		font-size: 8px;
+	}
+
+	.counter-number {
+		color: #b3261e;
+		font-weight: 900;
+		font-size: 12px;
+	}
+
+	.file {
+		position: absolute;
+		bottom: 5px;
+		left: 10%;
+		overflow: hidden;
+		width: 80%;
+		height: 85px;
+		border-radius: 6px;
+		box-shadow:
+			inset 0 1px 1px rgb(255 255 255 / 30%),
+			0 4px 12px rgb(0 0 0 / 30%);
+		transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	}
+
+	.file-1 {
+		z-index: 25;
+		background: #ff5f6d;
+		transition-delay: 0.15s;
+	}
+
+	.file-2 {
+		z-index: 24;
+		background: #ffc371;
+		transition-delay: 0.1s;
+	}
+
+	.file-3 {
+		z-index: 23;
+		background: #4facfe;
+		transition-delay: 0.05s;
+	}
+
+	.file-4 {
+		z-index: 22;
+		background: #00c9d4;
+		transition-delay: 0.02s;
+	}
+
+	.file-5 {
+		z-index: 21;
+		background: #a18cd1;
+	}
+
+	.shine {
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 50%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgb(255 255 255 / 40%), transparent);
+		transform: skewX(-20deg);
+	}
+
+	.file-text {
+		padding: 12px;
+		color: #fff;
+		font-weight: 800;
+		font-size: 9px;
+		text-shadow: 0 1px 3px rgb(0 0 0 / 30%);
+		opacity: 0%;
+		transition:
+			opacity 0.3s ease 0.4s,
+			transform 0.3s ease 0.4s;
+		transform: translateY(5px);
+	}
+
+	/* Open: the goodie link is hovered or focused, or there is no hover at all. */
+	:global(.goodie:hover) .folder-container,
+	:global(.goodie:focus-visible) .folder-container {
+		transform: rotateX(10deg) rotateY(-5deg);
+	}
+
+	:global(.goodie:hover) .folder-front-wrapper,
+	:global(.goodie:focus-visible) .folder-front-wrapper {
+		transform: rotateX(-50deg);
+	}
+
+	:global(.goodie:hover) .counter,
+	:global(.goodie:focus-visible) .counter {
+		opacity: 100%;
+		transition-delay: 0.2s;
+		transform: scale(1) translateY(0);
+	}
+
+	:global(.goodie:hover) .shine,
+	:global(.goodie:focus-visible) .shine {
+		left: 150%;
+		transition: left 0.8s ease-in-out 0.3s;
+	}
+
+	:global(.goodie:hover) .file-text,
+	:global(.goodie:focus-visible) .file-text {
+		opacity: 100%;
+		transform: translateY(0);
+	}
+
+	:global(.goodie:hover) .file-1,
+	:global(.goodie:focus-visible) .file-1 {
+		transform: translateY(-70px) rotate(-10deg) translateX(-15px) translateZ(20px);
+	}
+
+	:global(.goodie:hover) .file-2,
+	:global(.goodie:focus-visible) .file-2 {
+		transform: translateY(-55px) rotate(8deg) translateX(18px) translateZ(10px);
+	}
+
+	:global(.goodie:hover) .file-3,
+	:global(.goodie:focus-visible) .file-3 {
+		transform: translateY(-40px) rotate(-15deg) translateX(-8px);
+	}
+
+	:global(.goodie:hover) .file-4,
+	:global(.goodie:focus-visible) .file-4 {
+		transform: translateY(-25px) rotate(12deg) translateX(12px);
+	}
+
+	:global(.goodie:hover) .file-5,
+	:global(.goodie:focus-visible) .file-5 {
+		transform: translateY(-10px) rotate(-5deg);
+	}
+
+	@media (hover: none) {
+		.folder-container {
+			transform: rotateX(10deg) rotateY(-5deg);
+		}
+
+		.folder-front-wrapper {
+			transform: rotateX(-50deg);
+		}
+
+		.counter,
+		.file-text {
+			opacity: 100%;
+			transform: none;
+		}
+
+		.file-1 {
+			transform: translateY(-70px) rotate(-10deg) translateX(-15px) translateZ(20px);
+		}
+
+		.file-2 {
+			transform: translateY(-55px) rotate(8deg) translateX(18px) translateZ(10px);
+		}
+
+		.file-3 {
+			transform: translateY(-40px) rotate(-15deg) translateX(-8px);
+		}
+
+		.file-4 {
+			transform: translateY(-25px) rotate(12deg) translateX(12px);
+		}
+
+		.file-5 {
+			transform: translateY(-10px) rotate(-5deg);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.folder *,
+		.folder-container {
+			transition-delay: 0s !important;
+			transition-duration: 0s !important;
+		}
+	}
+</style>
