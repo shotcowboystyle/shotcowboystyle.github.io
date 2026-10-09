@@ -5,6 +5,30 @@ screenshotImage: ../../assets/images/clean-break-screenshot.png
 cardColor: '#06070c'
 cardBg: ../../assets/images/clean-break/card-bg.svg
 cardBgMobile: ../../assets/images/clean-break/card-bg-mobile.svg
+logo: ../../assets/images/clean-break/logo.svg
+brandColors:
+  - token: '--cb-surface-base'
+    hex: '#06070c'
+  - token: '--cb-surface-raised'
+    hex: '#0f1119'
+  - token: '--cb-border-hairline'
+    hex: '#202435'
+  - token: '--cb-ink-primary'
+    hex: '#eff1f8'
+  - token: '--cb-ink-secondary'
+    hex: '#a3aac0'
+  - token: '--cb-ink-muted'
+    hex: '#7b8194'
+  - token: '--cb-accent'
+    hex: '#8fa0e8'
+  - token: '--cb-accent-contrast'
+    hex: '#a8b6f0'
+  - token: '--cb-aurora-from'
+    hex: '#2e2a5e'
+  - token: '--cb-aurora-to'
+    hex: '#1b3352'
+  - token: '--cb-danger'
+    hex: '#e8607a'
 cardAurora:
   - '#2e2a5e'
   - '#1b3352'
