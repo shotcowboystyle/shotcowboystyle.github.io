@@ -6,6 +6,27 @@ cardColor: '#f2f1ec'
 cardInk: '#1b1a17'
 cardBg: ../../assets/images/charleston-bonsai/card-bg.svg
 cardBgMobile: ../../assets/images/charleston-bonsai/card-bg-mobile.svg
+logo: ../../assets/images/charleston-bonsai/logo.svg
+coverColor: '#151714'
+brandColors:
+  - token: '--ink-1'
+    hex: '#151714'
+  - token: '--ink-2'
+    hex: '#4c4e49'
+  - token: '--ink-3'
+    hex: '#7e827c'
+  - token: '--ink-4'
+    hex: '#bbbfba'
+  - token: '--paper-1'
+    hex: '#f6f7f3'
+  - token: '--paper-2'
+    hex: '#eff0eb'
+  - token: '--paper-3'
+    hex: '#e6e9e3'
+  - token: '--accent'
+    hex: '#3a553a'
+  - token: '--accent-quiet'
+    hex: '#e3ebdf'
 url: https://www.charlestonbonsaico.com
 linkText: View Site
 tags:
@@ -25,7 +46,7 @@ gallery:
     alt: '"One tree, every season." with the same tree drawn through four seasons'
     device: desktop
   - image: ../../assets/images/charleston-bonsai/desktop-real-tree.webp
-    alt: '"This one is real.": a photographed crepe myrtle breaking through the ink drawing'
+    alt: '"This one is real.": a photograph of a crepe myrtle in its pot, set into the ink-wash page'
     device: desktop
   - image: ../../assets/images/charleston-bonsai/desktop-catalog.webp
     alt: '"Around two hundred trees, in the Lowcountry." with hanging catalog cards for each specimen'

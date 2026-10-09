@@ -66,11 +66,22 @@ test.describe('Index', () => {
 		await expect(pill).toBeFocused();
 	});
 
-	test('waits out the landing hero, which has its own Index link', async ({ page }) => {
+	test('waits out the landing hero, then opens from the pill', async ({ page }) => {
 		await page.goto('/');
+		const pill = page.locator('.index-pill');
 
-		await expect(page.locator('.index-pill')).toBeHidden();
-		await page.getByRole('button', { name: 'Index' }).click();
+		await expect(pill).toBeHidden();
+
+		// The pill arrives once the first plate has come halfway up over the hero.
+		await page.evaluate(() =>
+			window.scrollTo(
+				0,
+				document.querySelector('#project-cards')!.getBoundingClientRect().top + window.scrollY,
+			),
+		);
+		await expect(pill).toBeVisible();
+
+		await pill.click();
 		await expect(page.getByRole('dialog', { name: 'Index' })).toBeVisible();
 	});
 });

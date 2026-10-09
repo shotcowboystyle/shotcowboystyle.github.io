@@ -3,6 +3,7 @@ import About from '@/components/about/about.astro';
 import ExperimentsPlate from '@/components/experiments-plate.astro';
 // import MysteryBox from '@/components/about/mystery-box.astro';
 import HeaderContent from '@/components/header-content.astro';
+import ProjectCardBg from '@/components/project-card-bg.astro';
 import ProjectCard from '@/components/project-card.astro';
 import { getProjects, plateBackground } from '@/lib/projects';
 
@@ -43,26 +44,12 @@ const projects = await getProjects();
 				>
 					{/*
 					 * The project's art, outside the plate-turn so the hover tilt opens
-					 * onto it rather than onto a flat edge. Its ground is `cardColor`, so
-					 * nothing shifts while it loads.
+					 * onto it rather than onto a flat edge.
 					 */}
-					{project.data.cardBg && (
-						<picture>
-							{project.data.cardBgMobile && (
-								<source
-									media="(max-width: 767px)"
-									srcset={project.data.cardBgMobile.src}
-								/>
-							)}
-							<img
-								src={project.data.cardBg.src}
-								alt=""
-								loading="lazy"
-								decoding="async"
-								class="js-card-bg pointer-events-none absolute inset-0 h-full w-full object-cover"
-							/>
-						</picture>
-					)}
+					<ProjectCardBg
+						data={project.data}
+						class="js-card-bg"
+					/>
 					<ProjectCard project={project} />
 				</div>
 			</div>

@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	data: CollectionEntry<'project'>['data'];
+	class?: string;
+}
+
+const { data, class: className } = Astro.props;
+---
+
+{/*
+ * A project's card art, filling its positioned parent. Its ground is
+ * `cardColor`, so nothing shifts while it loads.
+ */}
+{data.cardBg && (
+	<picture>
+		{data.cardBgMobile && (
+			<source
+				media="(max-width: 767px)"
+				srcset={data.cardBgMobile.src}
+			/>
+		)}
+		<img
+			src={data.cardBg.src}
+			alt=""
+			loading="lazy"
+			decoding="async"
+			class:list={['pointer-events-none absolute inset-0 h-full w-full object-cover', className]}
+		/>
+	</picture>
+)}

@@ -6,13 +6,23 @@ cardColor: '#e9e9e7'
 cardInk: '#1c1d21'
 cardBg: ../../assets/images/holy-city-live/card-bg.svg
 cardBgMobile: ../../assets/images/holy-city-live/card-bg-mobile.svg
+logo: ../../assets/images/holy-city-live/logo-reverse.png
+coverColor: '#141a22'
+brandColors:
+  - token: 'ink'
+    hex: '#141a22'
+  - token: 'harbor'
+    hex: '#1d4e89'
+  - token: 'harbor-light'
+    hex: '#8fb6e3'
+  - token: 'paper'
+    hex: '#f6f4ee'
 url: https://www.holycity.live
 linkText: View Site
 tags:
   - Typescript
   - Data Viz
   - Maps
-variant: split
 gallery:
   - image: ../../assets/images/holy-city-live/desktop-flood-heat.webp
     alt: 'Flood & Heat Risk: the flooding outlook and an hourly tide-and-rain forecast over a terrain map of the peninsula'

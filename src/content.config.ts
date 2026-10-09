@@ -76,6 +76,39 @@ const projectCollection = defineCollection({
 			cardAurora: z
 				.tuple([z.string().regex(/^#[0-9a-f]{6}$/i), z.string().regex(/^#[0-9a-f]{6}$/i)])
 				.optional(),
+			/**
+			 * The project's own logo, filling the folio's cover band in place of the
+			 * screenshot. Pick the variant that reads on `cardColor`.
+			 */
+			logo: image().optional(),
+			/**
+			 * Brand art for the cover band, shown edge to edge. Takes precedence
+			 * over `logo`, for a brand whose mark lives in a full illustration.
+			 */
+			cover: image().optional(),
+			/**
+			 * The cover band's ground, behind `cover` or `logo`: the art's own
+			 * background so it reads edge to edge, or a brand color that sets the
+			 * mark apart from the plate. Hex-only, as `cardColor`.
+			 */
+			coverColor: z
+				.string()
+				.regex(/^#[0-9a-f]{6}$/i, 'coverColor must be a 6-digit hex color')
+				.optional(),
+			/**
+			 * The brand's color tokens, shown as swatches on the folio. `token` is
+			 * the name as the brand ships it; `hex` is its value, converted to hex
+			 * where the brand defines it in another space. Hex-only for the same
+			 * inline `style` safety reason as `cardColor`.
+			 */
+			brandColors: z
+				.array(
+					z.object({
+						token: z.string(),
+						hex: z.string().regex(/^#[0-9a-f]{6}$/i, 'hex must be a 6-digit hex color'),
+					}),
+				)
+				.default([]),
 		}),
 });
 

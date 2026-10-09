@@ -10,11 +10,11 @@ import Contact from '@/components/contact.astro';
 
 <div
 	id="about-wrapper"
-	class="pointer-events-none relative grid h-auto w-full auto-cols-[1fr] grid-cols-[1fr] grid-rows-[auto] gap-8 p-5 sm:min-h-screen sm:grid-cols-[1fr_1fr] sm:grid-rows-[auto] sm:gap-10 sm:p-8 lg:gap-8 lg:p-6 xl:grid-cols-[1fr_1fr_1fr_1fr] xl:grid-rows-[auto_auto_auto]"
+	class="pointer-events-none relative grid h-auto w-full auto-cols-[1fr] grid-cols-[1fr] grid-rows-[auto] gap-8 p-6 min-[45rem]:gap-5 min-[45rem]:p-4 lg:gap-6 lg:p-5 min-[45rem]:grid-cols-[1fr_1fr_1fr] min-[45rem]:grid-rows-[auto_auto_auto_auto] lg:min-h-screen lg:grid-cols-[1fr_1fr_1fr_1fr] lg:grid-rows-[auto_auto_auto]"
 >
 	<div
 		id="about-box-bio"
-		class="bg-primary text-primary-content pointer-events-auto relative grid auto-cols-[1fr] grid-flow-row grid-cols-[1fr] grid-rows-[auto] gap-10 overflow-hidden rounded-2xl px-6 pt-16 pb-4 select-auto sm:rounded-3xl sm:p-12 md:grid-flow-col md:grid-cols-[1fr_1fr] xl:grid-flow-row xl:grid-cols-[1fr] xl:p-10 2xl:grid-flow-col 2xl:grid-cols-[1fr_1fr]"
+		class="bg-primary text-primary-content pointer-events-auto relative grid auto-cols-[1fr] grid-flow-row grid-cols-[1fr] grid-rows-[auto] gap-10 overflow-hidden rounded-2xl px-6 pt-16 pb-4 select-auto sm:p-6 lg:p-8 2xl:grid-flow-col 2xl:grid-cols-[1fr_1fr]"
 	>
 		<Bio />
 	</div>
@@ -22,7 +22,7 @@ import Contact from '@/components/contact.astro';
 	<section
 		id="cv"
 		aria-label="CV"
-		class="bg-accent pointer-events-auto relative flex flex-col overflow-hidden rounded-2xl sm:rounded-3xl"
+		class="bg-accent pointer-events-auto relative flex flex-col overflow-hidden rounded-2xl"
 	>
 		<Cv />
 	</section>
@@ -50,7 +50,7 @@ import Contact from '@/components/contact.astro';
 
 	<div
 		id="back-to-top"
-		class="grid-about-box !bg-warning !text-warning-content @container pointer-events-auto !grid !auto-cols-[1fr] !grid-flow-col !grid-cols-[auto_auto] !grid-rows-[auto] !gap-4 overflow-hidden !p-0 transition-transform hover:scale-105 sm:!p-4 lg:min-h-[25vh] lg:!p-0"
+		class="grid-about-box !bg-warning !text-warning-content @container pointer-events-auto !grid !auto-cols-[1fr] !grid-flow-col !grid-cols-[auto_auto] !grid-rows-[auto] !gap-4 overflow-hidden !p-0 transition-transform hover:scale-105 xl:min-h-[25vh]"
 	>
 		<BackToTop />
 	</div>
@@ -66,131 +66,108 @@ import Contact from '@/components/contact.astro';
 <style>
 	@reference "../../styles/base.css";
 
-	@media screen and (orientation: landscape) and (hover: none) {
-		#about-wrapper {
-			@apply h-auto grid-cols-[1fr_1fr_1fr] grid-rows-[auto] gap-8 p-5;
+	/*
+	 * Where the bento is taller than the screen, spacing and type scale with
+	 * viewport width, like the reference. Tailwind utilities read these theme
+	 * variables, so they rescale only the bento; without `--bento-rem` they
+	 * equal Tailwind's defaults.
+	 */
+	#about-wrapper {
+		--spacing: calc(var(--bento-rem, 1rem) * 0.25);
+		--radius-2xl: var(--bento-rem, 1rem);
+		--text-xs: calc(var(--bento-rem, 1rem) * 0.75);
+		--text-sm: calc(var(--bento-rem, 1rem) * 0.875);
+		--text-base: var(--bento-rem, 1rem);
+		--text-lg: calc(var(--bento-rem, 1rem) * 1.125);
+		--text-xl: calc(var(--bento-rem, 1rem) * 1.25);
+		--text-2xl: calc(var(--bento-rem, 1rem) * 1.5);
+		--text-3xl: calc(var(--bento-rem, 1rem) * 1.875);
+		--text-4xl: calc(var(--bento-rem, 1rem) * 2.25);
+		--text-5xl: calc(var(--bento-rem, 1rem) * 3);
+		--text-6xl: calc(var(--bento-rem, 1rem) * 3.75);
+
+		/*
+		 * Portrait tablets: 11.9px on an iPad mini (744×1133); vh caps shorter
+		 * ones. The grid fills the screen and the two small-card rows split the
+		 * leftover height evenly instead of each hugging its content.
+		 */
+		@media (width >= 45rem) and (width < theme(--breakpoint-lg)) and (orientation: portrait) {
+			--bento-rem: min(1.6vw, 1.05vh);
+
+			grid-template-rows: auto auto 1fr 1fr;
+			height: 100vh;
+		}
+
+		/* Wide-but-short screens: the reference's 0.9vw, 10.2px at 1133×744. */
+		@media (width >= theme(--breakpoint-lg)) and (height <= 900px) {
+			--bento-rem: 0.9vw;
 		}
 	}
 
 	/*
-	 * Two columns from sm to xl, so no cell is squeezed to a third of a tablet
-	 * or a quarter of a small laptop; the four-column bento starts at xl.
+	 * Mirrors diegolivworks.webflow.io: one column on phones, a 3×4 bento on
+	 * tablets, and the 4×3 bento from lg up. The tablet layout starts at 45rem
+	 * rather than md (48rem) so an iPad mini (744px) gets it in portrait.
 	 */
 	#about-box-bio {
-		grid-area: span 1 / span 1 / span 1 / span 1;
-
-		@media (width >= theme(--breakpoint-sm)) {
-			grid-area: 1 / 1 / 2 / 3;
-		}
-
-		@media (width >= theme(--breakpoint-xl)) {
+		@media (width >= 45rem) {
 			grid-area: 1 / 1 / 3 / 3;
-		}
-
-		@media screen and (orientation: landscape) and (hover: none) {
-			grid-area: 1 / span 3 / 1 / span 3;
 		}
 	}
 
 	#cv {
-		grid-area: span 1 / span 1 / span 1 / span 1;
-
-		@media (width >= theme(--breakpoint-sm)) {
-			grid-area: 2 / 1 / 3 / 2;
-		}
-
-		@media (width >= theme(--breakpoint-xl)) {
+		@media (width >= 45rem) {
 			grid-area: 1 / 3 / 3 / 4;
-		}
-
-		@media screen and (orientation: landscape) and (hover: none) {
-			grid-area: 2 / span 3 / 2 / span 3;
 		}
 	}
 
 	#about-box-location {
-		grid-area: span 1 / span 1 / span 1 / span 1;
-
-		@media (width >= theme(--breakpoint-sm)) {
+		@media (width >= 45rem) {
 			grid-area: 3 / 1 / 4 / 2;
-		}
-
-		@media screen and (orientation: landscape) and (hover: none) {
-			@apply min-h-[240px];
-
-			grid-area: span 2 / 1 / span 2 / 1;
 		}
 	}
 
 	#about-box-goodies {
-		grid-area: span 1 / span 1 / span 1 / span 1;
-
-		@media (width >= theme(--breakpoint-sm)) {
+		@media (width >= 45rem) {
 			grid-area: 3 / 2 / 4 / 3;
-		}
-
-		@media screen and (orientation: landscape) and (hover: none) {
-			@apply min-h-[240px];
-
-			grid-area: span 2 / 2 / span 2 / 2;
 		}
 	}
 
 	#about-box-mystery-box {
-		grid-area: span 1 / span 1 / span 1 / span 1;
-
-		@media (width >= theme(--breakpoint-sm)) {
+		@media (width >= 45rem) {
 			grid-area: 4 / 1 / 5 / 2;
 		}
 
-		@media (width >= theme(--breakpoint-xl)) {
+		@media (width >= theme(--breakpoint-lg)) {
 			grid-area: 3 / 3 / 4 / 4;
-		}
-
-		@media screen and (orientation: landscape) and (hover: none) {
-			@apply min-h-[240px];
-
-			grid-area: span 2 / 3 / span 2 / 3;
 		}
 	}
 
 	#back-to-top {
 		grid-area: 7 / 1 / 9 / 2;
 
-		@media (width >= theme(--breakpoint-sm)) {
+		@media (width >= 45rem) {
 			grid-area: 4 / 2 / 5 / 3;
 		}
 
-		@media (width >= theme(--breakpoint-xl)) {
+		@media (width >= theme(--breakpoint-lg)) {
 			grid-area: 1 / 4 / 2 / 5;
-		}
-
-		@media screen and (orientation: landscape) and (hover: none) {
-			grid-area: 5 / 3 / 6 / 3;
 		}
 	}
 
 	#about-box-contact {
 		grid-area: 6 / 1 / 7 / 2;
 
-		@media (width >= theme(--breakpoint-sm)) {
-			grid-area: 2 / 2 / 3 / 3;
+		@media (width >= 45rem) {
+			grid-area: 3 / 3 / 5 / 4;
 		}
 
-		@media (width >= theme(--breakpoint-xl)) {
+		@media (width >= theme(--breakpoint-lg)) {
 			grid-area: 2 / 4 / 4 / 5;
-		}
-
-		@media screen and (orientation: landscape) and (hover: none) {
-			grid-area: 5 / span 2 / 6 / span 2;
 		}
 	}
 
 	.grid-about-box {
 		@apply text-base-content relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white p-10 text-sm;
-
-		@media (width >= theme(--breakpoint-sm)) {
-			@apply rounded-3xl;
-		}
 	}
 </style>

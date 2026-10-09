@@ -2,13 +2,18 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 
 type Project = CollectionEntry<'project'>;
 
+/** Project slugs in display order. A project not listed here sorts last. */
+const ORDER = ['charleston-bonsai', 'isla-suds', 'kalmia-woods', 'clean-break', 'holy-city-live'];
+
+const rank = (id: string) => (ORDER.includes(id) ? ORDER.indexOf(id) : ORDER.length);
+
 /**
  * The one project order, shared by the landing stack, the folios and the
- * Index. Filename order, which is what the stack has always used.
+ * Index.
  */
 export async function getProjects(): Promise<Project[]> {
 	const projects = await getCollection('project');
-	return projects.sort((a, b) => a.id.localeCompare(b.id));
+	return projects.sort((a, b) => rank(a.id) - rank(b.id) || a.id.localeCompare(b.id));
 }
 
 /** The plate after this one, wrapping from the last back to the first. */

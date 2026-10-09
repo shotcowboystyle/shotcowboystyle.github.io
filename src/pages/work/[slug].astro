@@ -2,6 +2,7 @@
 import BackLink from '@/components/back-link.astro';
 import CircleButton from '@/components/circle-button.astro';
 import PhoneFrame from '@/components/phone-frame.astro';
+import ProjectCardBg from '@/components/project-card-bg.astro';
 import BaseLayout from '@/layouts/base.astro';
 import { getProjects, nextProject, plateBackground } from '@/lib/projects';
 import { Image } from 'astro:assets';
@@ -73,7 +74,43 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 				 * up edge to edge. That change is what reads as having turned the page,
 				 * while the title below stays exactly where the card had it.
 				 */}
-				{isPhoneCover ? (
+				{data.cover ? (
+					<div
+						class="folio-cover-art"
+						style={data.coverColor ? `background-color: ${data.coverColor};` : undefined}
+					>
+						<Image
+							src={data.cover}
+							widths={[720, 1080, 1440, data.cover.width]}
+							sizes="100vw"
+							alt=""
+							loading="eager"
+						/>
+					</div>
+				) : data.logo ? (
+					/* The title sits right below, so the mark is decorative here. */
+					<div
+						class="folio-cover-logo"
+						style={data.coverColor ? `background-color: ${data.coverColor};` : undefined}
+					>
+						{data.logo.format === 'svg' ? (
+							<img
+								src={data.logo.src}
+								width={data.logo.width}
+								height={data.logo.height}
+								alt=""
+							/>
+						) : (
+							<Image
+								src={data.logo}
+								widths={[720, 1440]}
+								sizes="(min-width: 640px) 40rem, 80vw"
+								alt=""
+								loading="eager"
+							/>
+						)}
+					</div>
+				) : isPhoneCover ? (
 					<div class="folio-cover-phone">
 						<PhoneFrame class="folio-cover-phone-frame">
 							<Image
@@ -163,6 +200,32 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 					</div>
 				)}
 
+				{data.brandColors.length > 0 && (
+					<section
+						class="folio-palette"
+						aria-labelledby="folio-palette-heading"
+					>
+						<h2
+							id="folio-palette-heading"
+							class="folio-palette-heading"
+						>
+							Palette
+						</h2>
+						<ul class="folio-swatches">
+							{data.brandColors.map(({ token, hex }) => (
+								<li>
+									<span
+										class="folio-swatch-chip"
+										style={`background-color: ${hex};`}
+									/>
+									<code class="folio-swatch-token">{token}</code>
+									<span class="folio-swatch-hex">{hex.toUpperCase()}</span>
+								</li>
+							))}
+						</ul>
+					</section>
+				)}
+
 				{data.gallery.length > 0 && (
 					<section
 						class="folio-gallery"
@@ -216,15 +279,20 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 	>
 		<a
 			href={`/work/${next.id}/`}
-			class="folio-next plate-turn flex flex-col justify-end gap-3 rounded-2xl p-5 sm:rounded-3xl sm:p-12 lg:p-16"
+			class:list={[
+				'folio-next plate-turn relative flex flex-col justify-end gap-3 overflow-hidden rounded-2xl p-5 sm:rounded-3xl sm:p-12 lg:p-16',
+				/* Split cards keep their art clear of the top of the right half: copy goes there. */
+				next.data.variant === 'split' && 'sm:justify-start sm:pl-[50%] lg:pl-[50%]',
+			]}
 			style={plateBackground(next.data)}
 			data-folio-slug={next.id}
 			data-astro-prefetch
 		>
-			<span class="text-xs font-medium tracking-wide uppercase">Next project</span>
+			<ProjectCardBg data={next.data} />
+			<span class="relative text-xs font-medium tracking-wide uppercase">Next project</span>
 			<span
 				data-folio-title
-				class="folio-title font-bold uppercase"
+				class="folio-title relative font-bold uppercase"
 			>
 				{next.data.title}
 			</span>
@@ -299,6 +367,65 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 		border-block: 1px solid color-mix(in oklab, currentColor 15%, transparent);
 	}
 
+	/*
+	 * Same band again, holding the brand's mark. Logos run from a 7:1 lockup to
+	 * a squarish badge: a shared width with a height cap keeps them at a similar
+	 * weight.
+	 */
+	.folio-cover-logo {
+		display: flex;
+		flex: 1 1 0;
+		justify-content: center;
+		align-items: center;
+		min-height: 14rem;
+		padding: 2.5rem 1.5rem;
+		border-block: 1px solid color-mix(in oklab, currentColor 15%, transparent);
+
+		:global(img) {
+			object-fit: contain;
+			width: min(100%, 40rem);
+			height: auto;
+			max-height: 10rem;
+
+			@media (width >= theme(--breakpoint-sm)) {
+				max-height: 16rem;
+			}
+		}
+	}
+
+	/*
+	 * Brand art across the band, whole at any band shape: contained, sat on the
+	 * band's floor, with `coverColor` filling the rest.
+	 */
+	.folio-cover-art {
+		position: relative;
+		flex: 1 1 0;
+		min-height: 14rem;
+		border-block: 1px solid color-mix(in oklab, currentColor 15%, transparent);
+
+		:global(img) {
+			position: absolute;
+			inset: 0;
+			object-fit: contain;
+			object-position: center bottom;
+			width: 100%;
+			height: 100%;
+
+			/*
+			 * A tall band would leave the art a strip at the bottom. Its scene sits
+			 * in the middle ~60% of its width, so scale it up and let the empty
+			 * margins crop.
+			 */
+			@media (orientation: portrait) {
+				inset: auto auto 0 50%;
+				width: 160%;
+				max-width: none;
+				height: auto;
+				transform: translateX(-50%);
+			}
+		}
+	}
+
 	/* Same band as the cover image, holding a whole phone instead of a crop. */
 	.folio-cover-phone {
 		display: flex;
@@ -354,6 +481,43 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 			margin-top: 3rem;
 			margin-bottom: 1rem;
 		}
+	}
+
+	.folio-palette {
+		margin-top: 6rem;
+	}
+
+	.folio-palette-heading {
+		@apply mb-6 text-xs tracking-wide normal-case opacity-70;
+	}
+
+	.folio-swatches {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+		gap: 1.75rem 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.folio-swatch-chip {
+		display: block;
+		aspect-ratio: 4 / 3;
+		margin-bottom: 0.625rem;
+		border: 1px solid color-mix(in oklab, currentColor 15%, transparent);
+		border-radius: 0.75rem;
+	}
+
+	.folio-swatch-token {
+		@apply block text-xs;
+
+		overflow-wrap: anywhere;
+	}
+
+	.folio-swatch-hex {
+		@apply block text-xs opacity-70;
+
+		font-variant-numeric: tabular-nums;
 	}
 
 	.folio-gallery {

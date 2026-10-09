@@ -5,12 +5,17 @@ import SvgSprite from '@/components/SvgSprite.astro';
 import { CONTACT_MAILTO_HREF } from '@/utils/email.server';
 import { getCollection } from 'astro:content';
 
-const socials = await getCollection('social');
+// The glob loader returns entries alphabetically; unlisted icons sort last.
+const order = ['github', 'linkedin', 'instagram', 'facebook'];
+const rank = (icon: string) => (order.includes(icon) ? order.indexOf(icon) : order.length);
+const socials = (await getCollection('social')).sort(
+	(a, b) => rank(a.data.icon) - rank(b.data.icon),
+);
 ---
 
 <div
 	id="header-content-wrapper"
-	class="bg-base-100 flex w-full flex-col justify-between rounded-2xl p-5 text-black sm:rounded-3xl sm:p-24 lg:p-20"
+	class="bg-base-100 flex w-full flex-col justify-between rounded-2xl p-5 text-black sm:rounded-3xl sm:p-24 md:p-12 lg:p-20"
 >
 	<div class="flex items-center justify-between">
 		<a
@@ -22,7 +27,7 @@ const socials = await getCollection('social');
 		</a>
 
 		<div class="pointer-events-auto grid auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] content-center items-center justify-end justify-items-end gap-8">
-			<div class="hidden sm:block">
+			<div class="hidden lg:block">
 				<Availability />
 			</div>
 
@@ -66,7 +71,7 @@ const socials = await getCollection('social');
 				</div>
 			</div>
 
-			<div class="mt-3 sm:hidden">
+			<div class="mt-3 lg:hidden">
 				<Availability />
 			</div>
 
@@ -92,7 +97,7 @@ const socials = await getCollection('social');
 
 				<p
 					id="header-intro"
-					class="c-animated-text js-split-words mt-4 mb-0 max-w-[28ch] sm:mb-16 lg:mb-4 lg:text-right"
+					class="c-animated-text js-split-words mt-4 mb-0 max-w-[28ch] sm:mb-16 xl:mb-4 lg:text-right"
 				>
 					Motion is the language. Fifteen years of shipping considered work for teams that treat
 					craft as evidence.
@@ -107,7 +112,7 @@ const socials = await getCollection('social');
 		>
 			<div
 				id="header-links"
-				class="grid auto-cols-[1fr] grid-flow-row grid-cols-[auto] grid-rows-[auto] items-center gap-y-8 sm:auto-cols-auto sm:grid-flow-col sm:!gap-4"
+				class="grid auto-cols-[1fr] grid-flow-row grid-cols-[auto] grid-rows-[auto] items-center gap-y-8 lg:auto-cols-auto lg:grid-flow-col lg:!gap-4"
 			>
 				<ul class="header-social-links m-0 grid list-none auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] items-center justify-start gap-4 p-0 max-sm:-ml-3">
 					{socials.map((social) => (
@@ -138,14 +143,14 @@ const socials = await getCollection('social');
 						About Me
 					</a>
 
-					<button
+					<!-- <button
 						type="button"
 						class="cursor-pointer text-sm font-medium uppercase underline-offset-4 hover:underline"
 						data-index-open
 						aria-haspopup="dialog"
 					>
 						Index
-					</button>
+					</button> -->
 
 					<ResumeButton />
 				</div>

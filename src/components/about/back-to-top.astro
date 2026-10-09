@@ -4,10 +4,12 @@
 <a
 	href="#header"
 	id="back-to-top-button"
-	class="scroll-link text-warning-content relative grid h-full w-full auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 no-underline sm:p-8 lg:gap-4 lg:p-10"
+	class="scroll-link text-warning-content relative grid h-full w-full auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 no-underline"
 	role="button"
 >
-	<h3 class="back-to-top-title pointer-events-none mb-0 self-end !leading-none">Back to the top</h3>
+	<h3 class="back-to-top-title pointer-events-none mb-0 self-end !tracking-tight">
+		Back to the top
+	</h3>
 	<div
 		id="back-to-top-button-animation"
 		class="js-lottie-animation arrow-wrapper pointer-events-none relative z-10 self-end select-none"
@@ -28,12 +30,29 @@
 		}
 	}
 
-	/* Sized to the grid cell (the `@container` in about.astro), not the viewport. */
+	/*
+	 * Title and arrow share one size, taken from the grid cell (the
+	 * `@container` in about.astro), so they stay in proportion at every
+	 * breakpoint: the title sets as two lines ("Back to / the top", ~3.9em
+	 * wide) and the arrow matches their height.
+	 */
+	#back-to-top-button {
+		--title-size: 10.5cqi;
+
+		@media (width >= theme(--breakpoint-lg)) {
+			--title-size: 11cqi;
+		}
+	}
+
 	.back-to-top-title {
-		font-size: clamp(2.5rem, 17cqi, 4.5rem);
+		font-weight: 700;
+		font-size: var(--title-size);
+		text-transform: uppercase;
 	}
 
 	.arrow-wrapper {
 		grid-area: span 1 / span 1 / span 1 / span 1;
+		height: calc(20cqi * 2);
+		aspect-ratio: 136 / 192;
 	}
 </style>
