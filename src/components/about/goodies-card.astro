@@ -1,0 +1,152 @@
+---
+import AnimationGrabberSlide from '@/components/about/goodies/animation-grabber-slide.astro';
+import LobsterJobstersSlide from '@/components/about/goodies/lobster-jobsters-slide.astro';
+
+/**
+ * The goodies, in carousel order. To add one: write a slide component for the
+ * artwork (decorative -- the title and description carry the meaning) and
+ * append an entry. Every link opens in a new tab.
+ */
+interface Goodie {
+	title: string;
+	description: string;
+	href: string;
+	/** Card fill and text color; keep the pair at WCAG AA contrast. */
+	background: string;
+	color: string;
+	Slide: typeof AnimationGrabberSlide;
+}
+
+const goodies: Goodie[] = [
+	{
+		title: 'Animation Grabber',
+		description: 'Point at any page that uses GSAP. Get its GSAP back.',
+		href: '/projects/animation-grabber/',
+		background: '#ffd43b',
+		color: '#1e1b4b',
+		Slide: AnimationGrabberSlide,
+	},
+	{
+		title: 'Lobster Jobsters',
+		description: 'Production-shaped OpenClaw agent workspaces, not just a SOUL.md.',
+		href: 'https://github.com/shotcowboystyle/lobster-jobsters',
+		background: '#1e1b2e',
+		color: '#ffffff',
+		Slide: LobsterJobstersSlide,
+	},
+];
+---
+
+<section
+	class="js-goodies goodies"
+	aria-roledescription="carousel"
+	aria-label="Goodies"
+>
+	<div class="js-goodies-track track">
+		{goodies.map(({ title, description, href, background, color, Slide }, i) => (
+			<a
+				class="js-goodie goodie"
+				href={href}
+				target="_blank"
+				rel="noopener noreferrer"
+				style={{ background, color }}
+			>
+				<span class="artwork">
+					<Slide />
+				</span>
+				<span class="caption">
+					<span class="title">{title}</span>
+					<span class="description">{description}</span>
+					<span class="sr-only">
+						(slide {i + 1} of {goodies.length}, opens in a new tab)
+					</span>
+				</span>
+			</a>
+		))}
+	</div>
+
+	<div class="dots">
+		{goodies.map(({ title }, i) => (
+			<button
+				type="button"
+				class="js-goodies-dot dot"
+				aria-label={`Show ${title}`}
+				aria-current={i === 0 ? 'true' : 'false'}
+			/>
+		))}
+	</div>
+</section>
+
+<script>
+	import GoodiesCarousel from '@/lib/goodies-carousel';
+
+	document
+		.querySelectorAll<HTMLElement>('.js-goodies')
+		.forEach((root) => new GoodiesCarousel(root));
+</script>
+
+<style>
+	@reference "../../styles/base.css";
+
+	.goodies {
+		@apply relative h-full overflow-hidden;
+	}
+
+	.track {
+		@apply flex h-full gap-4;
+
+		cursor: grab;
+
+		/* Vertical swipes still scroll the page; horizontal ones drag the track. */
+		touch-action: pan-y;
+
+		&:active {
+			cursor: grabbing;
+		}
+	}
+
+	.goodie {
+		@apply flex h-full shrink-0 basis-full flex-col overflow-hidden rounded-2xl p-6 no-underline select-none sm:rounded-3xl;
+
+		&:focus-visible {
+			@apply outline-2 -outline-offset-4 outline-current;
+		}
+	}
+
+	.artwork {
+		@apply flex min-h-0 flex-1 items-center justify-center py-4;
+	}
+
+	.caption {
+		@apply flex flex-col gap-1 pr-16;
+	}
+
+	.title {
+		@apply text-lg font-black;
+	}
+
+	.description {
+		@apply text-sm font-medium;
+	}
+
+	.dots {
+		@apply absolute right-4 bottom-4 flex;
+	}
+
+	/* 24px hit area around an 8px dot. */
+	.dot {
+		@apply grid size-6 cursor-pointer place-items-center border-0 bg-transparent p-0;
+
+		&::before {
+			@apply size-2 rounded-full bg-white/50 ring-1 ring-black/40 transition-transform content-[''];
+		}
+
+		&[aria-current='true']::before {
+			@apply scale-125 bg-white;
+		}
+
+		&:focus-visible {
+			@apply rounded-full outline-2 outline-white;
+		}
+	}
+</style>
