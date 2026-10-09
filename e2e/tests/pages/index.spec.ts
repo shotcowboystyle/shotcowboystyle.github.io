@@ -16,7 +16,7 @@ test.describe('Landing', () => {
 		const description = page.locator('meta[name="description"]');
 		await expect(description).toHaveAttribute(
 			'content',
-			'Motion is the language. Fifteen years of shipping considered work for teams that treat craft as evidence.',
+			'Fifteen years of combining creativity with attention to detail to created visually appealing and intuitive apps.',
 		);
 
 		const ogSiteName = page.locator('meta[property="og:title"]');
