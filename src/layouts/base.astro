@@ -64,6 +64,14 @@ const meta: PageMetaData = { ...DEFAULT_META, ...Astro.props.meta };
 		<OpenGraph meta={meta} />
 		<SiteVerification />
 
+		<script
+			is:inline
+			defer
+			src="https://cloud.umami.is/script.js"
+			data-website-id="1427b780-3626-4e70-87a5-09b06ce64b8e"
+			data-domains="shotcowboystyle.github.io"
+		></script>
+
 		<slot name="head-end" />
 	</head>
 
