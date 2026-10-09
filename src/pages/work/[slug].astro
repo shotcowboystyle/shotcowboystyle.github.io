@@ -1,6 +1,7 @@
 ---
 import BackLink from '@/components/back-link.astro';
 import CircleButton from '@/components/circle-button.astro';
+import PhoneFrame from '@/components/phone-frame.astro';
 import BaseLayout from '@/layouts/base.astro';
 import { getProjects, nextProject, plateBackground } from '@/lib/projects';
 import { Image } from 'astro:assets';
@@ -32,6 +33,9 @@ const phoneShots = data.gallery.filter((shot) => shot.device === 'phone');
  */
 const isWide = (index: number) =>
 	index === 0 || (index === desktopShots.length - 1 && (desktopShots.length - 1) % 2 === 1);
+
+/* A portrait cover is a phone screen: framed and whole, not cropped to a band. */
+const isPhoneCover = data.screenshotImage.height > data.screenshotImage.width;
 
 const liveLabel = `${data.linkText}: ${data.title}`;
 ---
@@ -71,14 +75,30 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 					 * while the title below stays exactly where the card had it.
 					 */
 				}
-				<Image
-					src={data.screenshotImage}
-					widths={[720, 1080, 1440, data.screenshotImage.width]}
-					sizes="100vw"
-					alt={`${data.title} screenshot`}
-					class="folio-cover-image"
-					loading="eager"
-				/>
+				{
+					isPhoneCover ? (
+						<div class="folio-cover-phone">
+							<PhoneFrame class="folio-cover-phone-frame">
+								<Image
+									src={data.screenshotImage}
+									widths={[480, 720, data.screenshotImage.width]}
+									sizes="(min-width: 640px) 24rem, 60vw"
+									alt={`${data.title} screenshot`}
+									loading="eager"
+								/>
+							</PhoneFrame>
+						</div>
+					) : (
+						<Image
+							src={data.screenshotImage}
+							widths={[720, 1080, 1440, data.screenshotImage.width]}
+							sizes="100vw"
+							alt={`${data.title} screenshot`}
+							class="folio-cover-image"
+							loading="eager"
+						/>
+					)
+				}
 
 				<div
 					class="flex items-end justify-between gap-8 p-5 max-sm:flex-col max-sm:items-start sm:p-12 lg:p-16"
@@ -186,13 +206,14 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 								<div class="folio-phones">
 									{phoneShots.map((shot) => (
 										<figure class="folio-shot folio-shot-phone">
-											<Image
-												src={shot.image}
-												widths={[240, 390, 780]}
-												sizes="(min-width: 640px) 20vw, 45vw"
-												alt=""
-												class="rounded-2xl"
-											/>
+											<PhoneFrame>
+												<Image
+													src={shot.image}
+													widths={[240, 390, 780]}
+													sizes="(min-width: 640px) 20vw, 45vw"
+													alt=""
+												/>
+											</PhoneFrame>
 											<figcaption>{shot.alt}</figcaption>
 										</figure>
 									))}
@@ -294,6 +315,26 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 		border-block: 1px solid color-mix(in oklab, currentColor 15%, transparent);
 	}
 
+	/* Same band as the cover image, holding a whole phone instead of a crop. */
+	.folio-cover-phone {
+		display: flex;
+		flex: 1 1 0;
+		justify-content: center;
+		align-items: center;
+		min-height: 22rem;
+		padding-block: 1.5rem;
+		border-block: 1px solid color-mix(in oklab, currentColor 15%, transparent);
+
+		/* The band only has a definite height once the plate fills the screen. */
+		:global(.folio-cover-phone-frame) {
+			height: 24rem;
+
+			@media (width >= theme(--breakpoint-sm)) {
+				height: 100%;
+			}
+		}
+	}
+
 	.folio-facts dt {
 		@apply text-xs tracking-wide uppercase opacity-70;
 	}
@@ -343,7 +384,7 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 		}
 	}
 
-	.folio-shot img {
+	.folio-shot:not(.folio-shot-phone) img {
 		width: 100%;
 		height: auto;
 		border: 1px solid color-mix(in oklab, currentColor 15%, transparent);

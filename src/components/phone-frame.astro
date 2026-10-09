@@ -1,0 +1,64 @@
+---
+/*
+ * An iPhone-style bezel for a portrait screen capture: slot the <Image> in.
+ * Pure CSS, so it scales with whatever width or height the parent gives it.
+ * The screen keeps a 390×844 ratio and crops from the top, which is where an
+ * app screen keeps its status bar and headline.
+ */
+interface Props {
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['phone-frame', className]}>
+	<div class="phone-screen"><slot /></div>
+</div>
+
+<style>
+	.phone-frame {
+		position: relative;
+
+		/* 390×844 screen plus a bezel of 3.5% of the width on every side. */
+		aspect-ratio: 1 / 2.0826;
+		border-radius: 15% / 7%;
+		background: oklch(14% 0.004 286deg);
+		box-shadow:
+			inset 0 0 0 1px rgb(255 255 255 / 14%),
+			0 1.5rem 3rem -1rem rgb(0 0 0 / 35%);
+	}
+
+	/* The Dynamic Island. */
+	.phone-frame::after {
+		content: '';
+		position: absolute;
+		top: 3.2%;
+		left: 50%;
+		width: 28%;
+		aspect-ratio: 10 / 3;
+		border-radius: 999px;
+		background: oklch(0% 0 0deg);
+		transform: translateX(-50%);
+	}
+
+	/*
+	 * Inset, not padding: padding % resolves against the parent's width, which
+	 * blew the bezel up wherever the frame sat in a wider box. Vertical inset %
+	 * is of the frame's height, so 3.5 / 2.0826 keeps the bezel even.
+	 */
+	.phone-screen {
+		position: absolute;
+		inset: 1.68% 3.5%;
+	}
+
+	.phone-frame :global(img) {
+		display: block;
+		object-fit: cover;
+		object-position: top;
+		width: 100%;
+		height: 100%;
+		border: 0;
+		border-radius: 12% / 5.6%;
+	}
+</style>

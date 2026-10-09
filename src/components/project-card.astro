@@ -1,5 +1,6 @@
 ---
 import CircleButton from '@/components/circle-button.astro';
+import PhoneFrame from '@/components/phone-frame.astro';
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
@@ -11,6 +12,9 @@ const { id, data } = Astro.props.project;
 const variant = data.variant;
 
 const tagList = data.tags;
+
+/* A portrait capture is a phone screen: it goes in the bezel, not the tinted box. */
+const isPhoneShot = data.screenshotImage.height > data.screenshotImage.width;
 
 /*
  * The card opens the project's folio, where the gallery, the facts and the link
@@ -83,14 +87,26 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 		variant === 'split' && (
 			<>
 				<div class="card-content split-content pointer-events-auto relative z-[2] grid h-full grid-rows-[auto_1fr] gap-8 sm:grid-cols-[1fr_1fr] sm:grid-rows-1 sm:gap-12 lg:gap-16">
-					<figure class="split-screenshot-frame js-card-shot relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
-						<Image
-							src={data.screenshotImage}
-							widths={[480, 680, 720, data.screenshotImage.width]}
-							alt={`${data.title} screenshot`}
-							class="split-screenshot h-full w-full object-contain"
-						/>
-					</figure>
+					{isPhoneShot ? (
+						<figure class="split-phone js-card-shot relative flex min-h-0 items-center justify-center">
+							<PhoneFrame class="split-phone-frame">
+								<Image
+									src={data.screenshotImage}
+									widths={[480, 680, 720, data.screenshotImage.width]}
+									alt={`${data.title} screenshot`}
+								/>
+							</PhoneFrame>
+						</figure>
+					) : (
+						<figure class="split-screenshot-frame js-card-shot relative flex items-center justify-center overflow-hidden rounded-xl p-4 sm:rounded-2xl sm:p-6">
+							<Image
+								src={data.screenshotImage}
+								widths={[480, 680, 720, data.screenshotImage.width]}
+								alt={`${data.title} screenshot`}
+								class="split-screenshot h-full w-full object-contain"
+							/>
+						</figure>
+					)}
 
 					<div class="split-body flex flex-col justify-between gap-8 sm:gap-6">
 						<div>
@@ -165,12 +181,12 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 	 * from where it sits instead.
 	 */
 	.project-screenshot {
-		@apply pointer-events-none absolute top-8 right-0 z-[1] inline-block w-[130%] max-w-none rounded-xl align-middle max-sm:left-0 sm:top-10 sm:right-auto sm:w-11/12 sm:max-w-full lg:top-12 lg:right-12 lg:w-[58%];
+		@apply pointer-events-none absolute top-8 right-5 left-5 z-[1] inline-block w-auto max-w-none rounded-xl align-middle sm:top-10 sm:right-auto sm:left-auto sm:w-11/12 sm:max-w-full lg:top-12 lg:right-12 lg:w-[58%];
 
 		border: 1px solid color-mix(in oklab, currentColor 15%, transparent);
 
 		@media screen and (orientation: landscape) and (hover: none) {
-			@apply top-8 right-8 w-[55%];
+			@apply top-8 right-8 left-auto w-[55%];
 		}
 	}
 
@@ -202,6 +218,16 @@ const CTA_LABEL = `${CTA_TEXT}: ${data.title}`;
 	@media (width >= theme(--breakpoint-sm)) {
 		.split-screenshot-frame {
 			max-height: none;
+		}
+	}
+
+	/* Height-led: the phone takes the cell's height and its width follows the ratio. */
+	.split-phone :global(.split-phone-frame) {
+		height: 100%;
+		max-height: 42vh;
+
+		@media (width >= theme(--breakpoint-sm)) {
+			max-height: 72vh;
 		}
 	}
 </style>
