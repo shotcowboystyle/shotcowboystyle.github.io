@@ -75,6 +75,24 @@ jobs:
           PUBLIC_MAPLIBRE_TILES_API_KEY: ${{ secrets.PUBLIC_MAPLIBRE_TILES_API_KEY }}
           PUBLIC_GOOGLE_SITE_VERIFICATION_ID: ${{ secrets.PUBLIC_GOOGLE_SITE_VERIFICATION_ID }}
 
+      # Pages serves a repo only at /<repo-name>/, so a nested /projects/ path
+      # can't be its own Pages deploy like /experiments/. Built here into dist
+      # instead; a change there ships on this repo's next deploy.
+      - name: Checkout animation-grabber
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: shotcowboystyle/animation-grabber
+          path: .projects/animation-grabber
+          persist-credentials: false
+
+      - name: Build animation-grabber site
+        working-directory: .projects/animation-grabber
+        run: |
+          pnpm install --frozen-lockfile --filter @animation-grabber/web
+          pnpm --filter @animation-grabber/web exec vite build \
+            --base=/projects/animation-grabber/ \
+            --outDir "$GITHUB_WORKSPACE/dist/projects/animation-grabber"
+
       - name: Upload pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
