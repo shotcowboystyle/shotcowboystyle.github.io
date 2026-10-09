@@ -16,10 +16,10 @@ tags:
 role: Architecture, build and production support
 gallery:
   - image: ../../assets/images/isla-suds/desktop-hero.webp
-    alt: 'Home page hero, desktop: "Natural skincare you can trust" among tumbling soap bars'
+    alt: 'Home page hero, desktop: "Natural skincare you can trust" among floating soap bars'
     device: desktop
   - image: ../../assets/images/isla-suds/desktop-fresh.webp
-    alt: '"Freshen up and feel great in your own skin" on a coral ground'
+    alt: '"Freshen up and feel great in your own skin" filling in word by word on a coral ground'
     device: desktop
   - image: ../../assets/images/isla-suds/desktop-silky-smooth.webp
     alt: '"We have 4 silky smooth sudsy soap bars" as the product rail arrives'
@@ -27,14 +27,29 @@ gallery:
   - image: ../../assets/images/isla-suds/desktop-product-cards.webp
     alt: 'Product cards for the organic goat milk soaps, each with its own add-to-cart'
     device: desktop
+  - image: ../../assets/images/isla-suds/desktop-simple-soap.webp
+    alt: '"Real gentle simple soap" with the ingredient chips laid over the bars'
+    device: desktop
+  - image: ../../assets/images/isla-suds/desktop-ingredients.webp
+    alt: 'The short version: moisturizing, no added fragrance, natural ingredients'
+    device: desktop
+  - image: ../../assets/images/isla-suds/desktop-bath.webp
+    alt: 'The bath film: "Side effects may include suds hair"'
+    device: desktop
+  - image: ../../assets/images/isla-suds/desktop-suds-happen.webp
+    alt: '"Suds happen everywhere" with customer photos fanning across the type'
+    device: desktop
   - image: ../../assets/images/isla-suds/phone-hero.webp
     alt: 'Home page hero on a phone'
     device: phone
-  - image: ../../assets/images/isla-suds/phone-own-skin.webp
-    alt: 'The brand statement on a phone'
-    device: phone
   - image: ../../assets/images/isla-suds/phone-products.webp
     alt: 'Product cards on a phone'
+    device: phone
+  - image: ../../assets/images/isla-suds/phone-bath.webp
+    alt: 'The bath film on a phone'
+    device: phone
+  - image: ../../assets/images/isla-suds/phone-suds-happen.webp
+    alt: '"Suds happen everywhere" on a phone'
     device: phone
 storyReady: false
 ---

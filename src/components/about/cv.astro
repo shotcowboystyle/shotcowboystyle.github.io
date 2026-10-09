@@ -8,13 +8,13 @@ const years = (start: string, end?: string) =>
 	`${start.slice(0, 4)}–${end ? end.slice(2, 4) : 'Now'}`;
 ---
 
-<div class="flex h-full flex-col gap-6 p-6 sm:p-8 xl:p-10">
+<div class="cv-card flex h-full flex-col gap-6 p-6 sm:p-8 xl:p-10">
 	<h2 class="text-4xl sm:text-5xl">CV</h2>
 
-	<ol class="cv-ledger flex flex-col gap-3 sm:gap-4">
+	<ol class="cv-ledger grid grid-cols-[auto_1fr] gap-x-4 gap-y-3 sm:gap-y-4">
 		{
 			roles.map(({ data }) => (
-				<li class="grid grid-cols-[auto_1fr] gap-x-4 text-sm leading-snug sm:text-base">
+				<li class="col-span-full grid grid-cols-subgrid text-sm leading-snug sm:text-base">
 					<span class="cv-years">{years(data.start, data.end)}</span>
 					<span>
 						<span class="block font-bold">{data.company}</span>
@@ -35,6 +35,21 @@ const years = (start: string, end?: string) =>
 </div>
 
 <style>
+	/*
+	 * One year column shared by every row (each row is a subgrid), so "2023–Now" and
+	 * "2018–23" line their company names up on the same edge. In a narrow cell
+	 * the column folds away and the years sit above each role instead.
+	 */
+	.cv-card {
+		container-type: inline-size;
+	}
+
+	@container (width < 14rem) {
+		.cv-ledger {
+			grid-template-columns: 1fr;
+		}
+	}
+
 	/* `nowrap` so "2023–Now" holds one line instead of breaking at the dash. */
 	.cv-years {
 		white-space: nowrap;

@@ -8,9 +8,7 @@
 	class="scroll-link text-warning-content relative grid h-full w-full auto-cols-[1fr] grid-flow-col grid-cols-[auto_auto] grid-rows-[auto] justify-between gap-2 overflow-hidden p-6 no-underline sm:p-8 lg:gap-4 lg:p-10"
 	role="button"
 >
-	<h3 class="pointer-events-none mb-0 self-end !text-6xl !leading-none sm:!text-7xl lg:!text-5xl">
-		Back to the top
-	</h3>
+	<h3 class="back-to-top-title pointer-events-none mb-0 self-end !leading-none">Back to the top</h3>
 	<div
 		id="back-to-top-button-animation"
 		class="js-lottie-animation arrow-wrapper pointer-events-none relative z-10 self-end select-none"
@@ -28,8 +26,13 @@
 
 	@media screen and (orientation: landscape) and (hover: none) {
 		#back-to-top-button h3 {
-			@apply !text-5xl font-semibold;
+			@apply font-semibold;
 		}
+	}
+
+	/* Sized to the grid cell (the `@container` in about.astro), not the viewport. */
+	.back-to-top-title {
+		font-size: clamp(2.5rem, 17cqi, 4.5rem);
 	}
 
 	.arrow-wrapper {

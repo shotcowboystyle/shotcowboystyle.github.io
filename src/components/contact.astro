@@ -20,14 +20,12 @@ import { CONTACT_EMAIL, CONTACT_MAILTO_HREF } from '@/utils/email.server';
 	</div>
 
 	<div class="relative z-10">
-		<h3
-			class="contact-button-title mb-6 text-5xl leading-[0.9] font-bold uppercase sm:text-6xl lg:text-7xl"
-		>
+		<h3 class="contact-button-title mb-6 leading-[0.9] font-bold uppercase">
 			Let’s build<br />something.
 		</h3>
 		<p
 			id="email-text"
-			class="js-inject-email-text contact-button-email mb-0 font-sans text-lg !leading-tight font-medium sm:text-xl lg:text-lg"
+			class="js-inject-email-text contact-button-email mb-0 font-sans !leading-tight font-medium"
 		>
 			{CONTACT_EMAIL}
 		</p>
@@ -43,10 +41,26 @@ import { CONTACT_EMAIL, CONTACT_MAILTO_HREF } from '@/utils/email.server';
 	 * cell was `bg-primary`; once it became `!bg-info` the dark green stayed put
 	 * and rendered at 1.83:1 on the blue.
 	 */
+
+	/*
+	 * Sized to the card, not the viewport: the cell is half the screen at sm and
+	 * a quarter of it from xl, and viewport steps clipped "SOMETHING." and
+	 * the address at the narrow end of each range.
+	 */
+	#contact-button {
+		container-type: inline-size;
+	}
+
+	.contact-button-title {
+		font-size: clamp(1.5rem, 15cqi, 4.5rem);
+	}
+
 	.contact-button-email {
+		font-size: clamp(0.875rem, 7.5cqi, 1.25rem);
 		text-decoration: underline;
 		text-decoration-thickness: 1px;
 		text-underline-offset: 0.2em;
+		overflow-wrap: anywhere;
 	}
 
 	.contact-button-email:hover {
@@ -56,10 +70,6 @@ import { CONTACT_EMAIL, CONTACT_MAILTO_HREF } from '@/utils/email.server';
 	@media screen and (orientation: landscape) and (hover: none) {
 		#contact-button {
 			@apply p-6;
-		}
-
-		.contact-button-title {
-			@apply !text-5xl;
 		}
 	}
 </style>
