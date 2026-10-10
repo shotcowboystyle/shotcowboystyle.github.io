@@ -139,9 +139,9 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 	</a>
 
 	<!--
-		`animate-spin-slow` was never defined in the theme, so the ring only ever
-		turned on hover. The rotation is the affordance — it says the ring is a
-		control — so it now runs from the theme's own 8s keyframe, motion-safe.
+		The ring turns only while the button is hovered or focused. Spinning a
+		textPath nonstop repaints every frame and was a measurable cost, so it
+		pauses in place rather than snapping back to 0°.
 	-->
 	<div
 		class="ring-rotor pointer-events-none absolute inset-2 motion-safe:animate-[spinCircle_8s_linear_infinite]"
@@ -214,6 +214,15 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 		}
 	}
 
+	.ring-rotor {
+		animation-play-state: paused;
+	}
+
+	.notify-button-wrapper:hover .ring-rotor,
+	.notify-button-wrapper:focus-within .ring-rotor {
+		animation-play-state: running;
+	}
+
 	:global(.lenis.lenis-scrolling) .ring-rotor {
 		animation-play-state: paused;
 	}
@@ -243,9 +252,11 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 	}
 
 	/* Set by the script below; after the hover rules so the `animation`
-	   shorthand there doesn't reset play-state back to running. */
-	.notify-button-wrapper[data-offscreen]
-		:is(.notify-button-space, .notify-button-stream, .notify-button-plane, .ring-rotor) {
+	   shorthand there doesn't reset play-state back to running. A plain list,
+	   not `:is()`: PurgeCSS drops rules that use `:is()`. */
+	.notify-button-wrapper[data-offscreen] .notify-button-space,
+	.notify-button-wrapper[data-offscreen] .notify-button-stream,
+	.notify-button-wrapper[data-offscreen] .notify-button-plane {
 		animation-play-state: paused;
 	}
 
@@ -313,7 +324,7 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 </style>
 
 <script>
-	// Pause the looping ring and stream while offscreen. "Offscreen" rather than
+	// Pause the looping starfield and stream while offscreen. "Offscreen" rather than
 	// "in view" so a no-JS render keeps animating.
 	const observer = new IntersectionObserver((entries) => {
 		for (const entry of entries) {
