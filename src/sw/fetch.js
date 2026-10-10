@@ -41,12 +41,12 @@ this.addEventListener('fetch', (event) => {
 						return await fetch(event.request);
 					}
 
-					response = await cache.match((event.request.url += 'index.html'));
+					response = await cache.match(url + 'index.html');
 					if (response) {
 						return response;
 					}
 
-					response = await cache.match((event.request.url += '/index.html'));
+					response = await cache.match(url + '/index.html');
 					if (response) {
 						return response;
 					}

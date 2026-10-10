@@ -116,12 +116,21 @@ const projects = await getProjects();
 		// A scroll listener rather than an IntersectionObserver: an anchor jump or a
 		// restored scroll position can skip clean over the plate without ever
 		// changing its intersection, and the pill would stay hidden.
+		// The plate's document offset is measured once (and on resize), not per
+		// scroll: a layout read in a scroll handler lands right after ScrollTrigger's
+		// transform writes and forces a reflow every frame.
+		let plateTop = 0;
+		const measure = () => {
+			plateTop = firstPlate.getBoundingClientRect().top + window.scrollY;
+			update();
+		};
 		const update = () =>
 			document.documentElement.classList.toggle(
 				'past-hero',
-				firstPlate.getBoundingClientRect().top < window.innerHeight / 2,
+				plateTop - window.scrollY < window.innerHeight / 2,
 			);
 		window.addEventListener('scroll', update, { passive: true });
-		update();
+		window.addEventListener('resize', measure, { passive: true });
+		measure();
 	}
 </script>
