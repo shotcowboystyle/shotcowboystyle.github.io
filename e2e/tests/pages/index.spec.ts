@@ -16,7 +16,7 @@ test.describe('Landing', () => {
 		const description = page.locator('meta[name="description"]');
 		await expect(description).toHaveAttribute(
 			'content',
-			'Fifteen years of combining creativity with attention to detail to created visually appealing and intuitive apps.',
+			'Fifteen years of combining creativity with attention to detail to create visually appealing and intuitive apps.',
 		);
 
 		const ogSiteName = page.locator('meta[property="og:title"]');
