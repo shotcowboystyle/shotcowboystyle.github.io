@@ -3,7 +3,12 @@ import { prefersReducedMotion } from '@/utils/motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import type { AnimationItem } from 'lottie-web';
-import lottie from 'lottie-web';
+/*
+ * The light build is the SVG renderer without expression support, about half
+ * the full player. None of the animations in `public/animation/` use
+ * expressions; switch back to `lottie-web` if one ever does.
+ */
+import lottie from 'lottie-web/build/player/lottie_light';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,11 +72,18 @@ export default class ScrubControlledAnimation {
 			(container.getAttribute('data-animation-play-control') as AnimationPlayControl | null) ??
 			'autoplay';
 
+		const autoplay = playControl === 'autoplay' && !this.reducedMotion;
+		/*
+		 * A looping autoplay mount renders every frame for as long as the page is
+		 * open, so it plays only while its section is on screen.
+		 */
+		const playInView = autoplay && loop;
+
 		const lottieAnimationOptions = {
 			name,
 			container: container,
 			loop: loop && !this.reducedMotion,
-			autoplay: playControl === 'autoplay' && !this.reducedMotion,
+			autoplay: autoplay && !playInView,
 			path,
 			rendererSettings: {
 				progressiveLoad: true,
@@ -108,6 +120,26 @@ export default class ScrubControlledAnimation {
 			const domLoadedHandler = () => this.initEvents(name, controlledAnimation, animation);
 			controlledAnimation.domLoadedHandler = domLoadedHandler;
 			animation.addEventListener('DOMLoaded', domLoadedHandler);
+		}
+
+		/*
+		 * The section, not the container: the hero's container sits in a sticky
+		 * plate, whose own box is a poor measure of when it has scrolled away.
+		 * `onToggle` only reports changes, so the opening state is read off the
+		 * trigger. Calling `play()` before the JSON loads is fine; Lottie starts
+		 * advancing once it has.
+		 */
+		if (playInView) {
+			const inView = ScrollTrigger.create({
+				trigger: container.closest('section') ?? container,
+				start: 'top bottom',
+				end: 'bottom top',
+				onToggle: (self) => (self.isActive ? animation.play() : animation.pause()),
+			});
+			if (inView.isActive) {
+				animation.play();
+			}
+			controlledAnimation.scrollTrigger = inView;
 		}
 
 		this.animations.set(name, controlledAnimation);
