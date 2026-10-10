@@ -13,7 +13,7 @@ const projectCollection = defineCollection({
 			/**
 			 * Where the folio sends you — the live site, or the repository for the
 			 * projects that ship as source. `linkText` is that link's label and says
-			 * which of the two it is ("View Site" / "View Source"). Omit `url` for a
+			 * which it is ("View Site" / "View Source" / "Join the Beta"). Omit `url` for a
 			 * project with nowhere public to go yet; the folio then shows no link.
 			 */
 			url: z.url().optional(),

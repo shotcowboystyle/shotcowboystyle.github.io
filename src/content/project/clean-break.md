@@ -32,7 +32,8 @@ brandColors:
 cardAurora:
   - '#2e2a5e'
   - '#1b3352'
-linkText: View Site
+url: https://testflight.apple.com/join/cqAJWkug
+linkText: Join the Beta
 tags:
   - iOS
   - On-device
