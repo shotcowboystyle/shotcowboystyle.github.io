@@ -3,9 +3,7 @@ this.addEventListener('install', (e) =>
 	e.waitUntil(
 		caches
 			.open(CACHE)
-			.then((cache) => {
-				cache.addAll(ASSETS);
-			})
+			.then((cache) => cache.addAll(ASSETS))
 			.then(() => {
 				sendMessage({ text: 'install' });
 				self.skipWaiting();

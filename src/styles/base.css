@@ -369,26 +369,6 @@ p {
  */
 
 /*
- * Grain, not gradient. Flat surfaces read as unprinted without some tooth;
- * this is a single fixed layer over the whole document so it never doubles up
- * where sections overlap, and it is inert to the pointer.
- */
-body::after {
-	content: '';
-	position: fixed;
-	inset: 0;
-	z-index: 9997;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
-
-	/* No `mix-blend-mode`: a blended fixed layer over the whole page makes the
-	   compositor flatten everything beneath it into one surface. At a
-	   full-page-screenshot viewport (~13k px tall) that alone more than doubled
-	   GPU memory and crashed Lighthouse runs. */
-	opacity: 2%;
-	pointer-events: none;
-}
-
-/*
  * Pressed feedback on every interactive surface. Wrapped in `:where()` so the
  * whole rule carries zero specificity — components that drive their own
  * transform (the mystery-box dot swarm, the circle button) keep it without

@@ -47,7 +47,6 @@ export default defineConfig({
 	prefetch: { defaultStrategy: 'hover' },
 	integrations: [
 		svgs({ input: ['src/assets/images/sprite'] }),
-		serviceWorker(),
 		critters({ Logger: 2 }),
 		purgecss({
 			// `four-`, `glow-` and `crater-` belonged to the astronaut scene the 404
@@ -75,6 +74,9 @@ export default defineConfig({
 			JavaScript: true,
 			SVG: true,
 		}),
+		// After purgecss: it rewrites the CSS file hashes in `astro:build:done`, and
+		// the precache list must name the files that actually ship.
+		serviceWorker(),
 		// Built by CI from the animation-grabber repo, outside Astro's routes.
 		sitemap({ customPages: ['https://shotcowboystyle.github.io/projects/animation-grabber/'] }),
 	],
