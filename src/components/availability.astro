@@ -9,7 +9,7 @@ const BUILD_TIME_MONTH = formatDateMonthYear(new Date());
 <div
 	role="status"
 	aria-label={`Currently available for ${BUILD_TIME_MONTH}`}
-	class="availability-wrapper badge badge-lg grid h-auto w-auto auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] content-center items-center justify-center justify-items-center gap-3 border-none bg-white !px-3 !py-1 font-sans leading-tight max-sm:text-xs sm:gap-3 sm:!py-1 sm:!pr-3 sm:!pl-4 sm:!text-base"
+	class="availability-wrapper badge-secondary grid h-auto w-auto auto-cols-auto grid-flow-col grid-cols-[auto] grid-rows-[auto] content-center items-center justify-center justify-items-center gap-3 border-none bg-white !px-3 !py-2 font-sans leading-tight max-sm:text-xs sm:gap-3 sm:!pr-3 sm:!pl-4 sm:!text-base"
 >
 	<span aria-hidden="true">
 		Available for <strong>{BUILD_TIME_MONTH}</strong>
@@ -22,6 +22,8 @@ const BUILD_TIME_MONTH = formatDateMonthYear(new Date());
 
 <style>
 	.availability-wrapper {
+		vertical-align: middle;
 		grid-area: span 1 / span 1 / span 1 / span 1;
+		border-radius: 9999px;
 	}
 </style>

@@ -52,8 +52,16 @@ export default defineConfig({
 		purgecss({
 			// `four-`, `glow-` and `crater-` belonged to the astronaut scene the 404
 			// no longer renders. `dot\d` is the mystery-box swarm, still generated.
-			// `is-panning` and `past-hero` are added by script only.
-			safelist: [/^dot\d/, 'github', 'linkedin', 'twitter', 'is-panning', 'past-hero'],
+			// `is-panning`, `past-hero` and `is-curtained` are added by script only.
+			safelist: [
+				/^dot\d/,
+				'github',
+				'linkedin',
+				'twitter',
+				'is-panning',
+				'past-hero',
+				'is-curtained',
+			],
 		}),
 		compress({
 			CSS: true,

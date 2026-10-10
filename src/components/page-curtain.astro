@@ -1,0 +1,27 @@
+---
+/**
+ * The striped curtain that covers a step into or out of a side room. Driven by
+ * `src/lib/view-transition.js`: it grows the bars on the page being left, and
+ * `html.is-curtained` holds them closed on the new page until they retract.
+ */
+const items = [...Array(7)];
+---
+
+<ul
+	class="page-curtain pointer-events-none fixed top-[-71vh] left-0 z-50 m-0 flex h-[200vh] rotate-45 list-none overflow-x-hidden p-0 md:top-[-105vh] md:h-[300vh]"
+	aria-hidden="true"
+>
+	{items.map(() => (
+		<li class="page-curtain-item js-curtain-item odd:bg-primary even:bg-secondary w-[20vh] rounded-[200px] md:w-[32vh]" />
+	))}
+</ul>
+
+<style>
+	.page-curtain-item {
+		transform: scaleY(0);
+	}
+
+	:global(html.is-curtained) .page-curtain-item {
+		transform: scaleY(1);
+	}
+</style>
