@@ -1,4 +1,3 @@
-import { isMacOS } from '@/utils/detect';
 import { EventHandlerRegistry } from '@/utils/disposable';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -10,8 +9,6 @@ export default class SmoothScroll extends Lenis {
 	DOM: {
 		scrollLink: string;
 	};
-	isActive: boolean;
-	callbacks: (() => void)[];
 	scrollLinks: NodeListOf<HTMLAnchorElement>;
 	private eventRegistry: EventHandlerRegistry;
 	private gsapTickerCallback: ((time: number) => void) | null = null;
@@ -24,17 +21,13 @@ export default class SmoothScroll extends Lenis {
 			easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
 			orientation: 'vertical',
 			touchMultiplier: 2,
-			lerp: isMacOS ? 0.4 : 0.1,
+			// No `lerp`: Lenis ignores it whenever `duration` and `easing` are set.
 		});
 
 		this.DOM = {
 			scrollLink: '.scroll-link',
 		};
 
-		this.isActive = true;
-		this.time = 0;
-
-		this.callbacks = [];
 		this.scrollLinks = document.querySelectorAll<HTMLAnchorElement>(this.DOM.scrollLink);
 
 		this.eventRegistry = new EventHandlerRegistry();
@@ -50,10 +43,7 @@ export default class SmoothScroll extends Lenis {
 		gsap.ticker.add(this.gsapTickerCallback);
 		gsap.ticker.lagSmoothing(0);
 
-		this.on('scroll', () => {
-			ScrollTrigger.update();
-			this.callbackRaf();
-		});
+		this.on('scroll', ScrollTrigger.update);
 
 		this.initEvents();
 	}
@@ -86,14 +76,6 @@ export default class SmoothScroll extends Lenis {
 		}
 	}
 
-	scrollLock() {
-		this.stop();
-	}
-
-	unlockScroll() {
-		this.start();
-	}
-
 	kill() {
 		// Stop Lenis scrolling before cleanup
 		this.stop();
@@ -119,41 +101,5 @@ export default class SmoothScroll extends Lenis {
 			easing: (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2),
 			immediate: false,
 		});
-	}
-
-	scrollZero() {
-		// Allow microtask/DOM update to complete before forcing immediate scroll to top
-		setTimeout(() => this.scrollTo(0, { immediate: true }), 5);
-	}
-
-	// resize() {}
-
-	render(time?: number) {
-		if (!this.isActive) {
-			return;
-		}
-
-		this.raf(time ?? 0);
-	}
-
-	set active(value: boolean) {
-		this.isActive = value;
-	}
-
-	callbackRaf() {
-		// call this in scroll method
-		this.callbacks.forEach((cb) => cb());
-	}
-
-	subscribe(callback: () => unknown) {
-		this.callbacks.push(callback);
-	}
-
-	unsubscribe(callback: () => unknown) {
-		this.callbacks = this.callbacks.filter((cb) => cb !== callback);
-	}
-
-	unsubscribeAll() {
-		this.callbacks = [];
 	}
 }
