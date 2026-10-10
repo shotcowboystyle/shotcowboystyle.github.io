@@ -39,6 +39,17 @@ const isWide = (index: number) =>
 const isPhoneCover = data.screenshotImage.height > data.screenshotImage.width;
 
 const liveLabel = `${data.linkText}: ${data.title}`;
+
+/* Credits the project to the site's Person (declared in seo.astro). */
+const folioData = {
+	'@context': 'https://schema.org',
+	'@type': 'CreativeWork',
+	name: data.title,
+	description: data.description,
+	url: new URL(Astro.url.pathname, Astro.site).href,
+	...(data.url && { sameAs: data.url }),
+	creator: { '@id': new URL('/#person', Astro.site).href },
+};
 ---
 
 <BaseLayout meta={{ title: `${data.title} — Curtis Blanton`, description: data.description }}>
@@ -48,6 +59,11 @@ const liveLabel = `${data.linkText}: ${data.title}`;
 			rel="expect"
 			href="#folio-title"
 			blocking="render"
+		/>
+		<script
+			is:inline
+			type="application/ld+json"
+			set:html={JSON.stringify(folioData)}
 		/>
 	</Fragment>
 

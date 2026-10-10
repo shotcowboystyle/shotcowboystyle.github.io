@@ -16,13 +16,22 @@ test.describe('Landing', () => {
 		const description = page.locator('meta[name="description"]');
 		await expect(description).toHaveAttribute(
 			'content',
-			'Fifteen years of combining creativity with attention to detail to created visually appealing and intuitive apps.',
+			'Fifteen years of combining creativity with attention to detail to create visually appealing and intuitive apps.',
 		);
 
 		const ogSiteName = page.locator('meta[property="og:title"]');
 		await expect(ogSiteName).toHaveAttribute(
 			'content',
 			'Curtis Blanton — Full Stack Senior Developer',
+		);
+	});
+
+	test('declares the site owner as structured data', async ({ page }) => {
+		const json = await page.locator('script[type="application/ld+json"]').textContent();
+		const { '@graph': graph } = JSON.parse(json ?? '');
+
+		expect(graph).toContainEqual(
+			expect.objectContaining({ '@type': 'Person', name: 'Curtis Blanton' }),
 		);
 	});
 
@@ -51,4 +60,15 @@ test.describe('Landing', () => {
 
 	// 	await expect(page).toHaveURL(/.*\/tower-blocks\//);
 	// });
+});
+
+// Through the browser, not the `request` fixture: Node can't resolve portless's
+// `*.localhost` host (see playwright.config.ts).
+test('serves llms.txt with every folio', async ({ page }) => {
+	const response = await page.goto('/llms.txt');
+	expect(response?.ok()).toBe(true);
+
+	const body = (await response?.text()) ?? '';
+	expect(body).toMatch(/^# Curtis Blanton$/m);
+	expect(body).toContain('/work/isla-suds/');
 });
