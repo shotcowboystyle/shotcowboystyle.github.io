@@ -1,4 +1,5 @@
 import { EventHandlerRegistry } from '@/utils/disposable';
+import { ancestorAt } from '@/utils/dom';
 import { prefersReducedMotion } from '@/utils/motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -95,12 +96,7 @@ export default class ScrubControlledAnimation {
 		 */
 		const animation = lottie.loadAnimation(lottieAnimationOptions);
 
-		let triggerTarget = null;
-		if (target > 0) {
-			for (let i = target; i--;) {
-				triggerTarget = container.parentElement;
-			}
-		}
+		const triggerTarget = ancestorAt(container, target);
 
 		const controlledAnimation: AnimationComponent = {
 			animationItem: animation,

@@ -16,3 +16,12 @@ export const isElement = (element: HTMLElement) => {
 export async function isTypoReady() {
 	return await document.fonts.ready;
 }
+
+/** The ancestor `levels` steps above `element`, or `null` past the root. */
+export function ancestorAt(element: Element, levels: number): HTMLElement | null {
+	let current: Element | null = element;
+	for (let i = 0; i < levels && current; i++) {
+		current = current.parentElement;
+	}
+	return current === element ? null : (current as HTMLElement | null);
+}
