@@ -52,16 +52,21 @@ export default defineConfig({
 		purgecss({
 			// `four-`, `glow-` and `crater-` belonged to the astronaut scene the 404
 			// no longer renders. `dot\d` is the mystery-box swarm, still generated.
-			// `is-panning`, `past-hero` and `is-curtained` are added by script only.
-			safelist: [
-				/^dot\d/,
-				'github',
-				'linkedin',
-				'twitter',
-				'is-panning',
-				'past-hero',
-				'is-curtained',
-			],
+			// `is-panning`, `past-hero` and `is-curtained` are added by script only,
+			// as are Lenis's `lenis*` classes and `data-offscreen`; greedy keeps any
+			// selector that merely contains them.
+			safelist: {
+				standard: [
+					/^dot\d/,
+					'github',
+					'linkedin',
+					'twitter',
+					'is-panning',
+					'past-hero',
+					'is-curtained',
+				],
+				greedy: [/lenis/, /data-offscreen/],
+			},
 		}),
 		compress({
 			CSS: true,
