@@ -2,6 +2,7 @@
 import SiteVerification from '@/components/common/site-verification.astro';
 import Favicons from '@/components/favicons.astro';
 import OpenGraph from '@/components/open-graph.astro';
+import PageCurtain from '@/components/page-curtain.astro';
 import Seo from '@/components/seo.astro';
 import SiteIndex from '@/components/site-index.astro';
 import viewTransitionScript from '@/lib/view-transition.js?raw';
@@ -80,6 +81,7 @@ const meta: PageMetaData = { ...DEFAULT_META, ...Astro.props.meta };
 			Skip to main content
 		</a>
 
+		<PageCurtain />
 		<SiteIndex />
 
 		<main

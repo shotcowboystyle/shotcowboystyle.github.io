@@ -154,7 +154,7 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 			focusable="false"
 		>
 			<text
-				class="fill-current font-medium"
+				class="fill-current font-medium uppercase"
 				font-size="9"
 				letter-spacing="0.5"
 			>
@@ -242,6 +242,13 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 		}
 	}
 
+	/* Set by the script below; after the hover rules so the `animation`
+	   shorthand there doesn't reset play-state back to running. */
+	.notify-button-wrapper[data-offscreen]
+		:is(.notify-button-space, .notify-button-stream, .notify-button-plane, .ring-rotor) {
+		animation-play-state: paused;
+	}
+
 	@keyframes notify-button-star {
 		0% {
 			transform: scale(1);
@@ -304,3 +311,17 @@ const ringText = `${Array.from({ length: ringRepeatCount }, () => RING_PHRASE).j
 		}
 	}
 </style>
+
+<script>
+	// Pause the looping ring and stream while offscreen. "Offscreen" rather than
+	// "in view" so a no-JS render keeps animating.
+	const observer = new IntersectionObserver((entries) => {
+		for (const entry of entries) {
+			entry.target.toggleAttribute('data-offscreen', !entry.isIntersecting);
+		}
+	});
+
+	for (const wrapper of document.querySelectorAll('.notify-button-wrapper')) {
+		observer.observe(wrapper);
+	}
+</script>

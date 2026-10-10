@@ -298,16 +298,9 @@ h3,
 h4,
 h5,
 h6 {
-	@apply my-0 font-sans font-bold;
+	@apply font-sans-serif my-0 leading-none font-black tracking-normal;
 
 	text-wrap: balance;
-}
-
-/* Display sizes get negative tracking; the counters close up on their own at
-   this scale and the default spacing reads loose. */
-h1,
-h2 {
-	letter-spacing: -0.02em;
 }
 
 /*
