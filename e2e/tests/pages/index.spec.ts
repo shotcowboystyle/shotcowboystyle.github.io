@@ -26,6 +26,15 @@ test.describe('Landing', () => {
 		);
 	});
 
+	test('declares the site owner as structured data', async ({ page }) => {
+		const json = await page.locator('script[type="application/ld+json"]').textContent();
+		const { '@graph': graph } = JSON.parse(json ?? '');
+
+		expect(graph).toContainEqual(
+			expect.objectContaining({ '@type': 'Person', name: 'Curtis Blanton' }),
+		);
+	});
+
 	// test("scrolls to the #about section after clicking the about button", async ({ page }) => {
 	// 	await page.locator("#about-button").click();
 
@@ -51,4 +60,15 @@ test.describe('Landing', () => {
 
 	// 	await expect(page).toHaveURL(/.*\/tower-blocks\//);
 	// });
+});
+
+// Through the browser, not the `request` fixture: Node can't resolve portless's
+// `*.localhost` host (see playwright.config.ts).
+test('serves llms.txt with every folio', async ({ page }) => {
+	const response = await page.goto('/llms.txt');
+	expect(response?.ok()).toBe(true);
+
+	const body = (await response?.text()) ?? '';
+	expect(body).toMatch(/^# Curtis Blanton$/m);
+	expect(body).toContain('/work/isla-suds/');
 });
