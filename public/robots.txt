@@ -1,9 +1,6 @@
 User-agent: CCBot
 Disallow: /
 
-User-agent: ChatGPT-User
-Disallow: /
-
 User-agent: GPTBot
 Disallow: /
 
@@ -17,3 +14,4 @@ User-agent: FacebookBot
 Disallow: /
 
 Sitemap: https://shotcowboystyle.github.io/sitemap-index.xml
+Sitemap: https://shotcowboystyle.github.io/experiments/sitemap-index.xml
