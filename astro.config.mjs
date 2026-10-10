@@ -62,7 +62,8 @@ export default defineConfig({
 			JavaScript: true,
 			SVG: true,
 		}),
-		sitemap(),
+		// Built by CI from the animation-grabber repo, outside Astro's routes.
+		sitemap({ customPages: ['https://shotcowboystyle.github.io/projects/animation-grabber/'] }),
 	],
 	vite: {
 		plugins: [
